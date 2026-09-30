@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openpona.example/schema/statement.schema.json",
+  "title": "OpenPona Bound Statement",
+  "type": "object",
+  "required": ["statement_id", "surface", "truth_status", "created_at"],
+  "properties": {
+    "statement_id": {"type": "string"},
+    "surface": {"type": "string", "minLength": 1},
+    "tokens": {"type": "array", "items": {"type": "string"}},
+    "context_refs": {"type": "array", "items": {"type": "string"}},
+    "subject": {"$ref": "#/$defs/expression"},
+    "predicate": {"$ref": "#/$defs/expression"},
+    "object": {"$ref": "#/$defs/expression"},
+    "cause_refs": {"type": "array", "items": {"type": "string"}},
+    "branch": {"type": ["string", "null"]},
+    "actor": {"type": ["string", "null"]},
+    "source_event": {"type": ["string", "null"]},
+    "truth_status": {
+      "enum": ["observed", "asserted", "requested", "intended", "hypothesis", "inferred", "unknown", "rejected"]
+    },
+    "created_at": {"type": "string"},
+    "parse_status": {"enum": ["RESOLVED", "AMBIGUOUS", "UNRESOLVED", "INVALID"]}
+  },
+  "$defs": {
+    "expression": {
+      "type": ["object", "null"],
+      "properties": {
+        "tokens": {"type": "array", "items": {"type": "string"}},
+        "bound_ref": {"type": ["string", "null"]},
+        "meta_depth": {"type": "integer", "minimum": 0}
+      },
+      "required": ["tokens"]
+    }
+  }
+}

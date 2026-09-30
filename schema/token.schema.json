@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenPona Token",
+  "type": "object",
+  "required": ["token", "kind", "row", "column"],
+  "properties": {
+    "token": {"type": "string"},
+    "kind": {"enum": ["semantic", "structural"]},
+    "row": {"type": "integer", "minimum": 1, "maximum": 6},
+    "column": {"type": "integer", "minimum": 1, "maximum": 7},
+    "gloss": {"type": "string"}
+  }
+}

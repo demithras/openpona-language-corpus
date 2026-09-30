@@ -1,0 +1,10 @@
+{
+  "name": "openpona-language-corpus",
+  "consolidated_at": "2026-09-29",
+  "token_version": "anu 1.1",
+  "grammar_status": "consolidated through 2026-09-29",
+  "canonical_token_count": 42,
+  "semantic_token_count": 36,
+  "structural_token_count": 6,
+  "research_boundary": "OpenPona-as-Ontology-Language remains an open falsifiable hypothesis"
+}
