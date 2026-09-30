@@ -1,0 +1,7 @@
+{"id": "p01", "surface": "sona pali pi ken pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pali pi ken pali}"]}
+{"id": "p02", "surface": "sona pi ken pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pi ken pali}"]}
+{"id": "p03", "surface": "sona pali pi ken", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pali pi ken}"]}
+{"id": "p04", "surface": "sona pali ken", "mode": "dual", "expect_status": "INVALID", "note": "invariant 14: 3+ units need pi"}
+{"id": "p05", "surface": "jan ilo pi sona pali li pana e sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona pali} li {pana} e {sitelen})"]}
+{"id": "p06", "surface": "sona pali pi ken pali anu ala", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({sona pali pi ken pali} anu {ala})"]}
+{"id": "p07", "surface": "sona pi ken pi pali", "mode": "dual", "expect_status": "INVALID", "note": "nested pi unsupported pending author decision L2"}

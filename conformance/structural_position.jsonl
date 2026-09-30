@@ -1,0 +1,10 @@
+{"id": "r01", "surface": "jan tan li pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan tan} li {pali})"]}
+{"id": "r02", "surface": "jan li pali e ijo tan", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo tan})"]}
+{"id": "r03", "surface": "ilo tan pi jan pali li awen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo tan pi jan pali} li {awen})"]}
+{"id": "r04", "surface": "jan li tan e ma tan kute", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {tan} e {ma} tan {kute})"]}
+{"id": "r05", "surface": "jan pi li pali", "mode": "dual", "expect_status": "AMBIGUOUS", "expect_skeletons": ["({jan pi} li {pali})", "{jan pi li pali}"], "note": "rule 11 genuinely ambiguous: pi-vector subject vs li-vector inside a pi group"}
+{"id": "r06", "surface": "seme li tan e ni", "mode": "strict", "expect_status": "INVALID", "note": "strict grammar rejects the corpus's own example"}
+{"id": "r07", "surface": "jan pi li pali", "mode": "strict", "expect_status": "INVALID"}
+{"id": "r08", "surface": "li pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{li pali}"], "note": "dual grammar admits li as a vector concept head"}
+{"id": "r09", "surface": "li pali", "mode": "strict", "expect_status": "INVALID"}
+{"id": "r10", "surface": "la jan li pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({la jan} li {pali})"]}

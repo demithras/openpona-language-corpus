@@ -1,0 +1,49 @@
+# OpenPona draft grammar for the tpparser engine — PROBE ONLY, not canon.
+# Assumptions (author decisions pending): la outermost, li splits clause, e/tan inside predicate,
+# pi in Toki Pona shape: head [mod] pi head [mod]; anu joins expressions.
+sentence =
+  <clause> |
+  <clause> <context_particle> <clause>;
+
+clause =
+  <expression> |
+  <expression> <predicate_marker> <predicate>;
+
+predicate =
+  <expression> |
+  <expression> <object_phrase> |
+  <expression> <source_phrase> |
+  <expression> <object_phrase> <source_phrase>;
+
+object_phrase =
+  <object_marker> <expression>;
+
+source_phrase =
+  <source_marker> <expression>;
+
+expression =
+  <phrase> |
+  <phrase> <alt_marker> <expression>;
+
+phrase =
+  <unit> |
+  <unit> <unit> |
+  <unit> <group_marker> <unit> <unit> |
+  <unit> <unit> <group_marker> <unit> |
+  <unit> <unit> <group_marker> <unit> <unit>;
+
+context_particle = $la;
+predicate_marker = $li;
+object_marker = $e;
+source_marker = $tan;
+group_marker = $pi;
+alt_marker = $anu;
+
+unit =
+  $open | $lon | $tawa | $wile | $pali | $pilin |
+  $seme | $ma | $lukin | $sona | $ni | $kute |
+  $nasin | $sijelo | $ilo | $lawa | $awen | $ken |
+  $jan | $ante | $kama | $sama | $ijo | $selo |
+  $sitelen | $linja | $pana | $toki | $tenpo | $pini |
+  $sike | $ale | $weka | $ala | $kulupu | $pona |
+  $li | $la | $e | $tan | $pi | $anu;
