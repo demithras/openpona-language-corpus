@@ -12,9 +12,6 @@ from lark.exceptions import LarkError
 from . import TOKENS
 
 _HERE = Path(__file__).resolve().parent
-_GRAMMARS = {"dual": "grammar.lark", "strict": "grammar_strict.lark"}
-
-
 @dataclass
 class ParseResult:
     status: str
@@ -24,10 +21,8 @@ class ParseResult:
 
 
 @lru_cache(maxsize=None)
-def _lark(mode: str) -> Lark:
-    if mode not in _GRAMMARS:
-        raise ValueError(f"unknown mode {mode!r}; expected 'strict' or 'dual'")
-    text = (_HERE / _GRAMMARS[mode]).read_text(encoding="utf-8")
+def _lark() -> Lark:
+    text = (_HERE / "grammar.lark").read_text(encoding="utf-8")
     return Lark(text, parser="earley", lexer="dynamic", ambiguity="explicit",
                 keep_all_tokens=True, start="start")
 
@@ -121,24 +116,34 @@ def _alts(node, memo) -> set[str]:
 def _fmt(data: str, c) -> str:
     if data in ("start", "unit"):
         return c[0]
-    if data == "sentence":
+    if data == "statement":
         return c[0] if len(c) == 1 else f"({c[0]} la {c[2]})"
     if data == "clause":
-        return c[0] if len(c) == 1 else f"({c[0]} li {c[2]})"
+        return c[0] if len(c) == 1 else f"({c[0]}{c[1]})"
+    if data == "lis":  # LI predicate [lis]
+        return f" li {c[1]}" + (c[2] if len(c) > 2 else "")
     if data == "predicate":
-        return " ".join(c)
-    if data in ("object", "source"):
-        return f"{c[0]} {c[1]}"
+        return c[0] + (c[1] if len(c) > 1 else "")
+    if data == "parts":
+        return c[0] + (c[1] if len(c) > 1 else "")
+    if data == "part":  # E|TAN expression
+        return f" {c[0]} {c[1]}"
     if data == "expression":
         return c[0] if len(c) == 1 else f"({c[0]} anu {c[2]})"
     if data == "phrase":
-        return "{" + " ".join(c) + "}"
+        return "{" + c[0] + (c[1] if len(c) > 1 else "") + "}"
+    if data == "groups":
+        return c[0] + (c[1] if len(c) > 1 else "")
+    if data == "group":
+        return f" pi {c[1]} {c[2]}"
+    if data == "head":
+        return " ".join(c)
     raise ValueError(f"unexpected rule {data}")
 
 
-def _skeletons(text: str, mode: str) -> set[str]:
+def _skeletons(text: str) -> set[str]:
     try:
-        tree = _lark(mode).parse(text)
+        tree = _lark().parse(text)
     except LarkError:
         return set()
     if not isinstance(tree, Tree):
@@ -147,10 +152,11 @@ def _skeletons(text: str, mode: str) -> set[str]:
 
 
 # --------------------------------------------------------------------- API
-def parse(text: str, mode: str = "dual") -> ParseResult:
-    if mode not in _GRAMMARS:
-        raise ValueError(f"unknown mode {mode!r}; expected 'strict' or 'dual'")
-    toks = text.lower().strip().split()
+def parse(text: str) -> ParseResult:
+    stripped = text.lower().strip()
+    if "\n" in stripped or "\r" in stripped:
+        return ParseResult("INVALID", [], ["one statement per line"], [])
+    toks = stripped.split()
     if not toks:
         return ParseResult("INVALID", [], ["empty input"], [])
     known = set(TOKENS)
@@ -160,7 +166,7 @@ def parse(text: str, mode: str = "dual") -> ParseResult:
         return ParseResult("INVALID", [], errs, toks)
     skels: set[str] = set()
     for cand in fold_candidates(toks):
-        skels |= _skeletons(cand, mode)
+        skels |= _skeletons(cand)
     out = sorted(skels)
     if not out:
         return ParseResult("INVALID", [], ["no structural parse"], toks)

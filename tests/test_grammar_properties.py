@@ -49,13 +49,42 @@ def test_repetition_is_a_meta_derivative(p, n):
     assert res.skeletons == ["{" + f"D{n - 1}({p})" + "}"]
 
 
-phrase = st.lists(sem, min_size=1, max_size=2).filter(_no_adjacent_equal)
+distinct4 = st.lists(sem, min_size=4, max_size=4, unique=True)
+distinct3 = st.lists(sem, min_size=3, max_size=3, unique=True)
+
+
+def test_tan_alone_is_a_unit():
+    res = parse("tan")
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["{tan}"]
+
+
+@given(distinct4)
+def test_pi_group_is_exactly_two_units(t):
+    a, b, c, d = t
+    res = parse(f"{a} {b} pi {c} {d}")
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["{" + f"{a} {b} pi {c} {d}" + "}"]
+
+
+@given(distinct3)
+def test_pi_with_wrong_group_sizes_is_invalid(t):
+    a, b, c = t
+    for text in (f"{a} pi {b}", f"{a} {b} pi {c}"):
+        res = parse(text)
+        assert res.status == "INVALID" and res.skeletons == []
+
+
+@given(st.sampled_from(STRUCTURAL).filter(lambda x: x != "tan"), distinct3.map(lambda t: t[:2]))
+def test_structural_token_at_clause_start_is_invalid(s, t):
+    a, b = t
+    assert parse(f"{s} {a} li {b}").status == "INVALID"
 
 
 @settings(deadline=None)
-@given(phrase, st.one_of(st.none(), phrase))
-def test_strict_mode_is_never_ambiguous_with_at_most_one_li(subj, pred):
-    toks = list(subj) + (["li"] + list(pred) if pred is not None else [])
-    res = parse(" ".join(toks), mode="strict")
-    assert res.status != "AMBIGUOUS"
+@given(distinct3)
+def test_several_li_form_one_group(t):
+    a, b, c = t
+    res = parse(f"{a} li {b} li {c}")
     assert res.status == "RESOLVED"
+    assert res.skeletons == ["({" + a + "} li {" + b + "} li {" + c + "})"]

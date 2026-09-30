@@ -11,7 +11,7 @@ from .parser import parse
 
 
 def _cmd_parse(args) -> int:
-    res = parse(args.sentence, args.mode)
+    res = parse(args.sentence)
     if args.json:
         print(json.dumps(dataclasses.asdict(res), ensure_ascii=False, indent=2))
     else:
@@ -33,7 +33,7 @@ def load_cases(directory: Path) -> list[dict]:
 
 
 def run_case(case: dict):
-    res = parse(case["surface"], case.get("mode", "dual"))
+    res = parse(case["surface"])
     exp_status = case["expect_status"]
     exp_skel = sorted(set(case.get("expect_skeletons", [])))
     ok = res.status == exp_status and (exp_status == "INVALID" or sorted(set(res.skeletons)) == exp_skel)
@@ -65,7 +65,6 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("parse")
     p.add_argument("sentence")
-    p.add_argument("--mode", choices=["strict", "dual"], default="dual")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=_cmd_parse)
     c = sub.add_parser("conformance")

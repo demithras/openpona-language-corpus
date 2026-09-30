@@ -1,32 +1,33 @@
-// OpenPona structural grammar, DUAL mode (SPEC invariant 11): the six structural
-// tokens are also admissible as semantic units. Equivalent to
-// research/parser_probe/op_dual.txt. RESEARCH assumptions, not canon.
+// OpenPona structural grammar = canon/04_grammar.md section 3 (single mode).
 // Precedence, loosest to tightest: la > li > e/tan > anu > pi.
+// Only `tan` is both structural and a unit; li la e pi anu are never units.
 // Input is a space-joined token stream; META folds arrive as D<n>(P) units.
 
-start: sentence
+start: statement
 
-sentence: clause | clause LA clause
+statement: clause | clause LA clause
 
-clause: expression | expression LI predicate
+clause: expression | expression lis
 
-predicate: expression
-         | expression object
-         | expression source
-         | expression object source
+lis: LI predicate | LI predicate lis
 
-object: E expression
-source: TAN expression
+predicate: expression | expression parts
+
+parts: part | part parts
+
+part: E expression | TAN expression
 
 expression: phrase | phrase ANU expression
 
-phrase: unit
-      | unit unit
-      | unit PI unit unit
-      | unit unit PI unit
-      | unit unit PI unit unit
+phrase: head | head groups
 
-unit: SEM | META | LI | LA | E | TAN | PI | ANU
+groups: group | group groups
+
+group: PI unit unit
+
+head: unit | unit unit
+
+unit: SEM | TAN | META
 
 LA: /(?<!\S)la(?!\S)/
 LI: /(?<!\S)li(?!\S)/
