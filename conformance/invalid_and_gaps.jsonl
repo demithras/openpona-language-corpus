@@ -1,7 +1,0 @@
-{"id": "i01", "surface": "", "mode": "dual", "expect_status": "INVALID"}
-{"id": "i02", "surface": "mi li pali", "mode": "dual", "expect_status": "INVALID", "note": "mi is not a canonical token"}
-{"id": "i03", "surface": "ilo li mute", "mode": "dual", "expect_status": "INVALID", "note": "mute is explicitly excluded (SPEC 13)"}
-{"id": "i04", "surface": "jan li pali tan ma e ijo", "mode": "dual", "expect_status": "INVALID", "note": "GAP: fixed e-before-tan order"}
-{"id": "i05", "surface": "jan li pali anu jan li awen", "mode": "dual", "expect_status": "INVALID", "note": "GAP: clause-level anu"}
-{"id": "i06", "surface": "ilo li pana e ilo e sitelen", "mode": "dual", "expect_status": "INVALID", "note": "GAP: single e per predicate"}
-{"id": "i07", "surface": "ilo, li awen", "mode": "dual", "expect_status": "INVALID", "note": "punctuation is not part of the surface"}

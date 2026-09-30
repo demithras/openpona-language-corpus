@@ -1,0 +1,6 @@
+{"id": "t01", "surface": "jan tan li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan tan} li {pali})"], "note": "tan as vector in subject"}
+{"id": "t02", "surface": "jan li pali e ijo tan", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo tan})"]}
+{"id": "t03", "surface": "ilo tan pi jan pali li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo tan pi jan pali} li {awen})"]}
+{"id": "t04", "surface": "jan li tan e ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {tan} e {ma} tan {kute})"]}
+{"id": "t05", "surface": "tan", "expect_status": "RESOLVED", "expect_skeletons": ["{tan}"]}
+{"id": "t06", "surface": "tan li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({tan} li {pali})"]}

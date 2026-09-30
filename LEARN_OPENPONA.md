@@ -85,7 +85,7 @@ X pi Y      X/Y are grouped as one composition scope
 A anu B     explicit alternative/branch/version
 ```
 
-But the operator is structural because of **position**, not because the token loses semantic character. Outside a valid structural position, a strict parser may interpret it as a vector or report ambiguity.
+As in Toki Pona, `li la e pi anu` are particles only: outside their position the statement is invalid. `tan` is the one token that is both a particle ("from") and an ordinary word (source/cause), exactly as in Toki Pona.
 
 ## Lesson 3 — Build concepts and addresses
 
@@ -109,11 +109,15 @@ Order matters:
 ilo sitelen ≠ sitelen ilo
 ```
 
-For a single concept with three or more semantic units, show grouping explicitly with `pi`.
+For a single concept with three or more semantic units, show grouping explicitly with `pi`: the head is one or two words, each `pi` adds a group of exactly two.
 
 ```text
+ilo pi sona lawa
 sona pali pi ken pali
+jan pi ilo sona pi sona lawa
 ```
+
+`sona pi lawa` (two words) and `ilo sona pi lawa` (group of one) are invalid.
 
 The grammar tells the runtime what belongs together even when the exact natural-language rendering varies.
 
@@ -153,7 +157,7 @@ sona ni li kama tan kute
 nasin open anu nasin awen
 ```
 
-Do not focus on one perfect English translation. Ask instead:
+Write one statement per line. Do not focus on one perfect English translation. Ask instead:
 
 1. what expressions are present?
 2. what structural relation connects them?

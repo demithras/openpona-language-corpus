@@ -7,7 +7,9 @@
 
 ## 1. Definition
 
-OpenPona is a **42-token operational language** for describing agency, context, relation, transition, observation, intention and state in a compact compositional form.
+OpenPona is a **42-token Executable Operational Language (EOL)** for describing agency, context, relation, transition, observation, intention and state in a compact compositional form.
+
+*Executable* means that a resolved OpenPona statement can be bound and executed by an external runtime (§10). The language itself performs no effects and grants no authority.
 
 Its kernel is:
 
@@ -18,6 +20,8 @@ OpenPona = 36 semantic vectors + 6 structural vectors
 The language is intentionally small. New domains should normally be expressed by **composition and contextual binding**, not by adding new primitive tokens.
 
 OpenPona is not merely a reduced dialect of Toki Pona. It reuses lexical forms but assigns them stable operational roles inside its own matrix, grammar and addressing system.
+
+**OpenPona does not contradict Toki Pona.** Every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure (`la li e pi anu` and preposition boundaries). OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. See `canon/11_toki_pona_compatibility.md`.
 
 ## 2. Core invariants
 
@@ -33,11 +37,14 @@ The following are canonical:
 8. Ambiguity is represented, not guessed. Use unresolved state, `seme`, or `anu` branching.
 9. Persisted statements bind machine identity at write time so later context changes do not rewrite history.
 10. Intent/request is distinct from observation/fact.
-11. Structural tokens take structural force only in structural position between semantic expressions; outside that position they remain semantic vectors.
+11. `li la e pi anu` are structural only, as in Toki Pona. `tan` is both structural (source phrase) and semantic (vector), as in Toki Pona; where a structural reading of `tan` exists it wins, and the vector reading applies only where no structural parse exists.
 12. **META parsing has priority** over ordinary structural parsing.
 13. Repetition of a token or well-formed phrase denotes a meta/essence/derivative operation over that semantic unit.
-14. Three or more semantic units forming one noun/concept must use explicit grouping with `pi`.
+14. Three or more semantic units forming one noun/concept must use explicit grouping with `pi` (§5.3).
 15. Natural-language renderings are secondary views; they must not silently alter operational semantics.
+16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects.
+17. One statement per line. The language has no punctuation.
+18. Parse priority: META (repetition) → structure (particles) → vector reading of `tan`.
 
 ## 3. Canonical matrix
 
@@ -137,9 +144,24 @@ The leading unit acts as the head unless context or an explicit grammar rule say
 
 When a single concept contains three or more semantic units, grouping must be explicit with `pi` so the parser does not silently invent phrase boundaries.
 
+The shape is fixed:
+
+- the **head** is one or two units;
+- each `pi` introduces a group of **exactly two** units (Toki Pona requires two or more after `pi`; OpenPona never leaves a group of one, so exactly two);
+- several `pi` groups are allowed; each modifies the head, as in Toki Pona, they do not nest.
+
 ```text
-sona pali pi ken pali
+ilo pi sona lawa              head ilo,        group [sona lawa]
+jan ilo pi sona lawa          head jan ilo,    group [sona lawa]
+sona pali pi ken pali         head sona pali,  group [ken pali]
+jan pi ilo sona pi sona lawa  head jan,        groups [ilo sona] [sona lawa]
+
+sona pi lawa                  INVALID: two units never take pi
+ilo sona pi lawa              INVALID: group of one
+jan ilo sona                  INVALID: three units without pi
 ```
+
+Multiple `pi` groups are accepted by the grammar; Toki Pona usage treats them as a grey zone, so prefer one group where the meaning allows.
 
 The exact interpretation is context-dependent, but the grouping is not.
 
@@ -148,13 +170,15 @@ The exact interpretation is context-dependent, but the grouping is not.
 Structural operators are strongest when they connect complete semantic expressions:
 
 ```text
-X li P
-P e Y
-C la S
-S tan Z
-X pi Y
-A anu B
+X li P                 predicate; several predicates: X li P li Q
+P e Y                  object; several objects: P e Y e Z
+P tan Z                source; e and tan phrases in any order: P tan Z e Y
+C la S                 context
+X pi Y Z               grouping (§5.3)
+A anu B                alternative between phrases
 ```
+
+Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`. `anu` joins phrases (`jan li pali anu awen`); whether `anu` may join whole clauses is an open research question, so `jan li pali anu jan li awen` is currently INVALID.
 
 Interpretive anchors:
 
@@ -165,7 +189,7 @@ Interpretive anchors:
 - `pi`: grouping/composition scope;
 - `anu`: explicit alternative/branch/version.
 
-If a structural token is not in a valid structural position between semantic expressions, it is not silently discarded; it may be interpreted as its own vector meaning or rejected as ambiguous by a strict parser.
+A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`, which is also a semantic vector (`seme li tan e ni`, `jan tan li pali`).
 
 ## 7. META and repetition
 
@@ -189,7 +213,9 @@ Repeated derivation composes:
 D^m(D^n(P)) = D^(m+n)(P)
 ```
 
-Equivalent repeated forms may normalize structurally (for example four repetitions can be grouped as two repeated pairs) without changing the derived semantic depth.
+`n` repetitions of `P` denote `D^(n-1)(P)`. Only the resulting depth is meaningful: `D^2(D^2(P)) = D^4(P)` exactly as snap is the acceleration of acceleration, and there is no separate surface form for a nested derivative.
+
+In Toki Pona usage a repeated word reads as emphasis; OpenPona assigns it derivative meaning. This adds meaning on top of a valid Toki Pona phrase and does not change its syntax, so it is compatible under §1.
 
 This rule is canonical at the algebraic level; the exact natural-language gloss of derivative depth is context-dependent and must not be hard-coded as one English word.
 

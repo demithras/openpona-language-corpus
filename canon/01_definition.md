@@ -2,7 +2,7 @@
 
 **Status: CANON**
 
-OpenPona is a minimal operational language of agency and state transition. Its 42-token kernel is deliberately bounded; domain richness should arise from composition, context and binding rather than uncontrolled vocabulary growth.
+OpenPona is a 42-token Executable Operational Language (EOL): a minimal operational language of agency and state transition whose resolved statements can be bound and executed by an external runtime (see `09_runtime_boundary.md`). Its 42-token kernel is deliberately bounded; domain richness should arise from composition, context and binding rather than uncontrolled vocabulary growth.
 
 A useful working model is:
 

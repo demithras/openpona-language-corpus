@@ -2,7 +2,7 @@
 
 **Consolidated language corpus — canonical token inventory `anu 1.1`, grammar consolidated through 2026-09-29.**
 
-OpenPona is a compact operational language built from **42 canonical tokens** arranged in a **6 × 7 matrix**. The current kernel contains **36 semantic primitives** and **6 structural operators**. Every token is treated first as a vector/operator/direction; combinations form context-resolved concepts, entity addresses, relations and narratives.
+OpenPona is a **42-token Executable Operational Language (EOL)**: a compact operational language built from **42 canonical tokens** arranged in a **6 × 7 matrix**, whose resolved statements an external runtime can bind and execute. OpenPona **does not contradict Toki Pona**: it may be stricter and may add meaning, but never accepts what Toki Pona rejects. The current kernel contains **36 semantic primitives** and **6 structural operators**. Every token is treated first as a vector/operator/direction; combinations form context-resolved concepts, entity addresses, relations and narratives.
 
 This repository has two goals:
 
@@ -55,8 +55,9 @@ Read in this order:
 5. [`canon/04_grammar.md`](canon/04_grammar.md)
 6. [`canon/05_addressing.md`](canon/05_addressing.md)
 7. [`canon/06_truth_context_and_execution.md`](canon/06_truth_context_and_execution.md)
-8. [`research/hypothesis_ledger.md`](research/hypothesis_ledger.md)
-9. [`history/supersession_ledger.md`](history/supersession_ledger.md)
+8. [`canon/11_toki_pona_compatibility.md`](canon/11_toki_pona_compatibility.md)
+9. [`research/hypothesis_ledger.md`](research/hypothesis_ledger.md)
+10. [`history/supersession_ledger.md`](history/supersession_ledger.md)
 
 ## Repository status
 

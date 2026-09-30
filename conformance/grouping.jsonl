@@ -1,7 +1,14 @@
-{"id": "p01", "surface": "sona pali pi ken pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pali pi ken pali}"]}
-{"id": "p02", "surface": "sona pi ken pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pi ken pali}"]}
-{"id": "p03", "surface": "sona pali pi ken", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pali pi ken}"]}
-{"id": "p04", "surface": "sona pali ken", "mode": "dual", "expect_status": "INVALID", "note": "invariant 14: 3+ units need pi"}
-{"id": "p05", "surface": "jan ilo pi sona pali li pana e sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona pali} li {pana} e {sitelen})"]}
-{"id": "p06", "surface": "sona pali pi ken pali anu ala", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({sona pali pi ken pali} anu {ala})"]}
-{"id": "p07", "surface": "sona pi ken pi pali", "mode": "dual", "expect_status": "INVALID", "note": "nested pi unsupported pending author decision L2"}
+{"id": "p01", "surface": "sona pali pi ken pali", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pali pi ken pali}"]}
+{"id": "p02", "surface": "sona pi ken pali", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pi ken pali}"]}
+{"id": "p03", "surface": "sona pali pi ken", "expect_status": "INVALID", "note": "pi group must be exactly two units"}
+{"id": "p04", "surface": "sona pali ken", "expect_status": "INVALID", "note": "invariant 14: 3+ units need pi"}
+{"id": "p05", "surface": "jan ilo pi sona pali li pana e sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona pali} li {pana} e {sitelen})"]}
+{"id": "p06", "surface": "sona pali pi ken pali anu ala", "expect_status": "RESOLVED", "expect_skeletons": ["({sona pali pi ken pali} anu {ala})"]}
+{"id": "p07", "surface": "sona pi ken pi pali", "expect_status": "INVALID", "note": "groups of one"}
+{"id": "p08", "surface": "ilo pi sona lawa", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo pi sona lawa}"]}
+{"id": "p09", "surface": "jan ilo pi sona lawa", "expect_status": "RESOLVED", "expect_skeletons": ["{jan ilo pi sona lawa}"]}
+{"id": "p10", "surface": "jan pi ilo sona pi sona lawa", "expect_status": "RESOLVED", "expect_skeletons": ["{jan pi ilo sona pi sona lawa}"], "note": "two groups on head jan; Toki Pona grey zone, accepted"}
+{"id": "p11", "surface": "sona pi lawa", "expect_status": "INVALID", "note": "two units never take pi (Toki Pona: pi needs 2+ after it)"}
+{"id": "p12", "surface": "ilo sona pi lawa", "expect_status": "INVALID", "note": "group of one"}
+{"id": "p13", "surface": "jan pi ilo sona pi lawa", "expect_status": "INVALID", "note": "second group of one"}
+{"id": "p14", "surface": "jan ilo pi sona lawa li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona lawa} li {pali})"]}

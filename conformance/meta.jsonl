@@ -1,11 +1,12 @@
-{"id": "m01", "surface": "ilo sitelen ilo sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{D1(ilo sitelen)}"]}
-{"id": "m02", "surface": "ilo ilo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{D1(ilo)}"]}
-{"id": "m03", "surface": "ilo ilo ilo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{D2(ilo)}"]}
-{"id": "m04", "surface": "ilo ilo ilo ilo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{D3(ilo)}"], "note": "follows examples/meta.md (n repetitions = depth n-1); SPEC 7 pair-regrouping would give D2 - canon inconsistency"}
-{"id": "m05", "surface": "jan li lukin lukin e ijo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {D1(lukin)} e {ijo})"]}
-{"id": "m06", "surface": "sona li kama tan tan", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({sona} li {kama D1(tan)})"], "note": "META priority beats the structural reading of the second tan"}
-{"id": "m07", "surface": "jan jan li pali", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(jan)} li {pali})"]}
-{"id": "m08", "surface": "ilo sitelen sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo D1(sitelen)}"]}
-{"id": "m09", "surface": "jan li lukin lukin lukin lukin e ijo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {D3(lukin)} e {ijo})"]}
-{"id": "m10", "surface": "ilo sitelen ilo sitelen li awen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(ilo sitelen)} li {awen})"]}
-{"id": "m11", "surface": "ilo ilo sitelen ilo sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo D1(ilo sitelen)}"], "note": "two overlapping fold candidates; only one yields a valid parse"}
+{"id": "m01", "surface": "ilo sitelen ilo sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["{D1(ilo sitelen)}"]}
+{"id": "m02", "surface": "ilo ilo", "expect_status": "RESOLVED", "expect_skeletons": ["{D1(ilo)}"]}
+{"id": "m03", "surface": "ilo ilo ilo", "expect_status": "RESOLVED", "expect_skeletons": ["{D2(ilo)}"]}
+{"id": "m04", "surface": "ilo ilo ilo ilo", "expect_status": "RESOLVED", "expect_skeletons": ["{D3(ilo)}"], "note": "n repetitions = depth n-1 (decision 2026-09-30)"}
+{"id": "m05", "surface": "jan li lukin lukin e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {D1(lukin)} e {ijo})"]}
+{"id": "m06", "surface": "sona li kama tan tan", "expect_status": "RESOLVED", "expect_skeletons": ["({sona} li {kama D1(tan)})"], "note": "META beats structure"}
+{"id": "m07", "surface": "jan jan li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(jan)} li {pali})"]}
+{"id": "m08", "surface": "ilo sitelen sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo D1(sitelen)}"]}
+{"id": "m09", "surface": "jan li lukin lukin lukin lukin e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {D3(lukin)} e {ijo})"]}
+{"id": "m10", "surface": "ilo sitelen ilo sitelen li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(ilo sitelen)} li {awen})"]}
+{"id": "m11", "surface": "ilo ilo sitelen ilo sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo D1(ilo sitelen)}"], "note": "two overlapping fold candidates; only one yields a valid parse"}
+{"id": "m12", "surface": "jan pali jan pali jan", "expect_status": "AMBIGUOUS", "expect_skeletons": ["{D1(jan pali) jan}", "{jan D1(pali jan)}"], "note": "genuinely ambiguous fold"}

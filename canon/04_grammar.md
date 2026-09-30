@@ -21,16 +21,20 @@ A semantic unit may be:
 A structural token is interpreted structurally when it connects valid semantic units in a grammatical position:
 
 ```ebnf
-predicate   = expression , "li" , expression ;
-directed    = expression , "e"  , expression ;
-contextual  = expression , "la" , expression ;
-causal      = expression , "tan", expression ;
-alternative = expression , "anu", expression ;
+statement  = clause , [ "la" , clause ] ;                 (* one statement per line *)
+clause     = expression , { "li" , predicate } ;
+predicate  = expression , { "e" , expression | "tan" , expression } ;
+expression = phrase , [ "anu" , expression ] ;
+phrase     = head , { "pi" , unit , unit } ;
+head       = unit , [ unit ] ;
+unit       = semantic-token | "tan" | meta-unit ;
 ```
 
-`pi` is a grouping operator rather than a simple binary relation.
+Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`.
 
-If the token occurs outside a valid structural position, a strict parser must not blindly force the structural interpretation. It may remain a semantic vector or produce `AMBIGUOUS`.
+`li la e pi anu` outside these positions make the statement INVALID. `tan` is the only token with both a structural and a vector role, as in Toki Pona; the structural reading wins wherever it exists.
+
+Whether `anu` may join whole clauses is open (research); the grammar above joins phrases only.
 
 ## 4. Grouping
 
@@ -43,21 +47,32 @@ sona pali
 
 A single concept containing three or more semantic units requires explicit `pi` grouping. This rule exists to prevent invisible phrase-boundary decisions.
 
-Example:
+The head is one or two units; every `pi` group is exactly two units; several groups each modify the head (Toki Pona reading, no nesting).
 
 ```text
-sona pali pi ken pali
+ilo pi sona lawa               valid
+jan ilo pi sona lawa           valid
+jan pi ilo sona pi sona lawa   valid (two groups on head jan)
+sona pi lawa                   INVALID  (two units never take pi)
+ilo sona pi lawa               INVALID  (group of one)
+jan ilo sona                   INVALID  (three units, no pi)
 ```
 
 ## 5. META priority
 
-Repetition is recognized before normal structural interpretation. If `P` is a valid completed unit:
+Repetition is recognized before normal structural interpretation, and structure is recognized before the vector reading of `tan`:
 
 ```text
-P P
+META → structure → vector
 ```
 
-represents a meta/essence/semantic derivative of `P`.
+If `P` is a valid unit of one or two tokens, `n` consecutive copies of `P` form one META unit `D^(n-1)(P)`:
+
+```text
+P P        D(P)
+P P P      D^2(P)
+tan tan    D(tan)      (META beats the structural reading)
+```
 
 The derivative operator composes:
 

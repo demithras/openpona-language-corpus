@@ -18,8 +18,8 @@ D^m(D^n(P)) = D^(m+n)(P)
 
 Consequences:
 
-- four repetitions may be structurally regrouped as two repeated pairs;
-- regrouping must not erase derivative depth;
+- `n` repetitions of `P` denote `D^(n-1)(P)`; four repetitions are `D^3(P)`;
+- only the resulting depth is meaningful: `D^2(D^2(P)) = D^4(P)`, as snap is the acceleration of acceleration, and there is no separate surface form for a nested derivative;
 - META recognition has precedence over a structural interpretation that would incorrectly split the repeated unit;
 - the language does not assign one fixed English word such as "meta" or "essence" to every depth; the operational interpretation is contextual.
 

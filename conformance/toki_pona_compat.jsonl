@@ -1,0 +1,10 @@
+{"id": "k01", "surface": "li pali", "expect_status": "INVALID", "note": "Toki Pona: li needs a subject"}
+{"id": "k02", "surface": "la jan li pali", "expect_status": "INVALID", "note": "Toki Pona: la needs a context before it"}
+{"id": "k03", "surface": "jan pi li pali", "expect_status": "INVALID", "note": "Toki Pona: pi and li are particles only"}
+{"id": "k04", "surface": "jan e ijo", "expect_status": "INVALID", "note": "Toki Pona: e only after a predicate"}
+{"id": "k05", "surface": "e ijo", "expect_status": "INVALID"}
+{"id": "k06", "surface": "pi jan pali", "expect_status": "INVALID"}
+{"id": "k07", "surface": "jan anu", "expect_status": "INVALID", "note": "dangling anu"}
+{"id": "k08", "surface": "jan li pali anu jan li awen", "expect_status": "INVALID", "note": "OPEN: clause-level anu not accepted until Toki Pona usage confirmed"}
+{"id": "k09", "surface": "anu jan", "expect_status": "INVALID"}
+{"id": "k10", "surface": "jan la", "expect_status": "INVALID"}

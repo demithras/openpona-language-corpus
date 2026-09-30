@@ -1,0 +1,5 @@
+{"id": "i01", "surface": "", "expect_status": "INVALID"}
+{"id": "i02", "surface": "mi li pali", "expect_status": "INVALID", "note": "mi is not a canonical token"}
+{"id": "i03", "surface": "ilo li mute", "expect_status": "INVALID", "note": "mute is explicitly excluded (SPEC 13)"}
+{"id": "i04", "surface": "ilo, li awen", "expect_status": "INVALID", "note": "punctuation is not part of the surface"}
+{"id": "i05", "surface": "ilo li awen. jan li pali", "expect_status": "INVALID", "note": "one statement per line"}

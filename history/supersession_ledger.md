@@ -17,6 +17,12 @@
 | Matrix coordinates | first row/column are literal technical headers | **embedded projections; external coordinate hypothesis is research** |
 | OpenPona ↔ EOO | OpenPona is required core language | **unsupported; EOO independent** |
 | Authority | authority graph predicts discretionary judgment | **rejected in strong form; authority validates force/scope, not expert content** |
+| Structural tokens as vectors (invariant 11, pre-2026-09-30) | all six of `li la e tan pi anu` were also semantic vectors outside structural position | **only `tan` is dual, as in Toki Pona; the other five outside position make the statement INVALID** (Toki Pona compatibility, 2026-09-30) |
+| META regrouping (SPEC §7, pre-2026-09-30) | "four repetitions can be grouped as two repeated pairs without changing depth" | **`n` repetitions = `D^(n-1)`; `(P P)(P P)` would be `D^2`, so the sentence was wrong; only resulting depth is meaningful** (2026-09-30) |
+| `pi` placement | undefined ("3+ units need `pi`") | **head of 1–2 units, each `pi` group exactly 2 units, several groups each modify the head** (2026-09-30) |
+| Operator precedence | undefined | **`la` → `li` → `e`/`tan` → `anu` → `pi`, as in Toki Pona** (2026-09-30) |
+| Statement boundary | undefined | **one statement per line, no punctuation** (2026-09-30) |
+| Language definition | "42-token operational language" | **"42-token Executable Operational Language (EOL)"** (2026-09-30) |
 
 ## Conflict rule
 

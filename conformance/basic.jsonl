@@ -1,11 +1,16 @@
-{"id": "b01", "surface": "ilo sitelen li awen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo sitelen} li {awen})"]}
-{"id": "b02", "surface": "jan pali li pana e sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({jan pali} li {pana} e {sitelen})"]}
-{"id": "b03", "surface": "ma pali la jan li lukin e ijo", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({ma pali} la ({jan} li {lukin} e {ijo}))"]}
-{"id": "b04", "surface": "sona ni li kama tan kute", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({sona ni} li {kama} tan {kute})"]}
-{"id": "b05", "surface": "nasin open anu nasin awen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({nasin open} anu {nasin awen})"]}
-{"id": "b06", "surface": "seme li tan e ni", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({seme} li {tan} e {ni})"], "note": "corpus example; needs rule 11 (tan as vector)"}
-{"id": "b07", "surface": "ma pali la ilo sitelen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({ma pali} la {ilo sitelen})"]}
-{"id": "b08", "surface": "jan li pali e ijo tan ma la ilo li pini", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["(({jan} li {pali} e {ijo} tan {ma}) la ({ilo} li {pini}))"]}
-{"id": "b09", "surface": "open", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["{open}"]}
-{"id": "b10", "surface": "ilo li awen ala", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {awen ala})"], "note": "negation parses as a modifier; negation scope is review gap L4"}
-{"id": "b11", "surface": "sitelen ilo li awen", "mode": "dual", "expect_status": "RESOLVED", "expect_skeletons": ["({sitelen ilo} li {awen})"], "note": "order matters: distinct phrase from ilo sitelen"}
+{"id": "b01", "surface": "ilo sitelen li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo sitelen} li {awen})"]}
+{"id": "b02", "surface": "jan pali li pana e sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan pali} li {pana} e {sitelen})"]}
+{"id": "b03", "surface": "ma pali la jan li lukin e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({ma pali} la ({jan} li {lukin} e {ijo}))"]}
+{"id": "b04", "surface": "sona ni li kama tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({sona ni} li {kama} tan {kute})"]}
+{"id": "b05", "surface": "nasin open anu nasin awen", "expect_status": "RESOLVED", "expect_skeletons": ["({nasin open} anu {nasin awen})"]}
+{"id": "b06", "surface": "seme li tan e ni", "expect_status": "RESOLVED", "expect_skeletons": ["({seme} li {tan} e {ni})"], "note": "corpus example; tan as vector (no structural reading exists)"}
+{"id": "b07", "surface": "ma pali la ilo sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({ma pali} la {ilo sitelen})"]}
+{"id": "b08", "surface": "jan li pali e ijo tan ma la ilo li pini", "expect_status": "RESOLVED", "expect_skeletons": ["(({jan} li {pali} e {ijo} tan {ma}) la ({ilo} li {pini}))"]}
+{"id": "b09", "surface": "open", "expect_status": "RESOLVED", "expect_skeletons": ["{open}"]}
+{"id": "b10", "surface": "ilo li awen ala", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {awen ala})"], "note": "negation parses as a modifier; negation scope is review gap L4"}
+{"id": "b11", "surface": "sitelen ilo li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({sitelen ilo} li {awen})"], "note": "order matters"}
+{"id": "b12", "surface": "jan li pali li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} li {awen})"], "note": "multiple li (decision 2026-09-30)"}
+{"id": "b13", "surface": "ilo li pana e ilo e sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {pana} e {ilo} e {sitelen})"], "note": "multiple e"}
+{"id": "b14", "surface": "jan li pali tan ma e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} tan {ma} e {ijo})"], "note": "e/tan in any order"}
+{"id": "b15", "surface": "jan li pali anu awen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li ({pali} anu {awen}))"], "note": "anu joins phrases"}
+{"id": "b16", "surface": "jan li pali e ijo tan ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo} tan {ma} tan {kute})"]}

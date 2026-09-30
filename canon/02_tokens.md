@@ -54,4 +54,4 @@
 | `pi` | grouping/composition scope | bind units into a larger unit |
 | `anu` | alternative/branch/version | split or select alternatives |
 
-Structural status is positional, not ontological erasure: these six tokens still behave as vectors when they are not functioning as structural operators.
+As in Toki Pona, `li la e pi anu` are particles only: outside a valid structural position they make the statement INVALID. `tan` alone is also a semantic vector (source/cause), used as such only where no structural reading exists. See `11_toki_pona_compatibility.md`.
