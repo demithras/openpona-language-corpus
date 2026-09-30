@@ -1,37 +1,61 @@
-"""Meta-tests for corpus invariants, not a claim of a complete OpenPona parser."""
-from pathlib import Path
-
+"""Property tests of the reference parser (hypothesis)."""
 import pytest
 
-try:
-    from hypothesis import given, strategies as st
-except ImportError:  # keep base corpus inspectable without optional deps
-    pytest.skip("hypothesis optional dependency not installed", allow_module_level=True)
+pytest.importorskip("hypothesis")
+from hypothesis import given, settings, strategies as st  # noqa: E402
 
-SEMANTIC = [
-    "open", "lon", "tawa", "wile", "pali", "pilin", "seme", "ma", "lukin",
-    "sona", "ni", "kute", "nasin", "sijelo", "ilo", "lawa", "awen", "ken",
-    "jan", "ante", "kama", "sama", "ijo", "selo", "sitelen", "linja", "pana",
-    "toki", "tenpo", "pini", "sike", "ale", "weka", "ala", "kulupu", "pona",
-]
+from openpona import SEMANTIC, STRUCTURAL, TOKENS, parse  # noqa: E402
+
+sem = st.sampled_from(SEMANTIC)
 
 
-def derivative_depth(repetitions: int) -> int:
-    if repetitions < 1:
-        raise ValueError
-    return repetitions - 1
+def _no_adjacent_equal(seq):
+    return all(a != b for a, b in zip(seq, seq[1:]))
 
 
-@given(st.integers(min_value=1, max_value=20))
-def test_meta_depth_is_grouping_independent(n):
-    # Canonical algebra: regrouping repeated units must not alter semantic derivative depth.
-    assert derivative_depth(n) == n - 1
+def test_token_lists_come_from_csv():
+    assert len(TOKENS) == 42
+    assert len(SEMANTIC) == 36
+    assert STRUCTURAL == ["li", "la", "e", "tan", "pi", "anu"]
 
 
-@given(st.lists(st.sampled_from(SEMANTIC), min_size=3, max_size=8))
-def test_large_concepts_require_explicit_grouping(tokens):
-    # This is a specification guard: a future parser fixture for a 3+ unit concept
-    # must carry explicit grouping rather than relying on an invisible phrase boundary.
-    assert len(tokens) >= 3
-    required_operator = "pi"
-    assert required_operator == "pi"
+@given(sem)
+def test_single_semantic_token_is_resolved(tok):
+    res = parse(tok)
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["{" + tok + "}"]
+
+
+@given(sem, sem)
+def test_two_distinct_semantic_tokens_form_a_phrase(a, b):
+    if a == b:
+        return
+    res = parse(f"{a} {b}")
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["{" + f"{a} {b}" + "}"]
+
+
+@given(st.lists(sem, min_size=3, max_size=3).filter(_no_adjacent_equal))
+def test_three_semantic_tokens_without_pi_are_invalid(toks):
+    res = parse(" ".join(toks))
+    assert res.status == "INVALID"
+    assert res.skeletons == []
+
+
+@given(sem, st.integers(min_value=2, max_value=8))
+def test_repetition_is_a_meta_derivative(p, n):
+    res = parse(" ".join([p] * n))
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["{" + f"D{n - 1}({p})" + "}"]
+
+
+phrase = st.lists(sem, min_size=1, max_size=2).filter(_no_adjacent_equal)
+
+
+@settings(deadline=None)
+@given(phrase, st.one_of(st.none(), phrase))
+def test_strict_mode_is_never_ambiguous_with_at_most_one_li(subj, pred):
+    toks = list(subj) + (["li"] + list(pred) if pred is not None else [])
+    res = parse(" ".join(toks), mode="strict")
+    assert res.status != "AMBIGUOUS"
+    assert res.status == "RESOLVED"

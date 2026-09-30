@@ -1,0 +1,40 @@
+// OpenPona structural grammar, STRICT mode: the six structural tokens are only
+// structural. Equivalent to research/parser_probe/op_strict.txt. RESEARCH assumptions, not canon.
+// Precedence, loosest to tightest: la > li > e/tan > anu > pi.
+// Input is a space-joined token stream; META folds arrive as D<n>(P) units.
+
+start: sentence
+
+sentence: clause | clause LA clause
+
+clause: expression | expression LI predicate
+
+predicate: expression
+         | expression object
+         | expression source
+         | expression object source
+
+object: E expression
+source: TAN expression
+
+expression: phrase | phrase ANU expression
+
+phrase: unit
+      | unit unit
+      | unit PI unit unit
+      | unit unit PI unit
+      | unit unit PI unit unit
+
+unit: SEM | META
+
+LA: /(?<!\S)la(?!\S)/
+LI: /(?<!\S)li(?!\S)/
+E: /(?<!\S)e(?!\S)/
+TAN: /(?<!\S)tan(?!\S)/
+PI: /(?<!\S)pi(?!\S)/
+ANU: /(?<!\S)anu(?!\S)/
+SEM: /(?<!\S)(?!(?:la|li|e|tan|pi|anu)(?!\S))[a-z]+(?!\S)/
+META: /D\d+\([a-z]+(?: [a-z]+)?\)/
+
+WS: /\s+/
+%ignore WS

@@ -7,10 +7,16 @@ name = "openpona-corpus"
 version = "0.1.0"
 description = "Executable integrity checks for the OpenPona canonical corpus"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["lark>=1.1"]
 
 [project.optional-dependencies]
 test = ["pytest>=8", "hypothesis>=6"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["openpona"]
+
+[tool.setuptools.package-data]
+openpona = ["*.lark"]
