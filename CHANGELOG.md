@@ -10,7 +10,8 @@
 - reference parser, CLI and conformance corpus added (`openpona/`, `conformance/`);
 - `jan ni` = speaker; external values never in the surface (`literals` in the statement schema); clause-level `anu` replaced by two `la` statements;
 - matrix column names functional-first (`Seed (Sun)`); matrix experiment ids renamed `MX*`; `H-TS` (truth status in the surface) opened as research;
-- licenses added (CC BY 4.0 text, MIT code); Toki Pona / Sonja Lang acknowledgement; `GLOSSARY.md`; `FILE_INDEX.sha256` removed (git is the integrity layer).
+- licenses added (CC BY 4.0 text, MIT code); Toki Pona / Sonja Lang acknowledgement; `GLOSSARY.md`; `FILE_INDEX.sha256` removed (git is the integrity layer);
+- `CHEATSHEET.md`, `examples/walkthrough_ci_failure.md`, `docs/for-agents.md`, `prompts/openpona_system.md`; every ```openpona line in every `.md` is parsed by `tests/test_docs_examples.py` (`make docs`).
 
 ## 2026-09-29 — consolidated corpus
 

@@ -40,8 +40,8 @@ Principle: **OpenPona does not contradict Toki Pona** (`canon/11_toki_pona_compa
 - Repository name: **`demithras/openpona-language-corpus`**.
 - Licenses: CC BY 4.0 (specification/text) + MIT (code, tests, schemas).
 - Gate — all of the following before the repository goes public:
-  - [ ] license files + Toki Pona / Sonja Lang acknowledgement in README
-  - [ ] one end-to-end worked example + one-page cheat sheet
-  - [ ] agent guide + copy-pasteable system prompt
+  - [x] license files + Toki Pona / Sonja Lang acknowledgement in README (`LICENSE-CC-BY-4.0.txt`, `LICENSE-MIT.txt`, README "Acknowledgement")
+  - [x] one end-to-end worked example + one-page cheat sheet (`examples/walkthrough_ci_failure.md`, `CHEATSHEET.md`)
+  - [x] agent guide + copy-pasteable system prompt (`docs/for-agents.md`, `prompts/openpona_system.md`)
   - [x] this checklist fully closed
 - Housekeeping without further decision: delete `FILE_INDEX.sha256` (git is the integrity layer), resolve hypothesis-id collisions (ledger H5/H6 vs matrix H5-S/H6), add a glossary (EOO, EOL, IR, HDD, Sprint/Day naming), fix schema `$id` placeholder, link `demithras/operational-ontology-poc`.

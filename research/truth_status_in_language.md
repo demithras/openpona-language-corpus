@@ -35,6 +35,13 @@ Every line above is a valid Toki Pona sentence (`X la Y`), so the proposal is co
 - A prefix changes the ordinary meaning of `la` context for a reader who does not know the convention (`lukin la` read as "in the context of looking" rather than "observed").
 - The prefix competes with a genuine context phrase (`ma pali la lukin la …` needs two `la` clauses, which the grammar does not allow).
 
+## Observations so far
+
+- 2026-09-30, `examples/walkthrough_ci_failure.md`: `requested` ("the colleague wants it fixed") and `intended` ("I will fix it") both come out as `wile la …`; only the record's `actor` tells them apart. First falsifier above, hit on the first real story.
+- Same file: a status prefix occupies the single `la` slot, so it cannot coexist with a scope context (`ma pali la lukin la …` is INVALID). Third falsifier, also hit.
+
+Both hits are recorded, not resolved; the hypothesis stays OPEN until a prefix scheme survives a full story.
+
 ## Consequence if confirmed
 
 The `truth_status` field becomes a derived, machine-readable copy of the prefix rather than an independent source of meaning. SPEC §9 would be rewritten and the change recorded in `history/supersession_ledger.md`. Until then the field is authoritative and the prefix is a convention only.
