@@ -13,14 +13,14 @@ Review these items explicitly:
 - [ ] No older Core42 artifact silently overrides later canon.
 - [ ] Choose and add explicit public licenses before calling the repository open source.
 
-## Grammar decisions surfaced by the reference parser (2026-09-30)
+## Grammar decisions (author interview, 2026-09-30)
 
-The parser in `openpona/` implements these as **defaults pending decision**; see `research/parser_probe/README.md`.
+Decided by the author. Implementation in `openpona/` and `conformance/` still follows the earlier draft until updated.
 
-- [ ] L1 — Operator precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi` (Toki Pona convention).
-- [ ] L2 — `pi` placement: a concept is at most `u u pi u u`; nested `pi` is currently INVALID.
-- [ ] L3 — Statement boundary: one statement per line (no in-line separator).
-- [ ] META depth contradiction: `examples/meta.md` says `P P P P` = `D^3(P)`; SPEC §7 says four repetitions regroup as two pairs "without changing depth", but `(P P)(P P)` = `D(D(P))` = `D^2(P)`. Parser follows `examples/meta.md` (n repetitions → depth n−1).
-- [ ] META beats structure: `sona li kama tan tan` parses as `kama D1(tan)`, not "comes from `tan`". Intended?
-- [ ] Rule 11 is not always positional: `jan pi li pali` is AMBIGUOUS (2 parses) in dual mode.
-- [ ] Fixed predicate order (`e` before `tan`), a single `e` per predicate, and no clause-level `anu` are current gaps (`conformance/invalid_and_gaps.jsonl`).
+- [x] L1 — Precedence as in Toki Pona, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi`.
+- [x] L2 — `pi` grouping: a group is 1 or 2 units; `pi` separates groups and is used only when the concept has 3+ units (`sona pi lawa` is INVALID). Several `pi` groups are allowed; as in Toki Pona, each `pi` group modifies the head (first) group, they do not nest. Examples: `ilo pi sona lawa`, `ilo sona pi lawa`, `jan pi ilo pi sona lawa`, `jan ilo pi sona lawa`, `jan pi ilo sona pi lawa`.
+- [x] L3 — One statement per line.
+- [x] META depth — n flat repetitions give `D^(n-1)`; only the resulting depth matters. `D^m(D^n(P)) = D^(m+n)(P)` (associativity: snap `D^4` = acceleration of acceleration `D^2(D^2)`); there is no separate surface form for nested derivatives. SPEC §7 "four repetitions can be grouped as two repeated pairs" is wrong and must be replaced.
+- [x] META beats structure — `sona li kama tan tan` = `kama D1(tan)`.
+- [x] Structure beats vector — when a structural token can be read as an operator, it is one; the vector reading is used only when no structural parse exists. `jan pi li pali` → RESOLVED `({jan pi} li {pali})`. Resulting priority: META → structure → vector.
+- [x] Close gaps as in Toki Pona: multiple `e`, any order of `e`/`tan` phrases, multiple `li`, clause-level `anu`.
