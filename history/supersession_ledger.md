@@ -23,6 +23,11 @@
 | Operator precedence | undefined | **`la` → `li` → `e`/`tan` → `anu` → `pi`, as in Toki Pona** (2026-09-30) |
 | Statement boundary | undefined | **one statement per line, no punctuation** (2026-09-30) |
 | Language definition | "42-token operational language" | **"42-token Executable Operational Language (EOL)"** (2026-09-30) |
+| Clause-level `anu` | open question | **`anu` joins phrases only; a choice between statements is two `la` statements on two lines** (2026-09-30) |
+| Speaker | undefined (no `mi`/`sina`) | **`jan ni` = author of the statement, bound to `actor`** (2026-09-30) |
+| External values in the surface | undefined | **never; the surface is the 42 tokens only, values live in the record (`bound_ref`, `literals`)** (2026-09-30) |
+| Matrix column names | "Sun / Seed" (planet first) | **functional name first, planet as mnemonic alias: "Seed (Sun)"** (2026-09-30) |
+| Matrix experiment ids | `H5-S`, `H6`, `H7-W`, `H7-S` (collided with ledger `H5`–`H7`) | **`MX1`, `MX2`, `MX3-W`, `MX3-S`** (2026-09-30) |
 
 ## Conflict rule
 

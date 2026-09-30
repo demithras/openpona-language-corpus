@@ -8,13 +8,15 @@ The canonical 6×7 arrangement is useful mnemonically, but a stronger claim was 
 
 Several progressively stronger models were attacked.
 
-## H5-S — single-header lift
+Experiment ids in this file use the `MX` prefix (renamed 2026-09-30: `MX1` was `H5-S`, `MX2` was `H6`, `MX3-W`/`MX3-S` were `H7-W`/`H7-S`) so they do not collide with `H5`–`H7` in `hypothesis_ledger.md`, which name different claims.
+
+## MX1 (formerly H5-S) — single-header lift
 
 A model where one edge/header supplied the dominant type/operator lift was tested and rejected. Both axes behaved operator-like.
 
 **Status:** REJECTED.
 
-## H6 — semantic intersection
+## MX2 (formerly H6) — semantic intersection
 
 A better model treated each cell as approximately:
 
@@ -26,7 +28,7 @@ This survived initial separability tests better than the single-header model. It
 
 **Status:** PLAUSIBLE / PROVISIONALLY SUPPORTED.
 
-## H7-W — external coordinate model, weak form
+## MX3-W (formerly H7-W) — external coordinate model, weak form
 
 The strongest surviving weak formulation uses **six external row archetypes × seven external column operations**. The 42 tokens are data at their intersections; the axis labels are meta-labels and are not added to the OpenPona vocabulary.
 
@@ -34,7 +36,7 @@ A double-edge holdout reconstructed **11/11 hidden edge tokens** in the internal
 
 **Status:** STRONGLY SUPPORTED INTERNALLY for the weak coordinate claim.
 
-## H7-S — exact unique lexical generator
+## MX3-S (formerly H7-S) — exact unique lexical generator
 
 The strong version would require exact unique generation of all 42 lexical items from coordinates alone.
 

@@ -2,7 +2,7 @@
 
 **Status: CANON for placement; RESEARCH for unique generative interpretation.**
 
-| Row | Narrative role | Sun / Seed | Moon / Map | Mars / Explore | Mercury / Decide | Jupiter / Work | Venus / Resonate | Saturn / Structure |
+| Row | Narrative role | Seed (Sun) | Map (Moon) | Explore (Mars) | Decide (Mercury) | Work (Jupiter) | Resonate (Venus) | Structure (Saturn) |
 |---:|---|---|---|---|---|---|---|---|
 | 1 | Start → Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
 | 2 | Question → Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
@@ -14,7 +14,8 @@
 ## Matrix invariants
 
 - 42 cells, no duplicates.
-- The Saturn/Structure column is exactly the six structural tokens.
+- The Structure (Saturn) column is exactly the six structural tokens.
+- Column names are functional (Seed, Map, Explore, Decide, Work, Resonate, Structure); the planet names are a mnemonic alias, not evidence and not vocabulary.
 - The first cell is `open`; the final cell is `anu`.
 - `sike` marks cyclic/recurrent semantics near the start of the final row; the sequence itself may be traversed cyclically in mnemonic use.
 - Sprint/row and day/column labels are external coordinates, not extra primitives.

@@ -7,7 +7,10 @@
 - invariant 11 narrowed: only `tan` is both structural and semantic;
 - operator precedence, `pi` shape (head 1–2, groups of exactly 2), one statement per line, META depth `n-1` fixed (SPEC §7 pair-regrouping sentence removed);
 - multiple `e`/`li`, `e`/`tan` in any order accepted; clause-level `anu` left open;
-- reference parser, CLI and conformance corpus added (`openpona/`, `conformance/`).
+- reference parser, CLI and conformance corpus added (`openpona/`, `conformance/`);
+- `jan ni` = speaker; external values never in the surface (`literals` in the statement schema); clause-level `anu` replaced by two `la` statements;
+- matrix column names functional-first (`Seed (Sun)`); matrix experiment ids renamed `MX*`; `H-TS` (truth status in the surface) opened as research;
+- licenses added (CC BY 4.0 text, MIT code); Toki Pona / Sonja Lang acknowledgement; `GLOSSARY.md`; `FILE_INDEX.sha256` removed (git is the integrity layer).
 
 ## 2026-09-29 — consolidated corpus
 

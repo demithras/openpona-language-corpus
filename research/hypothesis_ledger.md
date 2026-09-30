@@ -11,10 +11,11 @@ This ledger consolidates the main hypotheses that were tested or discussed separ
 | H3 | EOO can be architecturally independent of OpenPona | **SUPPORTED** | Current architecture treats OpenPona as separable from the operational runtime. |
 | H5 | Internalized OpenPona may be useful to a human/agent operating across contexts | **STRONG WORKING HYPOTHESIS** | Supported by design fit and simulations, not yet by controlled human evidence. |
 | H6 | The 42 tokens act as reusable cognitive/operational operators | **SIMULATION-SUPPORTED; HUMAN-UNPROVEN** | Cross-domain compositional use survived synthetic tests, but cognition claims require human evidence. |
-| H7 | The 42 tokens are independent arbitrary primitives | **LIKELY FALSE / WEAKENED** | Matrix experiments show meaningful row/column structure. |
-| H8 | The 6×7 matrix carries semantic information | **SUBSTANTIALLY SUPPORTED** | Canonical placement outperforms random expectation on several reconstruction/separability probes, though not every metric. |
-| H9 | Token address/coordinate supports reconstruction | **STRONG PRELIMINARY SIGNAL** | Holdout experiments recovered edge tokens well; exact lexical recovery is not universal. |
+| H7 | The 42 tokens are independent arbitrary primitives | **LIKELY FALSE / WEAKENED** | Matrix experiments (`MX2`, `MX3-W` in `matrix_coordinate_experiments.md`) show meaningful row/column structure. |
+| H8 | The 6×7 matrix carries semantic information | **SUBSTANTIALLY SUPPORTED** | Canonical placement outperforms random expectation on several reconstruction/separability probes, though not every metric (`MX2`, `MX3-W`). |
+| H9 | Token address/coordinate supports reconstruction | **STRONG PRELIMINARY SIGNAL** | Holdout experiments recovered edge tokens well (`MX3-W`, 11/11); exact lexical recovery is not universal (`MX3-S`). |
 | H10 | The canonical matrix is uniquely optimal | **UNPROVEN** | Coarse optimization found alternate layouts that scored better on some formalized metrics. |
+| H-TS | Truth/speech-act status can be carried in the surface with existing tokens (`lukin la`, `wile la`, `seme la`) | **OPEN** | See `truth_status_in_language.md`; zero new tokens; falsifier defined there. |
 | H-OP | OpenPona can be the Ontology Language of a Palantir-class EOO | **OPEN — NEXT EXPERIMENT** | Must express typed ontology primitives and compile losslessly to backend-neutral IR without adding primitives per domain. |
 
 ## Important interpretation
@@ -32,4 +33,4 @@ This is the current research posture.
 
 ## Ontology Machine detail
 
-See `ontology_machine_hypotheses.md` for the H11-R/H12/H14/H15 and R4.x grounding/authority experiments.
+See `ontology_machine_hypotheses.md` for the H11-R/H12/H14/H15 and R4.x grounding/authority experiments, and `matrix_coordinate_experiments.md` for the `MX*` matrix experiments (there is no H4; the numbering gap is historical).

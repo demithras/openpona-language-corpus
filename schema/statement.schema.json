@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openpona.example/schema/statement.schema.json",
+  "$id": "https://raw.githubusercontent.com/demithras/openpona-language-corpus/main/schema/statement.schema.json",
   "title": "OpenPona Bound Statement",
   "type": "object",
   "required": ["statement_id", "surface", "truth_status", "created_at"],
@@ -16,6 +16,11 @@
     "branch": {"type": ["string", "null"]},
     "actor": {"type": ["string", "null"]},
     "source_event": {"type": ["string", "null"]},
+    "literals": {
+      "type": "object",
+      "description": "External values (numbers, ids, strings) referenced by the surface via addresses; the surface itself never contains them.",
+      "additionalProperties": {"type": ["string", "number", "boolean", "null"]}
+    },
     "truth_status": {
       "enum": ["observed", "asserted", "requested", "intended", "hypothesis", "inferred", "unknown", "rejected"]
     },

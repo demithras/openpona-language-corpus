@@ -22,7 +22,7 @@ sitelen  linja    pana     toki     tenpo    pini     pi
 sike     ale      weka     ala      kulupu   pona     anu
 ```
 
-The six structural operators are `li la e tan pi anu`. They remain vectors in their own right, but have structural force when used between semantic expressions in grammatical position.
+The six structural operators are `li la e tan pi anu`. As in Toki Pona, five of them are particles only; `tan` is also an ordinary vector (source/cause) where no structural reading exists.
 
 ## Canon vs research
 
@@ -42,7 +42,7 @@ OpenPona is **not assumed to be the core representation of Executable Operationa
 
 > OpenPona is a candidate human/agent operational language and a candidate Ontology Language. Whether it can losslessly express a typed, executable ontology must be falsified experimentally.
 
-The companion Round 3 hypothesis pack contains that experiment.
+That experiment belongs to a companion EOO hypothesis pack that is not yet published. The executable side of the earlier rounds is public at [demithras/operational-ontology-poc](https://github.com/demithras/operational-ontology-poc).
 
 ## Quick start
 
@@ -59,8 +59,25 @@ Read in this order:
 9. [`research/hypothesis_ledger.md`](research/hypothesis_ledger.md)
 10. [`history/supersession_ledger.md`](history/supersession_ledger.md)
 
+## Tools
+
+- [`CHEATSHEET.md`](CHEATSHEET.md) — the language on one page.
+- [`LEARN_OPENPONA.md`](LEARN_OPENPONA.md) — the tutorial; [`examples/walkthrough_ci_failure.md`](examples/walkthrough_ci_failure.md) — one real event end to end.
+- [`docs/for-agents.md`](docs/for-agents.md) and [`prompts/openpona_system.md`](prompts/openpona_system.md) — how an agent reads and writes OpenPona, and a system prompt to paste.
+- [`GLOSSARY.md`](GLOSSARY.md) — every abbreviation and project term.
+- Reference parser: `pip install -e .` then `python -m openpona parse "ilo sitelen li awen"`; `python -m openpona conformance` runs the 63-case oracle in [`conformance/`](conformance/).
+
+## Acknowledgement
+
+OpenPona's 42 tokens are words of **Toki Pona**, the language created by Sonja Lang (2001; *Toki Pona: The Language of Good*, 2014). OpenPona is an independent project that reuses Toki Pona's lexical forms and particles and, by its own canon (`canon/11_toki_pona_compatibility.md`), never contradicts Toki Pona grammar. It is not endorsed by or affiliated with Sonja Lang or the Toki Pona community.
+
 ## Repository status
 
 This is a **review-ready corpus**, not a claim that every unresolved parser detail is solved. Where the historical record supports a rule, it is marked `CANON`. Where evidence is promising but incomplete, it is marked `RESEARCH`. Where a previous formulation was displaced, it is marked `SUPERSEDED`.
 
-Before public release, choose explicit licenses for the specification and code; see [`LICENSE_POLICY.md`](LICENSE_POLICY.md).
+## License
+
+- Specification, canon, research, history, examples and other text: [CC BY 4.0](LICENSE-CC-BY-4.0.txt).
+- Code, tests, schemas and data files (`openpona/`, `tests/`, `schema/`, `data/`, `conformance/`): [MIT](LICENSE-MIT.txt).
+
+See [`LICENSE_POLICY.md`](LICENSE_POLICY.md) for the split.

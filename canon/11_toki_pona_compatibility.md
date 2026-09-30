@@ -32,7 +32,7 @@ OpenPona reuses Toki Pona's lexical forms and particles. It must not contradict 
 Where Toki Pona usage is itself divided, OpenPona picks one reading and records it here:
 
 - **multiple `pi` groups** — accepted; each group modifies the head. Toki Pona speakers often avoid this shape; prefer one group where meaning allows.
-- **`anu` between whole clauses** — not accepted until Toki Pona usage is confirmed (research).
+- **`anu` between whole clauses** — not a rule of OpenPona (author decision, 2026-09-30). `anu` joins phrases; a choice between statements is two `la` statements on two lines. This is stricter than any Toki Pona usage, so it is compatible either way.
 
 ## Test
 

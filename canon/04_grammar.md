@@ -34,7 +34,7 @@ Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` �
 
 `li la e pi anu` outside these positions make the statement INVALID. `tan` is the only token with both a structural and a vector role, as in Toki Pona; the structural reading wins wherever it exists.
 
-Whether `anu` may join whole clauses is open (research); the grammar above joins phrases only.
+`anu` joins phrases only, never whole clauses (author decision, 2026-09-30). A choice between statements is written as two `la` statements on two lines (`nasin open la jan li pali` / `nasin awen la jan li awen`).
 
 ## 4. Grouping
 

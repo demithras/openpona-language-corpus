@@ -1,11 +1,13 @@
-# License policy before public release
+# License policy
 
-This corpus is prepared as a repository but intentionally does **not** choose a legal license on the author's behalf.
+Decided by the author on 2026-09-30.
 
-Before publishing, decide separately for:
+| Part of the repository | License | File |
+|---|---|---|
+| Specification, canon, research, history, examples, tutorial, guides and every other text file | Creative Commons Attribution 4.0 International (CC BY 4.0) | `LICENSE-CC-BY-4.0.txt` |
+| Code, tests, schemas and data files: `openpona/`, `tests/`, `schema/`, `data/`, `conformance/`, `Makefile`, `pyproject.toml` | MIT | `LICENSE-MIT.txt` |
+| Future glyph/font assets | to be decided separately; none are distributed here | — |
 
-1. **Specification/text** — a documentation/content license.
-2. **Code/tests/schemas** — a software license.
-3. **Any future glyph/font assets** — review their independent licensing; no font files are distributed here.
+Attribution for CC BY 4.0 material: "OpenPona language corpus, Dmitri Surchis, https://github.com/demithras/openpona-language-corpus, CC BY 4.0".
 
-Do not publish the repository as "open source" until explicit license files are added.
+Toki Pona, whose words OpenPona reuses, is the work of Sonja Lang; see the Acknowledgement in `README.md`.

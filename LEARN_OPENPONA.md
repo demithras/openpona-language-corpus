@@ -42,16 +42,16 @@ Row narratives:
 6 Generalize → Release
 ```
 
-Column roles:
+Column roles (the planet is only a mnemonic alias):
 
 ```text
-Sun      Seed
-Moon     Map
-Mars     Explore
-Mercury  Decide
-Jupiter  Work
-Venus    Resonate
-Saturn   Structure
+Seed       (Sun)
+Map        (Moon)
+Explore    (Mars)
+Decide     (Mercury)
+Work       (Jupiter)
+Resonate   (Venus)
+Structure  (Saturn)
 ```
 
 Do not add the row/column labels to the 42-token vocabulary. They are coordinates/mnemonics.
@@ -68,7 +68,7 @@ Answers: `ma`, `pana`, `anu`.
 
 ## Lesson 2 — Separate semantic and structural tokens
 
-The Saturn column contains the six structural operators:
+The Structure column contains the six structural operators:
 
 ```text
 li la e tan pi anu

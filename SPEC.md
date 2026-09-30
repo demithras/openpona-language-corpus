@@ -48,7 +48,7 @@ The following are canonical:
 
 ## 3. Canonical matrix
 
-| Row / narrative arc | Sun / Seed | Moon / Map | Mars / Explore | Mercury / Decide | Jupiter / Work | Venus / Resonate | Saturn / Structure |
+| Row / narrative arc | Seed (Sun) | Map (Moon) | Explore (Mars) | Decide (Mercury) | Work (Jupiter) | Resonate (Venus) | Structure (Saturn) |
 |---|---|---|---|---|---|---|---|
 | 1 Start → Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
 | 2 Question → Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
@@ -57,7 +57,7 @@ The following are canonical:
 | 5 Understand → Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
 | 6 Generalize → Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-The row/column labels are **external metadata**, not extra OpenPona primitives. Recent experiments support treating the first row/column as embedded projections of broader axes, but the exact coordinate generator is research, not grammar.
+The row/column labels are **external metadata**, not extra OpenPona primitives. The functional label (Seed, Map, …) is the operational name of the column; the planet is a mnemonic alias only. Recent experiments support treating the first row/column as embedded projections of broader axes, but the exact coordinate generator is research, not grammar.
 
 ## 4. Token operational glosses
 
@@ -178,7 +178,14 @@ X pi Y Z               grouping (§5.3)
 A anu B                alternative between phrases
 ```
 
-Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`. `anu` joins phrases (`jan li pali anu awen`); whether `anu` may join whole clauses is an open research question, so `jan li pali anu jan li awen` is currently INVALID.
+Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`. `anu` joins phrases only (`jan li pali anu awen`); it never joins whole clauses. A choice between whole statements is written as two context statements on two lines:
+
+```text
+nasin open la jan li pali
+nasin awen la jan li awen
+```
+
+`jan li pali anu jan li awen` therefore has exactly one parse — `jan` does (`pali` or `jan`) and `awen` — and is not a branch between statements (author decision, 2026-09-30).
 
 Interpretive anchors:
 
@@ -241,6 +248,25 @@ Rules:
 - if more than one entity remains valid, do not guess;
 - `seme` marks unresolved/query state; `anu` can express explicit alternatives.
 
+### 8.1 Speaker
+
+OpenPona has no `mi`/`sina`. **`jan ni` denotes the author of the statement** (the speaking agent or person). It is an ordinary contextual address whose binding is the statement's `actor`; it does not introduce a first person into the grammar.
+
+```text
+jan ni li lukin e ilo sitelen      the author of this statement inspects the logging tool
+```
+
+### 8.2 External values
+
+The surface text contains **only the 42 tokens** — never numbers, identifiers, quoted strings or proper names. An external value (a PR number, a UUID, a file name, a timestamp) lives in the bound statement (`bound_ref`, `literals`) and the surface points at it by address:
+
+```text
+ilo pali li pini ala                surface
+subject.bound_ref: pr:678           record
+```
+
+This is not a hidden sidecar: the bound statement is the canonical persisted form (§8, `schema/statement.schema.json`), and the surface is its human/agent view.
+
 ## 9. Truth and speech-act status
 
 OpenPona surface text alone is insufficient to distinguish fact from desire. A runtime must preserve a truth/speech-act status such as:
@@ -257,6 +283,8 @@ rejected
 ```
 
 OpenPona must never be used to overwrite contradictory raw evidence merely because a preferred narrative is simpler.
+
+Whether this status can be carried inside the surface with existing tokens (`lukin la X` = observed, `wile la X` = intended, `seme la X` = unknown) is a research hypothesis, not canon: see `research/truth_status_in_language.md`.
 
 ## 10. Runtime boundary
 
