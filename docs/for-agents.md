@@ -19,7 +19,7 @@ For an AI agent that reads and writes OpenPona statements (for example LINJA ove
 6. If you propose an action, separately state what evidence would count as observed success.
 
 ```openpona
-ilo pali li pini ala            # 1-2: the CI tool did not complete
+ilo pali li pini ala            # 1-2: the CI run has not completed (for "red" see the walkthrough: pona ala)
 ma pali la ilo pali li pini ala # 3: scoped to the work project
 jan ni li lukin e ilo pali      # 4: I inspect the tool (address bound in the record)
 jan ni li wile e ni             # 5: my intention (status: intended, in the record)
@@ -40,7 +40,7 @@ Order: parse, read the status, bind the addresses, never guess.
 ```openpona
 ? jan pali jan pali jan         # AMBIGUOUS: keep both readings
 ! jan ilo sona                  # INVALID: three units need pi
-seme li tan e ni                # UNRESOLVED-style question: source of the bound referent is open
+seme li tan e ni                # a question statement (RESOLVED parse); its seme stays UNRESOLVED at binding
 ```
 
 ## 4. Self-reference, other people, values
@@ -68,7 +68,7 @@ subject:
 actor: urn:agent:linja           # the binding of jan ni
 literals:
   pr_number: 678
-resolution_context: [ma pali]
+resolution_context: [project:acme-web]
 resolution_status: RESOLVED      # RESOLVED | AMBIGUOUS | UNRESOLVED | INVALID
 candidates: []                   # filled when AMBIGUOUS
 truth_status: observed           # observed|asserted|requested|intended|hypothesis|inferred|unknown|rejected

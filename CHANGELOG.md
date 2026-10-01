@@ -1,12 +1,22 @@
 # Changelog
 
+## 2026-10-01 — independent review round
+
+Five fresh-context reviewers (first-time reader, Toki Pona linguist, tooling engineer, research integrity, mechanical checker) assessed the repository; scores for "publish as-is" were 5/4/4/5/8 of 10. Changes made in response:
+
+- parser: META candidates are units of semantic tokens or `tan` only — particles never fold (`li li li`, `la la jan li pali` INVALID; `jan li pali li pali` is two predicates); uppercase INVALID; any Unicode line separator ends a statement; 256-token guard; located, rule-named error messages; 18 new conformance cases (81 total);
+- packaging: `tokens.csv` shipped inside the package (non-editable install works), package renamed `openpona-language-corpus` 0.2.0, root `LICENSE`, `.gitignore` entries;
+- canon: `canon/11` now states the verification status of the Toki Pona claim and lists seven departures found by the review as *under author decision*; negation and tense section; invariant 4 and META scope narrowed in text (particles are not vectors; META units are 1–2 tokens); stale "remain vectors" / "completed phrase" / "implementation question" wording removed;
+- research: evidence-status banner on every research file (all strength labels are unpublished internal results); `MX3-W` relabelled "SUPPORTED INTERNALLY (unpublished)";
+- docs: README first screen rewritten (what / who / what you can do today, 5-line demo, install); `!`/`?` markers explained; gloss drift between cheat sheet and system prompt removed; walkthrough negation gloss corrected (`kama pi pona ala` = became not-fit, Toki Pona reading "became bad"); `REVIEW_CHECKLIST.md` moved to `history/`.
+
 ## 2026-09-30 — Toki Pona compatibility and grammar decisions
 
 - definition: OpenPona is a 42-token Executable Operational Language (EOL);
 - canon principle: OpenPona does not contradict Toki Pona (`canon/11_toki_pona_compatibility.md`);
 - invariant 11 narrowed: only `tan` is both structural and semantic;
 - operator precedence, `pi` shape (head 1–2, groups of exactly 2), one statement per line, META depth `n-1` fixed (SPEC §7 pair-regrouping sentence removed);
-- multiple `e`/`li`, `e`/`tan` in any order accepted; clause-level `anu` left open;
+- multiple `e`/`li`, `e`/`tan` in any order accepted; `anu` joins phrases only (clause-level choice = two `la` statements);
 - reference parser, CLI and conformance corpus added (`openpona/`, `conformance/`);
 - `jan ni` = speaker; external values never in the surface (`literals` in the statement schema); clause-level `anu` replaced by two `la` statements;
 - matrix column names functional-first (`Seed (Sun)`); matrix experiment ids renamed `MX*`; `H-TS` (truth status in the surface) opened as research;

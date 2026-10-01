@@ -2,6 +2,8 @@
 
 **Status: HISTORICAL RESEARCH**
 
+**Evidence status (added 2026-10-01 after independent review):** every strength label in this file describes an internal, unpublished experiment from the 2026-09 research conversations. No data, method, baseline or code for them is in this repository. Read each label as *reported, unpublished*; nothing here is reproducible from the repository alone.
+
 An early test used the reduced OpenPona inventory to reconstruct Toki Pona vocabulary that was not included in the 42-token kernel.
 
 Reported results in the research conversation included:

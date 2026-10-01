@@ -26,4 +26,4 @@ and compile to a backend-neutral IR with enough information for deterministic ro
 
 The hypothesis is rejected if core meaning repeatedly escapes into YAML/Rego/FGA/code that is semantically indispensable, or if new domain primitives must be added to the 42-token kernel.
 
-See the companion EOO Round 3 pack for the executable protocol.
+The executable protocol belongs to the companion EOO Round 3 pack, which is not yet published.

@@ -14,7 +14,7 @@ surface tokens
 → optional execution by an external runtime
 ```
 
-The language is optimized for relations, transformations, narrative state, operational direction and contextual addressing. Earlier held-out vocabulary tests suggest it is weaker at scalar magnitude, sensory polarity and coordinate-like qualities. Those weaknesses are properties to acknowledge, not reasons to silently expand the kernel.
+The language is optimized for relations, transformations, narrative state, operational direction and contextual addressing. An early, unpublished held-out vocabulary test (`research/heldout_vocabulary_experiment.md`) suggested it is weaker at scalar magnitude, sensory polarity and coordinate-like qualities. Those weaknesses are properties to acknowledge, not reasons to silently expand the kernel.
 
 ## Non-goals
 

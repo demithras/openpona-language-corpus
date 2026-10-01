@@ -23,4 +23,4 @@ unit      = token | "D" depth "(" token [ " " token ] ")"
 
 `D<n>(P)` is the META derivative of depth n produced by n+1 repetitions of `P`.
 
-Cases were written by hand before the reference parser existed and re-written on 2026-09-30 after the author's grammar decisions (`canon/11_toki_pona_compatibility.md`, `REVIEW_CHECKLIST.md`). A case changes only with an explicit decision, recorded in the case `note`.
+Cases were written by hand before the reference parser existed and re-written on 2026-09-30 after the author's grammar decisions (`canon/11_toki_pona_compatibility.md`, `history/review_checklist_2026-09-30.md`); 18 cases added 2026-10-01 after the independent review (particles never fold, uppercase and line separators, chains of `e`/`li`/`anu`). A case changes only with an explicit decision, recorded in the case `note`.

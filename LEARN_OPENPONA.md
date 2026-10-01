@@ -81,7 +81,7 @@ X li P      X has/is-in predicate/state/process P
 P e Y       P is directed toward Y
 C la S      S holds in context/condition C
 S tan Z     S derives from / depends on / is caused by Z
-X pi Y      X/Y are grouped as one composition scope
+H pi U U    a group of exactly two units modifies the head H
 A anu B     explicit alternative/branch/version
 ```
 

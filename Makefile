@@ -1,13 +1,15 @@
-.PHONY: test check conformance docs
+PYTHON ?= python
+
+.PHONY: test conformance docs check
 
 test:
-	python -m pytest -q
-
-check: test
-	@echo "OpenPona corpus integrity checks passed."
+	$(PYTHON) -m pytest -q
 
 conformance:
-	python -m openpona conformance
+	$(PYTHON) -m openpona conformance
 
 docs:
-	python -m pytest -q tests/test_docs_examples.py
+	$(PYTHON) -m pytest -q tests/test_docs_examples.py
+
+check: test conformance docs
+	@echo "OpenPona corpus integrity checks passed."

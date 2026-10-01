@@ -1,10 +1,11 @@
 {
   "name": "openpona-language-corpus",
-  "consolidated_at": "2026-09-29",
+  "consolidated_at": "2026-10-01",
   "token_version": "anu 1.1",
-  "grammar_status": "consolidated through 2026-09-29",
+  "grammar_status": "consolidated through 2026-10-01 (independent review round applied)",
   "canonical_token_count": 42,
   "semantic_token_count": 36,
   "structural_token_count": 6,
-  "research_boundary": "OpenPona-as-Ontology-Language remains an open falsifiable hypothesis"
+  "research_boundary": "OpenPona-as-Ontology-Language remains an open falsifiable hypothesis",
+  "parser": "openpona/ reference parser 0.2.0; conformance corpus 81 cases"
 }

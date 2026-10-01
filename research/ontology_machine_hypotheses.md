@@ -2,6 +2,8 @@
 
 **Status: RESEARCH — small POCs and adversarial reasoning, not canon.**
 
+**Evidence status (added 2026-10-01 after independent review):** every strength label in this file describes an internal, unpublished experiment from the 2026-09 research conversations. No data, method, baseline or code for them is in this repository. Read each label as *reported, unpublished*; nothing here is reproducible from the repository alone.
+
 These experiments explored whether OpenPona semantic expressions could remain stable while a generic machine handled grounding, binding and execution.
 
 ## H11-R — reflexive semantic graph notation
@@ -10,7 +12,7 @@ Working model:
 
 ```text
 semantic vectors → units
-structural vectors → relations
+structural tokens → relations
 repetition → semantic derivatives/meta
 linear OpenPona surface → reflexive semantic graph
 ```
@@ -27,7 +29,7 @@ A first POC explored typing, properties, authorization, constraints, interfaces,
 
 **Remaining risk:** complex graph-pattern/binding serialization and the possibility that genericity was achieved by pushing essential semantics into the machine rather than the language.
 
-This is one reason H23 in the Round 3 pack audits indispensable sidecars/IR meaning explicitly.
+This is one reason the planned Round 3 pack (not yet published) audits indispensable sidecars/IR meaning explicitly (its hypothesis H23).
 
 ## H14 — semantic/grounding separation
 

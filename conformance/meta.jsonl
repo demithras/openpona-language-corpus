@@ -10,3 +10,9 @@
 {"id": "m10", "surface": "ilo sitelen ilo sitelen li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(ilo sitelen)} li {awen})"]}
 {"id": "m11", "surface": "ilo ilo sitelen ilo sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo D1(ilo sitelen)}"], "note": "two overlapping fold candidates; only one yields a valid parse"}
 {"id": "m12", "surface": "jan pali jan pali jan", "expect_status": "AMBIGUOUS", "expect_skeletons": ["{D1(jan pali) jan}", "{jan D1(pali jan)}"], "note": "genuinely ambiguous fold"}
+{"id": "m13", "surface": "jan li pali li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} li {pali})"], "note": "a repeated predicate is two li predicates, not D1(li pali): META candidates are units only (review 2026-10-01)"}
+{"id": "m14", "surface": "jan li pali e ilo e ilo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ilo} e {ilo})"], "note": "repeated object phrase is not a META unit"}
+{"id": "m15", "surface": "jan li pali anu pali anu pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li ({pali} anu ({pali} anu {pali})))"], "note": "anu chain; 'pali anu' is not a unit, so nothing folds"}
+{"id": "m16", "surface": "jan li pali e pali e pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {pali} e {pali})"], "note": "'pali e' is not a unit"}
+{"id": "m17", "surface": "jan li lukin e ilo ilo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {lukin} e {D1(ilo)})"], "note": "META inside an object phrase"}
+{"id": "m18", "surface": "tan tan li tan tan", "expect_status": "RESOLVED", "expect_skeletons": ["({D1(tan)} li {D1(tan)})"], "note": "tan is a unit, so it folds on both sides"}

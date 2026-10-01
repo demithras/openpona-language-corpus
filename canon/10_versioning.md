@@ -24,9 +24,9 @@ The complete canonical matrix is recorded in `03_matrix.md`.
 
 Later accepted rules added or clarified:
 
-- every token is first a vector/operator;
+- every semantic token (and `tan`) is first a vector/operator;
 - META/repetition priority;
-- structural tokens are structural in structural position, otherwise remain vectors;
+- `li la e pi anu` are particles only; `tan` is also a vector (this replaced the earlier "otherwise remain vectors" rule on 2026-09-30, see `history/supersession_ledger.md`);
 - explicit `pi` grouping for 3+ semantic units in one concept;
 - derivative/repetition algebra;
 - stronger separation between language, grounding, authority, judgment and execution.

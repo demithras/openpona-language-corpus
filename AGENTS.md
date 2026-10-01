@@ -15,7 +15,7 @@ Before proposing a canon change:
 
 ## Anti-contamination rule
 
-Do not use the claim "OpenPona is the EOO Ontology Language" as an assumption inside this repository. That is tested in the companion EOO hypothesis pack.
+Do not use the claim "OpenPona is the EOO Ontology Language" as an assumption inside this repository. That is tested in the companion EOO hypothesis pack (not yet published).
 
 ## Ambiguity rule
 

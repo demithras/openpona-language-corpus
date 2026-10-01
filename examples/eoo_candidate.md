@@ -2,7 +2,7 @@
 
 **Status: EXPLORATORY, not canonical Ontology Language syntax.**
 
-These sketches exist only to explain what the companion experiment must test.
+These sketches exist only to explain what the companion experiment (the Round 3 pack, not yet published) must test.
 
 A future OpenPona Ontology Language would need to distinguish at least:
 

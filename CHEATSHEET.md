@@ -1,6 +1,6 @@
 # OpenPona cheat sheet
 
-42 tokens (36 semantic + 6 structural), one grammar, no other words. Parser is the source of truth: `python -m openpona parse "ilo sitelen li awen"` prints RESOLVED / AMBIGUOUS / INVALID and the skeletons.
+42 tokens (36 semantic + 6 structural), one grammar, no other words. Parser is the source of truth: `python -m openpona parse "ilo sitelen li awen"` prints RESOLVED / AMBIGUOUS / INVALID and the skeletons. In `openpona` code blocks a leading `!` marks a line that is expected INVALID and `?` one that is expected AMBIGUOUS; `D1(x)` is the META reading of `x x` (one derivative: `lukin lukin` = the looking-at-looking, inspection as such).
 
 ## The matrix (6 rows x 7 columns)
 
@@ -61,7 +61,7 @@ ma pali la jan li lukin e ijo    # in project scope, an agent inspects an entity
 sona ni li kama tan kute         # the bound knowledge came from a received signal
 nasin open anu nasin awen        # opening path or retaining path
 jan ni li lukin e ilo sitelen    # the author inspects the logging tool
-! sona pi lawa                   # two units never take pi
+! sona pi lawa                   # pi needs exactly two units after it; a two-unit concept takes no pi
 ! jan ilo sona                   # three units without pi
 ! li pali                        # particle with no subject
 ! la jan li pali                 # la needs a context clause before it
@@ -69,4 +69,4 @@ jan ni li lukin e ilo sitelen    # the author inspects the logging tool
 
 ## Toki Pona
 
-OpenPona never contradicts Toki Pona: stricter yes, new meaning yes, accepting what Toki Pona rejects never.
+OpenPona is designed not to contradict Toki Pona: stricter yes, new meaning yes, accepting what Toki Pona rejects never. Verification is partial; known departures are listed in `canon/11`.

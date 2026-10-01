@@ -22,6 +22,6 @@
 
 ## Embedded headers vs literal headers
 
-Recent work rejected the simplistic idea that only one edge of the matrix is a type-lift/header. Both axes appear operator-like. A stronger current research model treats row and column semantics as external coordinates whose intersections attract lexical tokens.
+Internal research (`research/matrix_coordinate_experiments.md`, MX1–MX3; unpublished) rejected the simplistic idea that only one edge of the matrix is a type-lift/header. Both axes appear operator-like. A stronger current research model treats row and column semantics as external coordinates whose intersections attract lexical tokens.
 
 The first row/first column can act as **embedded projections** of those axes, but they are still data cells, not formal headers. This distinction matters because exact generation of all 42 tokens from axes alone is not yet proven.

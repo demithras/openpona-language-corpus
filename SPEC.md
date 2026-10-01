@@ -2,7 +2,7 @@
 
 **Specification family:** OpenPona  
 **Canonical token inventory:** `anu 1.1`  
-**Consolidation date:** 2026-09-29  
+**Consolidation date:** 2026-10-01  
 **Status:** CANON where explicitly marked; unresolved points are called out.
 
 ## 1. Definition
@@ -14,14 +14,14 @@ OpenPona is a **42-token Executable Operational Language (EOL)** for describing 
 Its kernel is:
 
 ```text
-OpenPona = 36 semantic vectors + 6 structural vectors
+OpenPona = 36 semantic tokens (vectors) + 6 structural tokens (particles; tan is also a vector)
 ```
 
 The language is intentionally small. New domains should normally be expressed by **composition and contextual binding**, not by adding new primitive tokens.
 
 OpenPona is not merely a reduced dialect of Toki Pona. It reuses lexical forms but assigns them stable operational roles inside its own matrix, grammar and addressing system.
 
-**OpenPona does not contradict Toki Pona.** Every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure (`la li e pi anu` and preposition boundaries). OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. See `canon/11_toki_pona_compatibility.md`.
+**OpenPona is designed not to contradict Toki Pona.** The design rule: every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure. OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. **Status of the claim:** a design principle, verified so far only for rejection cases (`conformance/toki_pona_compat.jsonl`); an independent review on 2026-10-01 found departures that are listed, with their status, in `canon/11_toki_pona_compatibility.md`.
 
 ## 2. Core invariants
 
@@ -30,7 +30,7 @@ The following are canonical:
 1. **Exactly 42 canonical tokens** in the `anu 1.1` inventory.
 2. **36 semantic + 6 structural** architecture.
 3. The six structural tokens are exactly `li la e tan pi anu`.
-4. Every token is first interpretable as a **vector/operator/direction**, not as a fixed English noun.
+4. Every semantic token (and `tan`) is first interpretable as a **vector/operator/direction**, not as a fixed English noun; the five particles `li la e pi anu` have structural force only.
 5. Two or more semantic tokens can form a **context-resolved concept or entity address**.
 6. Token order matters; `A B` is not assumed equivalent to `B A`.
 7. Context narrows meaning; `la` is the primary explicit context operator.
@@ -42,7 +42,7 @@ The following are canonical:
 13. Repetition of a token or well-formed phrase denotes a meta/essence/derivative operation over that semantic unit.
 14. Three or more semantic units forming one noun/concept must use explicit grouping with `pi` (§5.3).
 15. Natural-language renderings are secondary views; they must not silently alter operational semantics.
-16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects.
+16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects. Known departures are tracked in `canon/11`.
 17. One statement per line. The language has no punctuation.
 18. Parse priority: META (repetition) → structure (particles) → vector reading of `tan`.
 
@@ -57,7 +57,7 @@ The following are canonical:
 | 5 Understand → Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
 | 6 Generalize → Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-The row/column labels are **external metadata**, not extra OpenPona primitives. The functional label (Seed, Map, …) is the operational name of the column; the planet is a mnemonic alias only. Recent experiments support treating the first row/column as embedded projections of broader axes, but the exact coordinate generator is research, not grammar.
+The row/column labels are **external metadata**, not extra OpenPona primitives. The functional label (Seed, Map, …) is the operational name of the column; the planet is a mnemonic alias only. Internal, unpublished experiments (`research/matrix_coordinate_experiments.md`, MX2–MX3) suggested the first row/column act as embedded projections of broader axes; the coordinate generator is research, not grammar.
 
 ## 4. Token operational glosses
 
@@ -202,7 +202,7 @@ A structural token outside a valid structural position makes the statement INVAL
 
 META has parsing priority.
 
-If `P` is a valid semantic unit or completed phrase, repetition applies a semantic derivative/meta operation:
+If `P` is a valid unit of one or two tokens — semantic tokens or `tan`; the particles `li la e pi anu` never form META units — repetition applies a semantic derivative/meta operation:
 
 ```text
 P P

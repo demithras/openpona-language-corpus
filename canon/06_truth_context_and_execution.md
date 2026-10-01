@@ -35,13 +35,13 @@ Semantics: "what does this relation mean in the model?"
 Policy/judgment: "what should be done about it?"
 ```
 
-Experiments on a generic Ontology Machine supported this separation in small examples, but the result is not proof that every domain can be grounded without domain-specific judgment.
+Small, unpublished experiments on a generic Ontology Machine (`research/ontology_machine_hypotheses.md`) supported this separation in toy examples; that is not proof that every domain can be grounded without domain-specific judgment.
 
 ## Authority separation
 
 Authority structure can determine who is allowed to make a decision and what operational force a decision has. It does not necessarily compute the content of discretionary expert judgment.
 
-This boundary survived adversarial examples such as governance systems where authorized maintainers/chairs must still apply substantive expertise.
+This boundary survived reasoned adversarial examples (research, R4.4/R4.5a) such as governance systems where authorized maintainers/chairs must still apply substantive expertise.
 
 ## Execution
 

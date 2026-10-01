@@ -2,6 +2,8 @@
 
 **Status: RESEARCH**
 
+**Evidence status (added 2026-10-01 after independent review):** every strength label in this file describes an internal, unpublished experiment from the 2026-09 research conversations. No data, method, baseline or code for them is in this repository. Read each label as *reported, unpublished*; nothing here is reproducible from the repository alone.
+
 ## Problem
 
 The canonical 6×7 arrangement is useful mnemonically, but a stronger claim was proposed: perhaps cell position is itself an address from which token meaning can be reconstructed.
@@ -34,7 +36,7 @@ The strongest surviving weak formulation uses **six external row archetypes × s
 
 A double-edge holdout reconstructed **11/11 hidden edge tokens** in the internal experiment.
 
-**Status:** STRONGLY SUPPORTED INTERNALLY for the weak coordinate claim.
+**Status:** SUPPORTED INTERNALLY (unpublished) for the weak coordinate claim — the holdout set, reconstructor and chance baseline were not archived; the axis labels were written after the tokens were placed, so the result may be partly circular.
 
 ## MX3-S (formerly H7-S) — exact unique lexical generator
 

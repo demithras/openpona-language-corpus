@@ -1,12 +1,12 @@
 """OpenPona reference parser (RESEARCH grammar, see research/parser_probe/)."""
 import csv
-from pathlib import Path
+from importlib.resources import files
 
-_TOKENS_CSV = Path(__file__).resolve().parent.parent / "data" / "tokens.csv"
+_TOKENS_CSV = files("openpona") / "tokens.csv"
 
 
 def _load():
-    with open(_TOKENS_CSV, newline="", encoding="utf-8") as fh:
+    with _TOKENS_CSV.open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
     tokens = [r["token"] for r in rows]
     semantic = [r["token"] for r in rows if r["kind"] == "semantic"]

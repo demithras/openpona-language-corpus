@@ -8,7 +8,7 @@ Terms and abbreviations used across this repository. Language terms first, proje
 |---|---|
 | **OpenPona** | The 42-token Executable Operational Language defined here. Earlier names `Io Pona`, `Open Pona`, `ilu pona` are superseded. |
 | **EOL** | Executable Operational Language: the definition of OpenPona (`SPEC.md` §1). "Executable" means a resolved statement can be bound and executed by an external runtime; the language itself performs no effects. |
-| **Toki Pona** | The minimalist constructed language by Sonja Lang (2001) whose words OpenPona reuses. OpenPona never contradicts its grammar (`canon/11`). |
+| **Toki Pona** | The minimalist constructed language by Sonja Lang (2001) whose words OpenPona reuses. OpenPona is designed not to contradict its grammar; verification status and known departures are in `canon/11`. |
 | **token** | One of the 42 canonical words. 36 semantic, 6 structural. |
 | **semantic token / vector** | A token read as a direction of meaning (`open`, `lukin`, `pini`). "Vector" is the corpus's word for the token-as-operator view. |
 | **structural token / particle** | `li la e tan pi anu`. Five are particles only; `tan` is also a vector (source/cause). |
@@ -41,6 +41,6 @@ Terms and abbreviations used across this repository. Language terms first, proje
 | **Round 2 / Round 3 pack** | Earlier and next EOO hypothesis packs. Round 2 artifacts are listed in `sources/`; the Round 3 pack is not yet published. |
 | **HDD** | Appears in the name of a Round 2 source artifact (`operational-ontology-round2-hdd-spec.zip`); its expansion is not recorded in this corpus. |
 | **Core42 / Thoth / decan** | The 2026-09-09..10 exploration of 42-cell matrices with Thoth/decan structure. Historical source only; superseded where it conflicts with canon. |
-| **LINJA** | A Logseq administrator agent built on OpenPona; the first live producer of OpenPona statements. Lives in a separate repository. |
+| **LINJA** | A Logseq administrator agent built on OpenPona; the first live producer of OpenPona statements. Lives in a separate repository that is not yet public. |
 | **conformance corpus** | `conformance/*.jsonl`: 63 hand-written cases with expected parse outcomes that any parser can be tested against. |
 | **tpparser** | A third-party Toki Pona parser (nim-ka) used only as a local Toki Pona oracle in `research/parser_probe/`; unlicensed, so nothing from it is included here. |

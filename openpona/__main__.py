@@ -36,7 +36,10 @@ def run_case(case: dict):
     res = parse(case["surface"])
     exp_status = case["expect_status"]
     exp_skel = sorted(set(case.get("expect_skeletons", [])))
-    ok = res.status == exp_status and (exp_status == "INVALID" or sorted(set(res.skeletons)) == exp_skel)
+    if exp_status == "INVALID":
+        ok = res.status == "INVALID" and res.skeletons == []
+    else:
+        ok = res.status == exp_status and sorted(set(res.skeletons)) == exp_skel
     return ok, res, exp_status, exp_skel
 
 

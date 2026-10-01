@@ -20,8 +20,8 @@ open start | lon presence | tawa move | wile intend | pali do | pilin sense
 seme query | ma scope | lukin inspect | sona know | ni this/bind | kute receive
 nasin route | sijelo embody | ilo tool | lawa govern | awen persist | ken possible
 jan agent | ante differ | kama become | sama match | ijo entity | selo boundary
-sitelen encode | linja link | pana emit | toki communicate | tenpo time | pini end
-sike cycle | ale all | weka remove | ala not | kulupu group | pona improve
+sitelen represent/encode | linja link | pana emit | toki communicate | tenpo time | pini close/complete
+sike cycle | ale all | weka remove | ala not | kulupu group | pona improve/fit
 li state-link | la context | e target | tan source/cause | pi group | anu or
 
 GRAMMAR

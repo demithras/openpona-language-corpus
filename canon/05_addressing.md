@@ -69,4 +69,4 @@ The bound statement is the canonical persisted form; the surface is its view. Ke
 
 ## Address reconstruction hypothesis
 
-Recent matrix experiments give a strong preliminary signal that an address/coordinate can help reconstruct a hidden token, but exact lexical recovery is not universal. The matrix is therefore useful as an information-bearing address system without being treated as a perfect hash.
+Internal, unpublished matrix experiments (`research/matrix_coordinate_experiments.md`, MX3-W) suggested that an address/coordinate can help reconstruct a hidden token, but exact lexical recovery is not universal. The matrix is therefore useful as an information-bearing address system without being treated as a perfect hash.

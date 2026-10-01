@@ -45,13 +45,13 @@
 
 ## Structural tokens (6)
 
-| Token | Structural force | Vector character |
+| Token | Structural force | Vector role |
 |---|---|---|
-| `li` | predicate/state relation | relate a subject to state/process |
-| `la` | context/condition/scope | situate validity |
-| `e` | directed target/object | direct force toward target |
-| `tan` | source/cause/dependency/provenance | derive from/source |
-| `pi` | grouping/composition scope | bind units into a larger unit |
-| `anu` | alternative/branch/version | split or select alternatives |
+| `li` | predicate/state relation | — (particle only) |
+| `la` | context/condition/scope | — (particle only) |
+| `e` | directed target/object | — (particle only) |
+| `tan` | source/cause/dependency/provenance | source; cause; origin (as a content word in Toki Pona) |
+| `pi` | grouping/composition scope | — (particle only) |
+| `anu` | alternative/branch/version | — (particle only) |
 
 As in Toki Pona, `li la e pi anu` are particles only: outside a valid structural position they make the statement INVALID. `tan` alone is also a semantic vector (source/cause), used as such only where no structural reading exists. See `11_toki_pona_compatibility.md`.

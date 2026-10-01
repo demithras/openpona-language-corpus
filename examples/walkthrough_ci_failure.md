@@ -1,6 +1,6 @@
 # Walkthrough: a red CI, a request, a fix, a green CI
 
-One real event, from the sentence to the record to what a runtime must refuse. Every `openpona` line below is checked by the parser (`python -m openpona parse "..."`) and by `tests/test_docs_examples.py`. YAML and English live in `text`/`yaml` blocks, never in `openpona` blocks.
+One event (anonymised: `acme-web`, PR 678), from the sentence to the record to what a runtime must refuse. Every `openpona` line below is checked by the parser (`python -m openpona parse "..."`) and by `tests/test_docs_examples.py`; a leading `!` marks a line expected INVALID, `?` one expected AMBIGUOUS. YAML and English live in `text`/`yaml` blocks, never in `openpona` blocks.
 
 ## The event in plain words
 
@@ -21,11 +21,11 @@ ilo pali li kama ala             # candidate C: the build tool did not become (a
 
 Chosen: B. A says the run is unfinished, which is also true while CI is still running, so it cannot tell "running" from "failed". C is too empty. B says the state of the tool is "not fit", which is what red means. What B cannot say is why (a failing test, a lint error): there is no token for it, and nothing may be invented. The reason belongs in the record (`literals`) or in a `tan` phrase that points at another address.
 
-The green state is the mirror: `ilo pali li kama pona`, the tool became fit. "Did not become fit" is three units after `li`, so it needs `pi`: `kama pi pona ala`, become [not-fit]. Without `pi` it is INVALID.
+The green state is the mirror: `ilo pali li kama pona`, the tool became fit. The negative is `kama pi pona ala`: head `kama`, group `[pona ala]` — "became not-fit", which a Toki Pona speaker reads as "became bad" (negation scopes over `pona`, not over `kama`). Three units after `li` need `pi`; without it the line is INVALID.
 
 ```openpona
 ilo pali li kama pona            # green: the tool became fit
-ilo pali li kama pi pona ala     # did not become fit: head kama, group [pona ala]
+ilo pali li kama pi pona ala     # became not-fit (Toki Pona: became bad): head kama, group [pona ala]
 ! ilo pali li kama pona ala      # three units after li, no pi
 ```
 
@@ -87,7 +87,7 @@ Correct outcome: keep both candidates, do not bind, and either narrow the contex
 
 ## Step 4 - truth status
 
-Who said it, and how does the speaker stand to it? That is the `truth_status` field of the record, not part of the surface. Five records tell the story:
+Who said it, and how does the speaker stand to it? That is the `truth_status` field of the record, not part of the surface. Five of the seven statements of the full story (numbers 1, 2, 3, 5 and 7 in the closing block) carry the statuses:
 
 | # | Surface | truth_status | actor | Note |
 |---|---|---|---|---|
@@ -108,7 +108,7 @@ truth_status: intended
 literals: {planned_commit_message: "fix flaky unit test"}
 ```
 
-Research convention (H-TS, not canon): the status can also be carried as a prefix, with no new token. The record's field stays authoritative; the prefix is only an experiment (`research/truth_status_in_language.md`).
+Research convention (H-TS, not canon): the status can also be carried as a prefix, with no new token. The record's field stays authoritative; the prefix is only an experiment (`research/truth_status_in_language.md`) — and a Toki Pona speaker reads `lukin la` as "apparently", which is one reason it is still research.
 
 ```openpona
 lukin la ilo pali li pona ala               # H-TS prefix for observed
@@ -141,14 +141,14 @@ Each refusal keeps history honest: a bound record never changes after it is writ
 
 ## The whole story in order
 
-Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines.
+Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines. `jan ni` as "the author of the statement" is an OpenPona convention (a Toki Pona speaker reads "this person"); see `canon/11`, departure 4.
 
 ```openpona
 ma pali la ilo pali li pona ala          # 1 observed: CI on PR 678 is red (PR in the record)
 ma pali la jan ante li wile e kama pona  # 2 requested by the colleague: wants it to become fit
 ma pali la jan ni li pona e ilo pali     # 3 intended by the agent: will make the tool fit
 ma pali la jan ni li pali e nasin pona   # 4 the agent works a fix (executed by the runtime)
-ma pali la nasin pona li pini            # 5 observed: the fix script finished (exit 0, not yet green)
+ma pali la nasin pona li pini            # 5 observed: the fix route (nasin pona) ended = the script finished (exit 0, not yet green)
 ma pali la jan ni li lukin e ilo pali    # 6 the agent inspects the CI again
 ma pali la ilo pali li kama pona         # 7 observed: the CI became fit (green)
 ```

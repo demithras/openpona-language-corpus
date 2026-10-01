@@ -33,4 +33,4 @@ The current architecture no longer asks whether EOO depends on OpenPona. It asks
 
 > Can OpenPona serve as the **surface Ontology Language** for a backend-neutral Palantir-class EOO while a typed IR and Engine remain independent?
 
-This claim is materially stronger than "OpenPona is useful notation" and materially weaker than "EOO must be OpenPona". It is the primary candidate-language experiment in the Round 3 pack.
+This claim is materially stronger than "OpenPona is useful notation" and materially weaker than "EOO must be OpenPona". It is the primary candidate-language experiment in the Round 3 pack (not yet published).

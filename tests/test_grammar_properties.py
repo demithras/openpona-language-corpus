@@ -2,7 +2,7 @@
 import pytest
 
 pytest.importorskip("hypothesis")
-from hypothesis import given, settings, strategies as st  # noqa: E402
+from hypothesis import assume, given, settings, strategies as st  # noqa: E402
 
 from openpona import SEMANTIC, STRUCTURAL, TOKENS, parse  # noqa: E402
 
@@ -28,8 +28,7 @@ def test_single_semantic_token_is_resolved(tok):
 
 @given(sem, sem)
 def test_two_distinct_semantic_tokens_form_a_phrase(a, b):
-    if a == b:
-        return
+    assume(a != b)
     res = parse(f"{a} {b}")
     assert res.status == "RESOLVED"
     assert res.skeletons == ["{" + f"{a} {b}" + "}"]
@@ -88,3 +87,53 @@ def test_several_li_form_one_group(t):
     res = parse(f"{a} li {b} li {c}")
     assert res.status == "RESOLVED"
     assert res.skeletons == ["({" + a + "} li {" + b + "} li {" + c + "})"]
+
+
+PARTICLES = ("li", "la", "e", "pi", "anu")
+all_tokens = st.sampled_from(TOKENS)
+
+
+@settings(deadline=None, max_examples=300)
+@given(st.lists(all_tokens, min_size=1, max_size=10))
+def test_any_token_sequence_returns_a_known_status(toks):
+    res = parse(" ".join(toks))
+    assert res.status in {"RESOLVED", "AMBIGUOUS", "INVALID"}
+
+
+# runs of a semantic unit separated by particles: forces D(...) to appear in every skeleton,
+# and puts repeated particles next to them so a fold across a particle would be visible
+_sem = st.sampled_from(SEMANTIC)
+_run = st.tuples(_sem, st.integers(min_value=2, max_value=4)).map(lambda t: " ".join([t[0]] * t[1]))
+
+
+@settings(deadline=None, max_examples=300)
+@given(_run, _run, st.sampled_from(PARTICLES))
+def test_meta_units_never_contain_a_particle(run_a, run_b, p):
+    import re
+    a, b = run_a.split()[0], run_b.split()[0]
+    assume(a != b)
+    # `A A li B B` is valid and must fold both runs; `A A p p B B` must be INVALID (particle run)
+    ok = parse(f"{run_a} li {run_b}")
+    assert ok.status == "RESOLVED", ok.errors
+    assert ok.skeletons == [f"({{D{len(run_a.split()) - 1}({a})}} li {{D{len(run_b.split()) - 1}({b})}})"]
+    bad = parse(f"{run_a} {p} {p} {run_b}")
+    assert bad.status == "INVALID"
+    for sk in ok.skeletons + bad.skeletons:
+        for inner in re.findall(r"D\d+\(([^)]*)\)", sk):
+            assert not set(inner.split()) & set(PARTICLES), sk
+
+
+@given(st.sampled_from(PARTICLES), distinct3.map(lambda t: t[:2]))
+def test_particle_at_position_zero_is_invalid(p, t):
+    a, b = t
+    assert parse(f"{p} {a} li {b}").status == "INVALID"
+
+
+@given(distinct3)
+def test_uppercase_variant_is_invalid(t):
+    a, b, c = t
+    text = f"{a} li {b} e {c}"
+    assert parse(text).status == "RESOLVED"
+    res = parse(text.upper())
+    assert res.status == "INVALID" and res.skeletons == []
+    assert res.errors[0].startswith("case:")

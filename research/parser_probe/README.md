@@ -1,6 +1,6 @@
 # Parser probe — 2026-09-30
 
-**Status: RESEARCH — not canon.** The grammar files in this directory encode *assumed* precedence and grouping rules that the author has not yet accepted (see REVIEW_CHECKLIST items L1–L3).
+**Status: RESEARCH — superseded by `canon/04_grammar.md` on 2026-09-30.** This records the probe that preceded the author's decisions; the assumed rules below were accepted (precedence, one statement per line) or replaced (the `pi` shape, clause-level `anu`). The current parser is described by canon, not by this file.
 
 ## Question
 
@@ -68,8 +68,8 @@ Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi`.
 ## Falsifiers for the assumed rules
 
 - A natural sentence the author considers valid that the dual grammar rejects or parses twice.
-- A case where `anu` must bind looser than `li` (e.g. branching whole clauses: `jan li pali anu jan li awen`) — currently unparseable, which is a gap, not a verdict.
+- A case where `anu` must bind looser than `li` (e.g. branching whole clauses: `jan li pali anu jan li awen`) — decided 2026-09-30: `anu` joins phrases only; see `canon/11` departure 2 for the caveat.
 
 ## Consequence
 
-The reference parser (`openpona/`) implements this grammar plus a META pre-pass and treats the rules above as **defaults pending author decision**, not canon.
+The reference parser (`openpona/`) now implements `canon/04`, which superseded this draft on 2026-09-30.

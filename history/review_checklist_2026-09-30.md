@@ -1,4 +1,6 @@
-# Author review checklist before public release
+# Author review checklist (closed 2026-09-30; moved to history/ on 2026-10-01)
+
+This is the author's sign-off record, kept as an audit trail. It is not a review by anyone else; the independent reviews of 2026-10-01 are summarised in `CHANGELOG.md` and `canon/11`.
 
 Review these items explicitly. **All ten confirmed by the author on 2026-09-30 (interview, items shown with canon excerpts).**
 
@@ -7,11 +9,11 @@ Review these items explicitly. **All ten confirmed by the author on 2026-09-30 (
 - [x] META/repetition is intended as canon, not only research.
 - [x] Structural-position rule — SUPERSEDED 2026-09-30: only `tan` is dual; `li la e pi anu` are particles only (Toki Pona compatibility).
 - [x] The 3+ semantic-unit `pi` grouping rule is intended as canon.
-- [x] Matrix coordinate H7-W/H7-S results are described with the right strength.
+- [x] Matrix coordinate MX3-W/MX3-S (formerly H7-W/H7-S) results are described with the right strength. (2026-10-01 review: the labels stand, with an evidence-status banner added to `research/` noting that the experiments are unpublished.)
 - [x] OpenPona/EOO dependency hypotheses are correctly marked unsupported rather than erased.
 - [x] Authority/judgment boundary is correct.
 - [x] No older Core42 artifact silently overrides later canon.
-- [x] Licenses decided 2026-09-30: CC BY 4.0 for specification/text, MIT for code, tests and schemas (files to be added before publication).
+- [x] Licenses decided 2026-09-30: CC BY 4.0 for specification/text, MIT for code, tests and schemas (`LICENSE-CC-BY-4.0.txt`, `LICENSE-MIT.txt`, root `LICENSE`).
 
 ## Grammar decisions (author, 2026-09-30) — now in canon
 
@@ -44,4 +46,4 @@ Principle: **OpenPona does not contradict Toki Pona** (`canon/11_toki_pona_compa
   - [x] one end-to-end worked example + one-page cheat sheet (`examples/walkthrough_ci_failure.md`, `CHEATSHEET.md`)
   - [x] agent guide + copy-pasteable system prompt (`docs/for-agents.md`, `prompts/openpona_system.md`)
   - [x] this checklist fully closed
-- Housekeeping without further decision: delete `FILE_INDEX.sha256` (git is the integrity layer), resolve hypothesis-id collisions (ledger H5/H6 vs matrix H5-S/H6), add a glossary (EOO, EOL, IR, HDD, Sprint/Day naming), fix schema `$id` placeholder, link `demithras/operational-ontology-poc`.
+- Housekeeping (all done 2026-09-30): delete `FILE_INDEX.sha256` (git is the integrity layer), resolve hypothesis-id collisions (ledger H5/H6 vs matrix H5-S/H6), add a glossary (EOO, EOL, IR, HDD, Sprint/Day naming), fix schema `$id` placeholder, link `demithras/operational-ontology-poc`.

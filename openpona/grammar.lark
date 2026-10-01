@@ -36,7 +36,7 @@ TAN: /(?<!\S)tan(?!\S)/
 PI: /(?<!\S)pi(?!\S)/
 ANU: /(?<!\S)anu(?!\S)/
 SEM: /(?<!\S)(?!(?:la|li|e|tan|pi|anu)(?!\S))[a-z]+(?!\S)/
-META: /D\d+\([a-z]+(?: [a-z]+)?\)/
+META: /D\d+\((?!(?:la|li|e|pi|anu)[ )])[a-z]+(?: (?!(?:la|li|e|pi|anu)\))[a-z]+)?\)/
 
 WS: /\s+/
 %ignore WS

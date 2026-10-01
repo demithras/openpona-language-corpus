@@ -4,7 +4,7 @@
 
 ## 1. Principle: vectors before parts of speech
 
-Do not begin by assigning a token an English noun/verb label. Each token is first a direction of semantic/operational change. Syntactic role emerges from composition and structural position.
+Do not begin by assigning a token an English noun/verb label. Each semantic token (and `tan`) is first a direction of semantic/operational change; the five particles have structural force only. Syntactic role emerges from composition and structural position.
 
 ## 2. Semantic units
 
@@ -13,8 +13,7 @@ A semantic unit may be:
 - one primitive token;
 - a two-token composed concept/address;
 - a `pi`-grouped larger concept;
-- a completed clause;
-- a META-derived repetition of a valid unit.
+- a META-derived repetition of a one- or two-token unit of semantic tokens or `tan`.
 
 ## 3. Structural positions
 
@@ -66,7 +65,7 @@ Repetition is recognized before normal structural interpretation, and structure 
 META → structure → vector
 ```
 
-If `P` is a valid unit of one or two tokens, `n` consecutive copies of `P` form one META unit `D^(n-1)(P)`:
+If `P` is a valid unit of one or two tokens — semantic tokens or `tan` only, never a particle — `n` consecutive copies of `P` form one META unit `D^(n-1)(P)`:
 
 ```text
 P P        D(P)
@@ -74,13 +73,15 @@ P P P      D^2(P)
 tan tan    D(tan)      (META beats the structural reading)
 ```
 
+Particles never fold: `li li li`, `e e`, `la la jan li pali` are INVALID, and `jan li pali li pali` is two predicates, not `D(li pali)` (clarified 2026-10-01 after review).
+
 The derivative operator composes:
 
 ```text
 D^m(D^n(P)) = D^(m+n)(P)
 ```
 
-Repeated groups may normalize without semantic loss. The parser must preserve derivative depth even if the surface form is normalized.
+Only the resulting depth is meaningful (`D^2(D^2(P)) = D^4(P)`); there is no separate surface form for a nested derivative.
 
 ## 6. Ambiguity is a value
 
@@ -95,6 +96,8 @@ INVALID
 
 It must not turn `AMBIGUOUS` into a guessed binding merely because one interpretation is more convenient.
 
+A parser produces the first, second and fourth; `UNRESOLVED` is a binding outcome (an address with no candidate) and belongs to the runtime, not to the parse.
+
 ## 7. Parser-design boundary
 
-The corpus does not yet claim a single final concrete parsing algorithm for every nested expression. In particular, completed-phrase boundary recognition under deep repetition and mixed structural/semantic uses remains an implementation question. Any implementation must preserve the invariants above and expose unresolved ambiguity.
+The reference parser in `openpona/` implements the grammar above and is checked by `conformance/`. Deep-repetition boundaries remain an area where the conformance corpus, not prose, is the authority: a new case changes the parser, not the other way round. Any implementation must preserve the invariants above and expose unresolved ambiguity.

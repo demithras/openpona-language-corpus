@@ -3,3 +3,8 @@
 {"id": "i03", "surface": "ilo li mute", "expect_status": "INVALID", "note": "mute is explicitly excluded (SPEC 13)"}
 {"id": "i04", "surface": "ilo, li awen", "expect_status": "INVALID", "note": "punctuation is not part of the surface"}
 {"id": "i05", "surface": "ilo li awen. jan li pali", "expect_status": "INVALID", "note": "one statement per line"}
+{"id": "i06", "surface": "ILO SITELEN LI AWEN", "expect_status": "INVALID", "note": "tokens are lowercase; a capitalised word is a name, and names never appear in the surface (SPEC 8.2)"}
+{"id": "i07", "surface": "ilo li awen\u2028jan li pali", "expect_status": "INVALID", "note": "U+2028 is a line separator: one statement per line"}
+{"id": "i08", "surface": "ilo li awen\rjan li pali", "expect_status": "INVALID", "note": "carriage return is a line separator"}
+{"id": "i09", "surface": "ilo\tli awen", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {awen})"], "note": "tabs and multiple spaces are ordinary whitespace"}
+{"id": "i10", "surface": "  ilo li awen  ", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {awen})"], "note": "surrounding whitespace is ignored"}

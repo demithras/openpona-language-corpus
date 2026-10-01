@@ -28,6 +28,13 @@
 | External values in the surface | undefined | **never; the surface is the 42 tokens only, values live in the record (`bound_ref`, `literals`)** (2026-09-30) |
 | Matrix column names | "Sun / Seed" (planet first) | **functional name first, planet as mnemonic alias: "Seed (Sun)"** (2026-09-30) |
 | Matrix experiment ids | `H5-S`, `H6`, `H7-W`, `H7-S` (collided with ledger `H5`–`H7`) | **`MX1`, `MX2`, `MX3-W`, `MX3-S`** (2026-09-30) |
+| Predicate shape | one `e`, one `tan`, fixed order (probe grammar) | **any number of `e` and `tan` phrases in any order; several `li` predicates** (2026-09-30; departure 3 in `canon/11` under review) |
+| Parse priority | undefined | **META → structure → vector reading of `tan`**; `tan tan` = `D(tan)` (2026-09-30) |
+| META scope | "a valid semantic unit or completed phrase" | **a unit of one or two tokens, semantic tokens or `tan` only; particles never fold** (2026-09-30; particle exclusion made explicit 2026-10-01) |
+| Governing principle | none stated | **OpenPona is designed not to contradict Toki Pona** (`canon/11`, 2026-09-30); verification status recorded 2026-10-01 |
+| Invariant 4 | "every token is first a vector" | **every semantic token and `tan`; the five particles have structural force only** (2026-09-30) |
+| Two-unit concept with `pi` | undefined | **INVALID (`sona pi lawa`); `pi` only for 3+ units** (2026-09-30) |
+| Negation and tense | undefined | **as in Toki Pona: `ala` after the negated unit; tense by `tenpo … la` context** (2026-09-30, written into `canon/11` 2026-10-01) |
 
 ## Conflict rule
 

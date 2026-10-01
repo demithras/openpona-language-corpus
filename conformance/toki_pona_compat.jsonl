@@ -5,6 +5,13 @@
 {"id": "k05", "surface": "e ijo", "expect_status": "INVALID"}
 {"id": "k06", "surface": "pi jan pali", "expect_status": "INVALID"}
 {"id": "k07", "surface": "jan anu", "expect_status": "INVALID", "note": "dangling anu"}
-{"id": "k08", "surface": "jan li pali anu jan li awen", "expect_status": "RESOLVED", "note": "ORACLE FIX 2026-09-30: originally INVALID as 'clause-level anu'. It parses via phrase-level anu + a second li (valid Toki Pona). The open question is encoded as: exactly ONE skeleton, never the clause-level reading ((jan li pali) anu (jan li awen)).", "expect_skeletons": ["({jan} li ({pali} anu {jan}) li {awen})"]}
+{"id": "k08", "surface": "jan li pali anu jan li awen", "expect_status": "RESOLVED", "note": "ORACLE FIX 2026-09-30: originally INVALID as 'clause-level anu'. It parses via phrase-level anu + a second li. Decided 2026-09-30: anu joins phrases only, so exactly ONE skeleton and never the clause-level reading ((jan li pali) anu (jan li awen)). Caveat (review 2026-10-01): a Toki Pona speaker reads the clause-level choice here; listed as departure 2 in canon/11, under author decision.", "expect_skeletons": ["({jan} li ({pali} anu {jan}) li {awen})"]}
 {"id": "k09", "surface": "anu jan", "expect_status": "INVALID"}
 {"id": "k10", "surface": "jan la", "expect_status": "INVALID"}
+{"id": "k11", "surface": "li li li", "expect_status": "INVALID", "note": "particles never form META units (review 2026-10-01)"}
+{"id": "k12", "surface": "e e", "expect_status": "INVALID"}
+{"id": "k13", "surface": "pi pi", "expect_status": "INVALID"}
+{"id": "k14", "surface": "anu anu", "expect_status": "INVALID"}
+{"id": "k15", "surface": "la la jan li pali", "expect_status": "INVALID"}
+{"id": "k16", "surface": "jan li li li", "expect_status": "INVALID"}
+{"id": "k17", "surface": "jan pi li li pali", "expect_status": "INVALID"}

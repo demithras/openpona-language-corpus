@@ -2,6 +2,8 @@
 
 **Status: RESEARCH — not canon.**
 
+**Evidence status (added 2026-10-01 after independent review):** every strength label in this file describes an internal, unpublished experiment from the 2026-09 research conversations. No data, method, baseline or code for them is in this repository. Read each label as *reported, unpublished*; nothing here is reproducible from the repository alone.
+
 This ledger consolidates the main hypotheses that were tested or discussed separately from the language definition. It exists to prevent successful rhetoric from being mistaken for evidence.
 
 | ID | Claim | Current status | Evidence/interpretation |

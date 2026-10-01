@@ -5,6 +5,8 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from itertools import product
 from pathlib import Path
+import re
+import sys
 
 from lark import Lark, Token, Tree
 from lark.exceptions import LarkError
@@ -12,6 +14,12 @@ from lark.exceptions import LarkError
 from . import TOKENS
 
 _HERE = Path(__file__).resolve().parent
+PARTICLES = ("li", "la", "e", "pi", "anu")  # structural only, never units
+MAX_TOKENS = 256
+_CASE_MSG = ("case: tokens are lowercase; a capitalised word is a name, "
+             "and names never appear in the surface (SPEC 8.2)")
+
+
 @dataclass
 class ParseResult:
     status: str
@@ -35,6 +43,8 @@ def _find_runs(toks: list[str]) -> list[tuple[int, int, int, tuple[str, ...]]]:
     for size in (1, 2):
         for i in range(n - size + 1):
             p = tuple(toks[i:i + size])
+            if any(t in PARTICLES for t in p):
+                continue  # META candidates are units: semantic tokens or tan only
             if size == 2 and p[0] == p[1]:
                 continue  # itself a repetition of a shorter unit
             if i - size >= 0 and tuple(toks[i - size:i]) == p:
@@ -148,26 +158,89 @@ def _skeletons(text: str) -> set[str]:
         return set()
     if not isinstance(tree, Tree):
         return set()
-    return _alts(tree, {})
+    old = sys.getrecursionlimit()
+    sys.setrecursionlimit(max(old, 20000))
+    try:
+        return _alts(tree, {})
+    finally:
+        sys.setrecursionlimit(old)
+
+
+# ------------------------------------------------------------- diagnostics
+def _diagnose(toks: list[str]) -> list[str]:
+    """Located, rule-named hints for a token list with no structural parse."""
+    out: list[str] = []
+
+    def at(i: int) -> str:
+        return f"(token {i + 1} '{toks[i]}')"
+
+    n = len(toks)
+    if toks[0] in PARTICLES:
+        out.append(f"particle-first: a particle needs an expression before it {at(0)}")
+    last = toks[-1]
+    if last in PARTICLES or (last == "tan" and n > 1 and "li" in toks[:-1]):
+        out.append(f"particle-last: a particle needs an expression after it {at(n - 1)}")
+    for i in range(n - 1):
+        if toks[i] in PARTICLES and toks[i + 1] in PARTICLES:
+            out.append("particle-run: particles never repeat; META applies to "
+                       f"semantic units only {at(i + 1)}")
+    las = [i for i, t in enumerate(toks) if t == "la"]
+    if len(las) > 1:
+        out.append("la-count: one context (la) per statement; a choice between "
+                   f"statements is two la statements on two lines {at(las[1])}")
+    for i, t in enumerate(toks):
+        if t != "pi":
+            continue
+        j = i + 1
+        while j < n and toks[j] not in PARTICLES:
+            j += 1
+        k = j - i - 1
+        if k != 2 and k != 0:
+            out.append(f"pi-arity: pi introduces a group of exactly two units, found {k} {at(i)}")
+    seg: list[int] = []
+    segments: list[list[int]] = []
+    for i, t in enumerate(toks):
+        if t in ("li", "la", "e", "anu"):
+            segments.append(seg)
+            seg = []
+        else:
+            seg.append(i)
+    segments.append(seg)
+    for sg in segments:
+        words = [toks[i] for i in sg]
+        if len(sg) >= 3 and "pi" not in words:
+            out.append("units-without-pi: a phrase has a head of 1-2 units; three or "
+                       f"more units need pi (SPEC 5.3) {at(sg[2])}")
+        if len(sg) == 3 and words[1] == "pi" and words[0] not in PARTICLES and words[2] not in PARTICLES:
+            out.append("pi-after-one-unit: two-unit concepts take no pi; write "
+                       f"`{words[0]} {words[2]}` {at(sg[1])}")
+    return out
 
 
 # --------------------------------------------------------------------- API
 def parse(text: str) -> ParseResult:
-    stripped = text.lower().strip()
-    if "\n" in stripped or "\r" in stripped:
-        return ParseResult("INVALID", [], ["one statement per line"], [])
-    toks = stripped.split()
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    if len(lines) > 1:
+        return ParseResult("INVALID", [], ["line: one statement per line"], [])
+    line = lines[0] if lines else ""
+    toks = [t for t in re.split(r"[ \t]+", line.strip(" \t")) if t]
     if not toks:
         return ParseResult("INVALID", [], ["empty input"], [])
+    if any(ch.isupper() for ch in line):
+        return ParseResult("INVALID", [], [_CASE_MSG], toks)
+    if len(toks) > MAX_TOKENS:
+        return ParseResult("INVALID", [], [
+            f"length: reference parser accepts at most {MAX_TOKENS} tokens per statement"], toks)
     known = set(TOKENS)
-    bad = [t for t in toks if t not in known]
-    if bad:
-        errs = [f"unknown token: {t!r}" for t in dict.fromkeys(bad)]
+    if any(t not in known for t in toks):
+        errs = [f"unknown-token: {t!r} is not one of the 42 tokens (token {i + 1} '{t}')"
+                for i, t in enumerate(toks) if t not in known]
         return ParseResult("INVALID", [], errs, toks)
     skels: set[str] = set()
     for cand in fold_candidates(toks):
         skels |= _skeletons(cand)
     out = sorted(skels)
     if not out:
-        return ParseResult("INVALID", [], ["no structural parse"], toks)
+        errs = _diagnose(toks) or ["no structural parse"]
+        return ParseResult("INVALID", [], errs, toks)
     return ParseResult("RESOLVED" if len(out) == 1 else "AMBIGUOUS", out, [], toks)

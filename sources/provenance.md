@@ -14,8 +14,8 @@ The following later decisions are incorporated because they were explicitly acce
 
 - each token is first a vector/verb/direction;
 - META/repetition has parse priority;
-- structural tokens are structural only in structural position and otherwise retain vector semantics;
-- 3+ semantic units in one concept require `pi` grouping;
+- structural tokens are structural only in structural position and otherwise retain vector semantics (superseded 2026-09-30: only `tan` is dual, see `history/supersession_ledger.md`);
+- 3+ semantic units in one concept require `pi` grouping (shaped 2026-09-30: head of 1–2 units, groups of exactly two);
 - derivative algebra for repeated semantic units;
 - the single-header matrix hypothesis was rejected;
 - weak external-coordinate/embedded-header model gained strong internal support while exact lexical generation remained unproven;

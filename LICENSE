@@ -1,0 +1,19 @@
+OpenPona language corpus — license summary
+
+This repository uses two licenses (see LICENSE_POLICY.md):
+
+  * Specification, canon, research, history, examples, tutorial, guides and
+    every other text file:
+        Creative Commons Attribution 4.0 International (CC BY 4.0)
+        full text: LICENSE-CC-BY-4.0.txt
+
+  * Code, tests, schemas and data files (openpona/, tests/, schema/, data/,
+    conformance/, Makefile, pyproject.toml):
+        MIT License
+        full text: LICENSE-MIT.txt
+
+Copyright (c) 2026 Dmitri Surchis
+
+Toki Pona, whose words OpenPona reuses, is the work of Sonja Lang
+(https://tokipona.org). OpenPona is an independent project, not endorsed by
+or affiliated with Sonja Lang or the Toki Pona community.

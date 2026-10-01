@@ -3,11 +3,16 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openpona-corpus"
-version = "0.1.0"
+name = "openpona-language-corpus"
+version = "0.2.0"
 description = "Executable integrity checks for the OpenPona canonical corpus"
+license = {text = "MIT"}
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["lark>=1.1"]
+
+[project.urls]
+Homepage = "https://github.com/demithras/openpona-language-corpus"
 
 [project.optional-dependencies]
 test = ["pytest>=8", "hypothesis>=6"]
@@ -19,4 +24,4 @@ testpaths = ["tests"]
 packages = ["openpona"]
 
 [tool.setuptools.package-data]
-openpona = ["*.lark"]
+openpona = ["*.lark", "tokens.csv"]
