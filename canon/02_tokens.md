@@ -15,7 +15,7 @@ The right-hand column gives each word's sense in Toki Pona, following pu (*Toki 
 | `pali` | execute; work; make | do, work, make, build |
 | `pilin` | sense; evaluate; affective registration | heart; feeling, emotion; to feel |
 | `seme` | query; unresolved variable | what? which? |
-| `ma` | locate; scope; situate | earth, land, place; country, territory; outdoors |
+| `ma` | locate; scope; situate | earth, land; outdoors, world; country, territory; soil |
 | `lukin` | inspect; intentionally observe | eye; look, see, examine, observe, watch; try to |
 | `sona` | know; resolve; model | know, be skilled in, be wise about; knowledge |
 | `ni` | bind; point; fix a referent | this, that |

@@ -40,7 +40,7 @@ sike     ale      weka     ala      kulupu   pona     anu
 
 ## Relationship to Toki Pona
 
-All 42 tokens are words of **Toki Pona**, the language created by Sonja Lang (2001; *Toki Pona: The Language of Good*, 2014; [tokipona.org](https://tokipona.org)). OpenPona reuses the words and the particles and is **designed not to contradict Toki Pona grammar**: it may be stricter (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may add meaning inside a phrase, but must never accept what Toki Pona rejects. That claim is verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected as required); independent reviews on 2026-10-01 listed eleven departures, all decided and recorded in [`canon/11_toki_pona_compatibility.md`](canon/11_toki_pona_compatibility.md). OpenPona is an independent project, not endorsed by or affiliated with Sonja Lang or the Toki Pona community.
+All 42 tokens are words of **Toki Pona**, the language created by Sonja Lang (2001; *Toki Pona: The Language of Good*, 2014; [tokipona.org](https://tokipona.org)). OpenPona reuses the words and the particles and is **designed not to contradict Toki Pona grammar**: it may be stricter (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may add meaning inside a phrase, but must never accept what Toki Pona rejects. That claim is verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected); independent reviews on 2026-10-01 listed eleven departures — ten decided, one research — recorded in [`canon/11_toki_pona_compatibility.md`](canon/11_toki_pona_compatibility.md). OpenPona is an independent project, not endorsed by or affiliated with Sonja Lang or the Toki Pona community.
 
 ## Canon, research, history
 

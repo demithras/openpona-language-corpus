@@ -17,4 +17,3 @@
 {"id": "k17", "surface": "jan pi li li pali", "expect_status": "INVALID"}
 {"id": "k18", "surface": "jan li pali anu awen li pini", "expect_status": "INVALID", "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu-then-li (C2)"}
 {"id": "k19", "surface": "jan li pali e ilo anu sitelen li awen", "expect_status": "INVALID", "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu inside an object phrase, then li (C2)"}
-{"id": "k20", "surface": "nasin open anu nasin awen li pali", "expect_status": "RESOLVED", "expect_skeletons": ["(({nasin open} anu {nasin awen}) li {pali})"], "note": "anu in the SUBJECT followed by li is fine (Toki Pona: jan anu soweli li moku)"}

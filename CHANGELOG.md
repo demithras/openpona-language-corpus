@@ -7,7 +7,8 @@
 - `lon`/`tawa`/`sama` stay content words (declared departure); repetition-as-derivative and `tan tan` folding declared;
 - glosses: Toki Pona sense column (pu) added to `canon/02` and `data/tokens.csv`; reference edition stated (pu for grammar, ku for senses);
 - planets removed from canon/SPEC/cheat-sheet/data table headers; the mnemonic stays in LEARN Lesson 1 and history;
-- linguist re-review (6/10): departures 10 (`tan X la` context → decided: source context, structural) and 11 (`anu seme` → declared convergent question idiom) added and decided; conformance 95 cases; row 5 extended (repeated source phrases fold); `toki_pona_compat.jsonl` relabelled (rejections = Toki Pona-invalid OR declared strictness); EBNF fixed (source predicate takes no objects); `open`/`pilin` senses trimmed to pu.
+- linguist re-review (6/10): departures 10 (`tan X la` context → decided: source context, structural) and 11 (`anu seme` → declared convergent question idiom) added and decided; conformance 96 cases;
+- linguist re-review 4 (7/10): the particle-level rule now carries its META exception and row 5 is classed as a declared breach; `toki_pona_compat.jsonl` holds rejections only (control k20 → basic b19); row 11 scoped to a bare predicate; walkthrough caveats on `kama pi pona ala` and `jan linja`; `ma` sense trimmed to pu; ku senses honestly marked as not yet added; row 5 extended (repeated source phrases fold); `toki_pona_compat.jsonl` relabelled (rejections = Toki Pona-invalid OR declared strictness); EBNF fixed (source predicate takes no objects); `open`/`pilin` senses trimmed to pu.
 
 ## 2026-10-01 — independent review round
 

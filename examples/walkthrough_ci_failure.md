@@ -21,7 +21,7 @@ ilo pali li kama ala             # candidate C: the build tool did not become (a
 
 Chosen: B. A says the run is unfinished, which is also true while CI is still running, so it cannot tell "running" from "failed". C is too empty. B says the state of the tool is "not fit", which is what red means. What B cannot say is why (a failing test, a lint error): there is no token for it, and nothing may be invented. The reason belongs in the record (`literals`) or in a `tan` phrase that points at another address.
 
-The green state is the mirror: `ilo pali li kama pona`, the tool became fit. The negative is `kama pi pona ala`: head `kama`, group `[pona ala]` — "became [not-good]"; the negation scopes over `pona`, not over `kama`, so "did not become fit" (`kama ala pona`) cannot be said under the `pi` shape (`canon/11`, Negation). Three units after `li` need `pi`; without it the line is INVALID.
+The green state is the mirror: `ilo pali li kama pona`, the tool became fit. The negative is `kama pi pona ala`: head `kama`, group `[pona ala]` — "became [not-good]"; the negation scopes over `pona`, not over `kama`, so "did not become fit" (`kama ala pona`) cannot be said under the `pi` shape (`canon/11`, Negation). A Toki Pona speaker reads the `pi` form nominally ("an arrival of not-good"); OpenPona reads head + group. Three units after `li` need `pi`; without it the line is INVALID.
 
 ```openpona
 ilo pali li kama pona            # green: the tool became fit
@@ -142,7 +142,7 @@ Each refusal keeps history honest: a bound record never changes after it is writ
 
 ## The whole story in order
 
-Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines. The agent refers to itself by its own address, `jan linja`; `jan ni` would mean "this person" (decision 2026-10-01, `canon/11` departure 4).
+Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines. The agent refers to itself by its own address, `jan linja` — a content phrase, read literally ("line person") by a Toki Pona speaker, since OpenPona has no capitalised names; `jan ni` would mean "this person" (decision 2026-10-01, `canon/11` departure 4).
 
 ```openpona
 ma pali la ilo pali li pona ala          # 1 observed: CI on PR 678 is red (PR in the record)
