@@ -21,8 +21,8 @@ A structural token is interpreted structurally when it connects valid semantic u
 
 ```ebnf
 statement  = clause , [ "la" , clause ] ;                 (* one statement per line *)
-clause     = expression , { "li" , predicate } ;
-predicate  = expression , { "e" , expression | "tan" , expression } ;
+clause     = expression , { "li" , predicate } ;      (* a predicate containing anu must be the last one *)
+predicate  = ( expression | "tan" , expression ) , { "e" , expression } , { "tan" , expression } ;
 expression = phrase , [ "anu" , expression ] ;
 phrase     = head , { "pi" , unit , unit } ;
 head       = unit , [ unit ] ;
@@ -31,9 +31,9 @@ unit       = semantic-token | "tan" | meta-unit ;
 
 Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi` (Toki Pona's order for `la li e pi`; the place of `anu` is OpenPona's own choice).
 
-`li la e pi anu` outside these positions make the statement INVALID. In OpenPona `tan` is the only token with both a structural and a vector role (Toki Pona has more prepositions — `canon/11`, departure 1); the structural reading wins wherever the grammar offers one. Where it offers none — `tan` directly after `li`, as in `jan li tan ma` — the vector reading applies, which Toki Pona reads as a prepositional predicate (departure 8).
+`li la e pi anu` outside these positions make the statement INVALID. In OpenPona `tan` is the only token with both a structural and a vector role (Toki Pona has more prepositions — `canon/11`, departure 1, declared). Directly after `li` it is a source predicate (`jan li tan ma`, decision 2026-10-01); objects come before source phrases; the structural reading wins wherever one exists, and the vector reading applies only where none does (`jan li tan ma e ijo`).
 
-`anu` joins phrases only, never whole clauses (author decision, 2026-09-30). A choice between statements is written as two `la` statements on two lines (`nasin open la jan li pali` / `nasin awen la jan li awen`).
+`anu` joins phrases only, never whole clauses (author decision, 2026-09-30), and a predicate containing `anu` must be the last predicate of its clause (`jan li pali anu jan li awen` is INVALID — decision 2026-10-01). A choice between statements is written as two `la` statements on two lines (`nasin open la jan li pali` / `nasin awen la jan li awen`).
 
 ## 4. Grouping
 

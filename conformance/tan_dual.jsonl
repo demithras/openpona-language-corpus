@@ -4,3 +4,8 @@
 {"id": "t04", "surface": "jan li tan e ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {tan} e {ma} tan {kute})"]}
 {"id": "t05", "surface": "tan", "expect_status": "RESOLVED", "expect_skeletons": ["{tan}"]}
 {"id": "t06", "surface": "tan li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({tan} li {pali})"]}
+{"id": "t07", "surface": "jan li tan ma", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li tan {ma})"], "note": "DECISION 2026-10-01 (C8): tan directly after li is a source predicate ('derives from'); the vector reading {tan ma} is dropped because a structural reading exists"}
+{"id": "t08", "surface": "jan li tan ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li tan {ma} tan {kute})"]}
+{"id": "t09", "surface": "sona ni li tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({sona ni} li tan {kute})"]}
+{"id": "t10", "surface": "jan li tan ma e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {tan ma} e {ijo})"], "note": "no structural reading exists (e may not follow a tan phrase), so the vector reading applies: a source-thing of the land is worked on"}
+{"id": "t11", "surface": "jan li tan ma li pali", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li tan {ma} li {pali})"], "note": "source predicate followed by another predicate"}

@@ -7,7 +7,7 @@ For an AI agent that reads and writes OpenPona statements (for example LINJA ove
 - The surface is a view: one line of the 42 tokens, nothing else.
 - The record is the truth: bound addresses, actor, literals, context, truth status.
 - A statement is not a command, not evidence, not authority, and not a place for numbers, ids or names.
-- `jan ni` is the author of the statement (its `actor`), never a pronoun.
+- There is no first person. An agent names itself by its own address (`jan linja`); the record's `actor` carries authorship. `jan ni` means "this person", as in Toki Pona.
 
 ## 2. How to write one (6-step practice, LEARN_OPENPONA.md "Suggested practice")
 
@@ -21,8 +21,8 @@ For an AI agent that reads and writes OpenPona statements (for example LINJA ove
 ```openpona
 ilo pali li pona ala            # 1-2: the CI tool is not fit (red)
 ma pali la ilo pali li pona ala # 3: scoped to the work project
-jan ni li lukin e ilo pali      # 4: I inspect the tool (address bound in the record)
-jan ni li wile e ni             # 5: my intention (status: intended, in the record)
+jan linja li lukin e ilo pali   # 4: the agent inspects the tool (itself by address, bound in the record)
+jan linja li wile e ni          # 5: the agent's intention (status: intended, in the record)
 ilo pali li kama pona           # 6: the evidence to look for (status stays open until checked)
 ```
 
@@ -45,7 +45,7 @@ seme li tan e ni                # a question statement (RESOLVED parse); its sem
 
 ## 4. Self-reference, other people, values
 
-- Yourself: `jan ni`. Its binding is the record's `actor`.
+- Yourself: your own address (`jan linja`), bound to the record's `actor`. `jan ni` is "this person".
 - Others: by contextual address (`jan pali`), bound to a reference in the record. Two people matching means AMBIGUOUS.
 - Values (PR numbers, ids, times, names, strings) never enter the surface. They live in `bound_ref` and `literals`.
 - History is immutable: a later context change must not rewrite an earlier `bound_ref`.
@@ -65,7 +65,7 @@ surface: ilo pali li pona ala
 subject:
   tokens: [ilo, pali]
   bound_ref: ci:run-4711         # the CI run; values live here, never in the surface
-actor: urn:agent:linja           # the binding of jan ni
+actor: urn:agent:linja           # the binding of jan linja
 literals:
   pr_number: 678
 resolution_context: [project:acme-web]
@@ -79,8 +79,8 @@ Truth status belongs in that field. The `lukin la` / `wile la` / `seme la` prefi
 
 ```openpona
 ma pali la ilo pali li pona ala   # observed (record), scoped
-jan ni li wile e ni               # intended, actor = jan ni
-jan ni li pali e ilo pali         # the act, logged as intended first
+jan linja li wile e ni            # intended, actor = the agent
+jan linja li pali e ilo pali      # the act, logged as intended first
 lukin la ilo pali li pona         # research convention (H-TS): observed
 ilo pali anu ilo sitelen li awen  # choice between phrases, not statements
 ```

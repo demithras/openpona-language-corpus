@@ -15,7 +15,7 @@ Language-level test cases any OpenPona parser can run against. Each line of each
 ```text
 statement = clause | "(" clause " la " clause ")"
 clause    = expr | "(" expr { " li " predicate } ")"
-predicate = expr { " e " expr | " tan " expr }
+predicate = ( expr | "tan " expr ) { " e " expr } { " tan " expr }   -- objects before source phrases (2026-10-01)
 expr      = phrase | "(" phrase " anu " expr ")"
 phrase    = "{" unit [ " " unit ] { " pi " unit " " unit } "}"
 unit      = token | "D" depth "(" token [ " " token ] ")"

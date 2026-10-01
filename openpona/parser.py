@@ -124,7 +124,7 @@ def _alts(node, memo) -> set[str]:
 
 
 def _fmt(data: str, c) -> str:
-    if data in ("start", "unit"):
+    if data in ("start", "unit", "phrase_na"):
         return c[0]
     if data == "statement":
         return c[0] if len(c) == 1 else f"({c[0]} la {c[2]})"
@@ -132,11 +132,11 @@ def _fmt(data: str, c) -> str:
         return c[0] if len(c) == 1 else f"({c[0]}{c[1]})"
     if data == "lis":  # LI predicate [lis]
         return f" li {c[1]}" + (c[2] if len(c) > 2 else "")
-    if data == "predicate":
-        return c[0] + (c[1] if len(c) > 1 else "")
-    if data == "parts":
-        return c[0] + (c[1] if len(c) > 1 else "")
-    if data == "part":  # E|TAN expression
+    if data in ("predicate", "predicate_na", "objs", "objs_na", "tans", "tans_na"):
+        return "".join(c)
+    if data in ("tanpred", "tanpred_na"):  # TAN expression [tans]
+        return f"tan {c[1]}" + (c[2] if len(c) > 2 else "")
+    if data in ("obj", "obj_na", "tanp", "tanp_na"):  # E|TAN expression
         return f" {c[0]} {c[1]}"
     if data == "expression":
         return c[0] if len(c) == 1 else f"({c[0]} anu {c[2]})"
@@ -166,6 +166,20 @@ def _skeletons(text: str) -> set[str]:
         sys.setrecursionlimit(old)
 
 
+def _vector_tans(skel: str) -> int:
+    """`tan` tokens read as units: inside {...} but not inside D<n>(...)."""
+    flat = re.sub(r"D\d+\([^)]*\)", "", skel)
+    return sum(m.split().count("tan") for m in re.findall(r"\{([^}]*)\}", flat))
+
+
+def _prefer_structure(skels: set[str]) -> set[str]:
+    """C8: structure wins where it exists - keep the parses with the fewest vector-tan readings."""
+    if len(skels) < 2:
+        return skels
+    best = min(_vector_tans(k) for k in skels)
+    return {k for k in skels if _vector_tans(k) == best}
+
+
 # ------------------------------------------------------------- diagnostics
 def _diagnose(toks: list[str]) -> list[str]:
     """Located, rule-named hints for a token list with no structural parse."""
@@ -184,6 +198,34 @@ def _diagnose(toks: list[str]) -> list[str]:
         if toks[i] in PARTICLES and toks[i + 1] in PARTICLES:
             out.append("particle-run: particles never repeat; META applies to "
                        f"semantic units only {at(i + 1)}")
+    clause_start = 0
+    for i, t in enumerate(toks + ["la"]):
+        if t != "la":
+            continue
+        seg = range(clause_start, i)
+        clause_start = i + 1
+        lis_ = [j for j in seg if toks[j] == "li"]
+        if not lis_:
+            continue
+        tan_seen = False
+        anu_at = None
+        for j in seg:
+            if j <= lis_[0]:
+                continue
+            if toks[j] == "li":
+                if anu_at is not None:
+                    out.append("anu-then-li: a predicate with anu must be the last one; a choice "
+                               f"between statements is two la statements on two lines {at(j)}")
+                    break
+                tan_seen = False
+            elif toks[j] == "anu":
+                anu_at = j
+            elif toks[j] == "tan":
+                tan_seen = True
+            elif toks[j] == "e" and tan_seen:
+                out.append("e-after-tan: objects (e) come before source phrases (tan) "
+                           f"{at(j)}")
+                break
     las = [i for i, t in enumerate(toks) if t == "la"]
     if len(las) > 1:
         out.append("la-count: one context (la) per statement; a choice between "
@@ -200,7 +242,7 @@ def _diagnose(toks: list[str]) -> list[str]:
     seg: list[int] = []
     segments: list[list[int]] = []
     for i, t in enumerate(toks):
-        if t in ("li", "la", "e", "anu"):
+        if t in ("li", "la", "e", "anu", "tan"):  # tan phrases bound a segment too; hint only
             segments.append(seg)
             seg = []
         else:
@@ -239,7 +281,7 @@ def parse(text: str) -> ParseResult:
     skels: set[str] = set()
     for cand in fold_candidates(toks):
         skels |= _skeletons(cand)
-    out = sorted(skels)
+    out = sorted(_prefer_structure(skels))
     if not out:
         errs = _diagnose(toks) or ["no structural parse"]
         return ParseResult("INVALID", [], errs, toks)

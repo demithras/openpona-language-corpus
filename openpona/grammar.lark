@@ -9,13 +9,42 @@ statement: clause | clause LA clause
 
 clause: expression | expression lis
 
-lis: LI predicate | LI predicate lis
+// C2: a predicate containing anu must be the last one (anu in the subject is fine).
+lis: LI predicate_na lis | LI predicate
 
-predicate: expression | expression parts
+// C3: objects (e) before source phrases (tan).  C8: a predicate may start with tan.
+predicate: expression
+         | expression objs
+         | expression tans
+         | expression objs tans
+         | tanpred
 
-parts: part | part parts
+tanpred: TAN expression | TAN expression tans
 
-part: E expression | TAN expression
+objs: obj | obj objs
+
+obj: E expression
+
+tans: tanp | tanp tans
+
+tanp: TAN expression
+
+// anu-free twins of the predicate rules (phrases only)
+predicate_na: phrase
+            | phrase objs_na
+            | phrase tans_na
+            | phrase objs_na tans_na
+            | tanpred_na
+
+tanpred_na: TAN phrase | TAN phrase tans_na
+
+objs_na: obj_na | obj_na objs_na
+
+obj_na: E phrase
+
+tans_na: tanp_na | tanp_na tans_na
+
+tanp_na: TAN phrase
 
 expression: phrase | phrase ANU expression
 

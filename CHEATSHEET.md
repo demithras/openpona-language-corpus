@@ -4,7 +4,7 @@
 
 ## The matrix (6 rows x 7 columns)
 
-| Row | Narrative | Seed (Sun) | Map (Moon) | Explore (Mars) | Decide (Mercury) | Work (Jupiter) | Resonate (Venus) | Structure (Saturn) |
+| Row | Narrative | Seed | Map | Explore | Decide | Work | Resonate | Structure |
 |---:|---|---|---|---|---|---|---|---|
 | 1 | Start > Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
 | 2 | Question > Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
@@ -13,7 +13,7 @@
 | 5 | Understand > Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
 | 6 | Generalize > Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-Column names are functional; planets are only a mnemonic. The last column is exactly the 6 structural tokens.
+Column names are functional (a planetary mnemonic for them is in LEARN, Lesson 1). The last column is exactly the 6 structural tokens.
 
 ## The 42 glosses (vector first, not part of speech)
 
@@ -29,20 +29,21 @@ Column names are functional; planets are only a mnemonic. The last column is exa
 ## Structural tokens and precedence
 
 ```text
-X li P      predicate         P e Y      directed target     P tan Z    source / cause
-C la S      context, then S   H pi U U   group of exactly two units      A anu B    alternative phrases
+X li P      predicate         P e Y      directed target     P e Y tan Z   objects, then source phrases
+C la S      context, then S   H pi U U   group of exactly two units      A anu B       alternative phrases (a predicate with anu is the last one)
+X li tan Z  source predicate (X derives from Z)
 ```
 
-Precedence, loosest to tightest: `la` > `li` > `e`/`tan` > `anu` > `pi`. `li la e pi anu` are particles only; `tan` is also a vector (`kama tan tan` = `kama D1(tan)`).
+Precedence, loosest to tightest: `la` > `li` > `e`/`tan` > `anu` > `pi`. `li la e pi anu` are particles only; `tan` is also a vector where no structural reading exists (`kama tan tan` = `kama D1(tan)`).
 
 ## The 8 rules that matter
 
 1. Vector first: read each token as a direction of change, then let position decide its role.
 2. Phrase = head (1-2 units) + any number of `pi` groups of exactly 2 units. Three units need `pi`; `sona pi lawa` is INVALID.
 3. META: n repetitions of a 1- or 2-token unit = D^(n-1). META beats structure, structure beats the vector reading.
-4. `tan` is the only dual token (structural and vector); the other five never carry content.
+4. `tan` is the only dual token in OpenPona (source phrase, source predicate after `li`, or vector); the other five never carry content.
 5. One statement per line. `anu` joins phrases only; a choice between statements is two `la` lines.
-6. `jan ni` = the speaker (the statement's author). There is no `mi` or `sina`.
+6. No `mi` or `sina`: an agent names itself by its own address (`jan linja`); `jan ni` means "this person", as in Toki Pona.
 7. Values never in the surface: no numbers, ids, names, punctuation. They live in the record (`bound_ref`, `literals`).
 8. Ambiguity is a value: RESOLVED, AMBIGUOUS, INVALID (parse) and UNRESOLVED (binding). Never guess a binding.
 
@@ -60,7 +61,7 @@ jan pali li pana e sitelen       # a work agent emits a representation
 ma pali la jan li lukin e ijo    # in project scope, an agent inspects an entity
 sona ni li kama tan kute         # the bound knowledge came from a received signal
 nasin open anu nasin awen        # opening path or retaining path
-jan ni li lukin e ilo sitelen    # the author inspects the logging tool
+jan linja li lukin e ilo sitelen # the agent LINJA inspects the logging tool (self-reference by address)
 ! sona pi lawa                   # pi needs exactly two units after it; a two-unit concept takes no pi
 ! jan ilo sona                   # three units without pi
 ! li pali                        # particle with no subject

@@ -48,7 +48,7 @@ The following are canonical:
 
 ## 3. Canonical matrix
 
-| Row / narrative arc | Seed (Sun) | Map (Moon) | Explore (Mars) | Decide (Mercury) | Work (Jupiter) | Resonate (Venus) | Structure (Saturn) |
+| Row / narrative arc | Seed | Map | Explore | Decide | Work | Resonate | Structure |
 |---|---|---|---|---|---|---|---|
 | 1 Start → Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
 | 2 Question → Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
@@ -57,7 +57,7 @@ The following are canonical:
 | 5 Understand → Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
 | 6 Generalize → Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-The row/column labels are **external metadata**, not extra OpenPona primitives. The functional label (Seed, Map, …) is the operational name of the column; the planet is a mnemonic alias only. Internal, unpublished experiments (`research/matrix_coordinate_experiments.md`, MX2–MX3) suggested the first row/column act as embedded projections of broader axes; the coordinate generator is research, not grammar.
+The row/column labels are **external metadata**, not extra OpenPona primitives. The column names are functional; a planetary mnemonic for memorising them (Sun … Saturn) is given in `LEARN_OPENPONA.md`, Lesson 1, and its origin in `history/timeline.md` — it is not part of canon. Internal, unpublished experiments (`research/matrix_coordinate_experiments.md`, MX2–MX3) suggested the first row/column act as embedded projections of broader axes; the coordinate generator is research, not grammar.
 
 ## 4. Token operational glosses
 
@@ -172,7 +172,8 @@ Structural operators are strongest when they connect complete semantic expressio
 ```text
 X li P                 predicate; several predicates: X li P li Q
 P e Y                  object; several objects: P e Y e Z
-P tan Z                source; e and tan phrases in any order: P tan Z e Y
+P e Y tan Z            source phrase; objects come before source phrases (P tan Z e Y is INVALID)
+X li tan Z             source predicate: X derives from Z
 C la S                 context
 X pi Y Z               grouping (§5.3)
 A anu B                alternative between phrases
@@ -185,7 +186,7 @@ nasin open la jan li pali
 nasin awen la jan li awen
 ```
 
-`jan li pali anu jan li awen` therefore has exactly one parse — `jan` does (`pali` or `jan`) and `awen` — and is not a branch between statements (author decision, 2026-09-30).
+A predicate that contains `anu` must be the last predicate of its clause, so `jan li pali anu jan li awen` is INVALID (diagnostic `anu-then-li`) rather than a branch between statements or a misread (author decisions 2026-09-30 and 2026-10-01). `anu` in the subject followed by `li` is fine: `nasin open anu nasin awen li pali`.
 
 Interpretive anchors:
 
@@ -196,7 +197,7 @@ Interpretive anchors:
 - `pi`: grouping/composition scope;
 - `anu`: explicit alternative/branch/version.
 
-A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`, which is also a semantic vector (`seme li tan e ni`, `jan tan li pali`).
+A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`: directly after `li` it is a **source predicate** (`jan li tan ma` = derives from the land; `sona ni li tan kute`), and where no structural reading exists it is a semantic vector (`seme li tan e ni`, `jan tan li pali`, `jan li tan ma e ijo`). When both readings parse, the structural one wins (decision 2026-10-01).
 
 ## 7. META and repetition
 
@@ -250,10 +251,10 @@ Rules:
 
 ### 8.1 Speaker
 
-OpenPona has no `mi`/`sina`. **`jan ni` denotes the author of the statement** (the speaking agent or person). It is an ordinary contextual address whose binding is the statement's `actor`; it does not introduce a first person into the grammar.
+OpenPona has no first or second person. An agent or person names itself by its own contextual address (`jan linja` for an agent called LINJA); the record's `actor` field carries authorship. `jan ni` keeps its Toki Pona meaning, "this person", and may point at anyone (decision 2026-10-01, superseding the 2026-09-30 "speaker" reading).
 
 ```text
-jan ni li lukin e ilo sitelen      the author of this statement inspects the logging tool
+jan linja li lukin e ilo sitelen   the agent LINJA inspects the logging tool   (actor: urn:agent:linja)
 ```
 
 ### 8.2 External values

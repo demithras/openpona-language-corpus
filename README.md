@@ -26,7 +26,7 @@ Read in this order: [`CHEATSHEET.md`](CHEATSHEET.md) (one page) → [`LEARN_OPEN
 ## The language in three lines
 
 - **42 tokens, 6 × 7 matrix**: 36 semantic tokens read as directions of meaning ("vectors": `open` = initiate, `lukin` = inspect, `pini` = complete) and 6 structural tokens `li la e tan pi anu` that are particles, as in Toki Pona (`tan` is also an ordinary word, source/cause).
-- **One grammar**: `context la subject li predicate e object tan source`; three or more words in one concept need `pi`; a repeated unit is a META derivative (`lukin lukin` = inspection as such); one statement per line; `jan ni` = the author of the statement.
+- **One grammar**: `context la subject li predicate e object tan source`; three or more words in one concept need `pi`; a repeated unit is a META derivative (`lukin lukin` = inspection as such); one statement per line; no pronouns — an agent names itself by its own address (`jan linja`).
 - **Ambiguity is a value**: the parser answers RESOLVED, AMBIGUOUS (more than one parse) or INVALID and never guesses; binding an address to an entity is a separate step with its own AMBIGUOUS (more than one candidate) and UNRESOLVED (none). Two statements written on one line are not detected — they read as one statement with a different meaning, so keep one per line.
 
 ```text

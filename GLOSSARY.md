@@ -19,11 +19,11 @@ Terms and abbreviations used across this repository. Language terms first, proje
 | **address** | The shortest ordered composition that resolves an entity in the current context (`ilo sitelen`). Contextual; may change. |
 | **machine identity / `bound_ref`** | The stable UUID or reference an address resolves to at write time. Never changes for a persisted statement. |
 | **bound statement / record** | The persisted form of a statement: surface + bindings + `truth_status` + `literals` (`schema/statement.schema.json`). |
-| **`jan ni`** | The author of the statement (the speaking agent or person); bound to the record's `actor`. There is no `mi`/`sina`. |
+| **self-reference** | There is no `mi`/`sina` and no pronoun. An agent or person names itself by its own address (`jan linja`); the record's `actor` field carries authorship. `jan ni` means "this person", as in Toki Pona (decided 2026-10-01; the 2026-09-30 "speaker" reading is superseded). |
 | **truth status / speech-act status** | `observed`, `asserted`, `requested`, `intended`, `hypothesis`, `inferred`, `unknown`, `rejected`. Lives in the record; carrying it in the surface is research (`H-TS`). |
 | **RESOLVED / AMBIGUOUS / INVALID / UNRESOLVED** | Two levels. Parse: RESOLVED (one parse), AMBIGUOUS (several), INVALID (none). Binding (`resolution_status`): RESOLVED (one candidate entity), AMBIGUOUS (several), UNRESOLVED (none). |
 | **skeleton** | The compact bracketed rendering of a parse used by the conformance corpus (`conformance/README.md`). |
-| **matrix / Sprint / Day** | The 6 × 7 arrangement of the tokens. Rows are also called Sprints (1–6), columns Days (1–7) in older material; `canon/03` uses row/column. Column names are functional (Seed, Map, Explore, Decide, Work, Resonate, Structure) with planets as a mnemonic alias. |
+| **matrix / Sprint / Day** | The 6 × 7 arrangement of the tokens. Rows are also called Sprints (1–6), columns Days (1–7) in older material; `canon/03` uses row/column. Column names are functional (Seed, Map, Explore, Decide, Work, Resonate, Structure); a planetary mnemonic is kept in `LEARN_OPENPONA.md`, Lesson 1, only. |
 | **`anu 1.1`** | The current canonical token inventory version. `anu 1.0` had the same 36+6 split with an older row-5 ordering. |
 | **CANON / RESEARCH / HISTORY / SUPERSEDED** | Status labels: accepted rule; hypothesis with evidence and falsifiers; preserved older material; a formulation displaced by an explicit later decision. |
 

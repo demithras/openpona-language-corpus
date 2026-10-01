@@ -2,7 +2,7 @@
 
 ## 2026-09-09 to 2026-09-10 — Core42 exploration
 
-Early 42-cell matrices, Thoth/decan structure and cross-domain semantic-kernel ideas were explored. These artifacts are valuable history but used a different token architecture.
+Early 42-cell matrices, Thoth/decan structure and cross-domain semantic-kernel ideas were explored. The planetary column mnemonic (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) dates from this phase; since 2026-10-01 it is kept only as a memory aid in `LEARN_OPENPONA.md`, Lesson 1. These artifacts are valuable history but used a different token architecture.
 
 ## 2026-09-10 to 2026-09-11 — 36+6 freeze and `anu 1.0`
 

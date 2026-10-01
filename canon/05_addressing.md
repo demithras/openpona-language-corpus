@@ -41,13 +41,13 @@ A later change in context may change what `ilo sitelen` would resolve to *now*, 
 
 ## Speaker
 
-There is no first or second person in the token set. **`jan ni` denotes the author of the statement**; its binding is the statement's `actor`. It resolves like any other contextual address and never becomes a grammatical pronoun.
+There is no first or second person in the token set, and no pronoun is added. An agent or person refers to itself by its own contextual address; the record's `actor` field carries authorship. `jan ni` means "this person", as in Toki Pona, and resolves like any other address (decision 2026-10-01; the 2026-09-30 "speaker" reading is superseded).
 
 ```yaml
-surface: jan ni li lukin e ilo sitelen
+surface: jan linja li lukin e ilo sitelen
 subject:
-  tokens: [jan, ni]
-  bound_ref: urn:agent:linja      # = actor
+  tokens: [jan, linja]
+  bound_ref: urn:agent:linja      # the agent's own address, = actor
 actor: urn:agent:linja
 ```
 

@@ -137,3 +137,32 @@ def test_uppercase_variant_is_invalid(t):
     res = parse(text.upper())
     assert res.status == "INVALID" and res.skeletons == []
     assert res.errors[0].startswith("case:")
+
+
+@settings(deadline=None)
+@given(distinct3)
+def test_tan_after_li_is_a_source_predicate(t):
+    a, b, _ = t
+    res = parse(f"{a} li tan {b}")
+    assert res.status == "RESOLVED", res.errors
+    assert res.skeletons == ["({" + a + "} li tan {" + b + "})"]
+
+
+@settings(deadline=None)
+@given(distinct3)
+def test_e_after_tan_is_invalid(t):
+    a, b, c = t
+    res = parse(f"{a} li {b} tan {c} e {a}")
+    assert res.status == "INVALID" and res.skeletons == []
+    assert any(e.startswith("e-after-tan:") for e in res.errors), res.errors
+
+
+@settings(deadline=None)
+@given(distinct3)
+def test_anu_predicate_must_be_last(t):
+    a, b, c = t
+    bad = parse(f"{a} li {b} anu {c} li {a}")
+    assert bad.status == "INVALID" and bad.skeletons == []
+    assert any(e.startswith("anu-then-li:") for e in bad.errors), bad.errors
+    ok = parse(f"{a} anu {b} li {c}")
+    assert ok.status == "RESOLVED", ok.errors

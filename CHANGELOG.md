@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-01 — tier-2 decisions (author interview)
+
+- grammar: objects before source phrases (`e` after `tan` INVALID); `tan` directly after `li` is a source predicate (`jan li tan ma`), structural reading wins where it exists; a predicate containing `anu` must be the last one (`jan li pali anu jan li awen` INVALID); 9 conformance cases changed/added (90 total);
+- speaker: no pronoun — self-reference by the agent's own address (`jan linja`), authorship in `actor`; `jan ni` = "this person" as in Toki Pona (supersedes 2026-09-30);
+- `lon`/`tawa`/`sama` stay content words (declared departure); repetition-as-derivative and `tan tan` folding declared;
+- glosses: Toki Pona sense column (pu) added to `canon/02` and `data/tokens.csv`; reference edition stated (pu for grammar, ku for senses);
+- planets removed from canon/SPEC/cheat-sheet/data table headers; the mnemonic stays in LEARN Lesson 1 and history.
+
 ## 2026-10-01 — independent review round
 
 Five fresh-context reviewers (first-time reader, Toki Pona linguist, tooling engineer, research integrity, mechanical checker) assessed the repository; scores for "publish as-is" were 5/4/4/5/8 of 10. Changes made in response:

@@ -35,6 +35,14 @@
 | Invariant 4 | "every token is first a vector" | **every semantic token and `tan`; the five particles have structural force only** (2026-09-30) |
 | Two-unit concept with `pi` | undefined | **INVALID (`sona pi lawa`); `pi` only for 3+ units** (2026-09-30) |
 | Negation and tense | undefined | **as in Toki Pona: `ala` after the negated unit; tense by `tenpo … la` context** (2026-09-30, written into `canon/11` 2026-10-01) |
+| Speaker (2026-09-30) | `jan ni` = author of the statement | **no pronoun: self-reference by the agent's own address (`jan linja`), authorship in `actor`; `jan ni` = "this person" as in Toki Pona** (2026-10-01) |
+| Predicate order (2026-09-30) | `e` and `tan` phrases in any order | **objects before source phrases; `e` after a `tan` phrase INVALID** (2026-10-01, as in pu) |
+| `anu` + further `li` | accepted with the phrase-level reading | **INVALID: a predicate containing `anu` is the last predicate** (2026-10-01) |
+| `tan` directly after `li` | vector phrase (`{tan ma}`) | **source predicate `li tan X`; structural reading wins where it exists** (2026-10-01) |
+| `lon` `tawa` `sama` | implicitly content words | **content words, declared departure from Toki Pona prepositions** (2026-10-01) |
+| Matrix column names (2026-09-30) | "Seed (Sun)" — planet as alias in canon tables | **functional names only in canon, SPEC, cheat sheet, data; planetary mnemonic kept in LEARN Lesson 1 and history** (2026-10-01) |
+| Token glosses | OpenPona anchor only | **anchor + Toki Pona sense (pu) column in `canon/02` and `data/tokens.csv`** (2026-10-01) |
+| Reference edition | unstated | **pu (2014) for grammar, ku (2021) for word senses** (2026-10-01) |
 
 ## Conflict rule
 

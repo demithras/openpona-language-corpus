@@ -11,6 +11,7 @@
 {"id": "b11", "surface": "sitelen ilo li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({sitelen ilo} li {awen})"], "note": "order matters"}
 {"id": "b12", "surface": "jan li pali li awen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} li {awen})"], "note": "multiple li (decision 2026-09-30)"}
 {"id": "b13", "surface": "ilo li pana e ilo e sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li {pana} e {ilo} e {sitelen})"], "note": "multiple e"}
-{"id": "b14", "surface": "jan li pali tan ma e ijo", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} tan {ma} e {ijo})"], "note": "e/tan in any order"}
+{"id": "b14", "surface": "jan li pali tan ma e ijo", "expect_status": "INVALID", "note": "DECISION 2026-10-01 (C3): objects (e) come before source phrases (tan), as in pu; e after a tan phrase is INVALID"}
 {"id": "b15", "surface": "jan li pali anu awen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li ({pali} anu {awen}))"], "note": "anu joins phrases"}
 {"id": "b16", "surface": "jan li pali e ijo tan ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo} tan {ma} tan {kute})"]}
+{"id": "b17", "surface": "jan li pali e ijo e ilo tan ma", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo} e {ilo} tan {ma})"], "note": "several objects, then the source phrase"}

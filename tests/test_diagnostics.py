@@ -13,6 +13,9 @@ EXAMPLES = [
     ("jan pi li pali", "particle-run"),
     ("ma la ma la jan li pali", "la-count"),
     ("jan pi ilo", "pi-arity"),
+    ("jan li pali tan ma e ijo", "e-after-tan"),
+    ("jan li pali anu jan li awen", "anu-then-li"),
+    ("jan li pali e ilo anu sitelen li awen", "anu-then-li"),
     ("ILO LI AWEN", "case"),
     ("ilo mi", "unknown-token"),
 ]
@@ -23,6 +26,16 @@ def test_rule_named_in_errors(text, rule):
     res = parse(text)
     assert res.status == "INVALID" and res.skeletons == []
     assert any(e.startswith(rule + ":") for e in res.errors), res.errors
+
+
+def test_new_diagnostics_are_located():
+    assert any("(token 6 'e')" in e for e in parse("jan li pali tan ma e ijo").errors)
+    assert any("(token 6 'li')" in e for e in parse("jan li pali anu jan li awen").errors)
+
+
+def test_anu_in_subject_or_last_predicate_is_fine():
+    assert parse("nasin open anu nasin awen li pali").status == "RESOLVED"
+    assert parse("jan li pali anu pali anu pali").status == "RESOLVED"
 
 
 def test_errors_are_located():
