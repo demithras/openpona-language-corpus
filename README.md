@@ -1,10 +1,10 @@
 # OpenPona
 
-**A 42-word subset of Toki Pona with a strict grammar, for people and AI agents to write observations, intentions and requests as one-line statements a parser can check and a runtime can bind.** Values (ids, numbers, names) never go in the line; they live in a record next to it.
+**Forty-two Toki Pona words under a stricter grammar, for people and AI agents to write observations, intentions and requests as one-line statements a parser can check and a runtime can bind.** Values (ids, numbers, names) never go in the line; they live in a record next to it.
 
 Who it is for: builders of agents that must log what they saw, what they intend and what they were asked without the three blurring together; people who want a small operational notation they can hold in their head; researchers testing whether such a language can serve as the surface syntax of an executable ontology.
 
-What you can do today: parse and validate statements, test an LLM's OpenPona output against 81 conformance cases, paste a ready-made system prompt. **No runtime ships here** — this repository is the language, its reference parser and its tests.
+What you can do today: parse and validate statements (including an LLM's output, line by line), run the 81-case conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
 
 ```text
 $ pip install .                       # Python >= 3.11
@@ -15,7 +15,7 @@ RESOLVED
 
 ```yaml
 surface: ma pali la ilo pali li pona ala      # in the project scope, the CI tool is not fit
-subject: {tokens: [ilo, pali], bound_ref: pr:678}
+subject: {tokens: [ilo, pali], bound_ref: ci:run-4711}   # the CI run, not the PR
 literals: {pr_number: 678}
 actor: urn:agent:linja
 truth_status: observed
@@ -27,7 +27,7 @@ Read in this order: [`CHEATSHEET.md`](CHEATSHEET.md) (one page) → [`LEARN_OPEN
 
 - **42 tokens, 6 × 7 matrix**: 36 semantic tokens read as directions of meaning ("vectors": `open` = initiate, `lukin` = inspect, `pini` = complete) and 6 structural tokens `li la e tan pi anu` that are particles, as in Toki Pona (`tan` is also an ordinary word, source/cause).
 - **One grammar**: `context la subject li predicate e object tan source`; three or more words in one concept need `pi`; a repeated unit is a META derivative (`lukin lukin` = inspection as such); one statement per line; `jan ni` = the author of the statement.
-- **Ambiguity is a value**: the parser answers RESOLVED, AMBIGUOUS or INVALID and never guesses; binding an address to an entity is a separate step that may return UNRESOLVED.
+- **Ambiguity is a value**: the parser answers RESOLVED, AMBIGUOUS (more than one parse) or INVALID and never guesses; binding an address to an entity is a separate step with its own AMBIGUOUS (more than one candidate) and UNRESOLVED (none). Two statements written on one line are not detected — they read as one statement with a different meaning, so keep one per line.
 
 ```text
 open     lon      tawa     wile     pali     pilin    li

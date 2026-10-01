@@ -59,7 +59,7 @@ The surface never carries numbers, identifiers, strings or proper names — only
 surface: ilo pali li pini ala
 subject:
   tokens: [ilo, pali]
-  bound_ref: pr:678
+  bound_ref: ci:run-4711
 literals:
   pr_number: 678
 truth_status: observed

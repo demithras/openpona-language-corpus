@@ -19,8 +19,8 @@ For an AI agent that reads and writes OpenPona statements (for example LINJA ove
 6. If you propose an action, separately state what evidence would count as observed success.
 
 ```openpona
-ilo pali li pini ala            # 1-2: the CI run has not completed (for "red" see the walkthrough: pona ala)
-ma pali la ilo pali li pini ala # 3: scoped to the work project
+ilo pali li pona ala            # 1-2: the CI tool is not fit (red)
+ma pali la ilo pali li pona ala # 3: scoped to the work project
 jan ni li lukin e ilo pali      # 4: I inspect the tool (address bound in the record)
 jan ni li wile e ni             # 5: my intention (status: intended, in the record)
 ilo pali li kama pona           # 6: the evidence to look for (status stays open until checked)
@@ -32,8 +32,8 @@ Order: parse, read the status, bind the addresses, never guess.
 
 | Result | What you do |
 |---|---|
-| RESOLVED | Bind each address in context (narrowest scope outward). Zero candidates gives UNRESOLVED, several give AMBIGUOUS. |
-| AMBIGUOUS | Narrow the context (add an outer `ma ...` scope) or keep all alternatives. Never pick the newest or most likely one. |
+| RESOLVED (parse) | Bind each address in context (narrowest scope outward). Zero candidates gives `resolution_status: UNRESOLVED`, several give `resolution_status: AMBIGUOUS`. |
+| AMBIGUOUS (parse or binding) | Parse: keep every reading, or rewrite. Binding: narrow the context (add an outer `ma ...` scope) or keep all candidates. Never pick the newest or most likely one. |
 | UNRESOLVED | Ask with `seme`; keep the question open in the record. |
 | INVALID | Do not repair silently. Report the line and the parser error; ask the author or rewrite as a new statement. |
 
@@ -61,10 +61,10 @@ seme li tan e ni                # a question statement (RESOLVED parse); its sem
 ## 6. Record template and worked lines
 
 ```yaml
-surface: ilo pali li pini ala
+surface: ilo pali li pona ala
 subject:
   tokens: [ilo, pali]
-  bound_ref: pr:678              # values live here, never in the surface
+  bound_ref: ci:run-4711         # the CI run; values live here, never in the surface
 actor: urn:agent:linja           # the binding of jan ni
 literals:
   pr_number: 678
@@ -78,7 +78,7 @@ evidence: []                     # what was checked
 Truth status belongs in that field. The `lukin la` / `wile la` / `seme la` prefixes are a research convention (H-TS), not canon; do not rely on them as the only carrier of status.
 
 ```openpona
-ma pali la ilo pali li pini ala   # observed (record), scoped
+ma pali la ilo pali li pona ala   # observed (record), scoped
 jan ni li wile e ni               # intended, actor = jan ni
 jan ni li pali e ilo pali         # the act, logged as intended first
 lukin la ilo pali li pona         # research convention (H-TS): observed

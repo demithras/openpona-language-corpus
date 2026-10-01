@@ -10,4 +10,4 @@ Decided by the author on 2026-09-30.
 
 Attribution for CC BY 4.0 material: "OpenPona language corpus, Dmitri Surchis, https://github.com/demithras/openpona-language-corpus, CC BY 4.0".
 
-Toki Pona, whose words OpenPona reuses, is the work of Sonja Lang; see the Acknowledgement in `README.md`.
+Toki Pona, whose words OpenPona reuses, is the work of Sonja Lang; see "Relationship to Toki Pona" in `README.md`. These licenses cover this repository's text and code only; no rights over Toki Pona itself are claimed or granted.

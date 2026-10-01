@@ -85,7 +85,7 @@ H pi U U    a group of exactly two units modifies the head H
 A anu B     explicit alternative/branch/version
 ```
 
-As in Toki Pona, `li la e pi anu` are particles only: outside their position the statement is invalid. `tan` is the one token that is both a particle ("from") and an ordinary word (source/cause), exactly as in Toki Pona.
+As in Toki Pona, `li la e pi anu` are particles only: outside their position the statement is invalid. `tan` is the one OpenPona token that is both a particle ("from") and an ordinary word (source/cause). Toki Pona has more prepositions (`lon`, `tawa`, `sama`, `kepeken`), which OpenPona reads as ordinary words; see `canon/11`, departure 1.
 
 ## Lesson 3 — Build concepts and addresses
 

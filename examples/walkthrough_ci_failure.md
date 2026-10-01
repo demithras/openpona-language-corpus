@@ -21,11 +21,11 @@ ilo pali li kama ala             # candidate C: the build tool did not become (a
 
 Chosen: B. A says the run is unfinished, which is also true while CI is still running, so it cannot tell "running" from "failed". C is too empty. B says the state of the tool is "not fit", which is what red means. What B cannot say is why (a failing test, a lint error): there is no token for it, and nothing may be invented. The reason belongs in the record (`literals`) or in a `tan` phrase that points at another address.
 
-The green state is the mirror: `ilo pali li kama pona`, the tool became fit. The negative is `kama pi pona ala`: head `kama`, group `[pona ala]` — "became not-fit", which a Toki Pona speaker reads as "became bad" (negation scopes over `pona`, not over `kama`). Three units after `li` need `pi`; without it the line is INVALID.
+The green state is the mirror: `ilo pali li kama pona`, the tool became fit. The negative is `kama pi pona ala`: head `kama`, group `[pona ala]` — "became [not-good]"; the negation scopes over `pona`, not over `kama`, so "did not become fit" (`kama ala pona`) cannot be said under the `pi` shape (`canon/11`, Negation). Three units after `li` need `pi`; without it the line is INVALID.
 
 ```openpona
 ilo pali li kama pona            # green: the tool became fit
-ilo pali li kama pi pona ala     # became not-fit (Toki Pona: became bad): head kama, group [pona ala]
+ilo pali li kama pi pona ala     # became [not-good]: head kama, group [pona ala]
 ! ilo pali li kama pona ala      # three units after li, no pi
 ```
 
@@ -56,7 +56,7 @@ context:
   bound_ref: project:acme-web
 subject:
   tokens: [ilo, pali]
-  bound_ref: pr:678               # the CI run attached to this PR
+  bound_ref: ci:run-4711          # the CI run itself; the PR number is a literal below
 literals:
   pr_number: 678
   failing_job: unit-tests
@@ -102,7 +102,7 @@ Record 4 is observed only about the script: exit code 0 says the command finishe
 ```yaml
 surface: ma pali la jan ni li pona e ilo pali
 subject: {tokens: [jan, ni], bound_ref: urn:agent:linja}   # = actor
-object:  {tokens: [ilo, pali], bound_ref: pr:678}
+object:  {tokens: [ilo, pali], bound_ref: ci:run-4711}
 actor: urn:agent:linja
 truth_status: intended
 literals: {planned_commit_message: "fix flaky unit test"}
@@ -132,9 +132,10 @@ OpenPona itself performs no effect. A runtime that reads these sentences must re
    "Script exited 0" is one observation. "CI is green" is another. Write the
    second record only after a fresh read of the CI status, with its evidence.
 
-3. Binding to the newest PR when two match.
-   Two candidates means resolution_status AMBIGUOUS. Narrow the context or ask
-   with `seme`; never bind to the most recent, the largest, or the only open one.
+3. Binding to the most recent CI run when two match.
+   Two candidates (the build service and the lint service above) means
+   resolution_status AMBIGUOUS. Narrow the context or ask with `seme`; never
+   bind to the most recent, the largest, or the only open one.
 ```
 
 Each refusal keeps history honest: a bound record never changes after it is written, and a later context change does not rewrite what `ilo pali` meant on that day.

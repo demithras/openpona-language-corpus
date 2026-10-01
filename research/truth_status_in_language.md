@@ -40,7 +40,7 @@ Every line above is a valid Toki Pona sentence (`X la Y`), so the proposal is co
 - 2026-09-30, `examples/walkthrough_ci_failure.md`: `requested` ("the colleague wants it fixed") and `intended` ("I will fix it") both come out as `wile la …`; only the record's `actor` tells them apart. First falsifier above, hit on the first real story.
 - Same file: a status prefix occupies the single `la` slot, so it cannot coexist with a scope context (`ma pali la lukin la …` is INVALID). Third falsifier, also hit.
 
-- 2026-10-01, independent linguist review: in Toki Pona usage `lukin la` leans toward "apparently / seemingly" — roughly the opposite of a verified observation; `wile la` reads as "if desired"; `seme la X` reads as a question. The prefixes fail the "reads naturally to a Toki Pona speaker" criterion above.
+- 2026-10-01, independent linguist review: in Toki Pona usage `lukin la` reads as "by appearance / visually", not as a verified observation; `wile la` reads as "if desired"; `seme la X` reads as a question. The prefixes do not meet the "reads naturally to a Toki Pona speaker" criterion above.
 
 All hits are recorded, not resolved; the hypothesis stays OPEN until a prefix scheme survives a full story and a Toki Pona reading.
 

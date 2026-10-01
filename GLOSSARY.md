@@ -21,7 +21,7 @@ Terms and abbreviations used across this repository. Language terms first, proje
 | **bound statement / record** | The persisted form of a statement: surface + bindings + `truth_status` + `literals` (`schema/statement.schema.json`). |
 | **`jan ni`** | The author of the statement (the speaking agent or person); bound to the record's `actor`. There is no `mi`/`sina`. |
 | **truth status / speech-act status** | `observed`, `asserted`, `requested`, `intended`, `hypothesis`, `inferred`, `unknown`, `rejected`. Lives in the record; carrying it in the surface is research (`H-TS`). |
-| **RESOLVED / AMBIGUOUS / INVALID / UNRESOLVED** | Parse outcomes: exactly one parse; more than one; none; and, at binding time, no candidate entity. |
+| **RESOLVED / AMBIGUOUS / INVALID / UNRESOLVED** | Two levels. Parse: RESOLVED (one parse), AMBIGUOUS (several), INVALID (none). Binding (`resolution_status`): RESOLVED (one candidate entity), AMBIGUOUS (several), UNRESOLVED (none). |
 | **skeleton** | The compact bracketed rendering of a parse used by the conformance corpus (`conformance/README.md`). |
 | **matrix / Sprint / Day** | The 6 × 7 arrangement of the tokens. Rows are also called Sprints (1–6), columns Days (1–7) in older material; `canon/03` uses row/column. Column names are functional (Seed, Map, Explore, Decide, Work, Resonate, Structure) with planets as a mnemonic alias. |
 | **`anu 1.1`** | The current canonical token inventory version. `anu 1.0` had the same 36+6 split with an older row-5 ordering. |
@@ -42,5 +42,5 @@ Terms and abbreviations used across this repository. Language terms first, proje
 | **HDD** | Appears in the name of a Round 2 source artifact (`operational-ontology-round2-hdd-spec.zip`); its expansion is not recorded in this corpus. |
 | **Core42 / Thoth / decan** | The 2026-09-09..10 exploration of 42-cell matrices with Thoth/decan structure. Historical source only; superseded where it conflicts with canon. |
 | **LINJA** | A Logseq administrator agent built on OpenPona; the first live producer of OpenPona statements. Lives in a separate repository that is not yet public. |
-| **conformance corpus** | `conformance/*.jsonl`: 63 hand-written cases with expected parse outcomes that any parser can be tested against. |
+| **conformance corpus** | `conformance/*.jsonl`: 81 hand-written cases with expected parse outcomes that any parser can be tested against. |
 | **tpparser** | A third-party Toki Pona parser (nim-ka) used only as a local Toki Pona oracle in `research/parser_probe/`; unlicensed, so nothing from it is included here. |

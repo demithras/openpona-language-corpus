@@ -37,7 +37,7 @@ The following are canonical:
 8. Ambiguity is represented, not guessed. Use unresolved state, `seme`, or `anu` branching.
 9. Persisted statements bind machine identity at write time so later context changes do not rewrite history.
 10. Intent/request is distinct from observation/fact.
-11. `li la e pi anu` are structural only, as in Toki Pona. `tan` is both structural (source phrase) and semantic (vector), as in Toki Pona; where a structural reading of `tan` exists it wins, and the vector reading applies only where no structural parse exists.
+11. `li la e pi anu` are structural only, as in Toki Pona. In OpenPona `tan` is the one token that is both structural (source phrase) and semantic (vector); where a structural reading of `tan` exists it wins, and the vector reading applies only where no structural parse exists. (Toki Pona has further prepositions — `lon`, `tawa`, `sama`, `kepeken` — which OpenPona reads as content words: `canon/11`, departure 1.)
 12. **META parsing has priority** over ordinary structural parsing.
 13. Repetition of a token or well-formed phrase denotes a meta/essence/derivative operation over that semantic unit.
 14. Three or more semantic units forming one noun/concept must use explicit grouping with `pi` (§5.3).
@@ -178,7 +178,7 @@ X pi Y Z               grouping (§5.3)
 A anu B                alternative between phrases
 ```
 
-Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`. `anu` joins phrases only (`jan li pali anu awen`); it never joins whole clauses. A choice between whole statements is written as two context statements on two lines:
+Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi`. For `la li e pi` this is Toki Pona's order; the place of `anu` is OpenPona's choice (Toki Pona sets no rule for it). `anu` joins phrases only (`jan li pali anu awen`); it never joins whole clauses. A choice between whole statements is written as two context statements on two lines:
 
 ```text
 nasin open la jan li pali
@@ -222,7 +222,7 @@ D^m(D^n(P)) = D^(m+n)(P)
 
 `n` repetitions of `P` denote `D^(n-1)(P)`. Only the resulting depth is meaningful: `D^2(D^2(P)) = D^4(P)` exactly as snap is the acceleration of acceleration, and there is no separate surface form for a nested derivative.
 
-In Toki Pona usage a repeated word reads as emphasis; OpenPona assigns it derivative meaning. This adds meaning on top of a valid Toki Pona phrase and does not change its syntax, so it is compatible under §1.
+In Toki Pona usage a repeated word reads as emphasis; OpenPona assigns it derivative meaning instead. The line stays a valid Toki Pona sentence, but its reading is replaced, not added to — listed as departure 5 in `canon/11`.
 
 This rule is canonical at the algebraic level; the exact natural-language gloss of derivative depth is context-dependent and must not be hard-coded as one English word.
 
@@ -262,7 +262,7 @@ The surface text contains **only the 42 tokens** — never numbers, identifiers,
 
 ```text
 ilo pali li pini ala                surface
-subject.bound_ref: pr:678           record
+subject.bound_ref: ci:run-4711      record (the PR number is a literal, not the subject)
 ```
 
 This is not a hidden sidecar: the bound statement is the canonical persisted form (§8, `schema/statement.schema.json`), and the surface is its human/agent view.

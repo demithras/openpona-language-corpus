@@ -15,5 +15,7 @@ This repository uses two licenses (see LICENSE_POLICY.md):
 Copyright (c) 2026 Dmitri Surchis
 
 Toki Pona, whose words OpenPona reuses, is the work of Sonja Lang
-(https://tokipona.org). OpenPona is an independent project, not endorsed by
-or affiliated with Sonja Lang or the Toki Pona community.
+(https://tokipona.org). These licenses cover this repository's own text and
+code only; no rights over Toki Pona itself are claimed or granted. OpenPona
+is an independent project, not endorsed by or affiliated with Sonja Lang or
+the Toki Pona community.

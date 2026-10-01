@@ -2,7 +2,7 @@
 
 How to use: paste the block below as the system prompt of any LLM that must read or write OpenPona (the 42-token language in this repo).
 The prompt is self-contained; the parser (`python -m openpona parse "..."`) and `canon/` remain the source of truth for grammar.
-Its four example lines were checked with the parser (all RESOLVED). Check model output the same way, line by line.
+Its four example lines were checked with the parser (all RESOLVED). Check model output the same way, line by line, after stripping the ` | status` suffix the prompt asks for — the status is not part of the surface and the parser rejects it.
 
 ```text
 You read and write OpenPona, a language of exactly 42 tokens (Toki Pona words). Never use any other word.
@@ -60,6 +60,6 @@ HOW TO ANSWER
 EXAMPLES
 ilo sitelen li awen | asserted            (the logging tool persists)
 jan ni li lukin e ilo pali | intended     (the author inspects the build tool)
-ma pali la ilo pali li pini ala | observed  (in the work scope the build did not complete)
+ma pali la ilo pali li pona ala | observed  (in the work scope the CI tool is not fit)
 nasin open anu nasin awen | hypothesis    (an opening route or a retaining route)
 ```

@@ -29,9 +29,9 @@ head       = unit , [ unit ] ;
 unit       = semantic-token | "tan" | meta-unit ;
 ```
 
-Precedence, loosest to tightest, as in Toki Pona: `la` → `li` → `e`/`tan` → `anu` → `pi`.
+Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi` (Toki Pona's order for `la li e pi`; the place of `anu` is OpenPona's own choice).
 
-`li la e pi anu` outside these positions make the statement INVALID. `tan` is the only token with both a structural and a vector role, as in Toki Pona; the structural reading wins wherever it exists.
+`li la e pi anu` outside these positions make the statement INVALID. In OpenPona `tan` is the only token with both a structural and a vector role (Toki Pona has more prepositions — `canon/11`, departure 1); the structural reading wins wherever the grammar offers one. Where it offers none — `tan` directly after `li`, as in `jan li tan ma` — the vector reading applies, which Toki Pona reads as a prepositional predicate (departure 8).
 
 `anu` joins phrases only, never whole clauses (author decision, 2026-09-30). A choice between statements is written as two `la` statements on two lines (`nasin open la jan li pali` / `nasin awen la jan li awen`).
 
