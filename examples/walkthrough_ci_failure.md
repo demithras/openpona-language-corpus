@@ -142,7 +142,7 @@ Each refusal keeps history honest: a bound record never changes after it is writ
 
 ## The whole story in order
 
-Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines. The agent refers to itself by its own address, `jan linja`; `jan linja` would mean "this person" (decision 2026-10-01, `canon/11` departure 4).
+Seven statements, all RESOLVED. The comments are a reading, not a translation; the statuses are in the records above, not in the lines. The agent refers to itself by its own address, `jan linja`; `jan ni` would mean "this person" (decision 2026-10-01, `canon/11` departure 4).
 
 ```openpona
 ma pali la ilo pali li pona ala          # 1 observed: CI on PR 678 is red (PR in the record)

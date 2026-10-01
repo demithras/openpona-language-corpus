@@ -8,12 +8,12 @@ The right-hand column gives each word's sense in Toki Pona, following pu (*Toki 
 
 | Token | Vector anchor (OpenPona) | Toki Pona sense (pu) |
 |---|---|---|
-| `open` | initiate; expose possibility; make addressable | open, turn on, begin, start |
+| `open` | initiate; expose possibility; make addressable | open, turn on |
 | `lon` | presence; reality; situated existence | at, in, on; located, present; real, true |
 | `tawa` | move; direct; orient | to, toward, for; moving, going |
 | `wile` | intend; target; desire | want, need, wish; must, should |
 | `pali` | execute; work; make | do, work, make, build |
-| `pilin` | sense; evaluate; affective registration | heart; feeling, emotion; to feel, think |
+| `pilin` | sense; evaluate; affective registration | heart; feeling, emotion; to feel |
 | `seme` | query; unresolved variable | what? which? |
 | `ma` | locate; scope; situate | earth, land, place; country, territory; outdoors |
 | `lukin` | inspect; intentionally observe | eye; look, see, examine, observe, watch; try to |
@@ -52,7 +52,7 @@ The right-hand column gives each word's sense in Toki Pona, following pu (*Toki 
 | `li` | predicate/state relation | — (particle only) | (particle) between any subject except mi/sina alone and its verb; also introduces a new verb for the same subject |
 | `la` | context/condition/scope | — (particle only) | (particle) between the context phrase and the main sentence |
 | `e` | directed target/object | — (particle only) | (particle) before the direct object |
-| `tan` | source/cause/dependency/provenance | source; cause; origin (as a content word in Toki Pona) | by, from, because of; origin, cause |
+| `tan` | source/cause/dependency/provenance | source; cause; origin (content-word sense) | by, from, because of; origin, cause |
 | `pi` | grouping/composition scope | — (particle only) | (particle) regroups two or more modifiers |
 | `anu` | alternative/branch/version | — (particle only) | or |
 

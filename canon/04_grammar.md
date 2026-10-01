@@ -22,7 +22,8 @@ A structural token is interpreted structurally when it connects valid semantic u
 ```ebnf
 statement  = clause , [ "la" , clause ] ;                 (* one statement per line *)
 clause     = expression , { "li" , predicate } ;      (* a predicate containing anu must be the last one *)
-predicate  = ( expression | "tan" , expression ) , { "e" , expression } , { "tan" , expression } ;
+predicate  = expression , { "e" , expression } , { "tan" , expression }
+           | "tan" , expression , { "tan" , expression } ;          (* source predicate takes no objects *)
 expression = phrase , [ "anu" , expression ] ;
 phrase     = head , { "pi" , unit , unit } ;
 head       = unit , [ unit ] ;

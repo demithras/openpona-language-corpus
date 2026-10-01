@@ -40,7 +40,7 @@ sike     ale      weka     ala      kulupu   pona     anu
 
 ## Relationship to Toki Pona
 
-All 42 tokens are words of **Toki Pona**, the language created by Sonja Lang (2001; *Toki Pona: The Language of Good*, 2014; [tokipona.org](https://tokipona.org)). OpenPona reuses the words and the particles and is **designed not to contradict Toki Pona grammar**: it may be stricter (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may add meaning inside a phrase, but must never accept what Toki Pona rejects. That claim is verified so far only for rejection cases; an independent review on 2026-10-01 listed seven departures, recorded with their status in [`canon/11_toki_pona_compatibility.md`](canon/11_toki_pona_compatibility.md). OpenPona is an independent project, not endorsed by or affiliated with Sonja Lang or the Toki Pona community.
+All 42 tokens are words of **Toki Pona**, the language created by Sonja Lang (2001; *Toki Pona: The Language of Good*, 2014; [tokipona.org](https://tokipona.org)). OpenPona reuses the words and the particles and is **designed not to contradict Toki Pona grammar**: it may be stricter (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may add meaning inside a phrase, but must never accept what Toki Pona rejects. That claim is verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected as required); independent reviews on 2026-10-01 listed eleven departures, nine decided and two still open, all recorded in [`canon/11_toki_pona_compatibility.md`](canon/11_toki_pona_compatibility.md). OpenPona is an independent project, not endorsed by or affiliated with Sonja Lang or the Toki Pona community.
 
 ## Canon, research, history
 
@@ -60,7 +60,7 @@ The stronger ideas around OpenPona — that the 6 × 7 placement is a generative
 
 ## Status
 
-Version 0.2.0, single author, grammar consolidated through 2026-10-01 after an independent five-lens review (`CHANGELOG.md`). Open decisions are listed in `canon/11` ("Known departures"). Contributions follow [`CONTRIBUTING.md`](CONTRIBUTING.md) and the agent rules in [`AGENTS.md`](AGENTS.md).
+Version 0.2.0, single author, grammar consolidated through 2026-10-01 after an independent five-lens review (`CHANGELOG.md`). Two open items remain in `canon/11` ("Known departures", rows 10–11). Contributions follow [`CONTRIBUTING.md`](CONTRIBUTING.md) and the agent rules in [`AGENTS.md`](AGENTS.md).
 
 ## License
 

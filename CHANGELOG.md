@@ -6,7 +6,8 @@
 - speaker: no pronoun — self-reference by the agent's own address (`jan linja`), authorship in `actor`; `jan ni` = "this person" as in Toki Pona (supersedes 2026-09-30);
 - `lon`/`tawa`/`sama` stay content words (declared departure); repetition-as-derivative and `tan tan` folding declared;
 - glosses: Toki Pona sense column (pu) added to `canon/02` and `data/tokens.csv`; reference edition stated (pu for grammar, ku for senses);
-- planets removed from canon/SPEC/cheat-sheet/data table headers; the mnemonic stays in LEARN Lesson 1 and history.
+- planets removed from canon/SPEC/cheat-sheet/data table headers; the mnemonic stays in LEARN Lesson 1 and history;
+- linguist re-review (6/10): departures 10 (`tan X la` context) and 11 (`anu seme` tag) added as OPEN; row 5 extended (repeated source phrases fold); `toki_pona_compat.jsonl` relabelled (rejections = Toki Pona-invalid OR declared strictness); EBNF fixed (source predicate takes no objects); `open`/`pilin` senses trimmed to pu.
 
 ## 2026-10-01 — independent review round
 

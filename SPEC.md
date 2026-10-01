@@ -21,7 +21,7 @@ The language is intentionally small. New domains should normally be expressed by
 
 OpenPona is not merely a reduced dialect of Toki Pona. It reuses lexical forms but assigns them stable operational roles inside its own matrix, grammar and addressing system.
 
-**OpenPona is designed not to contradict Toki Pona.** The design rule: every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure. OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. **Status of the claim:** a design principle, verified so far only for rejection cases (`conformance/toki_pona_compat.jsonl`); an independent review on 2026-10-01 found departures that are listed, with their status, in `canon/11_toki_pona_compatibility.md`.
+**OpenPona is designed not to contradict Toki Pona.** The design rule: every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure. OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. **Status of the claim:** a design principle, verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected as required); independent reviews on 2026-10-01 listed eleven departures — nine decided, two open — in `canon/11_toki_pona_compatibility.md`.
 
 ## 2. Core invariants
 

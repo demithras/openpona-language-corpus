@@ -24,7 +24,7 @@ OpenPona reuses Toki Pona's lexical forms and particles. It is designed not to c
 | Forbidden | Consequence |
 |---|---|
 | accept a sentence Toki Pona rejects | `li pali`, `la jan li pali`, `jan pi li pali`, `sona pi lawa` are INVALID |
-| give a particle a content reading Toki Pona does not give it | `li la e pi anu` are never vectors; only `tan` is (as in Toki Pona) |
+| give a particle a content reading Toki Pona does not give it | `li la e pi anu` are never vectors; only `tan` is (in OpenPona — Toki Pona has further prepositions, departure 1) |
 | draw a particle boundary Toki Pona would not draw | precedence follows Toki Pona for `la li e pi`; `anu` placement is OpenPona's own choice, since Toki Pona sets none |
 
 ## Grey zones
@@ -43,7 +43,7 @@ Both follow Toki Pona under this principle (author decision, 2026-09-30):
 
 ## Status of the claim
 
-What is verified: every case in `conformance/toki_pona_compat.jsonl` (sentences Toki Pona rejects) is rejected by the reference parser. What is **not** verified: the positive direction — that every RESOLVED statement is a Toki Pona sentence with the same particle structure. No Toki Pona checker runs in this repository; the only oracle used so far (nim-ka/tpparser, in `research/parser_probe/`) is unlicensed and describes one speaker's grammar.
+What is verified: every case in `conformance/toki_pona_compat.jsonl` is rejected by the reference parser as required — some because Toki Pona rejects them (`li pali`, `jan pi li pali`), some as OpenPona strictness over valid Toki Pona (k08, k18, k19; each case says which). What is **not** verified: the positive direction — that every RESOLVED statement is a Toki Pona sentence with the same particle structure. No Toki Pona checker runs in this repository; the only oracle used so far (nim-ka/tpparser, in `research/parser_probe/`) is unlicensed and describes one speaker's grammar.
 
 ## Reference edition
 
@@ -56,15 +56,17 @@ Each row records a place where the rules accepted something Toki Pona reads diff
 | # | Departure | Where | Decision |
 |---|---|---|---|
 | 1 | `lon`, `tawa`, `sama` are prepositions in Toki Pona (pu lists lon, tawa, tan, kepeken, sama); OpenPona reads them as content words only, so `jan li lon ma` carries no preposition boundary. "`tan` is the only dual token" is true of OpenPona, not of Toki Pona | `canon/02`, `canon/04` §3 | **Declared.** `lon`/`tawa`/`sama` stay content words; compatibility is defined at the particle level (`la li e pi anu` + `tan`). A Toki Pona reader will see a prepositional phrase where OpenPona sees a content phrase. |
-| 2 | `jan li pali anu jan li awen` is accepted as `jan li (pali anu jan) li awen`; a speaker reads a choice between two clauses. The pattern is general: any `anu` + phrase + `li` chain parses this way (`jan li pali anu jan li awen anu ilo`) | `SPEC` §6, `conformance` k08 | **INVALID.** A predicate containing `anu` must be the last predicate (`anu-then-li`). Nothing a Toki Pona speaker reads differently survives. |
+| 2 | `jan li pali anu jan li awen` is accepted as `jan li (pali anu jan) li awen`; a speaker reads a choice between two clauses. The pattern is general: any `anu` + phrase + `li` chain parses this way (`jan li pali anu jan li awen anu ilo`) | `SPEC` §6, `conformance` k08 | **INVALID.** A predicate containing `anu` must be the last predicate (`anu-then-li`). The sentences are valid Toki Pona; rejecting them is OpenPona strictness. |
 | 3 | `e` after a `tan` phrase is accepted (`jan li pali tan ilo e sitelen`); pu orders objects before prepositional phrases | `SPEC` §6 | **Forbidden.** Objects come before source phrases, as in pu (`e-after-tan`). Reverses the "any order" part of the 2026-09-30 decision. |
 | 4 | `jan ni` = the speaker; in Toki Pona it means "this person" and reads as third person | `SPEC` §8.1, `canon/05` | **Resolved: Toki Pona meaning restored.** `jan ni` = "this person". Self-reference is by the agent's own address (`jan linja`); authorship lives in the record's `actor`. |
-| 5 | Repetition is a derivative, not emphasis (`canon/07`): this *replaces* the Toki Pona reading rather than adding to it, and `tan tan` folds over the preposition reading | `canon/07`, `SPEC` §7 | **Declared.** Repetition is a derivative in OpenPona (the Toki Pona emphasis reading is replaced); `tan tan` folds (META beats structure). |
+| 5 | Repetition is a derivative, not emphasis (`canon/07`): this *replaces* the Toki Pona reading rather than adding to it, and `tan tan` folds over the preposition reading | `canon/07`, `SPEC` §7 | **Declared.** Repetition is a derivative in OpenPona (the Toki Pona emphasis reading is replaced); `tan tan` folds (META beats structure), and so does a repeated source phrase: `jan li pali e ilo tan ma tan ma` → `e {ilo D1(tan ma)}`, where Toki Pona reads two `tan` phrases. |
 | 6 | Several glosses hide the Toki Pona sense (`lon` at/in; `tawa` to; `sama` like; `ma` land/place; `ni` this; `jan` person) | `canon/02` | **Done.** `canon/02` and `data/tokens.csv` carry a Toki Pona sense column (pu) next to the operational anchor. |
 | 7 | The `lukin la …` research prefix (H-TS) reads as "by appearance / visually" in Toki Pona usage, not as a verified observation | `research/truth_status_in_language.md` | Research only; recorded there. |
 | 8 | `tan` directly after `li` is read as a content word (`jan li tan ma` → `{tan ma}`), while Toki Pona reads a prepositional predicate ("is from the land"); `jan li tan ma tan kute` gives `tan` two readings in one sentence | `canon/04` §3, `SPEC` §6 | **Structural.** `li tan X` is a source predicate ("derives from X"); the structural reading wins where it exists, the vector reading applies only where it does not (`jan li tan ma e ijo`). |
 | 9 | The reference edition of Toki Pona (pu 2014 / ku 2021) is not stated | `canon/11` | **Stated** above: pu for grammar, ku for word senses. |
+| 10 | `tan X la` at the start of a statement is read as a content phrase (`tan ni la jan li pali` → `({tan ni} la …)`), while Toki Pona reads a prepositional context ("because of this, …" — one of its most common formulas); the same `tan ni` after a verb is structural | `SPEC` §6, `canon/04` §3 | **OPEN** (review 2026-10-01): extend the source-predicate decision to a `tan`-initial context (`tan X la …`), or declare |
+| 11 | `anu seme` is Toki Pona's yes/no question tag (`ilo li pona anu seme`); OpenPona reads an ordinary phrase choice | `SPEC` §6 | **OPEN**: declare, or give `anu seme` a question reading |
 
 ## Test
 
-The conformance corpus includes `toki_pona_compat.jsonl`: sentences that Toki Pona rejects and OpenPona must therefore reject. A positive-direction checker (every RESOLVED case through an independent Toki Pona grammar, agreement at particle level) is **not yet built**; until it exists the claim above stays a design principle.
+The conformance corpus includes `toki_pona_compat.jsonl`: sentences OpenPona must reject — either because Toki Pona rejects them, or as declared strictness over valid Toki Pona (marked per case). A positive-direction checker (every RESOLVED case through an independent Toki Pona grammar, agreement at particle level) is **not yet built**; until it exists the claim above stays a design principle.

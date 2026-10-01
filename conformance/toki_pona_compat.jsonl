@@ -5,7 +5,7 @@
 {"id": "k05", "surface": "e ijo", "expect_status": "INVALID"}
 {"id": "k06", "surface": "pi jan pali", "expect_status": "INVALID"}
 {"id": "k07", "surface": "jan anu", "expect_status": "INVALID", "note": "dangling anu"}
-{"id": "k08", "surface": "jan li pali anu jan li awen", "expect_status": "INVALID", "note": "DECISION 2026-10-01 (C2): a predicate containing anu must be the last predicate; anu followed by a further li is INVALID (a choice between statements is two la lines). History: INVALID 09-30 draft -> RESOLVED oracle fix -> INVALID by decision."}
+{"id": "k08", "surface": "jan li pali anu jan li awen", "expect_status": "INVALID", "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). DECISION 2026-10-01 (C2): a predicate containing anu must be the last predicate; anu followed by a further li is INVALID (a choice between statements is two la lines). History: INVALID 09-30 draft -> RESOLVED oracle fix -> INVALID by decision."}
 {"id": "k09", "surface": "anu jan", "expect_status": "INVALID"}
 {"id": "k10", "surface": "jan la", "expect_status": "INVALID"}
 {"id": "k11", "surface": "li li li", "expect_status": "INVALID", "note": "particles never form META units (review 2026-10-01)"}
@@ -15,6 +15,6 @@
 {"id": "k15", "surface": "la la jan li pali", "expect_status": "INVALID"}
 {"id": "k16", "surface": "jan li li li", "expect_status": "INVALID"}
 {"id": "k17", "surface": "jan pi li li pali", "expect_status": "INVALID"}
-{"id": "k18", "surface": "jan li pali anu awen li pini", "expect_status": "INVALID", "note": "anu-then-li (C2)"}
-{"id": "k19", "surface": "jan li pali e ilo anu sitelen li awen", "expect_status": "INVALID", "note": "anu inside an object phrase, then li (C2)"}
+{"id": "k18", "surface": "jan li pali anu awen li pini", "expect_status": "INVALID", "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu-then-li (C2)"}
+{"id": "k19", "surface": "jan li pali e ilo anu sitelen li awen", "expect_status": "INVALID", "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu inside an object phrase, then li (C2)"}
 {"id": "k20", "surface": "nasin open anu nasin awen li pali", "expect_status": "RESOLVED", "expect_skeletons": ["(({nasin open} anu {nasin awen}) li {pali})"], "note": "anu in the SUBJECT followed by li is fine (Toki Pona: jan anu soweli li moku)"}
