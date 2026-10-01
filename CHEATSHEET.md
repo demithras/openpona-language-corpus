@@ -31,7 +31,8 @@ Column names are functional (a planetary mnemonic for them is in LEARN, Lesson 1
 ```text
 X li P      predicate         P e Y      directed target     P e Y tan Z   objects, then source phrases
 C la S      context, then S   H pi U U   group of exactly two units      A anu B       alternative phrases (a predicate with anu is the last one)
-X li tan Z  source predicate (X derives from Z)
+X li tan Z  source predicate (X derives from Z)      tan Z la S    source context (because of Z: S)
+X anu seme  question idiom: X, or unknown?
 ```
 
 Precedence, loosest to tightest: `la` > `li` > `e`/`tan` > `anu` > `pi`. `li la e pi anu` are particles only; `tan` is also a vector where no structural reading exists (`kama tan tan` = `kama D1(tan)`).

@@ -15,3 +15,4 @@
 {"id": "b15", "surface": "jan li pali anu awen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li ({pali} anu {awen}))"], "note": "anu joins phrases"}
 {"id": "b16", "surface": "jan li pali e ijo tan ma tan kute", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo} tan {ma} tan {kute})"]}
 {"id": "b17", "surface": "jan li pali e ijo e ilo tan ma", "expect_status": "RESOLVED", "expect_skeletons": ["({jan} li {pali} e {ijo} e {ilo} tan {ma})"], "note": "several objects, then the source phrase"}
+{"id": "b18", "surface": "ilo li pona anu seme", "expect_status": "RESOLVED", "expect_skeletons": ["({ilo} li ({pona} anu {seme}))"], "note": "DECISION 2026-10-01 (row 11): Toki Pona's 'anu seme' question tag is read as a choice with the unresolved variable seme \u2014 declared as the question idiom in OpenPona too; record status unknown"}

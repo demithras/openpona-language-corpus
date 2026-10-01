@@ -73,3 +73,10 @@ def test_generic_message_when_nothing_specific_fires():
     res = parse("jan anu li pali")
     assert res.status == "INVALID"
     assert res.errors, "INVALID must always carry at least one message"
+
+
+def test_bare_tan_before_la_is_a_vector_context_like_the_subject_case():
+    # consistent with t06 `tan li pali` -> ({tan} li {pali}): a lone tan is a one-unit vector phrase
+    res = parse("tan la jan li pali")
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["({tan} la ({jan} li {pali}))"]

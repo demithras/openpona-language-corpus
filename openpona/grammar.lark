@@ -5,7 +5,7 @@
 
 start: statement
 
-statement: clause | clause LA clause
+statement: clause | clause LA clause | TAN expression LA clause
 
 clause: expression | expression lis
 

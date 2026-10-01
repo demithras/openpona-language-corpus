@@ -49,7 +49,7 @@ What is verified: every case in `conformance/toki_pona_compat.jsonl` is rejected
 
 Grammar follows **pu** (*Toki Pona: The Language of Good*, 2014). Word senses follow **ku** (*Toki Pona Dictionary*, 2021) where it refines pu; the sense column in `canon/02` currently gives the pu senses, and ku refinements are still to be added (decision 2026-10-01).
 
-## Known departures (independent review, 2026-10-01) — decided 2026-10-01
+## Known departures (independent reviews, 2026-10-01) — all eleven decided 2026-10-01
 
 Each row records a place where the rules accepted something Toki Pona reads differently, or where the wording overstated the match, and what the author decided.
 
@@ -64,8 +64,8 @@ Each row records a place where the rules accepted something Toki Pona reads diff
 | 7 | The `lukin la …` research prefix (H-TS) reads as "by appearance / visually" in Toki Pona usage, not as a verified observation | `research/truth_status_in_language.md` | Research only; recorded there. |
 | 8 | `tan` directly after `li` is read as a content word (`jan li tan ma` → `{tan ma}`), while Toki Pona reads a prepositional predicate ("is from the land"); `jan li tan ma tan kute` gives `tan` two readings in one sentence | `canon/04` §3, `SPEC` §6 | **Structural.** `li tan X` is a source predicate ("derives from X"); the structural reading wins where it exists, the vector reading applies only where it does not (`jan li tan ma e ijo`). |
 | 9 | The reference edition of Toki Pona (pu 2014 / ku 2021) is not stated | `canon/11` | **Stated** above: pu for grammar, ku for word senses. |
-| 10 | `tan X la` at the start of a statement is read as a content phrase (`tan ni la jan li pali` → `({tan ni} la …)`), while Toki Pona reads a prepositional context ("because of this, …" — one of its most common formulas); the same `tan ni` after a verb is structural | `SPEC` §6, `canon/04` §3 | **OPEN** (review 2026-10-01): extend the source-predicate decision to a `tan`-initial context (`tan X la …`), or declare |
-| 11 | `anu seme` is Toki Pona's yes/no question tag (`ilo li pona anu seme`); OpenPona reads an ordinary phrase choice | `SPEC` §6 | **OPEN**: declare, or give `anu seme` a question reading |
+| 10 | `tan X la` at the start of a statement is read as a content phrase (`tan ni la jan li pali` → `({tan ni} la …)`), while Toki Pona reads a prepositional context ("because of this, …" — one of its most common formulas); the same `tan ni` after a verb is structural | `SPEC` §6, `canon/04` §3 | **Structural.** `tan X la S` is a source context ("because of X: S"); the structural reading wins, `jan tan la …` (tan not first) stays a content phrase. |
+| 11 | `anu seme` is Toki Pona's yes/no question tag (`ilo li pona anu seme`); OpenPona reads an ordinary phrase choice | `SPEC` §6 | **Declared as convergent.** `X anu seme` is read as a choice between X and the unresolved variable `seme`, which is the question idiom in OpenPona too (record status `unknown`); no special grammar. |
 
 ## Test
 

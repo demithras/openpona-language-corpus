@@ -43,6 +43,8 @@
 | Matrix column names (2026-09-30) | "Seed (Sun)" — planet as alias in canon tables | **functional names only in canon, SPEC, cheat sheet, data; planetary mnemonic kept in LEARN Lesson 1 and history** (2026-10-01) |
 | Token glosses | OpenPona anchor only | **anchor + Toki Pona sense (pu) column in `canon/02` and `data/tokens.csv`** (2026-10-01) |
 | Reference edition | unstated | **pu (2014) for grammar, ku (2021) for word senses** (2026-10-01) |
+| `tan` at statement start | vector phrase (`{tan ni} la …`) | **source context `tan X la S`; structural reading wins** (2026-10-01) |
+| `anu seme` | ordinary phrase choice, unremarked | **declared convergent with Toki Pona's question tag: choice with the unresolved variable** (2026-10-01) |
 
 ## Conflict rule
 

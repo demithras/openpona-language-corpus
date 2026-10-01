@@ -13,7 +13,7 @@ Language-level test cases any OpenPona parser can run against. Each line of each
 ## Skeleton notation
 
 ```text
-statement = clause | "(" clause " la " clause ")"
+statement = clause | "(" clause " la " clause ")" | "(tan " expr " la " clause ")"   -- source context (2026-10-01)
 clause    = expr | "(" expr { " li " predicate } ")"
 predicate = ( expr | "tan " expr ) { " e " expr } { " tan " expr }   -- objects before source phrases (2026-10-01)
 expr      = phrase | "(" phrase " anu " expr ")"

@@ -127,6 +127,8 @@ def _fmt(data: str, c) -> str:
     if data in ("start", "unit", "phrase_na"):
         return c[0]
     if data == "statement":
+        if len(c) == 4:  # TAN expression LA clause: source context
+            return f"(tan {c[1]} la {c[3]})"
         return c[0] if len(c) == 1 else f"({c[0]} la {c[2]})"
     if data == "clause":
         return c[0] if len(c) == 1 else f"({c[0]}{c[1]})"

@@ -166,3 +166,15 @@ def test_anu_predicate_must_be_last(t):
     assert any(e.startswith("anu-then-li:") for e in bad.errors), bad.errors
     ok = parse(f"{a} anu {b} li {c}")
     assert ok.status == "RESOLVED", ok.errors
+
+
+@settings(deadline=None)
+@given(distinct3)
+def test_tan_initial_is_source_context_else_vector(t):
+    a, b, c = t
+    ctx = parse(f"tan {a} la {b} li {c}")
+    assert ctx.status == "RESOLVED", ctx.errors
+    assert ctx.skeletons == [f"(tan {{{a}}} la ({{{b}}} li {{{c}}}))"]
+    vec = parse(f"{a} tan la {b} li {c}")
+    assert vec.status == "RESOLVED", vec.errors
+    assert vec.skeletons == [f"({{{a} tan}} la ({{{b}}} li {{{c}}}))"]

@@ -21,7 +21,7 @@ The language is intentionally small. New domains should normally be expressed by
 
 OpenPona is not merely a reduced dialect of Toki Pona. It reuses lexical forms but assigns them stable operational roles inside its own matrix, grammar and addressing system.
 
-**OpenPona is designed not to contradict Toki Pona.** The design rule: every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure. OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. **Status of the claim:** a design principle, verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected as required); independent reviews on 2026-10-01 listed eleven departures — nine decided, two open — in `canon/11_toki_pona_compatibility.md`.
+**OpenPona is designed not to contradict Toki Pona.** The design rule: every valid OpenPona statement is a valid Toki Pona sentence, and its OpenPona parse coincides with a Toki Pona parse at the level of particle structure. OpenPona may be *stricter* than Toki Pona (fewer words, mandatory `pi`, no `mi`/`sina`/`o`) and may *add meaning* inside a phrase (META, head/group semantics); it must never accept what Toki Pona rejects. **Status of the claim:** a design principle, verified so far only one way (every case in `conformance/toki_pona_compat.jsonl` is rejected as required); independent reviews on 2026-10-01 listed eleven departures, all decided, in `canon/11_toki_pona_compatibility.md`.
 
 ## 2. Core invariants
 
@@ -175,6 +175,7 @@ P e Y                  object; several objects: P e Y e Z
 P e Y tan Z            source phrase; objects come before source phrases (P tan Z e Y is INVALID)
 X li tan Z             source predicate: X derives from Z
 C la S                 context
+tan Z la S             source context: because of Z, S
 X pi Y Z               grouping (§5.3)
 A anu B                alternative between phrases
 ```
@@ -197,7 +198,9 @@ Interpretive anchors:
 - `pi`: grouping/composition scope;
 - `anu`: explicit alternative/branch/version.
 
-A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`: directly after `li` it is a **source predicate** (`jan li tan ma` = derives from the land; `sona ni li tan kute`), and where no structural reading exists it is a semantic vector (`seme li tan e ni`, `jan tan li pali`, `jan li tan ma e ijo`). When both readings parse, the structural one wins (decision 2026-10-01).
+A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`: directly after `li` it is a **source predicate** (`jan li tan ma` = derives from the land; `sona ni li tan kute`), and where no structural reading exists it is a semantic vector (`seme li tan e ni`, `jan tan li pali`, `jan li tan ma e ijo`). At the start of a statement before `la` it is a **source context** (`tan ni la jan li pali` = because of this, …). When both readings parse, the structural one wins (decision 2026-10-01).
+
+`X anu seme` — Toki Pona's yes/no question tag — is read as a choice between `X` and the unresolved variable `seme`, which is OpenPona's question idiom too (`ilo li pona anu seme`: is the tool fit, or unknown?; record status `unknown`).
 
 ## 7. META and repetition
 
