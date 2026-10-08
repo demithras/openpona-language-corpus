@@ -1,5 +1,7 @@
 # OpenPona system prompt
 
+Structured-output variant for JSON integrations: `prompts/openpona_system_structured.md` (this file is the human one-line view; contract in `docs/agent-event-contract.md`).
+
 How to use: paste the block below as the system prompt of any LLM that must read or write OpenPona (the 42-token language in this repo).
 The prompt is self-contained; the parser (`python -m openpona parse "..."`) and `canon/` remain the source of truth for grammar.
 Its four example lines were checked with the parser (all RESOLVED). Check model output the same way, line by line, after stripping the ` | status` suffix the prompt asks for — the status is not part of the surface and the parser rejects it.
