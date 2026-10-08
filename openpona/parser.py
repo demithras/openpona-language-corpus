@@ -17,7 +17,8 @@ from lark import Lark, Token
 from lark.exceptions import LarkError
 from lark.parsers.earley_forest import TokenNode
 
-from . import TOKENS
+from . import PARSER_API_VERSION, TOKENS
+from . import ast as _ast
 
 _HERE = Path(__file__).resolve().parent
 PARTICLES = ("li", "la", "e", "pi", "anu")  # structural only, never units
@@ -38,6 +39,17 @@ class ParseResult:
     errors: list[str] = field(default_factory=list)
     tokens: list[str] = field(default_factory=list)
     reason: str | None = None  # set only for RESOURCE_EXHAUSTED: the budget that ran out
+    # Typed parses (openpona.ast), one per skeleton, in sorted-skeleton order:
+    # all of them for AMBIGUOUS, one for RESOLVED, none otherwise.  `skeletons`
+    # is the stable legacy projection of the same parses.  Syntax only: entity
+    # binding (UNRESOLVED) and truth/speech-act are not parse fields.
+    alternatives: tuple = ()
+    api_version: str = PARSER_API_VERSION
+
+    def to_json(self) -> dict:
+        """The versioned, machine-readable result (docs/parser-api.md)."""
+        return {"api_version": self.api_version, "status": self.status,
+                "alternatives": [_ast.to_json(a) for a in self.alternatives]}
 
 
 @dataclass(frozen=True)
@@ -546,10 +558,15 @@ def _parse(text: str, ctx: _Ctx) -> ParseResult:
                 raise _Exhausted("max_skeletons",
                                  f"more than {ctx.b.max_skeletons} distinct parses")
         ctx.st.skeletons = len(skels)
+        out = sorted(_prefer_structure(skels))
+        alternatives = []
+        for skel in out:  # typed trees are built under the same time budget
+            ctx.tick()
+            alternatives.append(_ast.from_skeleton(skel, toks))
     except _Exhausted as e:
         return _exhausted(e, toks)
-    out = sorted(_prefer_structure(skels))
     if not out:
         errs = _diagnose(toks) or ["no structural parse"]
         return ParseResult("INVALID", [], errs, toks)
-    return ParseResult("RESOLVED" if len(out) == 1 else "AMBIGUOUS", out, [], toks)
+    return ParseResult("RESOLVED" if len(out) == 1 else "AMBIGUOUS", out, [], toks,
+                       alternatives=tuple(alternatives))

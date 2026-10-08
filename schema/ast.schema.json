@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenPona parse result (parser API 1.0.0)",
+  "description": "ENGINEERING schema of `python -m openpona parse --json`. Syntax only: no entity-binding (UNRESOLVED) and no truth/speech-act fields. api_version is the parser API identifier, separate from the token inventory (anu 1.1) and the package version (0.2.0). Conditional rules (source predicate has no head or objects; source context takes an expression; Alternative/Context structure; arities; span ordering) are enforced by openpona.ast.from_json and tests/test_ast.py, not by this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "alternatives",
+    "api_version",
+    "status"
+  ],
+  "properties": {
+    "api_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "RESOLVED",
+        "AMBIGUOUS",
+        "INVALID",
+        "RESOURCE_EXHAUSTED"
+      ],
+      "description": "RESOURCE_EXHAUSTED is PENDING AUTHOR REVIEW (AUTHOR_REVIEW_QUEUE item 5)."
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tree"
+      },
+      "description": "All parses: >=2 for AMBIGUOUS, exactly 1 for RESOLVED, empty for INVALID and RESOURCE_EXHAUSTED."
+    }
+  },
+  "$defs": {
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "end",
+        "start"
+      ],
+      "description": "Half-open token range [start, end) into ParseResult.tokens.",
+      "properties": {
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "span",
+        "token",
+        "type"
+      ],
+      "properties": {
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "token": {
+          "type": "string",
+          "pattern": "^[a-z]+$"
+        },
+        "type": {
+          "const": "unit"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "depth",
+        "span",
+        "type",
+        "unit"
+      ],
+      "properties": {
+        "depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "meta"
+        },
+        "unit": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/unit"
+          }
+        }
+      }
+    },
+    "unit_like": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/unit"
+        },
+        {
+          "$ref": "#/$defs/meta"
+        }
+      ]
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "left",
+        "right",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/unit_like"
+        },
+        "right": {
+          "$ref": "#/$defs/unit_like"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "group"
+        }
+      }
+    },
+    "phrase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "groups",
+        "head",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/group"
+          }
+        },
+        "head": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/unit_like"
+          }
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "phrase"
+        }
+      }
+    },
+    "alternative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "left",
+        "right",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/phrase"
+        },
+        "right": {
+          "$ref": "#/$defs/expression"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "alternative"
+        }
+      }
+    },
+    "expression": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/phrase"
+        },
+        {
+          "$ref": "#/$defs/alternative"
+        }
+      ]
+    },
+    "object_list": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/expression"
+          }
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "object_list"
+        }
+      }
+    },
+    "source_list": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/expression"
+          }
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "source_list"
+        }
+      }
+    },
+    "predicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "head",
+        "objects",
+        "sources",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "head": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/expression"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "objects": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/object_list"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sources": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/source_list"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "predicate"
+        }
+      }
+    },
+    "predication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "predicates",
+        "span",
+        "subject",
+        "type"
+      ],
+      "properties": {
+        "predicates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/predicate"
+          }
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "subject": {
+          "$ref": "#/$defs/expression"
+        },
+        "type": {
+          "const": "predication"
+        }
+      }
+    },
+    "clause": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/phrase"
+        },
+        {
+          "$ref": "#/$defs/alternative"
+        },
+        {
+          "$ref": "#/$defs/predication"
+        }
+      ]
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "context",
+        "source",
+        "span",
+        "type"
+      ],
+      "properties": {
+        "body": {
+          "$ref": "#/$defs/clause"
+        },
+        "context": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/phrase"
+            },
+            {
+              "$ref": "#/$defs/alternative"
+            },
+            {
+              "$ref": "#/$defs/predication"
+            }
+          ]
+        },
+        "source": {
+          "type": "boolean"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "type": {
+          "const": "context"
+        }
+      }
+    },
+    "tree": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/phrase"
+        },
+        {
+          "$ref": "#/$defs/alternative"
+        },
+        {
+          "$ref": "#/$defs/predication"
+        },
+        {
+          "$ref": "#/$defs/context"
+        }
+      ]
+    }
+  }
+}

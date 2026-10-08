@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import dataclasses
 import json
 import sys
 from pathlib import Path
@@ -13,7 +12,10 @@ from .parser import parse
 def _cmd_parse(args) -> int:
     res = parse(args.sentence)
     if args.json:
-        print(json.dumps(dataclasses.asdict(res), ensure_ascii=False, indent=2))
+        # API 1.0.0: exactly {api_version, status, alternatives}; diagnostics go to stderr
+        print(json.dumps(res.to_json(), ensure_ascii=False, indent=2, sort_keys=True))
+        for e in res.errors:
+            print(f"error: {e}", file=sys.stderr)
     else:
         print(res.status)
         for s in res.skeletons:
