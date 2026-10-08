@@ -1,0 +1,324 @@
+{
+  "profile_id": "externalized-lift-0.1",
+  "status": "author_approved_research_candidate_unverified",
+  "author_approval_date": "2026-10-08",
+  "token_version": "anu 1.1",
+  "repo": "demithras/openpona-language-corpus",
+  "source_commit": "97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b",
+  "hypotheses": [
+    "H7-W",
+    "MX3-W",
+    "MX3-S"
+  ],
+  "row_archetypes": [
+    {
+      "id": "R1",
+      "label": "Process"
+    },
+    {
+      "id": "R2",
+      "label": "Inquiry"
+    },
+    {
+      "id": "R3",
+      "label": "Method"
+    },
+    {
+      "id": "R4",
+      "label": "Agency"
+    },
+    {
+      "id": "R5",
+      "label": "Representation"
+    },
+    {
+      "id": "R6",
+      "label": "Integration"
+    }
+  ],
+  "column_operations": [
+    {
+      "id": "C1",
+      "label": "Identity"
+    },
+    {
+      "id": "C2",
+      "label": "Ground"
+    },
+    {
+      "id": "C3",
+      "label": "Transform"
+    },
+    {
+      "id": "C4",
+      "label": "Select"
+    },
+    {
+      "id": "C5",
+      "label": "Realize"
+    },
+    {
+      "id": "C6",
+      "label": "Evaluate"
+    },
+    {
+      "id": "C7",
+      "label": "Structure"
+    }
+  ],
+  "cells": [
+    {
+      "row": 1,
+      "col": 1,
+      "coord": "R1C1",
+      "token": "open"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "coord": "R1C2",
+      "token": "lon"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "coord": "R1C3",
+      "token": "tawa"
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "coord": "R1C4",
+      "token": "wile"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "coord": "R1C5",
+      "token": "pali"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "coord": "R1C6",
+      "token": "pilin"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "coord": "R1C7",
+      "token": "li"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "coord": "R2C1",
+      "token": "seme"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "coord": "R2C2",
+      "token": "ma"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "coord": "R2C3",
+      "token": "lukin"
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "coord": "R2C4",
+      "token": "sona"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "coord": "R2C5",
+      "token": "ni"
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "coord": "R2C6",
+      "token": "kute"
+    },
+    {
+      "row": 2,
+      "col": 7,
+      "coord": "R2C7",
+      "token": "la"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "coord": "R3C1",
+      "token": "nasin"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "coord": "R3C2",
+      "token": "sijelo"
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "coord": "R3C3",
+      "token": "ilo"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "coord": "R3C4",
+      "token": "lawa"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "coord": "R3C5",
+      "token": "awen"
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "coord": "R3C6",
+      "token": "ken"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "coord": "R3C7",
+      "token": "e"
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "coord": "R4C1",
+      "token": "jan"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "coord": "R4C2",
+      "token": "ante"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "coord": "R4C3",
+      "token": "kama"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "coord": "R4C4",
+      "token": "sama"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "coord": "R4C5",
+      "token": "ijo"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "coord": "R4C6",
+      "token": "selo"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "coord": "R4C7",
+      "token": "tan"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "coord": "R5C1",
+      "token": "sitelen"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "coord": "R5C2",
+      "token": "linja"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "coord": "R5C3",
+      "token": "pana"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "coord": "R5C4",
+      "token": "toki"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "coord": "R5C5",
+      "token": "tenpo"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "coord": "R5C6",
+      "token": "pini"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "coord": "R5C7",
+      "token": "pi"
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "coord": "R6C1",
+      "token": "sike"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "coord": "R6C2",
+      "token": "ale"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "coord": "R6C3",
+      "token": "weka"
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "coord": "R6C4",
+      "token": "ala"
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "coord": "R6C5",
+      "token": "kulupu"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "coord": "R6C6",
+      "token": "pona"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "coord": "R6C7",
+      "token": "anu"
+    }
+  ],
+  "caveat": "Known placements support lookup only; they are not evidence that axes generate the tokens; historic 11/11 unpublished."
+}
