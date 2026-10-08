@@ -1,4 +1,9 @@
-"""normalize -> tokenize -> META fold -> structural parse -> skeleton rendering."""
+"""normalize -> tokenize -> META fold -> structural parse -> skeleton rendering.
+
+Every stage runs under an explicit `Budget`; running out of budget yields the
+operational status RESOURCE_EXHAUSTED (never INVALID, never RESOLVED/AMBIGUOUS
+from a partial enumeration).  See docs/parser-complexity.md.
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -6,10 +11,11 @@ from functools import lru_cache
 from itertools import product
 from pathlib import Path
 import re
-import sys
+import time
 
-from lark import Lark, Token, Tree
+from lark import Lark, Token
 from lark.exceptions import LarkError
+from lark.parsers.earley_forest import TokenNode
 
 from . import TOKENS
 
@@ -19,6 +25,11 @@ MAX_TOKENS = 256
 _CASE_MSG = ("case: tokens are lowercase; a capitalised word is a name, "
              "and names never appear in the surface (SPEC 8.2)")
 
+# Operational outcome, distinct from the three syntax outcomes
+# RESOLVED / AMBIGUOUS / INVALID.  The name is PENDING AUTHOR REVIEW
+# (spec pack AUTHOR_REVIEW_QUEUE item 5).
+RESOURCE_EXHAUSTED = "RESOURCE_EXHAUSTED"
+
 
 @dataclass
 class ParseResult:
@@ -26,22 +37,80 @@ class ParseResult:
     skeletons: list[str] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
     tokens: list[str] = field(default_factory=list)
+    reason: str | None = None  # set only for RESOURCE_EXHAUSTED: the budget that ran out
+
+
+@dataclass(frozen=True)
+class Budget:
+    """Compute limits for one `parse` call.  Defaults are generous: every
+    conformance case and the 203-token object chain stay far inside them."""
+    max_tokens: int = MAX_TOKENS          # token count
+    max_fold_candidates: int = 256        # parse count: folded readings handed to the parser
+    max_skeletons: int = 4096             # parse count: distinct skeletons kept
+    max_forest_steps: int = 2_000_000     # parse-forest expansion (rendered combinations)
+    max_depth: int = 4096                 # depth of the explicit forest traversal
+    max_seconds: float = 10.0             # elapsed wall-clock time, checked between steps
+
+
+DEFAULT_BUDGET = Budget()
+
+
+@dataclass
+class ParseStats:
+    """Deterministic work counters (not wall time), filled by `parse(..., stats=)`."""
+    fold_steps: int = 0        # run detection + fold enumeration steps
+    runs: int = 0
+    components: int = 0        # overlap components of the runs
+    fold_candidates: int = 0   # folded readings produced
+    earley_parses: int = 0     # distinct shape signatures sent to the Earley parser
+    earley_tokens: int = 0     # sum of token counts over those parses
+    forest_steps: int = 0      # forest nodes visited + combinations rendered
+    max_depth: int = 0         # deepest explicit traversal frame
+    skeletons: int = 0         # distinct skeletons before the structure preference
+    seconds: float = 0.0
+
+    @property
+    def work(self) -> int:
+        return self.fold_steps + self.earley_tokens + self.forest_steps
+
+
+class _Exhausted(Exception):
+    def __init__(self, budget: str, detail: str):
+        super().__init__(budget)
+        self.budget = budget
+        self.detail = detail
+
+
+class _Ctx:
+    def __init__(self, budget: Budget, stats: ParseStats):
+        self.b = budget
+        self.st = stats
+        self.t0 = time.monotonic()
+
+    def tick(self) -> None:
+        if time.monotonic() - self.t0 >= self.b.max_seconds:
+            raise _Exhausted("max_seconds", f"elapsed time exceeded {self.b.max_seconds} s")
 
 
 @lru_cache(maxsize=None)
 def _lark() -> Lark:
     text = (_HERE / "grammar.lark").read_text(encoding="utf-8")
-    return Lark(text, parser="earley", lexer="dynamic", ambiguity="explicit",
+    return Lark(text, parser="earley", lexer="dynamic", ambiguity="forest",
                 keep_all_tokens=True, start="start")
 
 
 # ---------------------------------------------------------------- META fold
-def _find_runs(toks: list[str]) -> list[tuple[int, int, int, tuple[str, ...]]]:
-    """Maximal runs of k>=2 copies of a 1- or 2-token unit: (start, end, k, P)."""
+def _find_runs(toks: list[str], st: ParseStats | None = None
+               ) -> list[tuple[int, int, int, tuple[str, ...]]]:
+    """Maximal runs of k>=2 copies of a 1- or 2-token unit: (start, end, k, P).
+
+    O(n) per unit size: each run is extended once from its leftmost start."""
     runs = []
     n = len(toks)
+    steps = 0
     for size in (1, 2):
         for i in range(n - size + 1):
+            steps += 1
             p = tuple(toks[i:i + size])
             if any(t in PARTICLES for t in p):
                 continue  # META candidates are units: semantic tokens or tan only
@@ -52,75 +121,223 @@ def _find_runs(toks: list[str]) -> list[tuple[int, int, int, tuple[str, ...]]]:
             k = 0
             while tuple(toks[i + k * size:i + (k + 1) * size]) == p:
                 k += 1
+                steps += 1
             if k >= 2:
                 runs.append((i, i + k * size, k, p))
+    if st is not None:
+        st.fold_steps += steps
     return runs
 
 
-def _maximal_sets(runs):
-    """All maximal sets of pairwise non-overlapping runs."""
-    def overlap(a, b):
-        return a[0] < b[1] and b[0] < a[1]
+def _components(runs):
+    """Split runs into overlap components (connected components of the interval
+    overlap graph).  Runs in different components never interact, so the maximal
+    non-overlapping sets of all runs are exactly the products of per-component sets."""
+    comps: list[list] = []
+    end = -1
+    for r in sorted(runs):
+        if comps and r[0] < end:
+            comps[-1].append(r)
+            end = max(end, r[1])
+        else:
+            comps.append([r])
+            end = r[1]
+    return comps
 
-    found = []
 
-    def rec(idx, chosen):
-        if idx == len(runs):
-            if all(r in chosen or any(overlap(r, c) for c in chosen) for r in runs):
-                found.append(list(chosen))
-            return
-        r = runs[idx]
-        if not any(overlap(r, c) for c in chosen):
-            chosen.append(r)
-            rec(idx + 1, chosen)
-            chosen.pop()
-        rec(idx + 1, chosen)
+def _component_sets(comp, limit: int, st: ParseStats | None = None):
+    """All maximal sets of pairwise non-overlapping runs of one component.
 
-    rec(0, [])
-    return found
+    Output-sensitive: a chosen run `a` may be followed by `b` (b.start >= a.end)
+    only if no run lies entirely inside the gap [a.end, b.start); the first
+    chosen run has no run entirely before it and the last none entirely after.
+    If any run starts at or after a.end, the one ending first is a legal
+    successor, so every path of this search ends in a maximal set: no dead
+    branches are explored.
+    Stops (returns None) once more than `limit` sets exist."""
+    rs = sorted(comp)
+    m = len(rs)
+    lo = min(r[0] for r in rs)
+
+    def nothing_inside(a_end: int, b_start: int) -> bool:
+        return not any(x[0] >= a_end and x[1] <= b_start for x in rs)
+
+    out: list[list] = []
+    stack = [[r] for r in reversed(rs) if nothing_inside(lo, r[0])]
+    steps = 0
+    while stack:
+        chosen = stack.pop()
+        steps += 1
+        last = chosen[-1]
+        nxt = [b for b in rs if b[0] >= last[1] and nothing_inside(last[1], b[0])]
+        steps += m * m  # successor scan x gap test
+        if not nxt:  # no run starts after `last`, so none lies entirely after it
+            out.append(chosen)
+            if len(out) > limit:
+                break
+            continue
+        for b in reversed(nxt):
+            stack.append(chosen + [b])
+    if st is not None:
+        st.fold_steps += steps
+    return None if len(out) > limit else out
+
+
+def _render_fold(toks: list[str], chosen, lo: int, hi: int) -> list[str]:
+    by_start = {r[0]: r for r in chosen}
+    parts, i = [], lo
+    while i < hi:
+        if i in by_start:
+            s, e, k, p = by_start[i]
+            parts.append(f"D{k - 1}({' '.join(p)})")
+            i = e
+        else:
+            parts.append(toks[i])
+            i += 1
+    return parts
+
+
+def _fold_space(toks: list[str], ctx: _Ctx | None):
+    """Factorised fold space: a list of segments, each a list of alternative
+    token lists.  Plain stretches have one alternative; each overlap component
+    has one alternative per distinct maximal run set.  Returns (segments, count)."""
+    st = ctx.st if ctx else None
+    limit = ctx.b.max_fold_candidates if ctx else 1 << 62
+    runs = _find_runs(toks, st)
+    comps = _components(runs)
+    if st is not None:
+        st.runs, st.components = len(runs), len(comps)
+    segments: list[list[list[str]]] = []
+    count = 1
+    i = 0
+    for comp in comps:
+        lo = min(r[0] for r in comp)
+        hi = max(r[1] for r in comp)
+        if i < lo:
+            segments.append([toks[i:lo]])
+        sets = _component_sets(comp, limit, st)
+        if sets is None:
+            raise _Exhausted("max_fold_candidates",
+                             f"one META overlap component alone has more than {limit} folds")
+        alts: list[list[str]] = []
+        for chosen in sets:
+            parts = _render_fold(toks, chosen, lo, hi)
+            if parts not in alts:
+                alts.append(parts)
+        segments.append(alts)
+        count *= len(alts)
+        if count > limit:
+            raise _Exhausted("max_fold_candidates",
+                             f"more than {limit} folded readings (product over "
+                             f"{len(comps)} META overlap components)")
+        i = hi
+    if i < len(toks):
+        segments.append([toks[i:]])
+    return segments, count
+
+
+def _iter_folds(segments):
+    for combo in product(*segments):
+        out: list[str] = []
+        for part in combo:
+            out += part
+        yield out
 
 
 def fold_candidates(toks: list[str]) -> list[str]:
-    """Folded token sequences (space-joined text), one per maximal run set."""
-    runs = _find_runs(toks)
-    if not runs:
-        return [" ".join(toks)]
-    out = []
-    for chosen in _maximal_sets(runs):
-        by_start = {r[0]: r for r in chosen}
-        parts, i = [], 0
-        while i < len(toks):
-            if i in by_start:
-                s, e, k, p = by_start[i]
-                parts.append(f"D{k - 1}({' '.join(p)})")
-                i = e
-            else:
-                parts.append(toks[i])
-                i += 1
-        text = " ".join(parts)
+    """Folded token sequences (space-joined text), one per maximal run set
+    (unbounded helper; `parse` applies the budget)."""
+    segments, _ = _fold_space(toks, None)
+    out: list[str] = []
+    for folded in _iter_folds(segments):
+        text = " ".join(folded)
         if text not in out:
             out.append(text)
     return out
 
 
 # ------------------------------------------------------- skeleton rendering
-def _alts(node, memo) -> set[str]:
-    if isinstance(node, Token):
-        return {str(node)}
-    key = id(node)
-    if key in memo:
-        return memo[key]
-    if node.data == "_ambig":
-        res: set[str] = set()
-        for ch in node.children:
-            res |= _alts(ch, memo)
-    else:
-        res = set()
-        choices = [sorted(_alts(c, memo)) for c in node.children]
-        for combo in product(*choices):
-            res.add(_fmt(node.data, combo))
-    memo[key] = res
-    return res
+def _signature(folded: list[str]) -> str:
+    """The grammar distinguishes only token classes (unit / tan / each particle),
+    so every reading with the same class sequence has the same parse forest:
+    parse the class string once and render each reading through it."""
+    return " ".join(t if t in PARTICLES or t == "tan" else "u" for t in folded)
+
+
+def _alts(root, words: list[str], pos_index: dict[int, int], ctx: _Ctx) -> set[str]:
+    """Skeleton strings of an Earley SPPF (shared packed parse forest).
+
+    Explicit post-order traversal with a memo per forest node - no Python
+    recursion; depth, node visits and rendered combinations are all budgeted.
+    Complete symbol nodes yield sets of rendered strings; intermediate nodes
+    (Lark's binarised partial rules) yield sets of partial child tuples.
+    C8 is applied at every complete node with alternatives: those alternatives
+    derive the same symbol over the same span, so they are interchangeable in
+    every enclosing parse, and the vector-tan count is additive over phrases;
+    an alternative above the local minimum can never survive the global
+    `_prefer_structure`.  Same final skeleton set, without multiplying out the
+    losing readings."""
+    b, st = ctx.b, ctx.st
+    memo: dict[int, set] = {}
+    active: set[int] = set()
+
+    def value(node, as_tuple: bool):
+        if isinstance(node, (Token, TokenNode)):
+            tok = node.token if isinstance(node, TokenNode) else node
+            w = words[pos_index[tok.start_pos]]
+            return {(w,)} if as_tuple else {w}
+        v = memo[id(node)]
+        if node.is_intermediate or not as_tuple:
+            return v
+        return {(s,) for s in v}
+
+    def bump(n: int = 1) -> None:
+        st.forest_steps += n
+        if st.forest_steps > b.max_forest_steps:
+            raise _Exhausted("max_forest_steps",
+                             f"parse-forest expansion exceeded {b.max_forest_steps} steps")
+        if not st.forest_steps & 1023:
+            ctx.tick()
+
+    if isinstance(root, (Token, TokenNode)):
+        return value(root, False)
+    stack: list[tuple[object, int, bool]] = [(root, 1, False)]
+    while stack:
+        node, depth, expanded = stack.pop()
+        key = id(node)
+        if key in memo:
+            continue
+        if not expanded:
+            if key in active:
+                raise _Exhausted("max_depth", "cyclic parse forest")
+            if depth > b.max_depth:
+                raise _Exhausted("max_depth", f"parse forest deeper than {b.max_depth}")
+            if depth > st.max_depth:
+                st.max_depth = depth
+            active.add(key)
+            stack.append((node, depth, True))
+            for packed in node.children:
+                for ch in packed.children:
+                    if not isinstance(ch, (Token, TokenNode)) and id(ch) not in memo:
+                        stack.append((ch, depth + 1, False))
+            continue
+        active.discard(key)
+        bump()
+        res: set = set()
+        for packed in node.children:
+            bump()
+            seqs = [value(ch, True) for ch in packed.children]
+            for combo in product(*seqs):
+                bump()
+                flat = tuple(x for part in combo for x in part)
+                if node.is_intermediate:
+                    res.add(flat)
+                else:
+                    res.add(_fmt(packed.rule.origin.name, flat))
+        if not node.is_intermediate and len(node.children) > 1:
+            res = _prefer_structure(res)
+        memo[key] = res
+    return memo[id(root)]
 
 
 def _fmt(data: str, c) -> str:
@@ -153,19 +370,36 @@ def _fmt(data: str, c) -> str:
     raise ValueError(f"unexpected rule {data}")
 
 
-def _skeletons(text: str) -> set[str]:
+_NO_PARSE = object()
+
+
+def _forest(sig: str, ctx: _Ctx, cache: dict):
+    """Earley forest of a class signature (cached per call), or _NO_PARSE."""
+    if sig in cache:
+        return cache[sig]
+    ctx.tick()
+    ctx.st.earley_parses += 1
+    ctx.st.earley_tokens += sig.count(" ") + 1
     try:
-        tree = _lark().parse(text)
+        tree = _lark().parse(sig)
     except LarkError:
+        tree = _NO_PARSE
+    except RecursionError:  # contained: never a syntax verdict
+        raise _Exhausted("max_depth", "parser recursion limit reached") from None
+    cache[sig] = tree
+    return tree
+
+
+def _skeletons(folded: list[str], ctx: _Ctx, cache: dict) -> set[str]:
+    sig = _signature(folded)
+    tree = _forest(sig, ctx, cache)
+    if tree is _NO_PARSE:
         return set()
-    if not isinstance(tree, Tree):
-        return set()
-    old = sys.getrecursionlimit()
-    sys.setrecursionlimit(max(old, 20000))
-    try:
-        return _alts(tree, {})
-    finally:
-        sys.setrecursionlimit(old)
+    pos_index, pos = {}, 0
+    for i, t in enumerate(sig.split(" ")):
+        pos_index[pos] = i
+        pos += len(t) + 1
+    return _alts(tree, folded, pos_index, ctx)
 
 
 def _vector_tans(skel: str) -> int:
@@ -262,7 +496,26 @@ def _diagnose(toks: list[str]) -> list[str]:
 
 
 # --------------------------------------------------------------------- API
-def parse(text: str) -> ParseResult:
+def _exhausted(e: _Exhausted, toks: list[str]) -> ParseResult:
+    return ParseResult(RESOURCE_EXHAUSTED, [], [
+        f"resource: budget {e.budget} ran out ({e.detail}); this is not a syntax verdict"],
+        toks, e.budget)
+
+
+def parse(text: str, budget: Budget | None = None, stats: ParseStats | None = None
+          ) -> ParseResult:
+    """Parse one statement.  Status is RESOLVED / AMBIGUOUS / INVALID, or the
+    operational RESOURCE_EXHAUSTED when a `Budget` limit runs out first."""
+    b = budget or DEFAULT_BUDGET
+    st = stats if stats is not None else ParseStats()
+    ctx = _Ctx(b, st)
+    try:
+        return _parse(text, ctx)
+    finally:
+        st.seconds = time.monotonic() - ctx.t0
+
+
+def _parse(text: str, ctx: _Ctx) -> ParseResult:
     lines = [ln for ln in text.splitlines() if ln.strip()]
     if len(lines) > 1:
         return ParseResult("INVALID", [], ["line: one statement per line"], [])
@@ -272,17 +525,29 @@ def parse(text: str) -> ParseResult:
         return ParseResult("INVALID", [], ["empty input"], [])
     if any(ch.isupper() for ch in line):
         return ParseResult("INVALID", [], [_CASE_MSG], toks)
-    if len(toks) > MAX_TOKENS:
-        return ParseResult("INVALID", [], [
-            f"length: reference parser accepts at most {MAX_TOKENS} tokens per statement"], toks)
     known = set(TOKENS)
     if any(t not in known for t in toks):
         errs = [f"unknown-token: {t!r} is not one of the 42 tokens (token {i + 1} '{t}')"
                 for i, t in enumerate(toks) if t not in known]
         return ParseResult("INVALID", [], errs, toks)
-    skels: set[str] = set()
-    for cand in fold_candidates(toks):
-        skels |= _skeletons(cand)
+    if len(toks) > ctx.b.max_tokens:
+        return ParseResult(RESOURCE_EXHAUSTED, [], [
+            f"length: reference parser accepts at most {ctx.b.max_tokens} tokens per "
+            "statement (budget max_tokens; not a syntax verdict)"], toks, "max_tokens")
+    try:
+        segments, count = _fold_space(toks, ctx)
+        ctx.st.fold_candidates = count
+        skels: set[str] = set()
+        cache: dict = {}
+        for folded in _iter_folds(segments):
+            ctx.tick()
+            skels |= _skeletons(folded, ctx, cache)
+            if len(skels) > ctx.b.max_skeletons:
+                raise _Exhausted("max_skeletons",
+                                 f"more than {ctx.b.max_skeletons} distinct parses")
+        ctx.st.skeletons = len(skels)
+    except _Exhausted as e:
+        return _exhausted(e, toks)
     out = sorted(_prefer_structure(skels))
     if not out:
         errs = _diagnose(toks) or ["no structural parse"]

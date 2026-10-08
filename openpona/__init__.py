@@ -16,6 +16,9 @@ def _load():
 
 TOKENS, SEMANTIC, STRUCTURAL = _load()
 
-from .parser import ParseResult, parse  # noqa: E402
+from .parser import (  # noqa: E402
+    RESOURCE_EXHAUSTED, Budget, ParseResult, ParseStats, parse,
+)
 
-__all__ = ["parse", "ParseResult", "TOKENS", "SEMANTIC", "STRUCTURAL"]
+__all__ = ["parse", "ParseResult", "Budget", "ParseStats", "RESOURCE_EXHAUSTED",
+           "TOKENS", "SEMANTIC", "STRUCTURAL"]

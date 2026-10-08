@@ -20,7 +20,8 @@ def _cmd_parse(args) -> int:
             print(s)
         for e in res.errors:
             print(f"error: {e}", file=sys.stderr)
-    return 0 if res.status != "INVALID" else 1
+    # 0 RESOLVED/AMBIGUOUS, 1 INVALID (syntax verdict), 3 RESOURCE_EXHAUSTED (no verdict)
+    return {"INVALID": 1, "RESOURCE_EXHAUSTED": 3}.get(res.status, 0)
 
 
 def load_cases(directory: Path) -> list[dict]:
