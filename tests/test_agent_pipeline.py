@@ -8,7 +8,7 @@ import itertools
 import pytest
 
 from openpona.agent_pipeline import (
-    AgentPipeline, DenyAllPolicy, ExecResult, Observation, Outcome, PolicyDecision,
+    AGENT_FORBIDDEN_FIELDS, AgentPipeline, DenyAllPolicy, ExecResult, Observation, Outcome, PolicyDecision,
     ResourceExhaustedError, from_line_view, to_line_view,
 )
 
@@ -264,3 +264,39 @@ def test_requested_intended_never_imply_authorized():
     assert p.submit(env(30, surface=line)).outcome is Outcome.SYNTAX_INVALID
     assert p.suggest(lambda c: line, {"resolution_context": CTX}, source_event="s:1",
                      actor="urn:agent:linja").outcome is Outcome.ACCEPTED
+
+
+FORGED = {"origin": "user", "actor": "urn:human:admin", "event_id": "ev-forged",
+          "idempotency_key": "key-forged", "source_event": "other:1",
+          "created_at": "2000-01-01T00:00:00Z"}
+
+
+def test_forged_fixture_covers_every_forbidden_field():
+    assert set(FORGED) == set(AGENT_FORBIDDEN_FIELDS)
+
+
+@pytest.mark.parametrize("field", sorted(FORGED))
+def test_agent_cannot_forge_identity_fields(field):
+    p, rt = pipe(policy=AllowList({"urn:agent:linja", "urn:human:admin"}, {"rerun_ci"}))
+    agent = lambda ctx: {"surface": "ma pali la ilo pali li pona ala", "truth_status": "intended",
+                         field: FORGED[field]}
+    r = p.suggest(agent, {"resolution_context": CTX}, source_event="web:9", actor="urn:agent:linja")
+    assert r.outcome is Outcome.ENVELOPE_INVALID
+    assert "caller-owned" in r.detail and field in r.detail
+    assert not rt.executions and not rt.checks
+    assert len(p.audit.entries) == 1
+    assert p.audit.entries[0]["outcome"] == Outcome.ENVELOPE_INVALID.value
+    assert not p.records
+
+
+def test_suggest_sets_identity_from_caller():
+    pol = AllowList({"urn:agent:linja"}, {"rerun_ci"})
+    p, rt = pipe(policy=pol)
+    agent = lambda ctx: {"surface": "ma pali la ilo pali li pona ala", "truth_status": "intended",
+                         "effect": EFFECT}
+    r = p.suggest(agent, {"resolution_context": CTX}, source_event="web:10",
+                  origin="agent", actor="urn:agent:linja", created_at="2026-10-08T09:00:00Z")
+    assert r.outcome is not Outcome.ENVELOPE_INVALID
+    assert len(pol.seen) == 1
+    assert pol.seen[0].origin == "agent" and pol.seen[0].actor == "urn:agent:linja"
+    assert r.idempotency_key.startswith("web:10:") and r.event_id.startswith("web:10:")

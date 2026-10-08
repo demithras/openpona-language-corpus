@@ -82,7 +82,10 @@ The agent returns the envelope fields (at least `surface` and `truth_status`, op
 to be stripped afterwards. `AgentPipeline.suggest` fills `event_id`, `idempotency_key`,
 `origin`, `actor`, `created_at` and `resolution_context` from the integration context;
 the key is derived from the source event and the suggestion, so replaying one source event
-cannot execute twice. Prompt: `prompts/openpona_system_structured.md`.
+cannot execute twice. Identity and provenance fields (`origin`, `actor`, `event_id`,
+`idempotency_key`, `source_event`, `created_at`) are caller-owned: `suggest` assigns them
+unconditionally, and agent output that contains any of them is rejected as
+`ENVELOPE_INVALID` (`AGENT_FORBIDDEN_FIELDS`). Prompt: `prompts/openpona_system_structured.md`.
 
 ### Human one-line view
 

@@ -31,7 +31,7 @@ __all__ = [
     "Outcome", "PipelineResult", "PolicyRequest", "PolicyDecision", "ExecResult",
     "Observation", "Runtime", "AuditLog", "AgentPipeline", "DenyAllPolicy",
     "ResourceExhaustedError", "envelope_digest", "to_line_view", "from_line_view",
-    "ENVELOPE_KEYS", "ORIGINS", "STRICT", "LENIENT",
+    "ENVELOPE_KEYS", "AGENT_FORBIDDEN_FIELDS", "ORIGINS", "STRICT", "LENIENT",
 ]
 
 
@@ -58,6 +58,9 @@ ENVELOPE_KEYS = frozenset({
     "event_id", "idempotency_key", "origin", "actor", "surface", "truth_status",
     "created_at", "resolution_context", "evidence_refs", "literals", "effect",
     "source_event"})
+# Identity / provenance fields are caller-owned: agent output must never carry them.
+AGENT_FORBIDDEN_FIELDS = frozenset({
+    "origin", "actor", "event_id", "idempotency_key", "source_event", "created_at"})
 _STATUSES = ("observed", "asserted", "requested", "intended", "hypothesis", "inferred",
              "unknown", "rejected")
 _AUTH_WORDS = ("authoriz", "authoris", "permit", "may_execute", "allowed", "policy",
@@ -240,17 +243,23 @@ class AgentPipeline:
         if not isinstance(out, dict):
             return self._reject(f"{source_event}:bad-suggestion", f"{source_event}:bad",
                                 Outcome.ENVELOPE_INVALID, "suggestion is neither dict nor line")
+        forged = AGENT_FORBIDDEN_FIELDS & set(out)
+        if forged:
+            return self._reject(f"{source_event}:forged-identity", f"{source_event}:forged",
+                                Outcome.ENVELOPE_INVALID,
+                                "agent output may not set caller-owned field(s): "
+                                + ", ".join(sorted(forged)))
         env = {k: v for k, v in out.items() if k in ENVELOPE_KEYS}
         extra = {k: v for k, v in out.items() if k not in ENVELOPE_KEYS}
         if extra:
             env["_unknown"] = extra            # forces ENVELOPE_INVALID, never silently dropped
         digest = hashlib.sha256(json.dumps(out, sort_keys=True, default=str).encode()).hexdigest()[:16]
-        env.setdefault("event_id", f"{source_event}:{digest}")
-        env.setdefault("idempotency_key", f"{source_event}:{digest}")
-        env.setdefault("origin", origin)
-        env.setdefault("actor", actor)
-        env.setdefault("created_at", created_at)
-        env.setdefault("source_event", source_event)
+        env["event_id"] = f"{source_event}:{digest}"
+        env["idempotency_key"] = f"{source_event}:{digest}"
+        env["origin"] = origin
+        env["actor"] = actor
+        env["created_at"] = created_at
+        env["source_event"] = source_event
         env.setdefault("resolution_context", list(context.get("resolution_context", [])))
         return self.submit(env)
 
