@@ -2,7 +2,7 @@
 
 Classification: **ENGINEERING** (reference-parser implementation). Nothing here
 changes canon: the grammar, the token inventory, META semantics and every
-conformance outcome are unchanged. The 96 conformance cases give byte-identical
+conformance outcome are unchanged. The 96 baseline conformance cases (`conformance/BASELINE.lock`) give byte-identical
 `status`, `skeletons` and `errors` before and after this change.
 
 Ticket: TP-01 (OpenPona Improvement TZ v0.2). Baseline: `97a9b9e`.

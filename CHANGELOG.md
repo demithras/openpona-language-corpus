@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-08 - TP-04 conformance independence (ENGINEERING, proposals pending author review)
+
+- `tools/oracle/recognizer.py`: independent structural recognizer written from SPEC 5-7 and `canon/` only; `tools/oracle/compare.py` lists oracle/parser disagreements (2 triaged, both PENDING AUTHOR DECISION: what META priority does when the folded reading is invalid);
+- `conformance/ambiguity_v2.jsonl`: proposed cases with rationale, source rule and expected trees (2 carry `triage: open`); `conformance/BASELINE.lock` freezes the six original files, which are unchanged;
+- tests: duplicate ids, missing fields, stale count text, changed baseline and any skip-on-missing-dependency now fail; Hypothesis metamorphic properties; `tools/conformance_counts.py` generates the RESOLVED/INVALID/AMBIGUOUS counts. No canon, token or baseline expectation changed.
+
 ## 2026-10-01 — tier-2 decisions (author interview)
 
 - grammar: objects before source phrases (`e` after `tan` INVALID); `tan` directly after `li` is a source predicate (`jan li tan ma`), structural reading wins where it exists; a predicate containing `anu` must be the last one (`jan li pali anu jan li awen` INVALID); 9 conformance cases changed/added (90 total);

@@ -52,8 +52,12 @@ def _cmd_conformance(args) -> int:
         alt = Path(__file__).resolve().parent.parent / args.dir
         directory = alt if alt.is_dir() else directory
     cases = load_cases(directory)
-    passed = failed = 0
+    passed = failed = skipped = 0
     for case in cases:
+        if case.get("triage") == "open":
+            skipped += 1
+            print(f"SKIP {case['id']}: triage open - {case.get('triage_note', '')}")
+            continue
         ok, res, exp_status, exp_skel = run_case(case)
         if ok:
             passed += 1
@@ -62,7 +66,8 @@ def _cmd_conformance(args) -> int:
             failed += 1
             print(f"FAIL {case['id']}: {case['surface']!r} expected {exp_status} {exp_skel} "
                   f"got {res.status} {res.skeletons}")
-    print(f"{passed} passed, {failed} failed")
+    print(f"{passed} passed, {failed} failed"
+          + (f", {skipped} skipped (triage open)" if skipped else ""))
     return 0 if failed == 0 else 1
 
 

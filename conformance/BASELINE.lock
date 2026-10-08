@@ -1,0 +1,8 @@
+# TP-04 frozen baseline: sha256 of the six original conformance files (97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b).
+# A change to any of them needs an explicit author decision AND a deliberate edit of this lock; tests/test_conformance_integrity.py fails otherwise.
+8e8365a25778f38b0301b069c84bcf4de1c6d0699d1e73e62a39d1c896d8e058  conformance/basic.jsonl
+9f943bc22fc81255eea67962e680e9a292c51d895afbb9880863421f1d9d5fb4  conformance/grouping.jsonl
+8b1f8dea42852d18b5975695f1b89791130524fd7689bdb235836c66eb595aff  conformance/invalid.jsonl
+8674398cea238c20d4a8db6cbbf343a9be80e2e40a380f374be0e1136624cb31  conformance/meta.jsonl
+9abc49ac51ab6714dcfdead0d348b57a17bfcad4c7de279f24855972db18866b  conformance/tan_dual.jsonl
+3d9a439ee2ae4fd92d2c732b582bbd1cc323160b6e9bf8916d58c32c7b94d31c  conformance/toki_pona_compat.jsonl

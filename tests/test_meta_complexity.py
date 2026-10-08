@@ -15,7 +15,6 @@ from pathlib import Path
 
 import pytest
 
-pytest.importorskip("hypothesis")
 from hypothesis import given, settings, strategies as st  # noqa: E402
 from lark import Lark, Token, Tree  # noqa: E402
 from lark.exceptions import LarkError  # noqa: E402

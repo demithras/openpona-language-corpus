@@ -16,8 +16,11 @@ from openpona.parser import _vector_tans
 
 ROOT = Path(__file__).resolve().parent.parent
 CONF = ROOT / "conformance"
-CASES = [json.loads(ln) for p in sorted(CONF.glob("*.jsonl"))
-         for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip()]
+ALL_CASES = [json.loads(ln) for p in sorted(CONF.glob("*.jsonl"))
+             for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip()]
+# records carrying triage "open" record a known spec/parser disagreement (TP-04); they are
+# skipped-with-reason in tests/test_conformance.py and listed in the oracle disagreement report
+CASES = [c for c in ALL_CASES if c.get("triage") != "open"]
 NON_INVALID = [c for c in CASES if c["expect_status"] != "INVALID"]
 INVALID = [c for c in CASES if c["expect_status"] == "INVALID"]
 IDS = [c["id"] for c in CASES]
@@ -34,8 +37,10 @@ def _only(surface):
 
 
 # ------------------------------------------------------------ conformance
-def test_all_96_baseline_cases_are_loaded():
-    assert len(CASES) == 96
+def test_all_frozen_baseline_cases_are_loaded():
+    prov = json.loads((CONF / "baseline_provenance.json").read_text(encoding="utf-8"))
+    assert set(prov["cases"]) <= {c["id"] for c in CASES}
+    assert len(prov["cases"]) == prov["baseline_case_count"]
 
 
 @pytest.mark.parametrize("case", CASES, ids=IDS)

@@ -1,0 +1,794 @@
+{
+ "_comment": "Mechanical index of the 96 frozen baseline cases (TP-04). Generated from the jsonl files at baseline 97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b; the jsonl files are not edited. `rule_family` is an implementer classification of the file by SPEC section, PENDING AUTHOR REVIEW; `decision_refs` and `note` are copied from each case note verbatim, never added to.",
+ "baseline_case_count": 96,
+ "baseline_commit": "97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b",
+ "cases": {
+  "b01": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 1,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b02": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 2,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b03": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 3,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b04": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 4,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b05": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 5,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b06": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 6,
+   "note": "corpus example; tan as vector (no structural reading exists)",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b07": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 7,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b08": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 8,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b09": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 9,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b10": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 10,
+   "note": "negation parses as a modifier; negation scope is review gap L4",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b11": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 11,
+   "note": "order matters",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b12": {
+   "decision_refs": [
+    "2026-09-30"
+   ],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 12,
+   "note": "multiple li (decision 2026-09-30)",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b13": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 13,
+   "note": "multiple e",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b14": {
+   "decision_refs": [
+    "2026-10-01 C3"
+   ],
+   "expect_status": "INVALID",
+   "file": "basic.jsonl",
+   "line": 14,
+   "note": "DECISION 2026-10-01 (C3): objects (e) come before source phrases (tan), as in pu; e after a tan phrase is INVALID",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b15": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 15,
+   "note": "anu joins phrases",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b16": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 16,
+   "note": "",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b17": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 17,
+   "note": "several objects, then the source phrase",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b18": {
+   "decision_refs": [
+    "2026-10-01 row 11"
+   ],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 18,
+   "note": "DECISION 2026-10-01 (row 11): Toki Pona's 'anu seme' question tag is read as a choice with the unresolved variable seme — declared as the question idiom in OpenPona too; record status unknown",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "b19": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "basic.jsonl",
+   "line": 19,
+   "note": "positive control for anu-then-li (moved from k20 on 2026-10-01): anu in the SUBJECT followed by li is fine (Toki Pona: jan anu soweli li moku)",
+   "rule_family": "SPEC 6 structural grammar (clauses, predicates, anu, source phrases)"
+  },
+  "i01": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 1,
+   "note": "",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i02": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 2,
+   "note": "mi is not a canonical token",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i03": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 3,
+   "note": "mute is explicitly excluded (SPEC 13)",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i04": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 4,
+   "note": "punctuation is not part of the surface",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i05": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 5,
+   "note": "one statement per line",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i06": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 6,
+   "note": "tokens are lowercase; a capitalised word is a name, and names never appear in the surface (SPEC 8.2)",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i07": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 7,
+   "note": "U+2028 is a line separator: one statement per line",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i08": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "invalid.jsonl",
+   "line": 8,
+   "note": "carriage return is a line separator",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i09": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "invalid.jsonl",
+   "line": 9,
+   "note": "tabs and multiple spaces are ordinary whitespace",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "i10": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "invalid.jsonl",
+   "line": 10,
+   "note": "surrounding whitespace is ignored",
+   "rule_family": "SPEC 2, 8.2, 17 (inventory, punctuation, case, line separators, whitespace)"
+  },
+  "k01": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 1,
+   "note": "Toki Pona: li needs a subject",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k02": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 2,
+   "note": "Toki Pona: la needs a context before it",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k03": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 3,
+   "note": "Toki Pona: pi and li are particles only",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k04": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 4,
+   "note": "Toki Pona: e only after a predicate",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k05": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 5,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k06": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 6,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k07": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 7,
+   "note": "dangling anu",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k08": {
+   "decision_refs": [
+    "2026-10-01",
+    "2026-10-01 C2"
+   ],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 8,
+   "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). DECISION 2026-10-01 (C2): a predicate containing anu must be the last predicate; anu followed by a further li is INVALID (a choice between statements is two la lines). History: INVALID 09-30 draft -> RESOLVED oracle fix -> INVALID by decision.",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k09": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 9,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k10": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 10,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k11": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 11,
+   "note": "particles never form META units (review 2026-10-01)",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k12": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 12,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k13": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 13,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k14": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 14,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k15": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 15,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k16": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 16,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k17": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 17,
+   "note": "",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k18": {
+   "decision_refs": [
+    "2026-10-01"
+   ],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 18,
+   "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu-then-li (C2)",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "k19": {
+   "decision_refs": [
+    "2026-10-01"
+   ],
+   "expect_status": "INVALID",
+   "file": "toki_pona_compat.jsonl",
+   "line": 19,
+   "note": "VALID Toki Pona; rejected as OpenPona strictness (anu-then-li, decision C2 2026-10-01). anu inside an object phrase, then li (C2)",
+   "rule_family": "SPEC 1 / canon/11 Toki Pona compatibility (must-reject set)"
+  },
+  "m01": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 1,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m02": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 2,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m03": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 3,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m04": {
+   "decision_refs": [
+    "2026-09-30"
+   ],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 4,
+   "note": "n repetitions = depth n-1 (decision 2026-09-30)",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m05": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 5,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m06": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 6,
+   "note": "META beats structure",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m07": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 7,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m08": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 8,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m09": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 9,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m10": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 10,
+   "note": "",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m11": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 11,
+   "note": "two overlapping fold candidates; only one yields a valid parse",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m12": {
+   "decision_refs": [],
+   "expect_status": "AMBIGUOUS",
+   "file": "meta.jsonl",
+   "line": 12,
+   "note": "genuinely ambiguous fold",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m13": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 13,
+   "note": "a repeated predicate is two li predicates, not D1(li pali): META candidates are units only (review 2026-10-01)",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m14": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 14,
+   "note": "repeated object phrase is not a META unit",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m15": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 15,
+   "note": "anu chain; 'pali anu' is not a unit, so nothing folds",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m16": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 16,
+   "note": "'pali e' is not a unit",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m17": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 17,
+   "note": "META inside an object phrase",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "m18": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "meta.jsonl",
+   "line": 18,
+   "note": "tan is a unit, so it folds on both sides",
+   "rule_family": "SPEC 7 META and repetition"
+  },
+  "p01": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 1,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p02": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 2,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p03": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 3,
+   "note": "pi group must be exactly two units",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p04": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 4,
+   "note": "invariant 14: 3+ units need pi",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p05": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 5,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p06": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 6,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p07": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 7,
+   "note": "groups of one",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p08": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 8,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p09": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 9,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p10": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 10,
+   "note": "two groups on head jan; Toki Pona grey zone, accepted",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p11": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 11,
+   "note": "two units never take pi (Toki Pona: pi needs 2+ after it)",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p12": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 12,
+   "note": "group of one",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p13": {
+   "decision_refs": [],
+   "expect_status": "INVALID",
+   "file": "grouping.jsonl",
+   "line": 13,
+   "note": "second group of one",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "p14": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "grouping.jsonl",
+   "line": 14,
+   "note": "",
+   "rule_family": "SPEC 5.3 pi grouping"
+  },
+  "t01": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 1,
+   "note": "tan as vector in subject",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t02": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 2,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t03": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 3,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t04": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 4,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t05": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 5,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t06": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 6,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t07": {
+   "decision_refs": [
+    "2026-10-01 C8"
+   ],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 7,
+   "note": "DECISION 2026-10-01 (C8): tan directly after li is a source predicate ('derives from'); the vector reading {tan ma} is dropped because a structural reading exists",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t08": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 8,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t09": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 9,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t10": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 10,
+   "note": "no structural reading exists (e may not follow a tan phrase), so the vector reading applies: a source-thing of the land is worked on",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t11": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 11,
+   "note": "source predicate followed by another predicate",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t12": {
+   "decision_refs": [
+    "2026-10-01 row 10"
+   ],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 12,
+   "note": "DECISION 2026-10-01 (row 10): tan-initial context is a source context ('because of X'); the vector reading {tan ni} is dropped because a structural reading exists",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t13": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 13,
+   "note": "",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t14": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 14,
+   "note": "tan not first: vector reading, as before",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t15": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 15,
+   "note": "source context + source predicate",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  },
+  "t16": {
+   "decision_refs": [],
+   "expect_status": "RESOLVED",
+   "file": "tan_dual.jsonl",
+   "line": 16,
+   "note": "a lone tan before la is a one-unit vector context, consistent with t06 (tan li pali); no structural reading exists because the source context needs an expression after tan. Pinned 2026-10-01 after a builder special-cased it as INVALID.",
+   "rule_family": "SPEC 2.11 / 6 dual role of tan"
+  }
+ }
+}

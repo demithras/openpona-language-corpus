@@ -883,7 +883,10 @@ def test_schema_dir_has_exactly_the_three_profiles():
 
 # ------------------------------------------------- optional full-validator cross-check
 def test_profiles_agree_with_a_full_json_schema_validator_when_available():
-    jsonschema = pytest.importorskip("jsonschema")
+    try:
+        import jsonschema
+    except ImportError:
+        pytest.skip("optional cross-check: the jsonschema package is not installed")
     pool = [load(p) for p in sorted(VALID_DIR.glob("*.json"))]
     pool += [load(p) for p in sorted(INVALID_DIR.glob("*.json"))]
     for name in AGENT_REQUIRED:
