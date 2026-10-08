@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-08 - TP-12 CI, counts, clean-wheel smoke (ENGINEERING)
+
+- `.github/workflows/ci.yml`: separate jobs `tests` (py3.11/3.12, `make check`, hard `import hypothesis` step), `conformance-counts`, `docs-lint`, `package-smoke` (wheel + sdist, fresh venv), `security` (gitleaks, pip-audit); `constraints.txt` pins the toolchain;
+- `make check` also runs `tools/conformance_counts.py --check` and lift validate + unittest; `make smoke-wheel` installs the built wheel into a fresh venv and runs conformance from outside the checkout; `python -m openpona conformance` now exits 2 when it finds no cases (was a silent `0 passed`);
+- README and MANIFEST.json counts are generated (`--write`) and verified (`--check`): the stale "81" is gone (134 cases at this commit);
+- `docs/RELEASE_CHECKLIST.md`: package 0.2.0 / token inventory anu 1.1 / parser API 1.0.0 are separate; docs lint validates complete JSON record examples against the record profiles. Legacy flat YAML sketches (`bound_ref`, `surface_address`, `candidates`, `evidence`) are tolerated explicitly; migrating them is PENDING AUTHOR REVIEW. No canon, matrix or baseline file changed.
+
 ## 2026-10-08 - TP-04 conformance independence (ENGINEERING, proposals pending author review)
 
 - `tools/oracle/recognizer.py`: independent structural recognizer written from SPEC 5-7 and `canon/` only; `tools/oracle/compare.py` lists oracle/parser disagreements (2 triaged, both PENDING AUTHOR DECISION: what META priority does when the folded reading is invalid);

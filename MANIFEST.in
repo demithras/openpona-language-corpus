@@ -1,0 +1,5 @@
+include README.md LICENSE* MANIFEST.json CHANGELOG.md
+recursive-include conformance *.jsonl *.json *.lock *.md
+recursive-include data *.csv
+recursive-include canon *
+recursive-include schema *.json

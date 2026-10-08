@@ -4,7 +4,7 @@
 
 Who it is for: builders of agents that must log what they saw, what they intend and what they were asked without the three blurring together; people who want a small operational notation they can hold in their head; researchers testing whether such a language can serve as the surface syntax of an executable ontology.
 
-What you can do today: parse and validate statements (including an LLM's output, line by line), run the 81-case conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
+What you can do today: parse and validate statements (including an LLM's output, line by line), run the <!-- conformance-counts -->134-case (88 RESOLVED, 42 INVALID, 4 AMBIGUOUS)<!-- /conformance-counts --> conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
 
 ```text
 $ pip install .                       # Python >= 3.11
@@ -54,7 +54,7 @@ The stronger ideas around OpenPona — that the 6 × 7 placement is a generative
 
 ## Tools
 
-- Reference parser: `python -m openpona parse "…"` (RESOLVED / AMBIGUOUS / INVALID, skeletons, located error messages); `python -m openpona conformance` runs the 81-case oracle in [`conformance/`](conformance/).
+- Reference parser: `python -m openpona parse "…"` (RESOLVED / AMBIGUOUS / INVALID, skeletons, located error messages); `python -m openpona conformance` runs the oracle in [`conformance/`](conformance/).
 - [`docs/for-agents.md`](docs/for-agents.md) — how an agent reads and writes OpenPona; [`prompts/openpona_system.md`](prompts/openpona_system.md) — a system prompt to paste.
 - `make check` — unit tests, conformance, and a test that parses every OpenPona line in every `.md` file (so the documentation cannot drift from the parser).
 

@@ -1,0 +1,109 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: tests (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            constraints.txt
+      - name: Install package with test extras (pinned by constraints.txt)
+        run: python -m pip install -c constraints.txt -e '.[test]'
+      - name: Hypothesis must be importable (a skipped property suite is a failure)
+        run: python -c 'import hypothesis; print("hypothesis", hypothesis.__version__)'
+      - name: make check (pytest, conformance, docs lint, counts, lift validate + unittest)
+        run: make check PYTHON=python
+
+  conformance-counts:
+    name: conformance-counts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Documented counts equal the counts derived from conformance/*.jsonl
+        run: python tools/conformance_counts.py --check
+      - name: Table (for the log)
+        run: python tools/conformance_counts.py
+
+  docs-lint:
+    name: docs-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            constraints.txt
+      - run: python -m pip install -c constraints.txt -e '.[test]'
+      - name: Every openpona fence parses; every complete JSON record example validates
+        run: python -m pytest -q tests/test_docs_examples.py
+
+  package-smoke:
+    name: package-smoke (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Build tools
+        run: python -m pip install -c constraints.txt build
+      - name: Build wheel and sdist
+        run: python -m build --outdir dist
+      - name: sdist carries the conformance corpus and the frozen matrix
+        run: |
+          tar tzf dist/*.tar.gz | grep -q '/conformance/basic.jsonl'
+          tar tzf dist/*.tar.gz | grep -q '/data/matrix.csv'
+      - name: Install the wheel into a fresh venv and run conformance from outside the checkout
+        run: make smoke-wheel PYTHON=python
+
+  security:
+    name: security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependency audit (pip-audit over the pinned set)
+        run: |
+          python -m pip install pip-audit
+          pip-audit -r constraints.txt
+          pip-audit .

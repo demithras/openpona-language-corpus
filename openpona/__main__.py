@@ -52,6 +52,9 @@ def _cmd_conformance(args) -> int:
         alt = Path(__file__).resolve().parent.parent / args.dir
         directory = alt if alt.is_dir() else directory
     cases = load_cases(directory)
+    if not cases:
+        print(f"error: no conformance cases found in {directory} (use --dir)", file=sys.stderr)
+        return 2
     passed = failed = skipped = 0
     for case in cases:
         if case.get("triage") == "open":
