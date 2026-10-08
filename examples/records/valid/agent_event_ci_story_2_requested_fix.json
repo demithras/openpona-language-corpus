@@ -1,0 +1,61 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la jan ante li wile e kama pona",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "jan",
+    "ante",
+    "li",
+    "wile",
+    "e",
+    "kama",
+    "pona"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "52147ab9144104389527e70a45a8870726f5bffbb7e01ad305efaaec4c4dce01"
+  },
+  "statement_id": "acme-web-678-ev-02",
+  "created_at": "2026-10-08T09:02:00Z",
+  "actor": "urn:person:colleague",
+  "truth_status": "requested",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "jan",
+      "ante"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "urn:person:colleague"
+  },
+  "provenance": {
+    "kind": "human_statement"
+  },
+  "literals": {
+    "pr_number": 678
+  },
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "a5c17bb939dfd377f180c951b77b2ffebcbeb1a00be1625ba9c6c489f1a77027"
+  }
+}

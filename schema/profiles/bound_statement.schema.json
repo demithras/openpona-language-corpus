@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/demithras/openpona-language-corpus/main/schema/profiles/bound_statement.schema.json",
+  "title": "OpenPona BoundStatement (record profile records-1.0.0)",
+  "description": "A parsed statement plus entity binding: resolution_status (independent of the parse), resolution_context, per-entity bound_ref / candidates and a binding seal that makes the binding tamper-evident. Truth, actor and provenance are optional here and mandatory in AgentEvent.",
+  "$defs": {
+    "token": {
+      "enum": [
+        "ala",
+        "ale",
+        "ante",
+        "anu",
+        "awen",
+        "e",
+        "ijo",
+        "ilo",
+        "jan",
+        "kama",
+        "ken",
+        "kulupu",
+        "kute",
+        "la",
+        "lawa",
+        "li",
+        "linja",
+        "lon",
+        "lukin",
+        "ma",
+        "nasin",
+        "ni",
+        "open",
+        "pali",
+        "pana",
+        "pi",
+        "pilin",
+        "pini",
+        "pona",
+        "sama",
+        "selo",
+        "seme",
+        "sijelo",
+        "sike",
+        "sitelen",
+        "sona",
+        "tan",
+        "tawa",
+        "tenpo",
+        "toki",
+        "weka",
+        "wile"
+      ]
+    },
+    "tokens": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/token"
+      }
+    },
+    "ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+    },
+    "statement_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]*$"
+    },
+    "rfc3339": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"
+    },
+    "resolution_status": {
+      "enum": [
+        "RESOLVED",
+        "AMBIGUOUS",
+        "UNRESOLVED"
+      ]
+    },
+    "truth_status": {
+      "enum": [
+        "observed",
+        "asserted",
+        "requested",
+        "intended",
+        "hypothesis",
+        "inferred",
+        "unknown",
+        "rejected"
+      ]
+    },
+    "parse_reference": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "status": {
+          "enum": [
+            "RESOLVED",
+            "AMBIGUOUS"
+          ]
+        },
+        "alternative_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ast_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "api_version",
+        "status",
+        "alternative_index",
+        "ast_sha256"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+      },
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "tokens": {
+          "$ref": "#/$defs/tokens"
+        },
+        "resolution_status": {
+          "$ref": "#/$defs/resolution_status"
+        },
+        "bound_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "tokens",
+        "resolution_status"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "resolution_status": {
+                "const": "RESOLVED"
+              }
+            },
+            "required": [
+              "resolution_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "bound_ref"
+            ],
+            "properties": {
+              "bound_ref": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "resolution_status": {
+                "const": "AMBIGUOUS"
+              }
+            },
+            "required": [
+              "resolution_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "candidates"
+            ],
+            "properties": {
+              "bound_ref": {
+                "type": "null"
+              },
+              "candidates": {
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "resolution_status": {
+                "const": "UNRESOLVED"
+              }
+            },
+            "required": [
+              "resolution_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "bound_ref": {
+                "type": "null"
+              },
+              "candidates": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "predicate_expression": {
+      "type": "object",
+      "properties": {
+        "tokens": {
+          "$ref": "#/$defs/tokens"
+        }
+      },
+      "required": [
+        "tokens"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+      },
+      "additionalProperties": false
+    },
+    "binding_seal": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "source_revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "algorithm",
+        "source_revision",
+        "digest"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "source_event",
+            "runtime_observation",
+            "agent_statement",
+            "human_statement",
+            "legacy_migration"
+          ]
+        },
+        "source_event": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "patternProperties": {
+        "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "source_event"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "source_event"
+            ]
+          }
+        }
+      ]
+    },
+    "literals": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "profile": {
+      "const": "BoundStatement"
+    },
+    "schema_version": {
+      "const": "records-1.0.0"
+    },
+    "token_version": {
+      "const": "anu 1.1"
+    },
+    "surface": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tokens": {
+      "$ref": "#/$defs/tokens"
+    },
+    "parse_reference": {
+      "$ref": "#/$defs/parse_reference"
+    },
+    "resolution_status": {
+      "$ref": "#/$defs/resolution_status"
+    },
+    "resolution_context": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "uniqueItems": true
+    },
+    "subject": {
+      "$ref": "#/$defs/entity"
+    },
+    "object": {
+      "$ref": "#/$defs/entity"
+    },
+    "context": {
+      "$ref": "#/$defs/entity"
+    },
+    "predicate": {
+      "$ref": "#/$defs/predicate_expression"
+    },
+    "binding_seal": {
+      "$ref": "#/$defs/binding_seal"
+    },
+    "statement_id": {
+      "$ref": "#/$defs/statement_id"
+    },
+    "created_at": {
+      "$ref": "#/$defs/rfc3339"
+    },
+    "actor": {
+      "$ref": "#/$defs/ref"
+    },
+    "truth_status": {
+      "$ref": "#/$defs/truth_status"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "uniqueItems": true
+    },
+    "cause_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/statement_id"
+      },
+      "uniqueItems": true
+    },
+    "supersedes": {
+      "$ref": "#/$defs/statement_id"
+    },
+    "literals": {
+      "$ref": "#/$defs/literals"
+    }
+  },
+  "required": [
+    "profile",
+    "schema_version",
+    "token_version",
+    "surface",
+    "tokens",
+    "parse_reference",
+    "resolution_status",
+    "resolution_context",
+    "binding_seal"
+  ],
+  "patternProperties": {
+    "^x-[A-Za-z0-9][A-Za-z0-9._-]*$": {}
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "truth_status": {
+            "const": "observed"
+          }
+        },
+        "required": [
+          "truth_status"
+        ]
+      },
+      "then": {
+        "required": [
+          "evidence_refs"
+        ],
+        "properties": {
+          "evidence_refs": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

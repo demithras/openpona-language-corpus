@@ -1,0 +1,69 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la jan linja li lukin e ilo pali",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "jan",
+    "linja",
+    "li",
+    "lukin",
+    "e",
+    "ilo",
+    "pali"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "c118566a314a06d0708e447aa54c3bdac1da1d6384ee7e89806f2b7f849d53ba"
+  },
+  "statement_id": "acme-web-678-ev-06",
+  "created_at": "2026-10-08T09:06:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "intended",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "jan",
+      "linja"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "urn:agent:linja"
+  },
+  "object": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "ci:run-4711"
+  },
+  "provenance": {
+    "kind": "agent_statement"
+  },
+  "cause_refs": [
+    "acme-web-678-ev-05"
+  ],
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "439d3a6aa3677526be88491ff7f30938357759604831f4ce554da3b810de8435"
+  }
+}

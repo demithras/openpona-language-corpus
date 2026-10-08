@@ -75,6 +75,8 @@ truth_status: observed           # observed|asserted|requested|intended|hypothes
 evidence: []                     # what was checked
 ```
 
+For records you persist, the exact fields, the three profiles (`ParsedStatement`, `BoundStatement`, `AgentEvent`) and the checker `python -m openpona validate-record <file>` are in [`docs/record-profiles.md`](record-profiles.md); the template above is the informal shape.
+
 Truth status belongs in that field. The `lukin la` / `wile la` / `seme la` prefixes are a research convention (H-TS), not canon; do not rely on them as the only carrier of status.
 
 ```openpona

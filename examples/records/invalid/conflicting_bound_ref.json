@@ -1,0 +1,66 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la ilo pali li pona e ilo pali",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "ilo",
+    "pali",
+    "li",
+    "pona",
+    "e",
+    "ilo",
+    "pali"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "9f03dd8e538528056648659507f3b4c74e0091094ca50b66a2a3946e35869fe9"
+  },
+  "statement_id": "acme-web-678-bad-01",
+  "created_at": "2026-10-08T09:30:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "intended",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "provenance": {
+    "kind": "agent_statement"
+  },
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "ci:build-service"
+  },
+  "object": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "ci:lint-service"
+  },
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "23cfd2b0af568851828dbd8fcf3b25fe1f700b29f0cb375854f2dbc7acb54fdb"
+  },
+  "x-defect": "parse-valid line; the same address `ilo pali` is bound to two different references in one resolution context"
+}

@@ -1,0 +1,69 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la jan linja li pona e ilo pali",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "jan",
+    "linja",
+    "li",
+    "pona",
+    "e",
+    "ilo",
+    "pali"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "19a08c80e72b31354643ee910639a40d1ebaceba47123d6d12b56de958f31e6e"
+  },
+  "statement_id": "acme-web-678-ev-03",
+  "created_at": "2026-10-08T09:03:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "intended",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "jan",
+      "linja"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "urn:agent:linja"
+  },
+  "object": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "ci:run-4711"
+  },
+  "provenance": {
+    "kind": "agent_statement"
+  },
+  "literals": {
+    "planned_commit_message": "fix flaky unit test"
+  },
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "b04e7ade94beb1354cc21305c21ba76f2335dae3d3f9e91a40e72b67e4d7648e"
+  }
+}

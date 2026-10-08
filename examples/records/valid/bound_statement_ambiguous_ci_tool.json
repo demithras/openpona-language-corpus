@@ -1,0 +1,51 @@
+{
+  "profile": "BoundStatement",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la ilo pali li pona ala",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "ilo",
+    "pali",
+    "li",
+    "pona",
+    "ala"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "ee8003dd3078d695f614123db7894e9e8e7707dd2bb9191cc8324890682c349b"
+  },
+  "resolution_status": "AMBIGUOUS",
+  "resolution_context": [
+    "project:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "AMBIGUOUS",
+    "candidates": [
+      "ci:build-service",
+      "ci:lint-service"
+    ]
+  },
+  "x-note": "two CI tools match `ilo pali`: keep both candidates, bind neither (canon/05)",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "da8f52a32d0268bc8f0509755c4475ed216c9b8f6ba50a8dff44c66e9c014a23"
+  }
+}
