@@ -15,7 +15,7 @@ dependencies = ["lark>=1.1"]
 Homepage = "https://github.com/demithras/openpona-language-corpus"
 
 [project.optional-dependencies]
-test = ["pytest>=8", "hypothesis>=6"]
+test = ["pytest>=8", "hypothesis>=6", "jsonschema>=4"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
