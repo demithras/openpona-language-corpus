@@ -31,3 +31,7 @@ OpenPona is now a **candidate Ontology Language**, to be tested against a backen
 ## 2026-10-09 — author decisions on the TP-04 oracle report
 
 The author accepted the Lift axis names as canonical (placement and names canon, generative relation still research), separated the four version names and declared `RESOURCE_EXHAUSTED` operational, not a syntax status, and decided three grammar points the independent oracle had exposed: META fold fallback, lexicographic priority, line edges. Details in `history/supersession_ledger.md`.
+
+## 2026-10-09 — fold gate per component, amb2 cases accepted
+
+The author decided that `max_fold_candidates` limits fold alternatives per overlap component (no product gate) and accepted the remaining 36 proposed `ambiguity_v2.jsonl` cases. Details in `CHANGELOG.md` and `docs/parser-complexity.md`.

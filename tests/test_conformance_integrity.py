@@ -34,11 +34,12 @@ BASELINE_FILES = ["basic.jsonl", "grouping.jsonl", "invalid.jsonl", "meta.jsonl"
                   "tan_dual.jsonl", "toki_pona_compat.jsonl"]
 REQUIRED_NEW = ("id", "surface", "rationale", "source_rule", "expect_status", "review")
 REVIEW = "PROPOSED - PENDING AUTHOR REVIEW"
-# Records the author accepted on 2026-10-09 (D3-D5): amb2-meta-09, amb2-tan-01 and every
-# case of canon_2026_10_09.jsonl.  An ACCEPTED record must cite that decision in source_rule.
+# Records the author accepted on 2026-10-09: every case of canon_2026_10_09.jsonl (D3-D5) and
+# every case of ambiguity_v2.jsonl (the 36 proposed ones were accepted as a batch).  Nothing in
+# any other file may be ACCEPTED.  An ACCEPTED record must cite that decision in source_rule.
 ACCEPTED = "ACCEPTED - author decision 2026-10-09"
 REVIEWS = (REVIEW, ACCEPTED)
-ACCEPTED_IDS_V2 = {"amb2-meta-09", "amb2-tan-01"}
+DECIDED_FILES = ("canon_2026_10_09.jsonl", "ambiguity_v2.jsonl")
 DECISION_FILE = "canon_2026_10_09.jsonl"
 RECORDS = cc.load_records()
 TRIAGED = json.loads((ORACLE_DIR / "triaged.json").read_text(encoding="utf-8"))
@@ -124,7 +125,7 @@ def test_every_new_record_has_all_required_fields_and_expected_trees():
 
 def test_new_expectations_are_proposals_unless_the_author_decided_them():
     for f, _n, r in _new_records():
-        decided = f == DECISION_FILE or (f == "ambiguity_v2.jsonl" and r["id"] in ACCEPTED_IDS_V2)
+        decided = f in DECIDED_FILES
         assert r["review"] == (ACCEPTED if decided else REVIEW), r["id"]
         if decided:
             assert "author decision 2026-10-09" in r["source_rule"], r["id"]

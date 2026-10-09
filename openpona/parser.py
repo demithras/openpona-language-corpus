@@ -63,7 +63,7 @@ class Budget:
     """Compute limits for one `parse` call.  Defaults are generous: every
     conformance case and the 203-token object chain stay far inside them."""
     max_tokens: int = MAX_TOKENS          # token count
-    max_fold_candidates: int = 256        # fold ambiguity: maximal META fold sets (product over components)
+    max_fold_candidates: int = 256        # fold ambiguity: maximal META fold sets PER overlap component
     max_skeletons: int = 4096             # parse count: distinct skeletons kept
     max_forest_steps: int = 2_000_000     # parse-forest expansion (rendered combinations)
     max_depth: int = 4096                 # depth of the explicit forest traversal
@@ -219,9 +219,10 @@ def _fold_space(toks: list[str], ctx: _Ctx | None):
     """Factorised space of the MAXIMAL fold sets: a list of segments, each a list
     of alternative token lists.  Plain stretches have one alternative; each overlap
     component has one alternative per distinct maximal run set.  Returns
-    (segments, count, runs).  `parse` uses `count` as the fold-ambiguity budget
-    gate (max_fold_candidates); the fold choices themselves, maximal or not, are
-    read by the single Earley parse (`_tagged`)."""
+    (segments, count, runs).  `count` (product over components) is statistics only;
+    max_fold_candidates gates each overlap component separately;
+    the fold choices themselves, maximal or not, are read by the single Earley
+    parse (`_tagged`)."""
     st = ctx.st if ctx else None
     limit = ctx.b.max_fold_candidates if ctx else 1 << 62
     runs = _find_runs(toks, st)
@@ -247,10 +248,6 @@ def _fold_space(toks: list[str], ctx: _Ctx | None):
                 alts.append(parts)
         segments.append(alts)
         count *= len(alts)
-        if count > limit:
-            raise _Exhausted("max_fold_candidates",
-                             f"more than {limit} folded readings (product over "
-                             f"{len(comps)} META overlap components)")
         i = hi
     if i < len(toks):
         segments.append([toks[i:]])
@@ -391,7 +388,7 @@ def _alts(root, toks: list[str], run_at: dict, pos_index: dict[int, int],
                 else:
                     res.add(_fmt(packed.rule.origin.name, flat))
         if not node.is_intermediate and len(res) > 1:
-            res = _prune_local(res)
+            res = _prune_local(res, ctx.tick)
         memo[key] = res
     return memo[id(root)]
 
@@ -482,23 +479,32 @@ def _reading_key(skel: str) -> tuple[frozenset, frozenset]:
     return frozenset(folded), frozenset(structural)
 
 
-def _maximal(values) -> set:
-    """The values not strictly included in another one."""
+def _maximal(values, tick=None) -> set:
+    """The values not strictly included in another one.  `tick` (optional) is the
+    time-budget check, called per candidate: the scan is quadratic."""
     vals = set(values)
-    return {v for v in vals if not any(v < w for w in vals)}
+    out = set()
+    for v in vals:
+        if tick:
+            tick()
+        if not any(v < w for w in vals):
+            out.add(v)
+    return out
 
 
-def _prune_local(skels: set[str]) -> set[str]:
+def _prune_local(skels: set[str], tick=None) -> set[str]:
     """Alternatives of ONE forest node (same symbol, same span): drop those whose
     folded positions are strictly included in another's, then, among equal
     folds, those whose structural-tan positions are strictly included in
     another's.  Sound for the global filter `_prefer` (see `_alts`)."""
     keyed = [(k, _reading_key(k)) for k in skels]
-    best_folds = _maximal(f for _k, (f, _s) in keyed)
+    best_folds = _maximal((f for _k, (f, _s) in keyed), tick)
     out = set()
     for f in best_folds:
+        if tick:
+            tick()
         group = [(k, s_) for k, (f2, s_) in keyed if f2 == f]
-        best_s = _maximal(s_ for _k, s_ in group)
+        best_s = _maximal((s_ for _k, s_ in group), tick)
         out.update(k for k, s_ in group if s_ in best_s)
     return out
 

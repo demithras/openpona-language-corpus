@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-09 - author follow-ups (PARSER, CONFORMANCE)
+
+- fold gate per overlap component: `max_fold_candidates` limits the maximal fold sets of ONE overlap component, not their product (`jan li` + n x `ilo ilo sitelen ilo sitelen` joined by `e` is RESOLVED for n = 8..14); the dominance pruning checks `max_seconds`; the 36 remaining `ambiguity_v2.jsonl` cases are ACCEPTED (author decision 2026-10-09); frozen conformance files, matrix and canon unchanged.
+
 ## 2026-10-09 - author decisions D1-D5 (CANON)
 
 - D1 `canon/03_matrix.md`, `SPEC.md` §3: the Lift labels are canonical axis names (rows R1-R6 Process, Inquiry, Method, Agency, Representation, Integration; columns C1-C7 Identity, Ground, Transform, Select, Realize, Evaluate, Structure) next to the functional column names and narrative row roles. The generative relation `T[i,j] ≈ Lex(F(Row[i], Column[j]))` stays RESEARCH. No token, cell, label or harness change; 42 tokens and `anu 1.1` unchanged, no token-version bump; research status wording updated;
