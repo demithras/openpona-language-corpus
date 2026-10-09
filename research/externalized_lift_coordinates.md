@@ -1,6 +1,6 @@
 # Externalized Lift — frozen coordinate profile H7-W / MX3-W
 
-**Status:** AUTHOR-APPROVED RESEARCH CANDIDATE (2026-10-08), **NOT CANON**, empirically **UNVERIFIED**.  
+**Status:** axis names (labels R1-R6, C1-C7) **CANONICAL since 2026-10-09** (author decision, `canon/03_matrix.md`); the generative/predictive claim `T_ij ≈ Lex(F(R_i,C_j))` remains **RESEARCH, NOT CANON**, empirically **UNVERIFIED**. Approved as a research candidate on 2026-10-08.  
 **Profile:** `externalized-lift-0.1` (`research/lift/coordinates.v0.1.json`)  
 **Source canonical inventory:** `anu 1.1`, 42 tokens, GitHub repo `demithras/openpona-language-corpus` `main` at `97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b`.
 
@@ -69,6 +69,6 @@ Example candidate readings: `(R1,C1) -> open`, `(R1,C5) -> pali`, `(R2,C3) -> lu
 
 1. Author-approved working *profile* does not equal independent support for its efficacy.
 2. Axis metadata are not extra primitive tokens, do not change grammar or `data/matrix.csv`.
-3. Current corpus `canon/03_matrix.md` remains authority for placement; `research/` is authority only for hypothetical coordinate labels.
+3. Current corpus `canon/03_matrix.md` is the authority for placement and, since 2026-10-09, for the axis names; `research/` is authority only for the generative hypothesis, which is unvalidated.
 4. Independent confirmatory trial: read `research/lift/PREREGISTRATION.md` and use `blind_experiment.py` for scaffold. Freeze experiment before participants see prompts.
 5. If null performance is not exceeded, retain coordinates as a mnemonic hypothesis only. If weak claim survives, do not infer unique lexical generation.

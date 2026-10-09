@@ -1,6 +1,6 @@
 {
   "profile_id": "externalized-lift-0.1",
-  "status": "author_approved_research_candidate_unverified",
+  "status": "axis_names_canonical_2026-10-09_generative_claim_research_unvalidated",
   "author_approval_date": "2026-10-08",
   "token_version": "anu 1.1",
   "repo": "demithras/openpona-language-corpus",
@@ -320,5 +320,5 @@
       "token": "anu"
     }
   ],
-  "caveat": "Known placements support lookup only; they are not evidence that axes generate the tokens; historic 11/11 unpublished."
+  "caveat": "Axis names canonical since 2026-10-09 (author decision); the generative/predictive claim remains RESEARCH, unvalidated. Known placements support lookup only; they are not evidence that axes generate the tokens; historic 11/11 unpublished."
 }

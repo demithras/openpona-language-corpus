@@ -53,6 +53,6 @@ This is not demonstrated. Problems include:
 
 ## Canon consequence
 
-The matrix placement remains canon. The coordinate generator does not.
+The matrix placement remains canon, and since 2026-10-09 so do the Lift axis names (`canon/03_matrix.md`). The coordinate generator does not.
 
 Use the matrix as an information-bearing semantic address and mnemonic field; do not claim it is a perfect deterministic hash from coordinates to lexical token.

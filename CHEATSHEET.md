@@ -4,16 +4,16 @@
 
 ## The matrix (6 rows x 7 columns)
 
-| Row | Narrative | Seed | Map | Explore | Decide | Work | Resonate | Structure |
-|---:|---|---|---|---|---|---|---|---|
-| 1 | Start > Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
-| 2 | Question > Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
-| 3 | Commit > Practice | `nasin` | `sijelo` | `ilo` | `lawa` | `awen` | `ken` | `e` |
-| 4 | Encounter > Transform | `jan` | `ante` | `kama` | `sama` | `ijo` | `selo` | `tan` |
-| 5 | Understand > Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
-| 6 | Generalize > Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
+| Row | Lift (R) | Narrative | Seed · Identity | Map · Ground | Explore · Transform | Decide · Select | Work · Realize | Resonate · Evaluate | Structure |
+|---:|---|---|---|---|---|---|---|---|---|
+| 1 | Process | Start > Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
+| 2 | Inquiry | Question > Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
+| 3 | Method | Commit > Practice | `nasin` | `sijelo` | `ilo` | `lawa` | `awen` | `ken` | `e` |
+| 4 | Agency | Encounter > Transform | `jan` | `ante` | `kama` | `sama` | `ijo` | `selo` | `tan` |
+| 5 | Representation | Understand > Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
+| 6 | Integration | Generalize > Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-Column names are functional (a planetary mnemonic for them is in LEARN, Lesson 1). The last column is exactly the 6 structural tokens.
+Column names are functional and carry the canonical Lift axis names (rows R1-R6, columns C1-C7; canon since 2026-10-09, `canon/03_matrix.md`); they are labels, never tokens. That the labels generate the tokens is research. A planetary mnemonic for the columns is in LEARN, Lesson 1. The last column is exactly the 6 structural tokens.
 
 ## The 42 glosses (vector first, not part of speech)
 
