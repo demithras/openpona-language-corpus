@@ -172,13 +172,15 @@ def validate_answers(gold, submission):
 
 def score(gold, submission):
     actual=validate_answers(gold,submission)
-    totals={"interior":{"n":0,"correct":0},"edge":{"n":0,"correct":0},"all":{"n":0,"correct":0}}
+    totals={"interior":{"n":0,"correct":0},"edge":{"n":0,"correct":0},"all":{"n":0,"correct":0},"interior_no_c7":{"n":0,"correct":0},"c7_interior":{"n":0,"correct":0}}
     wrong=[]
     for trial,truth in sorted(gold["gold"].items()):
         coord=trial.split('C'); r=int(coord[0][1:]); c=int(coord[1]);
         sector="interior" if r>1 and c>1 else "edge"
         matched=(actual[trial]==truth)
-        for kind in (sector,"all"):
+        kinds=[sector,"all"]
+        if sector=="interior": kinds.append("c7_interior" if c==7 else "interior_no_c7")
+        for kind in kinds:
             totals[kind]["n"]+=1; totals[kind]["correct"]+=int(matched)
         if not matched: wrong.append({"trial_id":trial,"actual":actual[trial],"expected":truth})
     for x in totals.values(): x["accuracy"]=round(x["correct"]/x["n"],8)

@@ -25,8 +25,12 @@ The Lift labels and the 42 cell tokens have been canonical on public GitHub sinc
    Do not look into `PRIVATE_DIR` and do not score during collection.
 4. **Ingest.** `python research/lift/pilot/ingest.py --dir PILOT_DIR`. It extracts the JSON answer object from surrounding prose, requires the 42 trial ids exactly once each (missing, duplicate and foreign ids reject the reply; tokens must be `""` or a candidate token; two different answer objects in one reply reject it), records the `FAMILIARITY:` line, and writes `parsed/<pid>.json` and `ingest_log.json` (accepted, excluded with reason, flags, allocated-without-response). A rejected reply is not rerun and not edited; it stays in the log.
 5. **Prepare gold elsewhere**, only after collection: `python research/lift/blind_experiment.py prepare --condition external --seed <any> --public-dir <scratch> --private-dir PRIVATE_DIR`. All conditions share the same gold mapping.
-6. **Analyze.** `python research/lift/pilot/analyze.py --dir PILOT_DIR --gold PRIVATE_DIR` writes `report.md` and `results.json`: per participant Top-1 on interior 30 / edge 12 / all 42 (abstention is wrong), per-arm mean with a participant-level bootstrap 95% CI (fixed seed), per-cell confusion, per-participant label-permutation null, familiarity counts, ingest exclusions. Both files start with `PILOT - EXPLORATORY, NOT CONFIRMATORY`.
+6. **Analyze.** `python research/lift/pilot/analyze.py --dir PILOT_DIR --gold PRIVATE_DIR` writes `report.md` and `results.json`: per participant Top-1 on interior 30 / interior w/o C7 25 / C7 5 / edge 12 / all 42 (abstention is wrong), per-arm mean with a participant-level bootstrap 95% CI (fixed seed), per-cell confusion, per-participant label-permutation null, familiarity counts, ingest exclusions. Both files start with `PILOT - EXPLORATORY, NOT CONFIRMATORY`.
 7. **Report honestly.** Quote the limitation above, the number of rejected and missing participants, and the familiarity table. Do not describe the pilot as support for MX3-W or MX3-S. Deviations from this protocol are written down as exploratory deviations.
+
+## Column C7 cue
+
+In the external arm column C7 is labelled "Structure", and the Linku glossary tags 4 of its 5 interior tokens (la, e, pi, anu) as "(particle)" (tan is "(preposition)"), a trivial column cue. The primary endpoint stays interior 30; analysis also reports `interior_no_c7` (25 cells) and `c7_interior` (5 cells) in every table. A result favouring external labels must hold on `interior_no_c7`, otherwise it is reported as cue-driven.
 
 ## What the pilot is for
 

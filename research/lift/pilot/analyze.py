@@ -4,7 +4,7 @@ Refuses to run if the pilot_freeze.json hashes (profile, glossary, scorer, pilot
 seed) no longer match the files on disk. Gold is read ONLY here, from --gold (a private_gold.json written by
 `blind_experiment.py prepare --private-dir`, or a directory searched recursively for private_gold.json).
 
-Per participant: Top-1 on interior 30 / edge 12 / all 42 (abstention counts as wrong). Per arm: mean of the
+Per participant: Top-1 on interior 30 / edge 12 / all 42, plus sensitivity sectors interior_no_c7 (25) and c7_interior (5) (abstention counts as wrong). Per arm: mean of the
 participant scores with a participant-level percentile bootstrap 95% CI (fixed seed, no binomial formula),
 per-cell confusion, and per participant the existing label-permutation null (a label-symmetry null, not an
 arm test).
@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pilotlib as pl  # noqa: E402
 
 lift = pl.lift
-SECTORS = ("interior", "edge", "all")
+SECTORS = ("interior", "edge", "all", "interior_no_c7", "c7_interior")
 
 
 def load_gold(path):
@@ -104,21 +104,23 @@ def main(argv=None):
             arms[c] = arm
         contrasts = {}
         if "external" in arms:
-            ext = [p["interior_top1"] for p in people if p["condition"] == "external"]
-            for c in cond_order:
-                if c == "external":
-                    continue
-                oth = [p["interior_top1"] for p in people if p["condition"] == c]
-                diffs = None
-                if ext and oth:
-
-                    rng = random.Random(pl.sub_seed(a.seed, "contrast", c))
-                    ds = sorted(sum(rng.choices(ext, k=len(ext))) / len(ext) - sum(rng.choices(oth, k=len(oth))) / len(oth)
-                                for _ in range(a.boot_reps))
-                    diffs = [ds[int(0.025 * a.boot_reps)], ds[int(0.975 * a.boot_reps) - 1]]
-                contrasts[f"external_minus_{c}_interior"] = {
-                    "difference_of_means": (sum(ext) / len(ext) - sum(oth) / len(oth)) if ext and oth else None,
-                    "ci95_independent_participant_bootstrap": diffs}
+            for sec in ("interior", "interior_no_c7"):
+                ext = [p[f"{sec}_top1"] for p in people if p["condition"] == "external"]
+                for c in cond_order:
+                    if c == "external":
+                        continue
+                    oth = [p[f"{sec}_top1"] for p in people if p["condition"] == c]
+                    diffs = None
+                    if ext and oth:
+                        # interior keeps its original seed label so existing values are unchanged
+                        rng = random.Random(pl.sub_seed(a.seed, "contrast", c) if sec == "interior"
+                                            else pl.sub_seed(a.seed, "contrast", c, sec))
+                        ds = sorted(sum(rng.choices(ext, k=len(ext))) / len(ext) - sum(rng.choices(oth, k=len(oth))) / len(oth)
+                                    for _ in range(a.boot_reps))
+                        diffs = [ds[int(0.025 * a.boot_reps)], ds[int(0.975 * a.boot_reps) - 1]]
+                    contrasts[f"external_minus_{c}_{sec}"] = {
+                        "difference_of_means": (sum(ext) / len(ext) - sum(oth) / len(oth)) if ext and oth else None,
+                        "ci95_independent_participant_bootstrap": diffs}
         fam = {}
         for p in people:
             fam.setdefault(p["condition"], {}).setdefault(p["familiarity"], 0)
@@ -139,10 +141,14 @@ def main(argv=None):
              f"allocated without response: {len(results['allocated_without_response'])}. Freeze verified. "
              f"Abstention counts as wrong. Bootstrap/null seed {a.seed}.", "",
              "## Per arm (mean of participant Top-1, participant-level bootstrap 95% CI)", "",
-             "| arm | n | interior 30 | interior 95% CI | edge 12 | all 42 |", "|---|---|---|---|---|---|"]
+             "| arm | n | interior 30 | interior 95% CI | interior w/o C7 (25) | interior w/o C7 95% CI | C7 (5) | C7 95% CI | edge 12 | all 42 |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
         for c, arm in arms.items():
             ci = arm["interior"]["ci95_participant_bootstrap"]
+            n7, c7 = arm["interior_no_c7"], arm["c7_interior"]
             R.append(f"| {c} | {arm['n_participants']} | {fmt(arm['interior']['mean_top1'])} | [{fmt(ci[0])}, {fmt(ci[1])}] | "
+                     f"{fmt(n7['mean_top1'])} | [{fmt(n7['ci95_participant_bootstrap'][0])}, {fmt(n7['ci95_participant_bootstrap'][1])}] | "
+                     f"{fmt(c7['mean_top1'])} | [{fmt(c7['ci95_participant_bootstrap'][0])}, {fmt(c7['ci95_participant_bootstrap'][1])}] | "
                      f"{fmt(arm['edge']['mean_top1'])} | {fmt(arm['all']['mean_top1'])} |")
         R += ["", "## Per participant", "",
               "| participant | vendor | arm | interior /30 | edge /12 | all /42 | abstained | null p (interior) | familiarity |",
@@ -151,7 +157,7 @@ def main(argv=None):
             R.append(f"| {p['participant_id']} | {p['vendor']} | {p['condition']} | {p['interior_correct']} | {p['edge_correct']} | "
                      f"{p['all_correct']} | {p['abstained']} | {p['null_p_ge_plus_one_interior']} | {p['familiarity']} |")
         if contrasts:
-            R += ["", "## External minus control, interior (descriptive)", ""]
+            R += ["", "## External minus control, interior and interior w/o C7 (descriptive)", ""]
             for k, v in contrasts.items():
                 ci = v["ci95_independent_participant_bootstrap"]
                 R.append(f"- {k}: {fmt(v['difference_of_means'])}" + (f" [{fmt(ci[0])}, {fmt(ci[1])}]" if ci else ""))
