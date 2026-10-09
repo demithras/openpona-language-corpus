@@ -85,16 +85,22 @@ def test_product_of_components_is_statistics_only():
     assert stats.fold_candidates == 2 ** 10
 
 
+def test_every_fold_valid_family_under_budget_stays_ambiguous():
+    """n = 11: 2^11 = 2048 genuine readings, below max_skeletons: all are kept."""
+    res = parse("jan li " + " e ".join(["jan pali jan pali jan"] * 11))
+    assert res.status == "AMBIGUOUS" and len(res.skeletons) == 2048
+
+
 @pytest.mark.parametrize("n", [13, 16, 30])
-def test_every_fold_valid_family_is_caught_by_the_clock_not_hung(n):
-    """2^n genuine readings (every per-group fold choice is valid): the parse ends in
-    RESOURCE_EXHAUSTED through max_seconds (the pruning loop checks the clock),
-    never RESOLVED/INVALID, never a hang."""
+def test_every_fold_valid_family_is_caught_early_by_max_skeletons(n):
+    """2^n genuine readings above max_skeletons: an upper bound computed from the
+    forest before any skeleton is rendered ends the parse at once with the DEFAULT
+    budget - not after building 4096 skeletons, not through max_seconds."""
     text = "jan li " + " e ".join(["jan pali jan pali jan"] * n)
     t0 = time.perf_counter()
-    res = parse(text, Budget(max_seconds=1.0))
-    assert time.perf_counter() - t0 < 2.0
-    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_seconds"
+    res = parse(text)
+    assert time.perf_counter() - t0 < 1.0
+    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_skeletons"
     assert res.skeletons == []
 
 

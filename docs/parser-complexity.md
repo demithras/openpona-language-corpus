@@ -193,7 +193,7 @@ Rules:
 |---|---|---|---|
 | `max_tokens` | 256 | token count | `max_tokens` |
 | `max_fold_candidates` | 256 | fold ambiguity: number of **maximal META fold sets of ONE overlap component** (not the product over components; the product is only the `fold_candidates` statistic). Since 2026-10-09 fold choices are not separate parses, so this no longer counts parses | `max_fold_candidates` |
-| `max_skeletons` | 4096 | parse count: distinct parses kept | `max_skeletons` |
+| `max_skeletons` | 4096 | parse count: distinct parses kept; also an upper bound on the forest's readings, checked before rendering | `max_skeletons` |
 | `max_forest_steps` | 2,000,000 | parse-forest expansion | `max_forest_steps` |
 | `max_depth` | 4096 | explicit traversal depth (also catches a contained `RecursionError`) | `max_depth` |
 | `max_seconds` | 10.0 | elapsed time, checked between steps | `max_seconds` |
@@ -303,15 +303,20 @@ seeded runs of 2-3 copies separated by random particles, ending in `li`
   0.03 s (the previous product gate gave `RESOURCE_EXHAUSTED` from n = 9).
   Where every per-component fold choice is *valid*, readings really multiply:
   `jan li` followed by n copies of `jan pali jan pali jan` joined by `e` gives
-  `AMBIGUOUS` with 2^n skeletons for n = 8 (256, 0.12 s), n = 10 (1024, 0.7 s),
-  n = 11 (2048, 2.5 s). From n = 12 the parse ends in `RESOURCE_EXHAUSTED`
-  through `max_seconds`: it is the budget that catches it, because the
-  quadratic dominance pruning of one forest node (`_prune_local`) is now checked
-  against the clock (before, it could overshoot 10 s by more than double).
-  With the default `max_seconds` = 10 s the n >= 12 runs end at about 10 s; with
-  `Budget(max_seconds=1.0)` n = 13..40 end at 1.0-1.04 s. Never a hang, never
-  `RESOLVED` or `INVALID`. `max_skeletons` does not fire first: it is checked
-  only after the forest is built.
+  `AMBIGUOUS` with 2^n skeletons for n = 8 (256, 0.11 s), n = 11 (2048, 1.0 s),
+  n = 12 (4096, 4.0 s: exactly the budget). From n = 13 the parse ends in
+  `RESOURCE_EXHAUSTED` through `max_skeletons` after about 0.5 s (n = 13: 0.46 s,
+  n = 16: 0.42 s, n = 30: 0.51 s, default budget). In `_alts`, before the
+  combinations of a forest node are built, an upper bound on its readings is
+  computed by dynamic programming from its already-pruned children (sum over
+  packed alternatives, product over children, saturated at `max_skeletons` + 1);
+  a bound above the budget raises at once, so the 4096-skeleton set is never
+  built. (A bound over the raw forest, ignoring pruning, was tried and rejected:
+  it flipped the `nonoverlap` family from `RESOLVED` to `RESOURCE_EXHAUSTED`.)
+  The bound ignores only the pruning of the node itself. Same pass: `_maximal`
+  compares a value only with the maximal ones found so far and `_prune_local`
+  groups by fold set once, which cut the node-pruning cost. No conformance
+  record changed status. Never a hang, never `RESOLVED` or `INVALID`.
 * **A single Earley parse cannot be interrupted.** `max_seconds` is checked
   between folds and during rendering, not inside Lark. One parse is bounded by
   `max_tokens` (Earley is at most cubic). The slowest input seen at 253-255 tokens
