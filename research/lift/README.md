@@ -9,16 +9,33 @@ From the package root:
 ```bash
 python research/lift/blind_experiment.py validate
 python -m unittest discover -s research/lift/tests -v
-python research/lift/blind_experiment.py prepare --condition external --seed 20261008 --out-dir /tmp/lift-external
-python research/lift/blind_experiment.py prepare --condition embedded --seed 20261008 --out-dir /tmp/lift-embedded
-python research/lift/blind_experiment.py prepare --condition generic --seed 20261008 --out-dir /tmp/lift-generic
-python research/lift/blind_experiment.py prepare --condition shuffled --seed 20261008 --out-dir /tmp/lift-shuffled
+python research/lift/blind_experiment.py prepare --condition external --seed 20261008 --public-dir /tmp/lift-external/public --private-dir /private-store/lift-external
+python research/lift/blind_experiment.py prepare --condition embedded --seed 20261008 --public-dir /tmp/lift-embedded/public --private-dir /private-store/lift-embedded
+python research/lift/blind_experiment.py prepare --condition generic --seed 20261008 --public-dir /tmp/lift-generic/public --private-dir /private-store/lift-generic
+python research/lift/blind_experiment.py prepare --condition shuffled --seed 20261008 --public-dir /tmp/lift-shuffled/public --private-dir /private-store/lift-shuffled
 # Fill the generated submission_template.json in a separate blinded evaluation.
-python research/lift/blind_experiment.py score --gold /tmp/lift-external/private_gold.json --answers submitted.json --out score.json
-python research/lift/blind_experiment.py null --gold /tmp/lift-external/private_gold.json --answers submitted.json --reps 10000 --seed 20261008 --out null.json
+python research/lift/blind_experiment.py score --gold /private-store/lift-external/private_gold.json --answers submitted.json --out score.json
+python research/lift/blind_experiment.py null --gold /private-store/lift-external/private_gold.json --answers submitted.json --reps 10000 --seed 20261008 --out null.json
 ```
 
-`prepare` creates: `public_prompt.json` (coordinate labels, candidate list, NO cell-token mapping), `submission_template.json` (blank tokens), and `private_gold.json` (truth mapping, keep secret). **Do not distribute output directory as-is.** Separate gold and public files before human/agent use. The shared package itself reveals the table and cannot be a blind participant resource.
+`prepare` takes two required, separate output roots. `--public-dir` receives `public_prompt.json` (coordinate labels, candidate list, the frozen candidate glossary, NO cell-token mapping) and `submission_template.json` (blank tokens); `--private-dir` receives `private_gold.json` (truth mapping, keep secret). `prepare` exits non-zero (and writes nothing) when the two directories are equal or one lies inside the other (symlinks resolved; PREREGISTRATION point 9), and when either directory is non-empty. Distribute only the public directory. The shared package itself reveals the table and cannot be a blind participant resource.
+
+The public prompt includes `glossary`: the English definition of each of the 42 candidate tokens from `glossary/linku_en_2026-10-09.json` (lipu Linku, CC BY-SA 4.0, retrieved 2026-10-09, snapshot SHA-256 recorded in the file; see `glossary/LICENSE-NOTICE.md`). It is identical in all four arms.
+
+## Pilot kit (isolated LLM participants)
+
+`pilot/` holds the operator kit for the exploratory pilot added by the 2026-10-09 amendment (PREREGISTRATION.md, "Pilot amendment"): `make_packets.py`, `freeze.py`, `ingest.py`, `analyze.py` and the step-by-step `pilot/PILOT_PROTOCOL.md`. Every output of the kit is headed `PILOT - EXPLORATORY, NOT CONFIRMATORY`.
+
+```bash
+python research/lift/pilot/make_packets.py --vendors a,b,c --per-arm-per-vendor 3 --seed 20261009 --out-dir PILOT_DIR
+python research/lift/pilot/freeze.py --dir PILOT_DIR          # before ANY response
+# collect responses/<pid>.txt (see PILOT_PROTOCOL.md), then:
+python research/lift/pilot/ingest.py --dir PILOT_DIR
+python research/lift/blind_experiment.py prepare --condition external --seed 1 --public-dir SCRATCH --private-dir PRIVATE_DIR   # gold only
+python research/lift/pilot/analyze.py --dir PILOT_DIR --gold PRIVATE_DIR
+```
+
+Packets contain no gold; the gold pair of a cell (trial id with its token) never appears in a packet. `analyze.py` is the only step that reads gold, and it refuses to run if any frozen hash (profile, glossary, scorer, pilot scripts, config, allocation, every packet, seed) changed.
 
 ## Validation (TP-14)
 
@@ -40,4 +57,4 @@ Real scoring requires **all 42** trial ids; use empty string for abstention. Tri
 
 ## What is missing before actual experiment
 
-Independent candidate glossary, blinded evaluators with no project knowledge, preregistered N/randomization/threshold, separate private-gold storage, completed observed responses, confidence intervals per independent evaluator, and independent replay. These are tracked in TP-08/TP-15. Do not describe any smoke-test as experimental support.
+Blinded evaluators with no project knowledge (the candidate glossary now exists: `glossary/`), preregistered N/randomization/threshold for the main study (the pilot sizes it), enforced separate private-gold storage for production, completed observed responses, confidence intervals per independent evaluator, and independent replay. These are tracked in TP-08/TP-15. Do not describe any smoke-test as experimental support.
