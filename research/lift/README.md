@@ -35,6 +35,8 @@ python research/lift/blind_experiment.py prepare --condition external --seed 1 -
 python research/lift/pilot/analyze.py --dir PILOT_DIR --gold PRIVATE_DIR
 ```
 
+Model-level analysis (unit = model, runs are not independent): `python research/lift/analysis/model_level.py --results PILOT_DIR/results.json --out-dir OUT_DIR` (see `analysis/model_level.py`).
+
 Packets contain no gold; the gold pair of a cell (trial id with its token) never appears in a packet. `analyze.py` is the only step that reads gold, and it refuses to run if any frozen hash (profile, glossary, scorer, pilot scripts, config, allocation, every packet, seed) changed.
 
 ## Validation (TP-14)

@@ -1,0 +1,212 @@
+{
+  "answers": [
+    {
+      "token": "open",
+      "trial_id": "R1C1"
+    },
+    {
+      "token": "pali",
+      "trial_id": "R1C2"
+    },
+    {
+      "token": "tawa",
+      "trial_id": "R1C3"
+    },
+    {
+      "token": "pana",
+      "trial_id": "R1C4"
+    },
+    {
+      "token": "kama",
+      "trial_id": "R1C5"
+    },
+    {
+      "token": "nasin",
+      "trial_id": "R1C6"
+    },
+    {
+      "token": "tenpo",
+      "trial_id": "R1C7"
+    },
+    {
+      "token": "sona",
+      "trial_id": "R2C1"
+    },
+    {
+      "token": "lukin",
+      "trial_id": "R2C2"
+    },
+    {
+      "token": "seme",
+      "trial_id": "R2C3"
+    },
+    {
+      "token": "toki",
+      "trial_id": "R2C4"
+    },
+    {
+      "token": "kute",
+      "trial_id": "R2C5"
+    },
+    {
+      "token": "pilin",
+      "trial_id": "R2C6"
+    },
+    {
+      "token": "sitelen",
+      "trial_id": "R2C7"
+    },
+    {
+      "token": "ilo",
+      "trial_id": "R3C1"
+    },
+    {
+      "token": "ken",
+      "trial_id": "R3C2"
+    },
+    {
+      "token": "ante",
+      "trial_id": "R3C3"
+    },
+    {
+      "token": "pi",
+      "trial_id": "R3C4"
+    },
+    {
+      "token": "li",
+      "trial_id": "R3C5"
+    },
+    {
+      "token": "weka",
+      "trial_id": "R3C6"
+    },
+    {
+      "token": "ala",
+      "trial_id": "R3C7"
+    },
+    {
+      "token": "jan",
+      "trial_id": "R4C1"
+    },
+    {
+      "token": "wile",
+      "trial_id": "R4C2"
+    },
+    {
+      "token": "lawa",
+      "trial_id": "R4C3"
+    },
+    {
+      "token": "awen",
+      "trial_id": "R4C4"
+    },
+    {
+      "token": "pini",
+      "trial_id": "R4C5"
+    },
+    {
+      "token": "sama",
+      "trial_id": "R4C6"
+    },
+    {
+      "token": "kulupu",
+      "trial_id": "R4C7"
+    },
+    {
+      "token": "sijelo",
+      "trial_id": "R5C1"
+    },
+    {
+      "token": "ni",
+      "trial_id": "R5C2"
+    },
+    {
+      "token": "linja",
+      "trial_id": "R5C3"
+    },
+    {
+      "token": "la",
+      "trial_id": "R5C4"
+    },
+    {
+      "token": "lon",
+      "trial_id": "R5C5"
+    },
+    {
+      "token": "pona",
+      "trial_id": "R5C6"
+    },
+    {
+      "token": "selo",
+      "trial_id": "R5C7"
+    },
+    {
+      "token": "ijo",
+      "trial_id": "R6C1"
+    },
+    {
+      "token": "sike",
+      "trial_id": "R6C2"
+    },
+    {
+      "token": "anu",
+      "trial_id": "R6C3"
+    },
+    {
+      "token": "tan",
+      "trial_id": "R6C4"
+    },
+    {
+      "token": "e",
+      "trial_id": "R6C5"
+    },
+    {
+      "token": "ale",
+      "trial_id": "R6C6"
+    },
+    {
+      "token": "ma",
+      "trial_id": "R6C7"
+    }
+  ],
+  "condition": "external",
+  "familiarity_answer": "no",
+  "familiarity_text": "",
+  "meta": {
+    "date": "2026-10-09",
+    "duration_s": 12.559,
+    "model_id": "claude-haiku-5-5",
+    "model_ids": [
+      "claude-haiku-5-5"
+    ],
+    "other_settings": {
+      "alias": "haiku",
+      "backend": "claude -p",
+      "command": [
+        "claude",
+        "-p",
+        "--model",
+        "haiku",
+        "--tools",
+        "",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "",
+        "--no-session-persistence",
+        "--system-prompt",
+        "You are a helpful assistant.",
+        "--output-format",
+        "json"
+      ],
+      "cwd": "fresh empty temp dir"
+    },
+    "system_prompt": "You are a helpful assistant.",
+    "temperature": "default",
+    "transport_retries": 0,
+    "vendor": "haiku"
+  },
+  "participant_id": "p035",
+  "profile_id": "externalized-lift-0.1",
+  "raw_sha256": "7b7ddd4e3911e2fa89901abacd3181cc52acc8d96112d8d057105026021215b1",
+  "vendor": "haiku"
+}

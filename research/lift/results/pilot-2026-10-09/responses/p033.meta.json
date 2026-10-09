@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-09",
+  "duration_s": 8.18,
+  "model_id": "claude-haiku-5-5",
+  "model_ids": [
+    "claude-haiku-5-5"
+  ],
+  "other_settings": {
+    "alias": "haiku",
+    "backend": "claude -p",
+    "command": [
+      "claude",
+      "-p",
+      "--model",
+      "haiku",
+      "--tools",
+      "",
+      "--strict-mcp-config",
+      "--setting-sources",
+      "",
+      "--no-session-persistence",
+      "--system-prompt",
+      "You are a helpful assistant.",
+      "--output-format",
+      "json"
+    ],
+    "cwd": "fresh empty temp dir"
+  },
+  "system_prompt": "You are a helpful assistant.",
+  "temperature": "default",
+  "transport_retries": 0,
+  "vendor": "haiku"
+}

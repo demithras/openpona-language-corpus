@@ -1,0 +1,7342 @@
+{
+  "banner": "PILOT - EXPLORATORY, NOT CONFIRMATORY",
+  "freeze_verified": true,
+  "seed": 20261009,
+  "boot_reps": 10000,
+  "null_reps": 10000,
+  "n_participants_analysed": 24,
+  "ingest_excluded": [],
+  "ingest_flags": [],
+  "allocated_without_response": [
+    "p001",
+    "p003",
+    "p009",
+    "p010",
+    "p012",
+    "p013",
+    "p014",
+    "p018",
+    "p020",
+    "p022",
+    "p023",
+    "p031"
+  ],
+  "participants": [
+    {
+      "participant_id": "p002",
+      "vendor": "haiku",
+      "condition": "shuffled",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p004",
+      "vendor": "sonnet",
+      "condition": "external",
+      "familiarity": "no",
+      "interior_correct": 1,
+      "edge_correct": 4,
+      "all_correct": 5,
+      "interior_no_c7_correct": 1,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.03333333,
+      "edge_top1": 0.33333333,
+      "all_top1": 0.11904762,
+      "interior_no_c7_top1": 0.04,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.5050495,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "ijo",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "tan",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "ante",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "open",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "lukin",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "nasin",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "sona",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "toki",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "wile",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "kama",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "linja",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "sama",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "lon",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "tawa",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "ken",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "ilo",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "pona",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "pi",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "awen",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "pana",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "lawa",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "weka",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "ala",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "kulupu",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "selo",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "li",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "e",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "la",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "anu",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "ni",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "ale",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "ma",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "sike",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "pini",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "tenpo",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "pilin",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "sijelo",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p005",
+      "vendor": "sonnet",
+      "condition": "shuffled",
+      "familiarity": "no",
+      "interior_correct": 2,
+      "edge_correct": 0,
+      "all_correct": 2,
+      "interior_no_c7_correct": 2,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.06666667,
+      "edge_top1": 0.0,
+      "all_top1": 0.04761905,
+      "interior_no_c7_top1": 0.08,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.15838416,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "seme",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "ante",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "anu",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "open",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "lukin",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "ma",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "ni",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "nasin",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "ilo",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "e",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "pali",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "pona",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "linja",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "ala",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "jan",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "ken",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "wile",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "pana",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "lawa",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "kulupu",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "ijo",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "sitelen",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "toki",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "kute",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "li",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "sona",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "pilin",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "ale",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "kama",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "pi",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "la",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "sama",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "sijelo",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "lon",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "tenpo",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "tawa",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "pini",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "tan",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "sike",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "awen",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p006",
+      "vendor": "sonnet",
+      "condition": "generic",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p007",
+      "vendor": "sonnet",
+      "condition": "external",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 5,
+      "all_correct": 5,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.41666667,
+      "all_top1": 0.11904762,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "ijo",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "tan",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "ante",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "open",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "pini",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "tenpo",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "sona",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "toki",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "lukin",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "kute",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "anu",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "ala",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "lon",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "kama",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "ken",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "ilo",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "pona",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "sike",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "wile",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "tawa",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "lawa",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "pana",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "awen",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "kulupu",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "selo",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "sama",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "weka",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "sijelo",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "pilin",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "linja",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "ale",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "ma",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "e",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "li",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "la",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "pi",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "ni",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p008",
+      "vendor": "haiku",
+      "condition": "shuffled",
+      "familiarity": "no",
+      "interior_correct": 1,
+      "edge_correct": 0,
+      "all_correct": 1,
+      "interior_no_c7_correct": 1,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.03333333,
+      "edge_top1": 0.0,
+      "all_top1": 0.02380952,
+      "interior_no_c7_top1": 0.04,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.5090491,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "ma",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "ante",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "seme",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "sona",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "lukin",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "sitelen",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "ijo",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "selo",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "pali",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "pi",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "open",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "pini",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "linja",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "sama",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "jan",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "wile",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "ken",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "pana",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "kama",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "lawa",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "kulupu",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "pilin",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "tawa",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "li",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "ilo",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "kute",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "sike",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "pona",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "ale",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "la",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "e",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "tan",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "toki",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "sijelo",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "ala",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "tenpo",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "awen",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "anu",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "lon",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "nasin",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "ni",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p011",
+      "vendor": "sonnet",
+      "condition": "embedded",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 12,
+      "all_correct": 12,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 1.0,
+      "all_top1": 0.28571429,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 30,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p015",
+      "vendor": "sonnet",
+      "condition": "generic",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p016",
+      "vendor": "haiku",
+      "condition": "embedded",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p017",
+      "vendor": "haiku",
+      "condition": "generic",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p019",
+      "vendor": "haiku",
+      "condition": "shuffled",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "sona",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "ante",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "sona",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "open",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "lukin",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "ni",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "seme",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "ma",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "ante",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "nasin",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "ilo",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "pona",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "selo",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "nasin",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "jan",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "wile",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "kute",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "pali",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "ken",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "lawa",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "sijelo",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "sitelen",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "sitelen",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "sama",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "sitelen",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "sama",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "sike",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "sitelen",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "kulupu",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "la",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "pi",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "pana",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "ale",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "linja",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "ijo",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "tan",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "tenpo",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "awen",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "kama",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "pini",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "pini",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "tawa",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p021",
+      "vendor": "sonnet",
+      "condition": "embedded",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 12,
+      "all_correct": 12,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 1.0,
+      "all_top1": 0.28571429,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 30,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p024",
+      "vendor": "haiku",
+      "condition": "external",
+      "familiarity": "no",
+      "interior_correct": 3,
+      "edge_correct": 4,
+      "all_correct": 7,
+      "interior_no_c7_correct": 3,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.1,
+      "edge_top1": 0.33333333,
+      "all_top1": 0.16666667,
+      "interior_no_c7_top1": 0.12,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.03779622,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C2",
+          "actual": "pali",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "kama",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "pini",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "pana",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "ante",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "tenpo",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "kute",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "sona",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "toki",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "seme",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "ala",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "li",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "ken",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "tawa",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "la",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "pi",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "anu",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "wile",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "lawa",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "kulupu",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "e",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "awen",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "ale",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "ijo",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "linja",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "selo",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "sijelo",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "pilin",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "ma",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "lon",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "tan",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "sike",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "pona",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "sama",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "ni",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p025",
+      "vendor": "sonnet",
+      "condition": "embedded",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 12,
+      "all_correct": 12,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 1.0,
+      "all_top1": 0.28571429,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 30,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p026",
+      "vendor": "sonnet",
+      "condition": "shuffled",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "sona",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "ante",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "seme",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "open",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "lukin",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "toki",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "ni",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "nasin",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "pali",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "ken",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "ilo",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "pona",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "linja",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "sama",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "jan",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "kama",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "wile",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "pana",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "lawa",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "kulupu",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "ijo",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "sitelen",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "tawa",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "anu",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "sijelo",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "kute",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "pi",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "selo",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "ma",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "la",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "li",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "e",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "ala",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "sike",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "ale",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "tenpo",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "pini",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "tan",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "awen",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "weka",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "pilin",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "lon",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p027",
+      "vendor": "sonnet",
+      "condition": "external",
+      "familiarity": "no",
+      "interior_correct": 4,
+      "edge_correct": 4,
+      "all_correct": 8,
+      "interior_no_c7_correct": 2,
+      "c7_interior_correct": 2,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.13333333,
+      "edge_top1": 0.33333333,
+      "all_top1": 0.19047619,
+      "interior_no_c7_top1": 0.08,
+      "c7_interior_top1": 0.4,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.00639936,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "ijo",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "tan",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "ante",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "anu",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "kama",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "pini",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "sike",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "lon",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "ni",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "sona",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "ala",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "ilo",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "pali",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "wile",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "open",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "pona",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "linja",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "lawa",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "pana",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "ken",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "tawa",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "kute",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "kulupu",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "toki",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "sijelo",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "pilin",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "selo",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "sama",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "ale",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "ma",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "awen",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "tenpo",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "li",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "e",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p028",
+      "vendor": "haiku",
+      "condition": "generic",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p029",
+      "vendor": "haiku",
+      "condition": "embedded",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p030",
+      "vendor": "sonnet",
+      "condition": "shuffled",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 10,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "sona",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "ante",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "seme",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "lukin",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "kute",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "ni",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "nasin",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "pali",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "ken",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "open",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "pona",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "jan",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "tawa",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "wile",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "kama",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "lawa",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "kulupu",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "selo",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "sitelen",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "toki",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "pana",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "linja",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "ma",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "ale",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "sike",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "sama",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "tenpo",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "tan",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "awen",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "pini",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "weka",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "lon",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p032",
+      "vendor": "haiku",
+      "condition": "generic",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p033",
+      "vendor": "haiku",
+      "condition": "external",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p034",
+      "vendor": "haiku",
+      "condition": "embedded",
+      "familiarity": "unsure",
+      "interior_correct": 0,
+      "edge_correct": 0,
+      "all_correct": 0,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.0,
+      "all_top1": 0.0,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 42,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p035",
+      "vendor": "haiku",
+      "condition": "external",
+      "familiarity": "no",
+      "interior_correct": 0,
+      "edge_correct": 3,
+      "all_correct": 3,
+      "interior_no_c7_correct": 0,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.0,
+      "edge_top1": 0.25,
+      "all_top1": 0.07142857,
+      "interior_no_c7_top1": 0.0,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 1.0,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C2",
+          "actual": "pali",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "pana",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "kama",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "nasin",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "tenpo",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "sona",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "lukin",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "seme",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "toki",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "kute",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "pilin",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "sitelen",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "ilo",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "ken",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "ante",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "pi",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C5",
+          "actual": "li",
+          "expected": "awen"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "weka",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "ala",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "wile",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "lawa",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "awen",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "pini",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "sama",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "kulupu",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "sijelo",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "ni",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "linja",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "la",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "lon",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "pona",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "selo",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "ijo",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "sike",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "anu",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "tan",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "e",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "ale",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "ma",
+          "expected": "anu"
+        }
+      ]
+    },
+    {
+      "participant_id": "p036",
+      "vendor": "sonnet",
+      "condition": "generic",
+      "familiarity": "no",
+      "interior_correct": 1,
+      "edge_correct": 0,
+      "all_correct": 1,
+      "interior_no_c7_correct": 1,
+      "c7_interior_correct": 0,
+      "interior_n": 30,
+      "edge_n": 12,
+      "all_n": 42,
+      "interior_no_c7_n": 25,
+      "c7_interior_n": 5,
+      "interior_top1": 0.03333333,
+      "edge_top1": 0.0,
+      "all_top1": 0.02380952,
+      "interior_no_c7_top1": 0.04,
+      "c7_interior_top1": 0.0,
+      "abstained": 0,
+      "null_p_ge_plus_one_interior": 0.51324868,
+      "null_reps": 10000,
+      "mistakes": [
+        {
+          "trial_id": "R1C1",
+          "actual": "toki",
+          "expected": "open"
+        },
+        {
+          "trial_id": "R1C2",
+          "actual": "lukin",
+          "expected": "lon"
+        },
+        {
+          "trial_id": "R1C3",
+          "actual": "li",
+          "expected": "tawa"
+        },
+        {
+          "trial_id": "R1C4",
+          "actual": "ma",
+          "expected": "wile"
+        },
+        {
+          "trial_id": "R1C5",
+          "actual": "jan",
+          "expected": "pali"
+        },
+        {
+          "trial_id": "R1C6",
+          "actual": "kama",
+          "expected": "pilin"
+        },
+        {
+          "trial_id": "R1C7",
+          "actual": "pana",
+          "expected": "li"
+        },
+        {
+          "trial_id": "R2C1",
+          "actual": "tenpo",
+          "expected": "seme"
+        },
+        {
+          "trial_id": "R2C2",
+          "actual": "ale",
+          "expected": "ma"
+        },
+        {
+          "trial_id": "R2C3",
+          "actual": "sama",
+          "expected": "lukin"
+        },
+        {
+          "trial_id": "R2C4",
+          "actual": "pona",
+          "expected": "sona"
+        },
+        {
+          "trial_id": "R2C5",
+          "actual": "seme",
+          "expected": "ni"
+        },
+        {
+          "trial_id": "R2C6",
+          "actual": "sike",
+          "expected": "kute"
+        },
+        {
+          "trial_id": "R2C7",
+          "actual": "selo",
+          "expected": "la"
+        },
+        {
+          "trial_id": "R3C1",
+          "actual": "ken",
+          "expected": "nasin"
+        },
+        {
+          "trial_id": "R3C2",
+          "actual": "lon",
+          "expected": "sijelo"
+        },
+        {
+          "trial_id": "R3C3",
+          "actual": "tawa",
+          "expected": "ilo"
+        },
+        {
+          "trial_id": "R3C4",
+          "actual": "wile",
+          "expected": "lawa"
+        },
+        {
+          "trial_id": "R3C6",
+          "actual": "nasin",
+          "expected": "ken"
+        },
+        {
+          "trial_id": "R3C7",
+          "actual": "ala",
+          "expected": "e"
+        },
+        {
+          "trial_id": "R4C1",
+          "actual": "ijo",
+          "expected": "jan"
+        },
+        {
+          "trial_id": "R4C2",
+          "actual": "tan",
+          "expected": "ante"
+        },
+        {
+          "trial_id": "R4C3",
+          "actual": "lawa",
+          "expected": "kama"
+        },
+        {
+          "trial_id": "R4C4",
+          "actual": "pini",
+          "expected": "sama"
+        },
+        {
+          "trial_id": "R4C5",
+          "actual": "la",
+          "expected": "ijo"
+        },
+        {
+          "trial_id": "R4C6",
+          "actual": "sona",
+          "expected": "selo"
+        },
+        {
+          "trial_id": "R4C7",
+          "actual": "pilin",
+          "expected": "tan"
+        },
+        {
+          "trial_id": "R5C1",
+          "actual": "open",
+          "expected": "sitelen"
+        },
+        {
+          "trial_id": "R5C2",
+          "actual": "pi",
+          "expected": "linja"
+        },
+        {
+          "trial_id": "R5C3",
+          "actual": "weka",
+          "expected": "pana"
+        },
+        {
+          "trial_id": "R5C4",
+          "actual": "ni",
+          "expected": "toki"
+        },
+        {
+          "trial_id": "R5C5",
+          "actual": "kute",
+          "expected": "tenpo"
+        },
+        {
+          "trial_id": "R5C6",
+          "actual": "ilo",
+          "expected": "pini"
+        },
+        {
+          "trial_id": "R5C7",
+          "actual": "sijelo",
+          "expected": "pi"
+        },
+        {
+          "trial_id": "R6C1",
+          "actual": "kulupu",
+          "expected": "sike"
+        },
+        {
+          "trial_id": "R6C2",
+          "actual": "anu",
+          "expected": "ale"
+        },
+        {
+          "trial_id": "R6C3",
+          "actual": "pali",
+          "expected": "weka"
+        },
+        {
+          "trial_id": "R6C4",
+          "actual": "e",
+          "expected": "ala"
+        },
+        {
+          "trial_id": "R6C5",
+          "actual": "sitelen",
+          "expected": "kulupu"
+        },
+        {
+          "trial_id": "R6C6",
+          "actual": "linja",
+          "expected": "pona"
+        },
+        {
+          "trial_id": "R6C7",
+          "actual": "ante",
+          "expected": "anu"
+        }
+      ]
+    }
+  ],
+  "arms": {
+    "external": {
+      "n_participants": 6,
+      "interior": {
+        "mean_top1": 0.04444444333333333,
+        "sd": 0.05837300149644274,
+        "ci95_participant_bootstrap": [
+          0.005555555,
+          0.08888888666666667
+        ],
+        "min": 0.0,
+        "max": 0.13333333
+      },
+      "edge": {
+        "mean_top1": 0.27777777666666664,
+        "sd": 0.14593250583492104,
+        "ci95_participant_bootstrap": [
+          0.15277777833333334,
+          0.3611111116666667
+        ],
+        "min": 0.0,
+        "max": 0.41666667
+      },
+      "all": {
+        "mean_top1": 0.11111111166666666,
+        "sd": 0.06845669477642619,
+        "ci95_participant_bootstrap": [
+          0.05952381,
+          0.15873015999999998
+        ],
+        "min": 0.0,
+        "max": 0.19047619
+      },
+      "interior_no_c7": {
+        "mean_top1": 0.04,
+        "sd": 0.05059644256269407,
+        "ci95_participant_bootstrap": [
+          0.006666666666666667,
+          0.08
+        ],
+        "min": 0.0,
+        "max": 0.12
+      },
+      "c7_interior": {
+        "mean_top1": 0.06666666666666667,
+        "sd": 0.16329931618554522,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.20000000000000004
+        ],
+        "min": 0.0,
+        "max": 0.4
+      },
+      "by_vendor_interior_mean": {
+        "haiku": 0.03333333333333333,
+        "sonnet": 0.055555553333333334
+      },
+      "per_cell_confusion": {
+        "R1C1": {
+          "gold": "open",
+          "answers": {
+            "ijo": 3,
+            "open": 2,
+            "": 1
+          },
+          "correct": 2,
+          "n": 6
+        },
+        "R1C2": {
+          "gold": "lon",
+          "answers": {
+            "tan": 3,
+            "pali": 2,
+            "": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C3": {
+          "gold": "tawa",
+          "answers": {
+            "ante": 3,
+            "": 1,
+            "kama": 1,
+            "tawa": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R1C4": {
+          "gold": "wile",
+          "answers": {
+            "open": 2,
+            "": 1,
+            "anu": 1,
+            "pana": 1,
+            "pini": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C5": {
+          "gold": "pali",
+          "answers": {
+            "kama": 2,
+            "pali": 2,
+            "": 1,
+            "pana": 1
+          },
+          "correct": 2,
+          "n": 6
+        },
+        "R1C6": {
+          "gold": "pilin",
+          "answers": {
+            "pini": 2,
+            "": 1,
+            "ante": 1,
+            "lukin": 1,
+            "nasin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C7": {
+          "gold": "li",
+          "answers": {
+            "tenpo": 3,
+            "": 1,
+            "nasin": 1,
+            "sike": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C1": {
+          "gold": "seme",
+          "answers": {
+            "seme": 3,
+            "": 1,
+            "kute": 1,
+            "sona": 1
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R2C2": {
+          "gold": "ma",
+          "answers": {
+            "sona": 3,
+            "": 1,
+            "lon": 1,
+            "lukin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C3": {
+          "gold": "lukin",
+          "answers": {
+            "lukin": 2,
+            "toki": 2,
+            "": 1,
+            "seme": 1
+          },
+          "correct": 2,
+          "n": 6
+        },
+        "R2C4": {
+          "gold": "sona",
+          "answers": {
+            "toki": 2,
+            "": 1,
+            "lukin": 1,
+            "ni": 1,
+            "wile": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C5": {
+          "gold": "ni",
+          "answers": {
+            "kute": 2,
+            "": 1,
+            "kama": 1,
+            "seme": 1,
+            "sona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C6": {
+          "gold": "kute",
+          "answers": {
+            "ala": 2,
+            "": 1,
+            "anu": 1,
+            "kute": 1,
+            "pilin": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R2C7": {
+          "gold": "la",
+          "answers": {
+            "": 1,
+            "ala": 1,
+            "la": 1,
+            "li": 1,
+            "linja": 1,
+            "sitelen": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R3C1": {
+          "gold": "nasin",
+          "answers": {
+            "nasin": 3,
+            "": 1,
+            "ilo": 1,
+            "sama": 1
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R3C2": {
+          "gold": "sijelo",
+          "answers": {
+            "ken": 2,
+            "lon": 2,
+            "": 1,
+            "ilo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C3": {
+          "gold": "ilo",
+          "answers": {
+            "": 1,
+            "ante": 1,
+            "ilo": 1,
+            "kama": 1,
+            "pali": 1,
+            "tawa": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R3C4": {
+          "gold": "lawa",
+          "answers": {
+            "ken": 2,
+            "": 1,
+            "pi": 1,
+            "tawa": 1,
+            "wile": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C5": {
+          "gold": "awen",
+          "answers": {
+            "ilo": 2,
+            "": 1,
+            "la": 1,
+            "li": 1,
+            "open": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C6": {
+          "gold": "ken",
+          "answers": {
+            "pona": 3,
+            "": 1,
+            "pi": 1,
+            "weka": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C7": {
+          "gold": "e",
+          "answers": {
+            "": 1,
+            "ala": 1,
+            "anu": 1,
+            "linja": 1,
+            "pi": 1,
+            "sike": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C1": {
+          "gold": "jan",
+          "answers": {
+            "jan": 5,
+            "": 1
+          },
+          "correct": 5,
+          "n": 6
+        },
+        "R4C2": {
+          "gold": "ante",
+          "answers": {
+            "wile": 3,
+            "": 1,
+            "awen": 1,
+            "lawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C3": {
+          "gold": "kama",
+          "answers": {
+            "lawa": 2,
+            "pana": 2,
+            "": 1,
+            "tawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C4": {
+          "gold": "sama",
+          "answers": {
+            "lawa": 2,
+            "": 1,
+            "awen": 1,
+            "ken": 1,
+            "kulupu": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C5": {
+          "gold": "ijo",
+          "answers": {
+            "": 1,
+            "e": 1,
+            "pana": 1,
+            "pini": 1,
+            "tawa": 1,
+            "weka": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C6": {
+          "gold": "selo",
+          "answers": {
+            "awen": 2,
+            "": 1,
+            "ala": 1,
+            "kute": 1,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C7": {
+          "gold": "tan",
+          "answers": {
+            "kulupu": 4,
+            "": 1,
+            "ale": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C1": {
+          "gold": "sitelen",
+          "answers": {
+            "sitelen": 4,
+            "": 1,
+            "sijelo": 1
+          },
+          "correct": 4,
+          "n": 6
+        },
+        "R5C2": {
+          "gold": "linja",
+          "answers": {
+            "selo": 2,
+            "": 1,
+            "ijo": 1,
+            "ni": 1,
+            "toki": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C3": {
+          "gold": "pana",
+          "answers": {
+            "linja": 2,
+            "": 1,
+            "li": 1,
+            "sama": 1,
+            "sijelo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C4": {
+          "gold": "toki",
+          "answers": {
+            "": 1,
+            "e": 1,
+            "la": 1,
+            "pilin": 1,
+            "selo": 1,
+            "weka": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C5": {
+          "gold": "tenpo",
+          "answers": {
+            "sijelo": 2,
+            "": 1,
+            "la": 1,
+            "lon": 1,
+            "selo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C6": {
+          "gold": "pini",
+          "answers": {
+            "pilin": 2,
+            "": 1,
+            "anu": 1,
+            "pona": 1,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C7": {
+          "gold": "pi",
+          "answers": {
+            "": 1,
+            "linja": 1,
+            "ma": 1,
+            "ni": 1,
+            "pi": 1,
+            "selo": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R6C1": {
+          "gold": "sike",
+          "answers": {
+            "ale": 3,
+            "": 1,
+            "ijo": 1,
+            "lon": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C2": {
+          "gold": "ale",
+          "answers": {
+            "ma": 3,
+            "": 1,
+            "sike": 1,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C3": {
+          "gold": "weka",
+          "answers": {
+            "weka": 2,
+            "": 1,
+            "anu": 1,
+            "e": 1,
+            "sike": 1
+          },
+          "correct": 2,
+          "n": 6
+        },
+        "R6C4": {
+          "gold": "ala",
+          "answers": {
+            "": 1,
+            "awen": 1,
+            "li": 1,
+            "pini": 1,
+            "sike": 1,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C5": {
+          "gold": "kulupu",
+          "answers": {
+            "tenpo": 2,
+            "": 1,
+            "e": 1,
+            "la": 1,
+            "pona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C6": {
+          "gold": "pona",
+          "answers": {
+            "": 1,
+            "ale": 1,
+            "li": 1,
+            "pi": 1,
+            "pilin": 1,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C7": {
+          "gold": "anu",
+          "answers": {
+            "ni": 2,
+            "": 1,
+            "e": 1,
+            "ma": 1,
+            "sijelo": 1
+          },
+          "correct": 0,
+          "n": 6
+        }
+      }
+    },
+    "embedded": {
+      "n_participants": 6,
+      "interior": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "edge": {
+        "mean_top1": 0.5,
+        "sd": 0.5477225575051661,
+        "ci95_participant_bootstrap": [
+          0.16666666666666666,
+          0.8333333333333334
+        ],
+        "min": 0.0,
+        "max": 1.0
+      },
+      "all": {
+        "mean_top1": 0.142857145,
+        "sd": 0.1564921616345727,
+        "ci95_participant_bootstrap": [
+          0.04761904833333333,
+          0.23809524166666665
+        ],
+        "min": 0.0,
+        "max": 0.28571429
+      },
+      "interior_no_c7": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "c7_interior": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "by_vendor_interior_mean": {
+        "haiku": 0.0,
+        "sonnet": 0.0
+      },
+      "per_cell_confusion": {
+        "R1C1": {
+          "gold": "open",
+          "answers": {
+            "": 3,
+            "open": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C2": {
+          "gold": "lon",
+          "answers": {
+            "": 3,
+            "lon": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C3": {
+          "gold": "tawa",
+          "answers": {
+            "": 3,
+            "tawa": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C4": {
+          "gold": "wile",
+          "answers": {
+            "": 3,
+            "wile": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C5": {
+          "gold": "pali",
+          "answers": {
+            "": 3,
+            "pali": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C6": {
+          "gold": "pilin",
+          "answers": {
+            "": 3,
+            "pilin": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R1C7": {
+          "gold": "li",
+          "answers": {
+            "": 3,
+            "li": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R2C1": {
+          "gold": "seme",
+          "answers": {
+            "": 3,
+            "seme": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R2C2": {
+          "gold": "ma",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C3": {
+          "gold": "lukin",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C4": {
+          "gold": "sona",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C5": {
+          "gold": "ni",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C6": {
+          "gold": "kute",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C7": {
+          "gold": "la",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C1": {
+          "gold": "nasin",
+          "answers": {
+            "": 3,
+            "nasin": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R3C2": {
+          "gold": "sijelo",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C3": {
+          "gold": "ilo",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C4": {
+          "gold": "lawa",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C5": {
+          "gold": "awen",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C6": {
+          "gold": "ken",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C7": {
+          "gold": "e",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C1": {
+          "gold": "jan",
+          "answers": {
+            "": 3,
+            "jan": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R4C2": {
+          "gold": "ante",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C3": {
+          "gold": "kama",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C4": {
+          "gold": "sama",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C5": {
+          "gold": "ijo",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C6": {
+          "gold": "selo",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C7": {
+          "gold": "tan",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C1": {
+          "gold": "sitelen",
+          "answers": {
+            "": 3,
+            "sitelen": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R5C2": {
+          "gold": "linja",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C3": {
+          "gold": "pana",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C4": {
+          "gold": "toki",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C5": {
+          "gold": "tenpo",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C6": {
+          "gold": "pini",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C7": {
+          "gold": "pi",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C1": {
+          "gold": "sike",
+          "answers": {
+            "": 3,
+            "sike": 3
+          },
+          "correct": 3,
+          "n": 6
+        },
+        "R6C2": {
+          "gold": "ale",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C3": {
+          "gold": "weka",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C4": {
+          "gold": "ala",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C5": {
+          "gold": "kulupu",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C6": {
+          "gold": "pona",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C7": {
+          "gold": "anu",
+          "answers": {
+            "": 6
+          },
+          "correct": 0,
+          "n": 6
+        }
+      }
+    },
+    "generic": {
+      "n_participants": 6,
+      "interior": {
+        "mean_top1": 0.005555555,
+        "sd": 0.0136082749879678,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.016666665
+        ],
+        "min": 0.0,
+        "max": 0.03333333
+      },
+      "edge": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "all": {
+        "mean_top1": 0.003968253333333334,
+        "sd": 0.009720195836765156,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.01190476
+        ],
+        "min": 0.0,
+        "max": 0.02380952
+      },
+      "interior_no_c7": {
+        "mean_top1": 0.006666666666666667,
+        "sd": 0.016329931618554522,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.02
+        ],
+        "min": 0.0,
+        "max": 0.04
+      },
+      "c7_interior": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "by_vendor_interior_mean": {
+        "haiku": 0.0,
+        "sonnet": 0.01111111
+      },
+      "per_cell_confusion": {
+        "R1C1": {
+          "gold": "open",
+          "answers": {
+            "": 5,
+            "toki": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C2": {
+          "gold": "lon",
+          "answers": {
+            "": 5,
+            "lukin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C3": {
+          "gold": "tawa",
+          "answers": {
+            "": 5,
+            "li": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C4": {
+          "gold": "wile",
+          "answers": {
+            "": 5,
+            "ma": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C5": {
+          "gold": "pali",
+          "answers": {
+            "": 5,
+            "jan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C6": {
+          "gold": "pilin",
+          "answers": {
+            "": 5,
+            "kama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C7": {
+          "gold": "li",
+          "answers": {
+            "": 5,
+            "pana": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C1": {
+          "gold": "seme",
+          "answers": {
+            "": 5,
+            "tenpo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C2": {
+          "gold": "ma",
+          "answers": {
+            "": 5,
+            "ale": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C3": {
+          "gold": "lukin",
+          "answers": {
+            "": 5,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C4": {
+          "gold": "sona",
+          "answers": {
+            "": 5,
+            "pona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C5": {
+          "gold": "ni",
+          "answers": {
+            "": 5,
+            "seme": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C6": {
+          "gold": "kute",
+          "answers": {
+            "": 5,
+            "sike": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C7": {
+          "gold": "la",
+          "answers": {
+            "": 5,
+            "selo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C1": {
+          "gold": "nasin",
+          "answers": {
+            "": 5,
+            "ken": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C2": {
+          "gold": "sijelo",
+          "answers": {
+            "": 5,
+            "lon": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C3": {
+          "gold": "ilo",
+          "answers": {
+            "": 5,
+            "tawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C4": {
+          "gold": "lawa",
+          "answers": {
+            "": 5,
+            "wile": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C5": {
+          "gold": "awen",
+          "answers": {
+            "": 5,
+            "awen": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R3C6": {
+          "gold": "ken",
+          "answers": {
+            "": 5,
+            "nasin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C7": {
+          "gold": "e",
+          "answers": {
+            "": 5,
+            "ala": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C1": {
+          "gold": "jan",
+          "answers": {
+            "": 5,
+            "ijo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C2": {
+          "gold": "ante",
+          "answers": {
+            "": 5,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C3": {
+          "gold": "kama",
+          "answers": {
+            "": 5,
+            "lawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C4": {
+          "gold": "sama",
+          "answers": {
+            "": 5,
+            "pini": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C5": {
+          "gold": "ijo",
+          "answers": {
+            "": 5,
+            "la": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C6": {
+          "gold": "selo",
+          "answers": {
+            "": 5,
+            "sona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C7": {
+          "gold": "tan",
+          "answers": {
+            "": 5,
+            "pilin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C1": {
+          "gold": "sitelen",
+          "answers": {
+            "": 5,
+            "open": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C2": {
+          "gold": "linja",
+          "answers": {
+            "": 5,
+            "pi": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C3": {
+          "gold": "pana",
+          "answers": {
+            "": 5,
+            "weka": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C4": {
+          "gold": "toki",
+          "answers": {
+            "": 5,
+            "ni": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C5": {
+          "gold": "tenpo",
+          "answers": {
+            "": 5,
+            "kute": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C6": {
+          "gold": "pini",
+          "answers": {
+            "": 5,
+            "ilo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C7": {
+          "gold": "pi",
+          "answers": {
+            "": 5,
+            "sijelo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C1": {
+          "gold": "sike",
+          "answers": {
+            "": 5,
+            "kulupu": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C2": {
+          "gold": "ale",
+          "answers": {
+            "": 5,
+            "anu": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C3": {
+          "gold": "weka",
+          "answers": {
+            "": 5,
+            "pali": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C4": {
+          "gold": "ala",
+          "answers": {
+            "": 5,
+            "e": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C5": {
+          "gold": "kulupu",
+          "answers": {
+            "": 5,
+            "sitelen": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C6": {
+          "gold": "pona",
+          "answers": {
+            "": 5,
+            "linja": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C7": {
+          "gold": "anu",
+          "answers": {
+            "": 5,
+            "ante": 1
+          },
+          "correct": 0,
+          "n": 6
+        }
+      }
+    },
+    "shuffled": {
+      "n_participants": 6,
+      "interior": {
+        "mean_top1": 0.016666666666666666,
+        "sd": 0.027888668347954993,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.03888889
+        ],
+        "min": 0.0,
+        "max": 0.06666667
+      },
+      "edge": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "all": {
+        "mean_top1": 0.011904761666666666,
+        "sd": 0.01992047722064953,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.027777778333333336
+        ],
+        "min": 0.0,
+        "max": 0.04761905
+      },
+      "interior_no_c7": {
+        "mean_top1": 0.02,
+        "sd": 0.033466401061363026,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.04666666666666667
+        ],
+        "min": 0.0,
+        "max": 0.08
+      },
+      "c7_interior": {
+        "mean_top1": 0.0,
+        "sd": 0.0,
+        "ci95_participant_bootstrap": [
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0
+      },
+      "by_vendor_interior_mean": {
+        "haiku": 0.01111111,
+        "sonnet": 0.022222223333333332
+      },
+      "per_cell_confusion": {
+        "R1C1": {
+          "gold": "open",
+          "answers": {
+            "sona": 3,
+            "": 1,
+            "ma": 1,
+            "seme": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C2": {
+          "gold": "lon",
+          "answers": {
+            "ante": 5,
+            "": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C3": {
+          "gold": "tawa",
+          "answers": {
+            "seme": 3,
+            "": 1,
+            "anu": 1,
+            "sona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C4": {
+          "gold": "wile",
+          "answers": {
+            "open": 3,
+            "": 1,
+            "lukin": 1,
+            "sona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C5": {
+          "gold": "pali",
+          "answers": {
+            "lukin": 4,
+            "": 1,
+            "kute": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C6": {
+          "gold": "pilin",
+          "answers": {
+            "": 2,
+            "ma": 1,
+            "ni": 1,
+            "sitelen": 1,
+            "toki": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R1C7": {
+          "gold": "li",
+          "answers": {
+            "ni": 3,
+            "": 1,
+            "ijo": 1,
+            "seme": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C1": {
+          "gold": "seme",
+          "answers": {
+            "nasin": 3,
+            "": 1,
+            "ma": 1,
+            "selo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C2": {
+          "gold": "ma",
+          "answers": {
+            "pali": 3,
+            "": 1,
+            "ante": 1,
+            "ilo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C3": {
+          "gold": "lukin",
+          "answers": {
+            "ken": 2,
+            "": 1,
+            "e": 1,
+            "nasin": 1,
+            "pi": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C4": {
+          "gold": "sona",
+          "answers": {
+            "ilo": 2,
+            "open": 2,
+            "": 1,
+            "pali": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C5": {
+          "gold": "ni",
+          "answers": {
+            "pona": 4,
+            "": 1,
+            "pini": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C6": {
+          "gold": "kute",
+          "answers": {
+            "linja": 3,
+            "": 2,
+            "selo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R2C7": {
+          "gold": "la",
+          "answers": {
+            "": 2,
+            "sama": 2,
+            "ala": 1,
+            "nasin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C1": {
+          "gold": "nasin",
+          "answers": {
+            "jan": 5,
+            "": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C2": {
+          "gold": "sijelo",
+          "answers": {
+            "wile": 2,
+            "": 1,
+            "kama": 1,
+            "ken": 1,
+            "tawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C3": {
+          "gold": "ilo",
+          "answers": {
+            "wile": 3,
+            "": 1,
+            "ken": 1,
+            "kute": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C4": {
+          "gold": "lawa",
+          "answers": {
+            "pana": 3,
+            "": 1,
+            "kama": 1,
+            "pali": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C5": {
+          "gold": "awen",
+          "answers": {
+            "lawa": 3,
+            "": 1,
+            "kama": 1,
+            "ken": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C6": {
+          "gold": "ken",
+          "answers": {
+            "kulupu": 3,
+            "lawa": 2,
+            "": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R3C7": {
+          "gold": "e",
+          "answers": {
+            "ijo": 2,
+            "": 1,
+            "kulupu": 1,
+            "selo": 1,
+            "sijelo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C1": {
+          "gold": "jan",
+          "answers": {
+            "sitelen": 4,
+            "": 1,
+            "pilin": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C2": {
+          "gold": "ante",
+          "answers": {
+            "tawa": 2,
+            "toki": 2,
+            "": 1,
+            "sitelen": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C3": {
+          "gold": "kama",
+          "answers": {
+            "": 2,
+            "anu": 1,
+            "kute": 1,
+            "li": 1,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C4": {
+          "gold": "sama",
+          "answers": {
+            "": 1,
+            "ilo": 1,
+            "li": 1,
+            "pana": 1,
+            "sijelo": 1,
+            "sitelen": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C5": {
+          "gold": "ijo",
+          "answers": {
+            "": 2,
+            "kute": 2,
+            "sama": 1,
+            "sona": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R4C6": {
+          "gold": "selo",
+          "answers": {
+            "sike": 2,
+            "": 1,
+            "linja": 1,
+            "pi": 1,
+            "selo": 1
+          },
+          "correct": 1,
+          "n": 6
+        },
+        "R4C7": {
+          "gold": "tan",
+          "answers": {
+            "": 2,
+            "pilin": 1,
+            "pona": 1,
+            "selo": 1,
+            "sitelen": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C1": {
+          "gold": "sitelen",
+          "answers": {
+            "ale": 2,
+            "ma": 2,
+            "": 1,
+            "kulupu": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C2": {
+          "gold": "linja",
+          "answers": {
+            "la": 3,
+            "": 2,
+            "kama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C3": {
+          "gold": "pana",
+          "answers": {
+            "": 2,
+            "pi": 2,
+            "e": 1,
+            "li": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C4": {
+          "gold": "toki",
+          "answers": {
+            "": 2,
+            "e": 1,
+            "la": 1,
+            "pana": 1,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C5": {
+          "gold": "tenpo",
+          "answers": {
+            "ale": 2,
+            "": 1,
+            "ala": 1,
+            "sama": 1,
+            "toki": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C6": {
+          "gold": "pini",
+          "answers": {
+            "sijelo": 2,
+            "sike": 2,
+            "": 1,
+            "linja": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R5C7": {
+          "gold": "pi",
+          "answers": {
+            "": 1,
+            "ala": 1,
+            "ale": 1,
+            "ijo": 1,
+            "lon": 1,
+            "sama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C1": {
+          "gold": "sike",
+          "answers": {
+            "tenpo": 4,
+            "": 1,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C2": {
+          "gold": "ale",
+          "answers": {
+            "": 1,
+            "awen": 1,
+            "pini": 1,
+            "tan": 1,
+            "tawa": 1,
+            "tenpo": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C3": {
+          "gold": "weka",
+          "answers": {
+            "awen": 2,
+            "weka": 2,
+            "": 1,
+            "tan": 1
+          },
+          "correct": 2,
+          "n": 6
+        },
+        "R6C4": {
+          "gold": "ala",
+          "answers": {
+            "pini": 2,
+            "": 1,
+            "anu": 1,
+            "awen": 1,
+            "kama": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C5": {
+          "gold": "kulupu",
+          "answers": {
+            "weka": 2,
+            "": 1,
+            "lon": 1,
+            "pini": 1,
+            "tan": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C6": {
+          "gold": "pona",
+          "answers": {
+            "": 1,
+            "lon": 1,
+            "nasin": 1,
+            "pilin": 1,
+            "pini": 1,
+            "sike": 1
+          },
+          "correct": 0,
+          "n": 6
+        },
+        "R6C7": {
+          "gold": "anu",
+          "answers": {
+            "": 2,
+            "awen": 1,
+            "lon": 1,
+            "ni": 1,
+            "tawa": 1
+          },
+          "correct": 0,
+          "n": 6
+        }
+      }
+    }
+  },
+  "contrasts": {
+    "external_minus_embedded_interior": {
+      "difference_of_means": 0.04444444333333333,
+      "ci95_independent_participant_bootstrap": [
+        0.005555555,
+        0.08888888666666667
+      ]
+    },
+    "external_minus_generic_interior": {
+      "difference_of_means": 0.03888888833333333,
+      "ci95_independent_participant_bootstrap": [
+        0.0,
+        0.08333333333333333
+      ]
+    },
+    "external_minus_shuffled_interior": {
+      "difference_of_means": 0.027777776666666667,
+      "ci95_independent_participant_bootstrap": [
+        -0.016666666666666666,
+        0.07777777666666666
+      ]
+    },
+    "external_minus_embedded_interior_no_c7": {
+      "difference_of_means": 0.04,
+      "ci95_independent_participant_bootstrap": [
+        0.006666666666666667,
+        0.08
+      ]
+    },
+    "external_minus_generic_interior_no_c7": {
+      "difference_of_means": 0.03333333333333333,
+      "ci95_independent_participant_bootstrap": [
+        0.0,
+        0.07333333333333333
+      ]
+    },
+    "external_minus_shuffled_interior_no_c7": {
+      "difference_of_means": 0.02,
+      "ci95_independent_participant_bootstrap": [
+        -0.020000000000000004,
+        0.06666666666666667
+      ]
+    }
+  },
+  "familiarity_counts_by_arm": {
+    "shuffled": {
+      "unsure": 1,
+      "no": 5
+    },
+    "external": {
+      "no": 5,
+      "unsure": 1
+    },
+    "generic": {
+      "no": 4,
+      "unsure": 2
+    },
+    "embedded": {
+      "no": 3,
+      "unsure": 3
+    }
+  },
+  "notes": [
+    "Abstention counts as incorrect.",
+    "Familiarity answers are reported, never used to exclude.",
+    "The null is a label-permutation (label-symmetry) null per participant, not an arm test.",
+    "Lift labels have been public on GitHub since 2026-10-09: training/browsing exposure cannot be excluded.",
+    "Pilot only: it sizes the main study and is not a confirmatory sample."
+  ]
+}

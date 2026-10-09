@@ -1,0 +1,212 @@
+{
+  "answers": [
+    {
+      "token": "open",
+      "trial_id": "R1C1"
+    },
+    {
+      "token": "lon",
+      "trial_id": "R1C2"
+    },
+    {
+      "token": "tawa",
+      "trial_id": "R1C3"
+    },
+    {
+      "token": "wile",
+      "trial_id": "R1C4"
+    },
+    {
+      "token": "pali",
+      "trial_id": "R1C5"
+    },
+    {
+      "token": "pilin",
+      "trial_id": "R1C6"
+    },
+    {
+      "token": "li",
+      "trial_id": "R1C7"
+    },
+    {
+      "token": "seme",
+      "trial_id": "R2C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C7"
+    },
+    {
+      "token": "nasin",
+      "trial_id": "R3C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C7"
+    },
+    {
+      "token": "jan",
+      "trial_id": "R4C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C7"
+    },
+    {
+      "token": "sitelen",
+      "trial_id": "R5C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C7"
+    },
+    {
+      "token": "sike",
+      "trial_id": "R6C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C7"
+    }
+  ],
+  "condition": "embedded",
+  "familiarity_answer": "no",
+  "familiarity_text": ". I don't recall encountering a language or table called OpenPona or this specific 6x7 arrangement.",
+  "meta": {
+    "date": "2026-10-09",
+    "duration_s": 9.787,
+    "model_id": "claude-sonnet-5-5",
+    "model_ids": [
+      "claude-sonnet-5-5"
+    ],
+    "other_settings": {
+      "alias": "sonnet",
+      "backend": "claude -p",
+      "command": [
+        "claude",
+        "-p",
+        "--model",
+        "sonnet",
+        "--tools",
+        "",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "",
+        "--no-session-persistence",
+        "--system-prompt",
+        "You are a helpful assistant.",
+        "--output-format",
+        "json"
+      ],
+      "cwd": "fresh empty temp dir"
+    },
+    "system_prompt": "You are a helpful assistant.",
+    "temperature": "default",
+    "transport_retries": 0,
+    "vendor": "sonnet"
+  },
+  "participant_id": "p021",
+  "profile_id": "externalized-lift-0.1",
+  "raw_sha256": "a82540c840f652936951ccf5a6a7ea25ace158d1440191602ce831b7b5ae0fb7",
+  "vendor": "sonnet"
+}

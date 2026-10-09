@@ -97,7 +97,7 @@ def main(argv=None):
         alloc = {r["participant_id"]: r for r in pl.read_allocation(d)}
         (d / "parsed").mkdir(exist_ok=True)
         accepted, excluded, flags = [], [], []
-        raw_files = {p.stem: p for p in sorted((d / "responses").glob("*.txt"))}
+        raw_files = {p.stem: p for p in sorted((d / "responses").glob("*.txt")) if not p.name.endswith(".thinking.txt")}
         for pid in sorted(set(raw_files) - set(alloc)):
             excluded.append({"participant_id": pid, "reason": "unknown_participant_id", "detail": raw_files[pid].name})
         for pid, row in alloc.items():
