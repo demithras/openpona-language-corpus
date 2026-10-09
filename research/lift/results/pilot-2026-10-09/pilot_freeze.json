@@ -1,0 +1,68 @@
+{
+  "banner": "PILOT - EXPLORATORY, NOT CONFIRMATORY",
+  "frozen_at_utc": "2026-10-09T10:40:33Z",
+  "hashes": {
+    "allocation": {
+      "allocation.csv": "d0e58873e8366b1a641ea0395e8ea47ed23ccc3c6d28a91152d7d7ee3c69e00b"
+    },
+    "glossary": {
+      "research/lift/glossary/linku_en_2026-10-09.json": "550d5e8b8b65dca81da4304f0e31672c38528d599a7e067d435f30e1cdd73cda"
+    },
+    "packets": {
+      "packets/p001.md": "e9aa73fd210b75b7c78e4b59e6d45d9177f7765495e001bd9104dd51d82be4b3",
+      "packets/p002.md": "ab4ad4f78912135abc5f5a6eee13dc6de4ac84b8644e42224a33cfa5ab783d11",
+      "packets/p003.md": "9148bfd932e350583e3eca4ee319283e936298541da8e7800ab69ef9df5202fb",
+      "packets/p004.md": "7d646bf98e302dd5017915898bd96370a1bc61c6d352fae14c57749c6fa66c37",
+      "packets/p005.md": "55f2b253385dabc87901deeeb6581a48af4b1ba35b9e149bbceecd8258fc8c4c",
+      "packets/p006.md": "1c278733a1bd6b10d560bbf43ab6effa97e9bc5cc206e1e227e7cae8e7365045",
+      "packets/p007.md": "d1d245609c16638dcd55746e79c8621e7a1f0cfac3a3adf5010db42add57dd70",
+      "packets/p008.md": "090e4ec46a3f0fc92fe1630d413ed8882742cc448cff4106f8a1bef69171cb9d",
+      "packets/p009.md": "2ef3d1da40869f7768340a4544467c97b16c92019cbc185475755661c89d8f74",
+      "packets/p010.md": "c8ee0df79e2ac12594b44210af803441a581361738e8e9bc6a718359e4433539",
+      "packets/p011.md": "a0137958e8a510d23cbfa0b130a2dfe3ee1c67b99e6f4e913e239918e59119ae",
+      "packets/p012.md": "5dc68a870fec62a44807406cacd63c9643f7a7cbd3414bbad2d4e88e8c47f5b9",
+      "packets/p013.md": "8b1e1336d7d69573851cebbe0af66562fd91bc0eefcd7c1757d7dfb9e7c02b37",
+      "packets/p014.md": "bbef345689cb736f748ce440614c2772f68cd7f6103f69252914f687d14c6e73",
+      "packets/p015.md": "7d15c68bd681c69ca90a1559f31a7491cd1426ad59411ec56a00dba72ed43fa7",
+      "packets/p016.md": "748cda4616afe75e282b130f93d4e32168fa4982271a36ec76f789cc72a1369f",
+      "packets/p017.md": "39bfc763afed19f3a07c10669f490f18710ea30657950ff86e122d709e3c7a75",
+      "packets/p018.md": "26eabe3229bab39869a2ec80100a8d8e0fc9d5b9bcddb60891f7f59a3b9abb9f",
+      "packets/p019.md": "3322db4f2136337ef293a223c1590be67e9f0a3bf57bdfaa26a5c705dcaaf823",
+      "packets/p020.md": "8b75362e80eccc585114b3c4bb9d74389231b7c751797b0a8463302505c086fd",
+      "packets/p021.md": "4155ce33ff78f49ac6d6e95d7f64fd26b560f69e010413e837a982b544e11428",
+      "packets/p022.md": "67d3e9874e99b16ae92ecf5d4eeaa0f2b49a8f70e857f9c30a541edcfd155f8e",
+      "packets/p023.md": "1a7ec365d54eeaafa91e9f571e55ef51ffbb1048999fd5fd9b9eb910dff48a52",
+      "packets/p024.md": "2209065629e0907509088df384740ba79421c30b30da774d7fa7c18695c4b5f3",
+      "packets/p025.md": "3ff38d8984c0223b830a1b475a4f2784379d7d2c41ea45ad92bf88743dd7156d",
+      "packets/p026.md": "347d3a162740aec6e6f27cf726b4315934d2019b90adcc9859a6b2c2f0754b41",
+      "packets/p027.md": "4a0831fa6bc9d40c929e5f669c4c4e46ff11ad52236dca4e12547e78db729b83",
+      "packets/p028.md": "e56b8c407b18ad87976b565b8c1cf87ff93ac98b493b6253cd7a1aa1bda5291d",
+      "packets/p029.md": "8af89012212cb0fe87ed4df44ed92c04551b49891d9835e52f63e39d10c12614",
+      "packets/p030.md": "7ef1877a0b0082a877fbe1886e623f32c0e8516e287246d8c393fe530b5cea31",
+      "packets/p031.md": "f7131e965097c79030aaf6a758a81f5ef35026649d1c376f73b3e81366105bec",
+      "packets/p032.md": "a041aa3c016b97658f437551177dc759fb905d25336527ee1a0805122fb5785f",
+      "packets/p033.md": "6bd3ee4e768f1e1f741da4b67e31d14ce36971f165ba5160eb1ee26257c86926",
+      "packets/p034.md": "e4c7fbba4185e4092d66b0b0d456336af10530109ec7a351b59829292fdb853d",
+      "packets/p035.md": "a68cb09bc12e9f9cd896d6d08582a58e389852af12823e167d152f8274a9795f",
+      "packets/p036.md": "669784dcd8a1973f7b8b25eff33e0006f63bcf15dcdfb61a4adda33c1116dda7"
+    },
+    "pilot_config": {
+      "pilot_config.json": "27d98e9878de9c200d05e5ac54bc3fc4a191b11d2712a55d1e60f1045a6ccb25"
+    },
+    "pilot_scripts": {
+      "research/lift/pilot/analyze.py": "d477f2d1ca718361ae23898dd6ea4227a3e235fc2f16a04581b67bd052311a82",
+      "research/lift/pilot/freeze.py": "dacf38fe4aa2592eba0108b2b9ad87f4ad3cee185854f962493ac9687a56335c",
+      "research/lift/pilot/ingest.py": "35e8df4bb7f8513eaa977607fcd3aac97a34990f9acb6d27973d1cd1b8512ce8",
+      "research/lift/pilot/make_packets.py": "98d39a2d97cb6fd6e9ac4574fbd45f9dbff307abb80cd8d9364543fa228eb556",
+      "research/lift/pilot/pilotlib.py": "7d9a7e2bee7ea4c3341fb7461bca15de70c5f1eaa79e18c688ad42ccd9658414",
+      "research/lift/pilot/run_participants.py": "f02fe3a6a27f17de92bcac6415ff0f93c01b8fb4f109c67e44215a5ae8ee36a3"
+    },
+    "profile": {
+      "research/lift/coordinates.v0.1.json": "a90d263c917400ddc61b9145b28c79f1aedcd31921fb51bdf8998a141ea671d8"
+    },
+    "scorer": {
+      "research/lift/blind_experiment.py": "d9b406e3ebb269f16ea175cfbc900b163be3b3cab6640433eb5b8d45343724e2"
+    },
+    "seed": 20261009
+  }
+}

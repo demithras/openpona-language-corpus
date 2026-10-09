@@ -1,0 +1,534 @@
+{
+  "banner": "PILOT - EXPLORATORY, NOT CONFIRMATORY - unit of analysis: model (runs are not independent)",
+  "seed": 20261009,
+  "boot_reps": 10000,
+  "n_models": 2,
+  "models": [
+    "haiku",
+    "sonnet"
+  ],
+  "per_model_arm": {
+    "interior": {
+      "haiku": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.03333333333333333,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.01111111,
+          "n_runs": 3
+        }
+      },
+      "sonnet": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.055555553333333334,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.01111111,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.022222223333333332,
+          "n_runs": 3
+        }
+      }
+    },
+    "interior_no_c7": {
+      "haiku": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.04,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.013333333333333334,
+          "n_runs": 3
+        }
+      },
+      "sonnet": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.04,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.013333333333333334,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.02666666666666667,
+          "n_runs": 3
+        }
+      }
+    },
+    "c7_interior": {
+      "haiku": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.0,
+          "n_runs": 3
+        }
+      },
+      "sonnet": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.13333333333333333,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.0,
+          "n_runs": 3
+        }
+      }
+    },
+    "edge": {
+      "haiku": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.19444444333333333,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.0,
+          "n_runs": 3
+        }
+      },
+      "sonnet": {
+        "embedded": {
+          "mean": 1.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.36111110999999996,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.0,
+          "n_runs": 3
+        }
+      }
+    },
+    "all": {
+      "haiku": {
+        "embedded": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.07936507999999999,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.0,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.007936506666666667,
+          "n_runs": 3
+        }
+      },
+      "sonnet": {
+        "embedded": {
+          "mean": 0.28571429,
+          "n_runs": 3
+        },
+        "external": {
+          "mean": 0.14285714333333333,
+          "n_runs": 3
+        },
+        "generic": {
+          "mean": 0.007936506666666667,
+          "n_runs": 3
+        },
+        "shuffled": {
+          "mean": 0.015873016666666667,
+          "n_runs": 3
+        }
+      }
+    }
+  },
+  "contrasts": {
+    "external_minus_embedded_interior": {
+      "sector": "interior",
+      "control": "embedded",
+      "per_model": {
+        "haiku": 0.03333333333333333,
+        "sonnet": 0.055555553333333334
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.04444444333333333,
+      "ci95_model_bootstrap": [
+        0.03333333333333333,
+        0.055555553333333334
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_generic_interior": {
+      "sector": "interior",
+      "control": "generic",
+      "per_model": {
+        "haiku": 0.03333333333333333,
+        "sonnet": 0.04444444333333333
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.03888888833333333,
+      "ci95_model_bootstrap": [
+        0.03333333333333333,
+        0.04444444333333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_shuffled_interior": {
+      "sector": "interior",
+      "control": "shuffled",
+      "per_model": {
+        "haiku": 0.022222223333333332,
+        "sonnet": 0.03333333
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.027777776666666667,
+      "ci95_model_bootstrap": [
+        0.022222223333333332,
+        0.03333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_embedded_interior_no_c7": {
+      "sector": "interior_no_c7",
+      "control": "embedded",
+      "per_model": {
+        "haiku": 0.04,
+        "sonnet": 0.04
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.04,
+      "ci95_model_bootstrap": [
+        0.04,
+        0.04
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_generic_interior_no_c7": {
+      "sector": "interior_no_c7",
+      "control": "generic",
+      "per_model": {
+        "haiku": 0.04,
+        "sonnet": 0.026666666666666665
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.03333333333333333,
+      "ci95_model_bootstrap": [
+        0.026666666666666665,
+        0.04
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_shuffled_interior_no_c7": {
+      "sector": "interior_no_c7",
+      "control": "shuffled",
+      "per_model": {
+        "haiku": 0.026666666666666665,
+        "sonnet": 0.013333333333333332
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.019999999999999997,
+      "ci95_model_bootstrap": [
+        0.013333333333333332,
+        0.026666666666666665
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_embedded_c7_interior": {
+      "sector": "c7_interior",
+      "control": "embedded",
+      "per_model": {
+        "haiku": 0.0,
+        "sonnet": 0.13333333333333333
+      },
+      "M": 2,
+      "k_positive": 1,
+      "k_negative": 0,
+      "k_tied": 1,
+      "sign_test_p_one_sided": 0.5,
+      "mean_contrast": 0.06666666666666667,
+      "ci95_model_bootstrap": [
+        0.0,
+        0.13333333333333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 1 non-tied models is 0.5.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_generic_c7_interior": {
+      "sector": "c7_interior",
+      "control": "generic",
+      "per_model": {
+        "haiku": 0.0,
+        "sonnet": 0.13333333333333333
+      },
+      "M": 2,
+      "k_positive": 1,
+      "k_negative": 0,
+      "k_tied": 1,
+      "sign_test_p_one_sided": 0.5,
+      "mean_contrast": 0.06666666666666667,
+      "ci95_model_bootstrap": [
+        0.0,
+        0.13333333333333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 1 non-tied models is 0.5.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_shuffled_c7_interior": {
+      "sector": "c7_interior",
+      "control": "shuffled",
+      "per_model": {
+        "haiku": 0.0,
+        "sonnet": 0.13333333333333333
+      },
+      "M": 2,
+      "k_positive": 1,
+      "k_negative": 0,
+      "k_tied": 1,
+      "sign_test_p_one_sided": 0.5,
+      "mean_contrast": 0.06666666666666667,
+      "ci95_model_bootstrap": [
+        0.0,
+        0.13333333333333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 1 non-tied models is 0.5.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_embedded_edge": {
+      "sector": "edge",
+      "control": "embedded",
+      "per_model": {
+        "haiku": 0.19444444333333333,
+        "sonnet": -0.63888889
+      },
+      "M": 2,
+      "k_positive": 1,
+      "k_negative": 1,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.75,
+      "mean_contrast": -0.22222222333333336,
+      "ci95_model_bootstrap": [
+        -0.63888889,
+        0.19444444333333333
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_generic_edge": {
+      "sector": "edge",
+      "control": "generic",
+      "per_model": {
+        "haiku": 0.19444444333333333,
+        "sonnet": 0.36111110999999996
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.27777777666666664,
+      "ci95_model_bootstrap": [
+        0.19444444333333333,
+        0.36111110999999996
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_shuffled_edge": {
+      "sector": "edge",
+      "control": "shuffled",
+      "per_model": {
+        "haiku": 0.19444444333333333,
+        "sonnet": 0.36111110999999996
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.27777777666666664,
+      "ci95_model_bootstrap": [
+        0.19444444333333333,
+        0.36111110999999996
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_embedded_all": {
+      "sector": "all",
+      "control": "embedded",
+      "per_model": {
+        "haiku": 0.07936507999999999,
+        "sonnet": -0.14285714666666666
+      },
+      "M": 2,
+      "k_positive": 1,
+      "k_negative": 1,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.75,
+      "mean_contrast": -0.03174603333333333,
+      "ci95_model_bootstrap": [
+        -0.14285714666666666,
+        0.07936507999999999
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_generic_all": {
+      "sector": "all",
+      "control": "generic",
+      "per_model": {
+        "haiku": 0.07936507999999999,
+        "sonnet": 0.13492063666666665
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.10714285833333331,
+      "ci95_model_bootstrap": [
+        0.07936507999999999,
+        0.13492063666666665
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    },
+    "external_minus_shuffled_all": {
+      "sector": "all",
+      "control": "shuffled",
+      "per_model": {
+        "haiku": 0.07142857333333333,
+        "sonnet": 0.12698412666666667
+      },
+      "M": 2,
+      "k_positive": 2,
+      "k_negative": 0,
+      "k_tied": 0,
+      "sign_test_p_one_sided": 0.25,
+      "mean_contrast": 0.09920635,
+      "ci95_model_bootstrap": [
+        0.07142857333333333,
+        0.12698412666666667
+      ],
+      "notes": [
+        "Minimum attainable one-sided sign-test p with 2 non-tied models is 0.25.",
+        "M=2 < 5: the bootstrap interval is not interpretable as a population CI."
+      ]
+    }
+  }
+}

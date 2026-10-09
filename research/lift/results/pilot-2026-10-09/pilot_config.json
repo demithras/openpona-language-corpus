@@ -1,0 +1,18 @@
+{
+  "banner": "PILOT - EXPLORATORY, NOT CONFIRMATORY",
+  "conditions": [
+    "external",
+    "embedded",
+    "generic",
+    "shuffled"
+  ],
+  "participants": 36,
+  "per_arm_per_vendor": 3,
+  "profile_id": "externalized-lift-0.1",
+  "seed": 20261009,
+  "vendors": [
+    "sonnet",
+    "haiku",
+    "qwen"
+  ]
+}

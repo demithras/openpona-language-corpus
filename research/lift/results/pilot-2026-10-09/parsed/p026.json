@@ -1,0 +1,212 @@
+{
+  "answers": [
+    {
+      "token": "sona",
+      "trial_id": "R1C1"
+    },
+    {
+      "token": "ante",
+      "trial_id": "R1C2"
+    },
+    {
+      "token": "seme",
+      "trial_id": "R1C3"
+    },
+    {
+      "token": "open",
+      "trial_id": "R1C4"
+    },
+    {
+      "token": "lukin",
+      "trial_id": "R1C5"
+    },
+    {
+      "token": "toki",
+      "trial_id": "R1C6"
+    },
+    {
+      "token": "ni",
+      "trial_id": "R1C7"
+    },
+    {
+      "token": "nasin",
+      "trial_id": "R2C1"
+    },
+    {
+      "token": "pali",
+      "trial_id": "R2C2"
+    },
+    {
+      "token": "ken",
+      "trial_id": "R2C3"
+    },
+    {
+      "token": "ilo",
+      "trial_id": "R2C4"
+    },
+    {
+      "token": "pona",
+      "trial_id": "R2C5"
+    },
+    {
+      "token": "linja",
+      "trial_id": "R2C6"
+    },
+    {
+      "token": "sama",
+      "trial_id": "R2C7"
+    },
+    {
+      "token": "jan",
+      "trial_id": "R3C1"
+    },
+    {
+      "token": "kama",
+      "trial_id": "R3C2"
+    },
+    {
+      "token": "wile",
+      "trial_id": "R3C3"
+    },
+    {
+      "token": "pana",
+      "trial_id": "R3C4"
+    },
+    {
+      "token": "lawa",
+      "trial_id": "R3C5"
+    },
+    {
+      "token": "kulupu",
+      "trial_id": "R3C6"
+    },
+    {
+      "token": "ijo",
+      "trial_id": "R3C7"
+    },
+    {
+      "token": "sitelen",
+      "trial_id": "R4C1"
+    },
+    {
+      "token": "tawa",
+      "trial_id": "R4C2"
+    },
+    {
+      "token": "anu",
+      "trial_id": "R4C3"
+    },
+    {
+      "token": "sijelo",
+      "trial_id": "R4C4"
+    },
+    {
+      "token": "kute",
+      "trial_id": "R4C5"
+    },
+    {
+      "token": "pi",
+      "trial_id": "R4C6"
+    },
+    {
+      "token": "selo",
+      "trial_id": "R4C7"
+    },
+    {
+      "token": "ma",
+      "trial_id": "R5C1"
+    },
+    {
+      "token": "la",
+      "trial_id": "R5C2"
+    },
+    {
+      "token": "li",
+      "trial_id": "R5C3"
+    },
+    {
+      "token": "e",
+      "trial_id": "R5C4"
+    },
+    {
+      "token": "ala",
+      "trial_id": "R5C5"
+    },
+    {
+      "token": "sike",
+      "trial_id": "R5C6"
+    },
+    {
+      "token": "ale",
+      "trial_id": "R5C7"
+    },
+    {
+      "token": "tenpo",
+      "trial_id": "R6C1"
+    },
+    {
+      "token": "pini",
+      "trial_id": "R6C2"
+    },
+    {
+      "token": "tan",
+      "trial_id": "R6C3"
+    },
+    {
+      "token": "awen",
+      "trial_id": "R6C4"
+    },
+    {
+      "token": "weka",
+      "trial_id": "R6C5"
+    },
+    {
+      "token": "pilin",
+      "trial_id": "R6C6"
+    },
+    {
+      "token": "lon",
+      "trial_id": "R6C7"
+    }
+  ],
+  "condition": "shuffled",
+  "familiarity_answer": "no",
+  "familiarity_text": ". I don't recognize OpenPona or this specific 6x7 arrangement, so I guessed from the labels and token definitions.",
+  "meta": {
+    "date": "2026-10-09",
+    "duration_s": 11.384,
+    "model_id": "claude-sonnet-5-5",
+    "model_ids": [
+      "claude-sonnet-5-5"
+    ],
+    "other_settings": {
+      "alias": "sonnet",
+      "backend": "claude -p",
+      "command": [
+        "claude",
+        "-p",
+        "--model",
+        "sonnet",
+        "--tools",
+        "",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "",
+        "--no-session-persistence",
+        "--system-prompt",
+        "You are a helpful assistant.",
+        "--output-format",
+        "json"
+      ],
+      "cwd": "fresh empty temp dir"
+    },
+    "system_prompt": "You are a helpful assistant.",
+    "temperature": "default",
+    "transport_retries": 0,
+    "vendor": "sonnet"
+  },
+  "participant_id": "p026",
+  "profile_id": "externalized-lift-0.1",
+  "raw_sha256": "68a20a78ac839fb22594a39c35b235a6d21625fabb3ca20b15a631cd48d626ce",
+  "vendor": "sonnet"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-09",
+  "duration_s": 83.665,
+  "model_id": "qwen3.5:9b",
+  "model_ids": [
+    "qwen3.5:9b"
+  ],
+  "other_settings": {
+    "backend": "ollama /api/chat",
+    "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "num_ctx": 32768,
+    "stream": false
+  },
+  "system_prompt": "none",
+  "temperature": "default",
+  "transport_retries": 0,
+  "vendor": "qwen"
+}

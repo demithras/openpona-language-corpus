@@ -1,0 +1,212 @@
+{
+  "answers": [
+    {
+      "token": "",
+      "trial_id": "R1C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R1C7"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R2C7"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R3C7"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R4C7"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R5C7"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C1"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C2"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C3"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C4"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C5"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C6"
+    },
+    {
+      "token": "",
+      "trial_id": "R6C7"
+    }
+  ],
+  "condition": "generic",
+  "familiarity_answer": "no",
+  "familiarity_text": ". I know toki pona and its dictionary lipu Linku, but I don't recognize \"OpenPona\" or this 6x7 arrangement.",
+  "meta": {
+    "date": "2026-10-09",
+    "duration_s": 6.933,
+    "model_id": "claude-haiku-5-5",
+    "model_ids": [
+      "claude-haiku-5-5"
+    ],
+    "other_settings": {
+      "alias": "haiku",
+      "backend": "claude -p",
+      "command": [
+        "claude",
+        "-p",
+        "--model",
+        "haiku",
+        "--tools",
+        "",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "",
+        "--no-session-persistence",
+        "--system-prompt",
+        "You are a helpful assistant.",
+        "--output-format",
+        "json"
+      ],
+      "cwd": "fresh empty temp dir"
+    },
+    "system_prompt": "You are a helpful assistant.",
+    "temperature": "default",
+    "transport_retries": 0,
+    "vendor": "haiku"
+  },
+  "participant_id": "p017",
+  "profile_id": "externalized-lift-0.1",
+  "raw_sha256": "b2563e383fa141e601c5613e33347ceeb3e7e8357c7bda9700b1330b012c6bab",
+  "vendor": "haiku"
+}
