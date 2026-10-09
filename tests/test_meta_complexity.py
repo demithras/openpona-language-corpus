@@ -58,6 +58,52 @@ def test_nonoverlap_n20_completes_under_2s():
     assert res.skeletons[0].count("D1(") == 20
 
 
+# ------------------------------------------------ fold gate per overlap component
+def _m11_family(n: int) -> str:
+    return "jan li " + " e ".join(["ilo ilo sitelen ilo sitelen"] * n)
+
+
+@pytest.mark.parametrize("n", range(8, 15))
+def test_many_components_with_one_valid_fold_each_resolve(n):
+    """max_fold_candidates limits fold alternatives PER overlap component (author
+    decision 2026-10-09): n components of 2 maximal folds each (2^n product) stay inside it."""
+    t0 = time.perf_counter()
+    res = parse(_m11_family(n))
+    assert time.perf_counter() - t0 < 1.0
+    assert res.status == "RESOLVED" and len(res.skeletons) == 1
+
+
+def test_one_component_over_the_limit_still_exhausts():
+    res = parse(_m11_family(1), Budget(max_fold_candidates=1))
+    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_fold_candidates"
+
+
+def test_product_of_components_is_statistics_only():
+    stats = ParseStats()
+    res = parse(_m11_family(10), stats=stats)
+    assert res.status == "RESOLVED"
+    assert stats.fold_candidates == 2 ** 10
+
+
+def test_every_fold_valid_family_under_budget_stays_ambiguous():
+    """n = 11: 2^11 = 2048 genuine readings, below max_skeletons: all are kept."""
+    res = parse("jan li " + " e ".join(["jan pali jan pali jan"] * 11))
+    assert res.status == "AMBIGUOUS" and len(res.skeletons) == 2048
+
+
+@pytest.mark.parametrize("n", [13, 16, 30])
+def test_every_fold_valid_family_is_caught_early_by_max_skeletons(n):
+    """2^n genuine readings above max_skeletons: an upper bound computed from the
+    forest before any skeleton is rendered ends the parse at once with the DEFAULT
+    budget - not after building 4096 skeletons, not through max_seconds."""
+    text = "jan li " + " e ".join(["jan pali jan pali jan"] * n)
+    t0 = time.perf_counter()
+    res = parse(text)
+    assert time.perf_counter() - t0 < 1.0
+    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_skeletons"
+    assert res.skeletons == []
+
+
 def test_fold_fallback_runs_are_one_parse_not_a_product():
     # D3 (2026-10-09): every `pi ilo ilo` run folds to an invalid group of one, so
     # every run falls back to its unfolded reading.  All 40 fallbacks come out of
@@ -142,9 +188,9 @@ def test_overlap_family_beyond_budget_is_exhausted_fast():
     ok = parse(make_case("overlap", 8))
     assert ok.status == "AMBIGUOUS" and len(ok.skeletons) == 2 ** 8
     t0 = time.perf_counter()
-    res = parse(make_case("overlap", 12))
-    assert time.perf_counter() - t0 < 1.0
-    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_fold_candidates"
+    res = parse(make_case("overlap", 12), Budget(max_seconds=1.0))
+    assert time.perf_counter() - t0 < 2.0
+    assert res.status == RESOURCE_EXHAUSTED and res.reason == "max_seconds"
     assert res.skeletons == []
 
 
@@ -425,6 +471,7 @@ def test_bounded_adversarial_benchmark_cannot_hang(monkeypatch):
     """Runs the published fixture families in subprocesses with a hard cap:
     a regression to exponential folding shows up as TIMEOUT, never as a hang."""
     monkeypatch.setenv("PYTHONPATH", str(ROOT))  # measure this tree
+    monkeypatch.setenv("BENCH_MAX_SECONDS", "1.0")  # overlap n=20 has 2^20 genuine readings: the clock ends it
     t0 = time.perf_counter()
     rows = BENCH.bench([8, 20], cap=15.0, seed=0)
     assert time.perf_counter() - t0 < 50

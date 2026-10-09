@@ -14,6 +14,7 @@ Families (n = number of duplicated units / META runs):
 
 Each case runs in a fresh subprocess with a hard wall-clock cap (default
 20 s); a case that hits the cap is recorded as TIMEOUT and killed.
+Environment variable BENCH_MAX_SECONDS overrides the parser's max_seconds budget.
 A second subprocess measures peak traced memory (tracemalloc) unless the
 time pass timed out.  The `openpona` package is whatever is importable in
 the environment (use PYTHONPATH to point at a baseline tree); the module
@@ -69,15 +70,16 @@ def make_case(family: str, n: int, seed: int = 0) -> str:
 
 
 _CHILD = r"""
-import json, sys, time, tracemalloc
+import json, os, sys, time, tracemalloc
 import openpona
-from openpona import parse
+from openpona import Budget, parse
 mode, text = sys.argv[1], sys.argv[2]
+BUD = Budget(max_seconds=float(os.environ["BENCH_MAX_SECONDS"])) if "BENCH_MAX_SECONDS" in os.environ else Budget()
 parse("jan li pali")  # warm the grammar cache outside the measured region
 res = {"module": openpona.__file__}
 if mode == "time":
     t0 = time.perf_counter()
-    r = parse(text)
+    r = parse(text, BUD)
     res["seconds"] = time.perf_counter() - t0
     res["status"] = r.status
     res["n_skeletons"] = len(r.skeletons)
@@ -85,13 +87,13 @@ if mode == "time":
     try:
         from openpona.parser import ParseStats
         st = ParseStats()
-        parse(text, stats=st)
+        parse(text, BUD, stats=st)
         res["work"] = st.work
     except Exception:
         res["work"] = None
 else:
     tracemalloc.start()
-    parse(text)
+    parse(text, BUD)
     res["peak_bytes"] = tracemalloc.get_traced_memory()[1]
     tracemalloc.stop()
 print(json.dumps(res))

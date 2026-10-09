@@ -49,9 +49,12 @@ Each stage now does less work, and every stage runs under a `Budget`.
   `_component_sets` lists the maximal non-overlapping run sets of one component
   without dead branches (O(sets x m^2) for *m* runs). The size of the
   factorised fold space (the product over components of the number of maximal
-  sets) is computed *before* anything is built. `parse` uses it only as the
-  **fold-ambiguity budget gate**: above `max_fold_candidates` it stops at once.
-  *n* independent runs make *n* singleton components, so the count stays 1.
+  sets) is computed *before* anything is built, as a statistic
+  (`fold_candidates`). The **fold-ambiguity budget gate** works **per overlap
+  component** (author decision 2026-10-09): if ONE component alone has more than
+  `max_fold_candidates` maximal fold sets, `parse` stops at once. The product
+  over components is not gated, so many components with a few folds each no
+  longer exhaust the budget. *n* independent runs make *n* singleton components.
 * The fold sets are **no longer parsed one by one.** The maximal sets only
   measure the ambiguity.
 
@@ -189,8 +192,8 @@ Rules:
 | field | default | guards | `reason` |
 |---|---|---|---|
 | `max_tokens` | 256 | token count | `max_tokens` |
-| `max_fold_candidates` | 256 | fold ambiguity: number of **maximal META fold sets** (product over overlap components). Since 2026-10-09 fold choices are not separate parses, so this no longer counts parses | `max_fold_candidates` |
-| `max_skeletons` | 4096 | parse count: distinct parses kept | `max_skeletons` |
+| `max_fold_candidates` | 256 | fold ambiguity: number of **maximal META fold sets of ONE overlap component** (not the product over components; the product is only the `fold_candidates` statistic). Since 2026-10-09 fold choices are not separate parses, so this no longer counts parses | `max_fold_candidates` |
+| `max_skeletons` | 4096 | parse count: distinct parses kept; also an upper bound on the forest's readings, checked before rendering | `max_skeletons` |
 | `max_forest_steps` | 2,000,000 | parse-forest expansion | `max_forest_steps` |
 | `max_depth` | 4096 | explicit traversal depth (also catches a contained `RecursionError`) | `max_depth` |
 | `max_seconds` | 10.0 | elapsed time, checked between steps | `max_seconds` |
@@ -245,7 +248,9 @@ Reading the table (TP-01, commit `d5c84dd`):
   (2^n). The candidate's work counter grows linearly (281, 425, 569, 713).
 * **overlap:** n m12-style components have 2^n *genuine* readings. That output
   really is exponential, so beyond `max_fold_candidates` = 256 the honest answer
-  is `RESOURCE_EXHAUSTED`. At n = 8 the candidate returns all 256 parses about
+  is `RESOURCE_EXHAUSTED` (at the time of this table; since 2026-10-09 the gate is per
+  component, a 256-reading overlap component alone still trips it, and the n >= 12
+  rows of the `overlap` family end through `max_seconds`, see below). At n = 8 the candidate returns all 256 parses about
   12x faster, because one Earley parse is shared across all readings.
 * **long203:** the time is unchanged. Most of the remaining peak memory is
   Lark's Earley chart.
@@ -289,16 +294,29 @@ seeded runs of 2-3 copies separated by random particles, ending in `li`
 
 ## Known limits
 
-* **The fold-ambiguity gate is a count of maximal fold sets, not of valid
-  parses.** n m11-style components (`ilo ilo sitelen ilo sitelen`, two maximal
-  folds each, only one valid) give 2^n maximal sets. Since the single-parse
-  design (D3) the parse itself no longer multiplies by this number, but the gate
-  still counts it. Measured on `jan li` followed by n copies of
-  `ilo ilo sitelen ilo sitelen` joined by `e` (n = 1..10, commit `43ff366`):
-  n = 1..8 are `RESOLVED` with one skeleton; n = 9 and n = 10 are
-  `RESOURCE_EXHAUSTED` (`max_fold_candidates`) (not measured: whether a valid reading would parse without the gate). The parser
-  fails closed, never with a wrong verdict. Measuring ambiguity from the SPPF
-  instead of from the fold sets would remove this limit; that is not done.
+* **The fold-ambiguity gate is a count of maximal fold sets per overlap
+  component, not of valid parses.** Each `ilo ilo sitelen ilo sitelen` (m11-style)
+  is its own component with two maximal folds, only one valid. Since 2026-10-09
+  the gate looks at one component at a time, so it does not see the 2^n product.
+  Measured on `jan li` followed by n copies of `ilo ilo sitelen ilo sitelen`
+  joined by `e` (n = 8..14): all `RESOLVED` with one skeleton, each under
+  0.03 s (the previous product gate gave `RESOURCE_EXHAUSTED` from n = 9).
+  Where every per-component fold choice is *valid*, readings really multiply:
+  `jan li` followed by n copies of `jan pali jan pali jan` joined by `e` gives
+  `AMBIGUOUS` with 2^n skeletons for n = 8 (256, 0.11 s), n = 11 (2048, 1.0 s),
+  n = 12 (4096, 4.0 s: exactly the budget). From n = 13 the parse ends in
+  `RESOURCE_EXHAUSTED` through `max_skeletons` after about 0.5 s (n = 13: 0.46 s,
+  n = 16: 0.42 s, n = 30: 0.51 s, default budget). In `_alts`, before the
+  combinations of a forest node are built, an upper bound on its readings is
+  computed by dynamic programming from its already-pruned children (sum over
+  packed alternatives, product over children, saturated at `max_skeletons` + 1);
+  a bound above the budget raises at once, so the 4096-skeleton set is never
+  built. (A bound over the raw forest, ignoring pruning, was tried and rejected:
+  it flipped the `nonoverlap` family from `RESOLVED` to `RESOURCE_EXHAUSTED`.)
+  The bound ignores only the pruning of the node itself. Same pass: `_maximal`
+  compares a value only with the maximal ones found so far and `_prune_local`
+  groups by fold set once, which cut the node-pruning cost. No conformance
+  record changed status. Never a hang, never `RESOLVED` or `INVALID`.
 * **A single Earley parse cannot be interrupted.** `max_seconds` is checked
   between folds and during rendering, not inside Lark. One parse is bounded by
   `max_tokens` (Earley is at most cubic). The slowest input seen at 253-255 tokens
