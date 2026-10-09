@@ -1,7 +1,6 @@
 """Property tests of the reference parser (hypothesis)."""
 import pytest
 
-pytest.importorskip("hypothesis")
 from hypothesis import assume, given, settings, strategies as st  # noqa: E402
 
 from openpona import SEMANTIC, STRUCTURAL, TOKENS, parse  # noqa: E402

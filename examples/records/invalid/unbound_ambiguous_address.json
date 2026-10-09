@@ -1,0 +1,67 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la ilo pali li pona ala",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "ilo",
+    "pali",
+    "li",
+    "pona",
+    "ala"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "ee8003dd3078d695f614123db7894e9e8e7707dd2bb9191cc8324890682c349b"
+  },
+  "statement_id": "acme-web-678-ev-01",
+  "created_at": "2026-10-08T09:01:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "observed",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "candidates": [
+      "ci:build-service",
+      "ci:lint-service"
+    ]
+  },
+  "evidence_refs": [
+    "ci:check-run-9913"
+  ],
+  "literals": {
+    "pr_number": 678,
+    "failing_job": "unit-tests"
+  },
+  "provenance": {
+    "kind": "runtime_observation"
+  },
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "f331854c8c9cf716530a5a69db65686da182c106387e44c62560ca953aaa8368"
+  },
+  "x-defect": "subject is marked RESOLVED but has two candidates and no bound_ref"
+}

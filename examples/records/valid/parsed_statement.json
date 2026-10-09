@@ -1,0 +1,20 @@
+{
+  "profile": "ParsedStatement",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ilo pali li kama pona",
+  "tokens": [
+    "ilo",
+    "pali",
+    "li",
+    "kama",
+    "pona"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "875158f80f2bae095abb7d071d1969d479c78277b5b7a04bb8e3fca29cdf39b8"
+  },
+  "x-note": "syntax only: no binding, no truth, no authorization"
+}

@@ -1,0 +1,20 @@
+{
+  "profile": "ParsedStatement",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "jan pali jan pali jan",
+  "tokens": [
+    "jan",
+    "pali",
+    "jan",
+    "pali",
+    "jan"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "AMBIGUOUS",
+    "alternative_index": 1,
+    "ast_sha256": "746594d47c7a56d6470948ee397dc833f8ce9065d4483098e4e1c31977efc3a6"
+  },
+  "x-note": "AMBIGUOUS parse pinned to reading 1 of 2 (alternative_index); the other reading is not discarded by the language"
+}

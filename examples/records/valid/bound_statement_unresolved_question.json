@@ -1,0 +1,35 @@
+{
+  "profile": "BoundStatement",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "seme li tan e ni",
+  "tokens": [
+    "seme",
+    "li",
+    "tan",
+    "e",
+    "ni"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "8e8e73b68df287941bcdea3792115e3e84784a4b567d5b0ee9179dde370ead17"
+  },
+  "resolution_status": "UNRESOLVED",
+  "resolution_context": [
+    "project:acme-web"
+  ],
+  "subject": {
+    "tokens": [
+      "seme"
+    ],
+    "resolution_status": "UNRESOLVED"
+  },
+  "x-note": "a question statement: its `seme` stays UNRESOLVED at binding",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "31ea91b1dbd08ce6649f29708ae782ae69f0725423478604fb3d43549efaf0fa"
+  }
+}

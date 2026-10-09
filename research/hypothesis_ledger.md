@@ -36,3 +36,7 @@ This is the current research posture.
 ## Ontology Machine detail
 
 See `ontology_machine_hypotheses.md` for the H11-R/H12/H14/H15 and R4.x grounding/authority experiments, and `matrix_coordinate_experiments.md` for the `MX*` matrix experiments (there is no H4; the numbering gap is historical).
+
+## Traceability: Externalized Lift profile (TP-14 / TP-15)
+
+RESEARCH candidate profile externalized-lift-0.1, author-approved 2026-10-08 as research only, NOT canon, unvalidated. Coordinate labels (R1..R6, C1..C7) and the blinded harness live in `research/lift/` and `research/externalized_lift_coordinates.md`; token cells are sourced only from the current `anu 1.1` `data/matrix.csv` and are checked against it by `research/lift/blind_experiment.py validate`. Author approval is not independent empirical support: no blinded study has been run, H7-W / MX3-W remain reported-unpublished, and H7-S / MX3-S (unique generation) is not claimed. Governed by change gates 8, 11 and 12 (no historical row-5 placement in the canonical CSV; research-only status; blinding).

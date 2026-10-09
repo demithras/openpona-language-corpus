@@ -1,0 +1,64 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la nasin pona li pini",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "nasin",
+    "pona",
+    "li",
+    "pini"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "ee0a7a6f6e79350c4cc15f99307916225eb924b7a27a5b30982ff6dad7a5ba7a"
+  },
+  "statement_id": "acme-web-678-ev-05",
+  "created_at": "2026-10-08T09:05:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "observed",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "nasin",
+      "pona"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "fix:flaky-unit-test"
+  },
+  "evidence_refs": [
+    "log:fix-script-exit-0"
+  ],
+  "literals": {
+    "exit_code": 0
+  },
+  "provenance": {
+    "kind": "runtime_observation"
+  },
+  "cause_refs": [
+    "acme-web-678-ev-04"
+  ],
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "b97e2df2f23cc996e8b657dc6f7cdc2b1f3d930e1f4c8c8050136e29c98bbfe0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "_comment": "Disagreements between tools/oracle/recognizer.py and the reference parser on conformance cases. Each entry: class + note. All are PENDING AUTHOR DECISION: the spec text does not say what META priority does when the folded reading is invalid.",
+  "_observations": [
+    "Differential sweep (not part of the corpus): every sequence of length 1-5 over {jan, ma, tan, li, e, la, pi, anu} plus 30000 random sequences of length 6-9. Every disagreement involved a foldable repeated run. In no sampled sequence did the oracle say INVALID while the parser accepted.",
+    "Class meta-fold-fallback (largest): oracle keeps the unfolded reading when the folded one is invalid (jan pi jan jan, jan pi ma ma); parser answers INVALID. Covered by amb2-meta-09 and amb2-tan-01.",
+    "Class priority-combination (not turned into corpus cases because the spec does not decide it): 'ma li tan ma tan ma ma' - oracle RESOLVED ({ma} li tan {ma} tan {D1(ma)}), parser AMBIGUOUS (adds {ma} li {D1(tan ma) ma}); 'tan li jan jan tan jan tan' - oracle ({tan} li {D1(jan)} tan {jan tan}), parser ({tan} li {jan D1(jan tan)}). The oracle compares fold sets, then structural-tan sets, by strict inclusion; the parser combines META and structure differently when fold sets are incomparable.",
+    "Class surrounding-line-terminator: the parser ignores a leading or trailing newline, CR, U+2028, U+2029, U+0085, VT, FF or FS (ilo li awen followed by a newline is RESOLVED); the oracle accepts only spaces and tabs around a statement (SPEC 17 says one statement per line but does not say how a line terminator is treated). Internal separators of that kind are INVALID in both. Not turned into a case: the spec does not decide it."
+  ],
+  "amb2-meta-09": {
+    "class": "meta-fold-fallback",
+    "note": "oracle: RESOLVED {jan pi ilo ilo} (unfolded group [ilo ilo] used because the folded reading is a group of one); parser: INVALID (fold applied unconditionally). Spec silent; PENDING AUTHOR REVIEW."
+  },
+  "amb2-tan-01": {
+    "class": "meta-fold-fallback",
+    "note": "oracle: AMBIGUOUS (two structural tan readings; folding tan tan leaves three units so META does not apply); parser: INVALID (tan tan folded unconditionally). Same root cause as amb2-meta-09; PENDING AUTHOR REVIEW."
+  }
+}

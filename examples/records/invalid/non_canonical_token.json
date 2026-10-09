@@ -1,0 +1,39 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la ilo pali li sin",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "ilo",
+    "pali",
+    "li",
+    "sin"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "ee8003dd3078d695f614123db7894e9e8e7707dd2bb9191cc8324890682c349b"
+  },
+  "statement_id": "acme-web-678-bad-02",
+  "created_at": "2026-10-08T09:31:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "hypothesis",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "provenance": {
+    "kind": "agent_statement"
+  },
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "500f8cc5439e6fc8a0edec54f65059965b1e98ad0777185a86b12e4d8341ca1a"
+  },
+  "x-defect": "`sin` is not one of the 42 tokens"
+}

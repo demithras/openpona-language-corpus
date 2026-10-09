@@ -1,0 +1,66 @@
+{
+  "profile": "AgentEvent",
+  "schema_version": "records-1.0.0",
+  "token_version": "anu 1.1",
+  "surface": "ma pali la ilo pali li kama pona",
+  "tokens": [
+    "ma",
+    "pali",
+    "la",
+    "ilo",
+    "pali",
+    "li",
+    "kama",
+    "pona"
+  ],
+  "parse_reference": {
+    "api_version": "1.0.0",
+    "status": "RESOLVED",
+    "alternative_index": 0,
+    "ast_sha256": "6d88038d291e685dcda02bdfed472a0d5d1de9172018f0c38f02147e14b3b28c"
+  },
+  "statement_id": "acme-web-678-ev-07",
+  "created_at": "2026-10-08T09:07:00Z",
+  "actor": "urn:agent:linja",
+  "truth_status": "observed",
+  "resolution_status": "RESOLVED",
+  "resolution_context": [
+    "project:acme-web",
+    "repo:acme-web"
+  ],
+  "context": {
+    "tokens": [
+      "ma",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "project:acme-web"
+  },
+  "subject": {
+    "tokens": [
+      "ilo",
+      "pali"
+    ],
+    "resolution_status": "RESOLVED",
+    "bound_ref": "ci:run-4711"
+  },
+  "evidence_refs": [
+    "ci:check-run-9920"
+  ],
+  "literals": {
+    "pr_number": 678
+  },
+  "provenance": {
+    "kind": "source_event",
+    "source_event": "acme-web-678-ev-06"
+  },
+  "cause_refs": [
+    "acme-web-678-ev-06"
+  ],
+  "x-note": "illustrative CI walkthrough record (anonymised acme-web, PR 678); ids, revisions and times are invented",
+  "binding_seal": {
+    "algorithm": "sha256",
+    "source_revision": "graph-rev:acme-web@2026-10-08",
+    "digest": "88cea2be1196b1fa28c64bcc2788fb61d4258785792715b06a581238f277d53c"
+  }
+}
