@@ -301,6 +301,36 @@ class AnalyzeTests(unittest.TestCase):
         self.assertEqual(next(iter(res)), "banner")
         self.assertEqual(res["banner"], "PILOT - EXPLORATORY, NOT CONFIRMATORY")
 
+    def _c7_case(self, right):
+        part = {k: "" for k in GOLD}
+        for k in right:
+            part[k] = GOLD[k]
+        pid = arm_of(self.d, "external")
+        respond(self.d, pid, part)
+        p = self.person(self.analyse(), pid)
+        return tuple((p[f"{s}_correct"], p[f"{s}_n"]) for s in ("interior", "interior_no_c7", "c7_interior"))
+
+    def test_c7_sensitivity_perfect(self):
+        for r in pl.read_allocation(self.d):
+            respond(self.d, r["participant_id"], GOLD)
+        res = self.analyse()
+        for p in res["participants"]:
+            self.assertEqual((p["interior_correct"], p["interior_no_c7_correct"], p["c7_interior_correct"]), (30, 25, 5))
+            self.assertEqual((p["interior_no_c7_n"], p["c7_interior_n"]), (25, 5))
+        for arm in res["arms"].values():
+            self.assertEqual(arm["interior_no_c7"]["mean_top1"], 1.0)
+            self.assertEqual(arm["c7_interior"]["ci95_participant_bootstrap"], [1.0, 1.0])
+        self.assertIn("external_minus_generic_interior_no_c7", res["contrasts"])
+        self.assertIn("interior w/o C7 (25)", (self.d / "report.md").read_text(encoding="utf-8"))
+
+    def test_c7_sensitivity_only_c7_right(self):
+        got = self._c7_case([f"R{r}C7" for r in range(2, 7)])
+        self.assertEqual(got, ((5, 30), (0, 25), (5, 5)))
+
+    def test_c7_sensitivity_only_non_c7_right(self):
+        got = self._c7_case([f"R{r}C{c}" for r in range(2, 7) for c in range(2, 7)])
+        self.assertEqual(got, ((25, 30), (25, 25), (0, 5)))
+
     def test_all_abstain_gives_zero(self):
         for r in pl.read_allocation(self.d):
             respond(self.d, r["participant_id"], {k: "" for k in GOLD})
