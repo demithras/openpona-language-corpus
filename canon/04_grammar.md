@@ -69,7 +69,7 @@ Repetition is recognized before normal structural interpretation, and structure 
 META → structure → vector
 ```
 
-The three levels combine lexicographically (author decision 2026-10-09; SPEC invariant 18 and §7). Among all valid readings keep those whose set of META folds is maximal by inclusion; among them keep those whose set of structural `tan` positions is maximal by inclusion; one survivor is RESOLVED, several incomparable survivors are AMBIGUOUS. A META fold is applied only where the resulting reading is valid: if folding a repeated run makes the statement invalid, the unfolded reading is used (the same principle as for `tan`, the lower-priority reading applies where the higher one does not parse).
+The three levels combine lexicographically (author decision 2026-10-09; SPEC invariant 18 and §7). Among all valid readings keep those whose the set of token positions covered by META folds is maximal by inclusion; among them keep those whose set of structural `tan` positions is maximal by inclusion; one survivor is RESOLVED, several incomparable survivors are AMBIGUOUS. A META fold is applied only where the resulting reading is valid: if folding a repeated run makes the statement invalid, the unfolded reading is used (the same principle as for `tan`, the lower-priority reading applies where the higher one does not parse).
 
 ```openpona
 jan pi ilo ilo

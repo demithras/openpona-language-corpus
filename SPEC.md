@@ -44,7 +44,7 @@ The following are canonical:
 15. Natural-language renderings are secondary views; they must not silently alter operational semantics.
 16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects. Known departures are tracked in `canon/11`.
 17. One statement per line. The language has no punctuation. Spaces (U+0020) and tabs (U+0009) before and after the statement are ignored; exactly one trailing line boundary (LF, or CR LF) is ignored. Anything else around or inside the statement — a leading newline, a second trailing newline, a lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP — makes the line INVALID (author decision 2026-10-09).
-18. Parse priority is lexicographic over the valid readings of a statement: first the readings whose set of META folds is maximal by inclusion, then, among those, the readings whose set of structural `tan` positions is maximal by inclusion; the vector reading of `tan` applies only where no structural reading exists. One survivor is RESOLVED, several incomparable survivors are AMBIGUOUS (author decision 2026-10-09; §7).
+18. Parse priority is lexicographic over the valid readings of a statement: first the readings whose the set of token positions covered by META folds is maximal by inclusion, then, among those, the readings whose set of structural `tan` positions is maximal by inclusion; the vector reading of `tan` applies only where no structural reading exists. One survivor is RESOLVED, several incomparable survivors are AMBIGUOUS (author decision 2026-10-09; §7).
 
 ## 3. Canonical matrix
 
@@ -249,7 +249,7 @@ jan pi ma ma
 
 Among all valid candidate readings (the choice of META folds together with the structural or vector role of each `tan`):
 
-1. keep the readings whose fold set (the set of folded runs, by position and depth) is maximal by inclusion — a reading whose fold set is a strict subset of another valid reading's fold set is dropped;
+1. keep the readings whose fold set (the set of token positions covered by META folds) is maximal by inclusion — a reading whose fold set is a strict subset of another valid reading's fold set is dropped. The comparison is by folded token positions, not by folded runs; the two differ only for overlapping runs (author decision 2026-10-09);
 2. among the survivors keep the readings whose set of structural `tan` positions is maximal by inclusion;
 3. one survivor is RESOLVED; several, incomparable after both steps, are AMBIGUOUS.
 
