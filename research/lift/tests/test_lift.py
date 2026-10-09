@@ -140,13 +140,79 @@ class PrepareDeterminismTests(unittest.TestCase):
             with self.subTest(cond=cond), tempfile.TemporaryDirectory() as d:
                 outs = []
                 for tag in "ab":
-                    out = Path(d) / tag / cond
-                    self.assertEqual(lift.main(["prepare", "--condition", cond, "--seed", "20261008", "--out-dir", str(out)]), 0)
-                    outs.append(out)
-                names = sorted(x.name for x in outs[0].iterdir())
-                self.assertEqual(names, ["private_gold.json", "public_prompt.json", "submission_template.json"])
-                for n in names:
-                    self.assertEqual((outs[0] / n).read_bytes(), (outs[1] / n).read_bytes())
+                    pub, priv = Path(d) / tag / cond / "public", Path(d) / tag / cond / "private"
+                    self.assertEqual(lift.main(["prepare", "--condition", cond, "--seed", "20261008", "--public-dir", str(pub), "--private-dir", str(priv)]), 0)
+                    outs.append((pub, priv))
+                self.assertEqual(sorted(x.name for x in outs[0][0].iterdir()), ["public_prompt.json", "submission_template.json"])
+                self.assertEqual(sorted(x.name for x in outs[0][1].iterdir()), ["private_gold.json"])
+                for i in (0, 1):
+                    for n in sorted(x.name for x in outs[0][i].iterdir()):
+                        self.assertEqual((outs[0][i] / n).read_bytes(), (outs[1][i] / n).read_bytes())
+
+
+class PublicPrivateSeparationTests(unittest.TestCase):
+    def run_prepare(self, pub, priv):
+        return subprocess.run([sys.executable, str(SCRIPT), "prepare", "--condition", "external", "--seed", "1",
+                               "--public-dir", str(pub), "--private-dir", str(priv)], capture_output=True, text=True)
+
+    def test_equal_dirs_refused(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = self.run_prepare(Path(d) / "x", Path(d) / "x")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertFalse((Path(d) / "x").exists())
+
+    def test_nested_dirs_refused_both_ways(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertNotEqual(self.run_prepare(Path(d) / "x", Path(d) / "x" / "private").returncode, 0)
+            self.assertNotEqual(self.run_prepare(Path(d) / "y" / "public", Path(d) / "y").returncode, 0)
+            self.assertNotEqual(self.run_prepare(Path(d) / "z", Path(d) / "z" / ".." / "z").returncode, 0)
+
+    def test_out_dir_flag_is_gone_and_both_dirs_required(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = subprocess.run([sys.executable, str(SCRIPT), "prepare", "--condition", "external", "--seed", "1", "--out-dir", d + "/o"], capture_output=True, text=True)
+            self.assertNotEqual(r.returncode, 0)
+
+    def test_gold_only_in_private_dir(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = self.run_prepare(Path(d) / "pub", Path(d) / "priv")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertTrue((Path(d) / "priv" / "private_gold.json").is_file())
+            for f in (Path(d) / "pub").iterdir():
+                self.assertNotIn("private_gold", f.read_text(encoding="utf-8"))
+                self.assertNotIn("gold", json.loads(f.read_text(encoding="utf-8")))
+
+    def test_public_prompt_carries_identical_glossary_in_every_arm(self):
+        gl = [lift.make_materials(lift.load_profile(), c, 5)[0]["glossary"] for c in lift.CONDITIONS]
+        self.assertTrue(all(g == gl[0] for g in gl))
+        self.assertEqual(set(gl[0]), set(lift.validate(lift.load_profile()).values()))
+
+
+class GlossaryTests(unittest.TestCase):
+    def setUp(self):
+        self.g = json.loads(lift.GLOSSARY.read_text(encoding="utf-8"))
+
+    def test_exactly_the_42_matrix_tokens(self):
+        want = set(lift.load_matrix().values())
+        have = set(self.g["definitions"])
+        self.assertEqual(want - have, set())
+        self.assertEqual(have - want, set())
+        self.assertEqual(len(have), 42)
+
+    def test_provenance_recorded(self):
+        self.assertEqual(self.g["license"], "CC BY-SA 4.0")
+        self.assertEqual(self.g["retrieved"], "2026-10-09")
+        self.assertEqual(self.g["source_snapshot_sha256"], "369cc79d9b764feabcda59112d92171d486456be973b62fc6689a7442718e9d1")
+        self.assertIn("lipu-linku/sona", self.g["source"])
+        self.assertTrue((lift.GLOSSARY.parent / "LICENSE-NOTICE.md").is_file())
+        self.assertTrue(all(isinstance(v, str) and v.strip() for v in self.g["definitions"].values()))
+
+    def test_glossary_token_drift_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            bad = json.loads(json.dumps(self.g)); bad["definitions"].pop("open"); bad["definitions"]["pona2"] = "x"
+            f = Path(d) / "g.json"; f.write_text(json.dumps(bad), encoding="utf-8")
+            with self.assertRaises(lift.DriftError) as cm:
+                lift.load_glossary(lift.load_matrix(), f)
+            self.assertEqual(cm.exception.kind, "glossary_token_mismatch")
 
 
 def walk_pairs(node, trial_ids, token, found, path=""):
