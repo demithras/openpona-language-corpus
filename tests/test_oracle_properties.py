@@ -15,8 +15,10 @@ is unique; the relations then hold between runs:
   4 stable token order    tokens/skeleton leaves/AST surface keep the surface order
   5 round trip            surface -> AST -> surface -> AST, JSON and skeleton readers
   6 boundary particles    a leading, trailing or doubled particle is INVALID
-  7 whitespace/Unicode    spaces/tabs are free, other separators and look-alikes are not
-  8 differential          oracle == parser unless a foldable run exists (known triage)
+  7 whitespace/Unicode    spaces/tabs are free, other separators and look-alikes are not;
+                          one final LF or CR LF is free, any other line edge is not (D5)
+  8 differential          oracle == parser on every sequence (no triaged family left
+                          since the author decisions D3/D4 of 2026-10-09)
 """
 from __future__ import annotations
 
@@ -373,6 +375,23 @@ def test_a_line_separator_between_tokens_is_invalid(stmt, sep, data):
 
 
 @settings(**PROFILE)
+@given(statements(), SPACING, st.sampled_from(["\n", "\r\n"]),
+       st.sampled_from(["\r", "\x0b", "\x0c", "\x1c", "\x85", "\u2028", "\u2029"]))
+def test_one_final_lf_or_crlf_is_free_and_no_other_line_edge_is(stmt, pad, end, other):
+    """SPEC 17, author decision 2026-10-09 (D5)."""
+    b = _build(stmt)
+    want = ("RESOLVED", [b.skeleton])
+    padded = pad[0] + b.surface + pad[-1]
+    for run in (parse, oracle.recognize):
+        for ok in (b.surface + end, padded + end):
+            r = run(ok)
+            assert (r.status, r.skeletons) == want, repr(ok)
+        for bad in (b.surface + end + end, end + b.surface, other + b.surface,
+                    b.surface + other, b.surface + end + other):
+            assert run(bad).status == "INVALID", repr(bad)
+
+
+@settings(**PROFILE)
 @given(statements(), st.data())
 def test_lookalike_case_and_invisible_characters_inside_a_token_are_invalid(stmt, data):
     toks = _build(stmt).surface.split()
@@ -394,17 +413,15 @@ def test_lookalike_case_and_invisible_characters_inside_a_token_are_invalid(stmt
 
 
 # ------------------------------------------------------------------ 8 differential
-VECTORS = set(SEMANTIC) | {"tan"}
 
 
-def _foldable_run(toks):
-    """SPEC 7: some P (one vector token, or two different ones) occurs twice in a row."""
-    for p in (1, 2):
-        for i in range(len(toks) - 2 * p + 1):
-            a, b = toks[i:i + p], toks[i + p:i + 2 * p]
-            if a == b and all(x in VECTORS for x in a) and not (p == 2 and a[0] == a[1]):
-                return True
-    return False
+@settings(**PROFILE)
+@given(st.lists(st.sampled_from(["jan", "ma", "tan", "li", "e", "pi"]), min_size=4, max_size=9))
+def test_oracle_and_parser_agree_on_repetition_heavy_sequences(toks):
+    """A small alphabet makes foldable runs and tan/run overlaps frequent (D3/D4)."""
+    surface = " ".join(toks)
+    o, p = oracle.recognize(surface), parse(surface)
+    assert (o.status, o.skeletons) == (p.status, p.skeletons), surface
 
 
 @st.composite
@@ -433,22 +450,14 @@ def _mutate(toks, draw):
 
 @settings(**PROFILE)
 @given(st.one_of(sequences, mutated()))
-def test_oracle_and_parser_agree_unless_a_triaged_family_applies(toks):
-    """No foldable run: identical. Foldable run without `tan`: identical unless the parser
-    folds unconditionally (it answers INVALID where the oracle has the unfolded reading:
-    triage class meta-fold-fallback). Foldable run with `tan`: only 'never more permissive'
-    is asserted (triage class priority-combination, see tools/oracle/triaged.json)."""
+def test_oracle_and_parser_agree_on_every_sequence(toks):
+    """Identical status, skeletons and trees, foldable runs and `tan` included: the
+    families triaged before 2026-10-09 (meta-fold-fallback, priority-combination) are
+    settled by the author decisions D3/D4 and implemented by both."""
     if not toks:
         return
     surface = " ".join(toks)
     o, p = oracle.recognize(surface), parse(surface)
-    if o.status == "INVALID":                       # the parser is never more permissive
-        assert p.status == "INVALID", surface
-    foldable = _foldable_run(toks)
-    if foldable and "tan" in toks:
-        return
-    if foldable and p.status == "INVALID" and o.status != "INVALID":
-        return                                      # meta-fold-fallback
     assert (o.status, o.skeletons) == (p.status, p.skeletons), surface
     assert sorted(_canon(s) for s in o.shapes) == \
         sorted(_canon(ast.shape(a)) for a in p.alternatives), surface

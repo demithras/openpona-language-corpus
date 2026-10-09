@@ -21,9 +21,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-DEFAULT_REPORT = ("/private/tmp/claude-501/-Users-d-surchis-work-openpona/"
-                  "67c0d1fd-3850-4ffa-a2a1-14ecae3c96bd/scratchpad/flow/openpona-tz-v02/out/"
-                  "N4-disagreements.md")
+DEFAULT_REPORT = str(ROOT / "build" / "oracle" / "disagreements.md")  # build/ is git-ignored
 
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

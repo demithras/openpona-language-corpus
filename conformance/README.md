@@ -35,10 +35,11 @@ Classification: nothing here changes canon, the 42-token inventory or any baseli
 | `baseline_provenance.json` | mechanical index of the frozen baseline cases (file, line, status, decision references and note copied verbatim from the case). The `rule_family` per file is an implementer classification, PENDING AUTHOR REVIEW. |
 | `ambiguity_v2.jsonl` | cases for META overlap, `tan` precedence (including cases that stay RESOLVED because the structural reading wins), `anu` right-association and nesting-looking `pi`. |
 | `ambiguity_v2.digests.json` | digest of each v2 expectation; an expectation that changes needs a `decision` field in the record. |
+| `canon_2026_10_09.jsonl` | cases of the author decisions of 2026-10-09: D3 META fold fallback, D4 lexicographic priority (fold set, then structural-`tan` set, each by inclusion), D5 line edges (one final LF or CR LF ignored; any other line boundary INVALID). Same fields as `ambiguity_v2.jsonl`; ids `canon-d3-*`, `canon-d4-*`, `canon-d5-*`. Line-edge characters are stored as JSON escapes (`\n`, `\r`, `\u2028`): every file is one physical line per record. |
 
 ### Fields of `ambiguity_v2.jsonl`
 
-`id` (prefix `amb2-`), `surface`, `rationale`, `source_rule` (SPEC section), `expect_status`, `expect_skeletons`, `expect_asts` (when not INVALID: span-free trees in the N2 JSON of `docs/parser-api.md`, compared as a set), `review` (always `PROPOSED - PENDING AUTHOR REVIEW`: a proposal, not an author decision), and optionally `triage`.
+`id` (prefix `amb2-`), `surface`, `rationale`, `source_rule` (SPEC section), `expect_status`, `expect_skeletons`, `expect_asts` (when not INVALID: span-free trees in the N2 JSON of `docs/parser-api.md`, compared as a set), `review` (`PROPOSED - PENDING AUTHOR REVIEW`: a proposal, not an author decision; or `ACCEPTED - author decision 2026-10-09` for `amb2-meta-09`, `amb2-tan-01` and every record of `canon_2026_10_09.jsonl`, whose `source_rule` cites that decision), and optionally `triage`.
 
 Expectations were written from SPEC 5-7 and `canon/` before the parser was run on them and are never edited to match the parser. `"triage": "open"` marks a record whose expectation the parser does not meet; `tests/test_conformance.py` skips only such records, with the `triage_note` as the reason, and the record must also be listed in `tools/oracle/triaged.json`.
 The `expect_asts` trees were rendered from the reviewed skeletons by `tools/oracle` (a mechanical, lossless step), not typed by hand.
@@ -48,6 +49,7 @@ The `expect_asts` trees were rendered from the reviewed skeletons by `tools/orac
 ```text
 python tools/conformance_counts.py            # RESOLVED/INVALID/AMBIGUOUS per file and in total, generated from the cases
 python tools/oracle/compare.py                # independent oracle vs parser over every case; exit 0 when every disagreement is triaged
+                                              # (report: build/oracle/disagreements.md; no disagreement since 2026-10-09)
 ```
 
 `tools/oracle/recognizer.py` is a separate structural recognizer written only from SPEC 5-7 and `canon/` (no `lark`, no `openpona` import). Counts in prose are not asserted by hand anywhere: `tests/test_conformance_integrity.py` fails on a stale "N cases" phrase in the current-state documents.

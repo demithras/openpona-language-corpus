@@ -4,7 +4,7 @@
 
 Who it is for: builders of agents that must log what they saw, what they intend and what they were asked without the three blurring together; people who want a small operational notation they can hold in their head; researchers testing whether such a language can serve as the surface syntax of an executable ontology.
 
-What you can do today: parse and validate statements (including an LLM's output, line by line), run the <!-- conformance-counts -->134-case (88 RESOLVED, 42 INVALID, 4 AMBIGUOUS)<!-- /conformance-counts --> conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
+What you can do today: parse and validate statements (including an LLM's output, line by line), run the <!-- conformance-counts -->147-case (96 RESOLVED, 46 INVALID, 5 AMBIGUOUS)<!-- /conformance-counts --> conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
 
 ```text
 $ pip install .                       # Python >= 3.11
