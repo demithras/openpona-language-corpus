@@ -1,6 +1,6 @@
 # Lift experiment scaffold (stdlib-only)
 
-**For prospective experimental setup, not a claim of result.** External axes were approved as **research coordinates** by the author on 2026-10-08. This harness contains known reference answers solely to verify and score later, independently obtained predictions.
+**For prospective experimental setup, not a claim of result.** External axes were approved as **research coordinates** by the author on 2026-10-08; the axis names became canonical on 2026-10-09 (`canon/03_matrix.md`), while the generative/predictive claim remains RESEARCH, unvalidated. This harness contains known reference answers solely to verify and score later, independently obtained predictions.
 
 ## Commands
 

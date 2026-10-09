@@ -45,6 +45,11 @@
 | Reference edition | unstated | **pu (2014) for grammar, ku (2021) for word senses** (2026-10-01) |
 | `tan` at statement start | vector phrase (`{tan ni} la …`) | **source context `tan X la S`; structural reading wins** (2026-10-01) |
 | `anu seme` | ordinary phrase choice, unremarked | **declared convergent with Toki Pona's question tag: choice with the unresolved variable** (2026-10-01) |
+| Matrix axis names (2026-10-09, author decision) | row/column labels are "external coordinates, not extra primitives"; the external coordinate hypothesis is research | **the Lift labels are canonical external axis names (rows R1–R6 Process, Inquiry, Method, Agency, Representation, Integration; columns C1–C7 Identity, Ground, Transform, Select, Realize, Evaluate, Structure); never tokens, never in the surface, 42-token inventory and `anu` placement unchanged; that the labels GENERATE the tokens stays research** (2026-10-09, author decision) |
+| META fold fallback (2026-10-09, author decision) | META fold applied unconditionally; a fold that made the statement invalid made the statement INVALID (`jan pi ilo ilo`) | **a fold applies only where the resulting reading is valid; otherwise the unfolded reading is used** (`jan pi ilo ilo` RESOLVED, `jan li ilo tan tan ma` AMBIGUOUS) (2026-10-09, author decision) |
+| Parse priority combination (2026-10-09, author decision) | priority META → structure → vector stated, combination of META folds and structural `tan` undefined (parser and oracle disagreed) | **lexicographic: maximal-by-inclusion set of token positions covered by META folds, then maximal-by-inclusion structural-`tan` position set; one survivor RESOLVED, several AMBIGUOUS** (2026-10-09, author decision) |
+| Line edges (2026-10-09, author decision) | "one statement per line"; treatment of a surrounding line terminator unspecified (parser ignored many, oracle only spaces and tabs) | **spaces and tabs around the statement and exactly one trailing LF or CR LF are ignored; anything else (leading newline, second trailing newline, lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP) is INVALID** (2026-10-09, author decision) |
+| Versions and `RESOURCE_EXHAUSTED` (2026-10-09, author decision) | versions listed together; `RESOURCE_EXHAUSTED` listed beside the syntax statuses | **token inventory `anu 1.1`, grammar = the SPEC as of its last change (no new identifier, changes listed here by date), parser API `1.0.0`, package `0.2.0`; `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser, not a syntax status; name accepted** (2026-10-09, author decision) |
 
 ## Conflict rule
 
@@ -54,3 +59,52 @@ When new material conflicts with canon:
 2. do not silently merge them;
 3. mark the older statement superseded only when a later decision is explicit;
 4. if no explicit winner exists, keep the issue unresolved.
+
+## 2026-10-09 author decisions
+
+Gate-3 record for the decisions D1-D5 of the OpenPona author (repo owner, 2026-10-09). The evidence is the independent-oracle report of TP-04 (`tools/oracle/`, 134 cases compared, 2 disagreements, plus a differential sweep over every sequence of length 1-5 and 30000 random sequences of length 6-9). None of the 96 baseline conformance cases changes status or skeleton set.
+
+### D1 - Lift axis names are canonical
+
+- **Previous wording:** `canon/03_matrix.md` invariant "Sprint/row and day/column labels are external coordinates, not extra primitives"; ledger row "Matrix coordinates": "external coordinate hypothesis is research".
+- **Falsifier / evidence:** none needed for naming. The names are not claimed to be evidence: `research/externalized_lift_coordinates.md` records that the table is ground truth for lookup only. The generative relation `T[i,j] ≈ Lex(F(Row[i], Column[j]))` stays untested (TP-08/TP-15 pending).
+- **New rule:** the Lift labels (R1-R6, C1-C7) are canonical axis names next to the functional column names and the narrative row roles. Axis names are external metadata: never tokens, never in the surface, never new primitives.
+- **Owner decision:** the author, 2026-10-09.
+- **Migration:** `canon/03_matrix.md`, `SPEC.md` §3, §14 and the research status wording changed; no token, cell, label, seed or harness behaviour changed; 42-token inventory and `anu 1.1` placement unchanged; no token-version bump.
+- **Conformance change:** none. `tests/test_canon.py` now checks the labels against `research/lift/coordinates.v0.1.json` and the 42 table tokens against `data/matrix.csv`.
+
+### D2 - Version separation and `RESOURCE_EXHAUSTED`
+
+- **Previous wording:** `canon/10_versioning.md` named only the token versions; `docs/parser-api.md` listed `RESOURCE_EXHAUSTED` beside the syntax statuses (flagged PENDING AUTHOR REVIEW).
+- **Falsifier / evidence:** none; a clarification. The conformance corpus has no case that expects `RESOURCE_EXHAUSTED`.
+- **New rule:** token inventory `anu 1.1`; grammar = the SPEC as of its last change (no identifier invented); parser API `1.0.0`; package `0.2.0`. `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser, not a syntax status; the language has three syntax outcomes (RESOLVED / AMBIGUOUS / INVALID). The name is accepted as is.
+- **Owner decision:** the author, 2026-10-09.
+- **Migration:** `canon/10_versioning.md`, `SPEC.md` §12. No code behaviour changed.
+- **Conformance change:** none.
+
+### D3 - META fold fallback
+
+- **Previous wording:** the reference parser applied every META fold unconditionally; `jan pi ilo ilo` and `jan li ilo tan tan ma` were INVALID. SPEC §7 was silent on a fold that makes the statement invalid.
+- **Falsifier / evidence:** TP-04 oracle report, cases `amb2-meta-09` and `amb2-tan-01` (oracle RESOLVED / AMBIGUOUS, parser INVALID); the differential sweep found 61 disagreements, all of this class.
+- **New rule:** a META fold is applied only where the resulting reading is valid; otherwise the unfolded reading(s) are used. `jan pi ilo ilo` RESOLVED `{jan pi ilo ilo}`; `jan li ilo tan tan ma` AMBIGUOUS; `jan pi jan jan`, `jan pi ma ma` RESOLVED unfolded.
+- **Owner decision:** the author, 2026-10-09 (the two triaged cases are now ACCEPTED).
+- **Migration:** `SPEC.md` invariant 12 and §7.1, `canon/04` §5, `canon/07`; parser changed in the same change set (commit e78be09).
+- **Conformance change:** `amb2-meta-09` and `amb2-tan-01` accepted; new file `conformance/canon_2026_10_09.jsonl`; the 96 baseline cases are unchanged.
+
+### D4 - Priority combination is lexicographic
+
+- **Previous wording:** invariant 18 "Parse priority: META (repetition) -> structure (particles) -> vector reading of `tan`" without a rule for combining META folds and structural `tan`.
+- **Falsifier / evidence:** TP-04 oracle report, class priority-combination: `ma li tan ma tan ma ma` (oracle RESOLVED, parser AMBIGUOUS) and `tan li jan jan tan jan tan` (different trees).
+- **New rule:** among valid readings keep those with a maximal-by-inclusion set of token positions covered by META folds, then those with a maximal-by-inclusion set of structural `tan` positions; one survivor RESOLVED, several AMBIGUOUS. `ma li tan ma tan ma ma` RESOLVED `({ma} li tan {ma} tan {D1(ma)})`; `tan li jan jan tan jan tan` RESOLVED `({tan} li {D1(jan)} tan {jan tan})`. Comparison basis: folded token positions, not folded runs — they differ only for overlapping runs; author decision 2026-10-09.
+- **Owner decision:** the author, 2026-10-09.
+- **Migration:** `SPEC.md` invariant 18 and §7.2, `canon/04` §5, `canon/07`; parser changed in commit e78be09.
+- **Conformance change:** cases in `conformance/canon_2026_10_09.jsonl`; no baseline case changes.
+
+### D5 - Line edges
+
+- **Previous wording:** invariant 17 "One statement per line. The language has no punctuation." The parser ignored a leading or trailing LF, CR, U+2028, U+2029, U+0085, VT, FF or FS; the oracle accepted only spaces and tabs.
+- **Falsifier / evidence:** TP-04 oracle report, class surrounding-line-terminator.
+- **New rule:** spaces and tabs around the statement are ignored; exactly one trailing LF or CR LF is ignored; anything else around or inside the statement is INVALID.
+- **Owner decision:** the author, 2026-10-09.
+- **Migration:** `SPEC.md` invariant 17, `canon/04`; parser and oracle changed in commit e78be09.
+- **Conformance change:** cases in `conformance/canon_2026_10_09.jsonl` (line-edge characters stored as JSON escapes).

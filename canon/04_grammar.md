@@ -33,6 +33,8 @@ unit       = semantic-token | "tan" | meta-unit ;
 
 Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi` (Toki Pona's order for `la li e pi`; the place of `anu` is OpenPona's own choice).
 
+One statement per line. Spaces (U+0020) and tabs (U+0009) before and after the statement are ignored, and so is exactly one trailing line boundary (LF, or CR LF). Anything else around or inside the statement — a leading newline, a second trailing newline, a lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP — makes the line INVALID (author decision 2026-10-09; SPEC invariant 17).
+
 `li la e pi anu` outside these positions make the statement INVALID. In OpenPona `tan` is the only token with both a structural and a vector role (Toki Pona has more prepositions — `canon/11`, departure 1, declared). Directly after `li` it is a source predicate (`jan li tan ma`) and at the start of a statement before `la` a source context (`tan ni la jan li pali`), decisions 2026-10-01; objects come before source phrases; the structural reading wins wherever one exists, and the vector reading applies only where none does (`jan li tan ma e ijo`).
 
 `anu` joins phrases only, never whole clauses (author decision, 2026-09-30), and a predicate containing `anu` must be the last predicate of its clause (`jan li pali anu jan li awen` is INVALID — decision 2026-10-01). A choice between statements is written as two `la` statements on two lines (`nasin open la jan li pali` / `nasin awen la jan li awen`).
@@ -66,6 +68,17 @@ Repetition is recognized before normal structural interpretation, and structure 
 ```text
 META → structure → vector
 ```
+
+The three levels combine lexicographically (author decision 2026-10-09; SPEC invariant 18 and §7). Among all valid readings keep those whose the set of token positions covered by META folds is maximal by inclusion; among them keep those whose set of structural `tan` positions is maximal by inclusion; one survivor is RESOLVED, several incomparable survivors are AMBIGUOUS. A META fold is applied only where the resulting reading is valid: if folding a repeated run makes the statement invalid, the unfolded reading is used (the same principle as for `tan`, the lower-priority reading applies where the higher one does not parse).
+
+```openpona
+jan pi ilo ilo
+jan pi ma ma
+? jan li ilo tan tan ma
+ma li tan ma tan ma ma
+```
+
+`jan pi ilo ilo` and `jan pi ma ma` are RESOLVED unfolded (`{jan pi ilo ilo}`); `jan li ilo tan tan ma` is AMBIGUOUS (one structural `tan` at each of two positions); `ma li tan ma tan ma ma` is RESOLVED as `({ma} li tan {ma} tan {D1(ma)})`.
 
 If `P` is a valid unit of one or two tokens — semantic tokens or `tan` only, never a particle — `n` consecutive copies of `P` form one META unit `D^(n-1)(P)`:
 

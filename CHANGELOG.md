@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-09 - author decisions D1-D5 (CANON)
+
+- D1 `canon/03_matrix.md`, `SPEC.md` §3: the Lift labels are canonical axis names (rows R1-R6 Process, Inquiry, Method, Agency, Representation, Integration; columns C1-C7 Identity, Ground, Transform, Select, Realize, Evaluate, Structure) next to the functional column names and narrative row roles. The generative relation `T[i,j] ≈ Lex(F(Row[i], Column[j]))` stays RESEARCH. No token, cell, label or harness change; 42 tokens and `anu 1.1` unchanged, no token-version bump; research status wording updated;
+- D2 `canon/10_versioning.md`: token inventory `anu 1.1`, grammar = the SPEC as of its last change, parser API `1.0.0`, package `0.2.0` named separately; `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser, not a syntax status (name accepted);
+- D3 META fold fallback (SPEC invariant 12, §7.1): a fold applies only where the resulting reading is valid (`jan pi ilo ilo` RESOLVED, `jan li ilo tan tan ma` AMBIGUOUS);
+- D4 priority combination (SPEC invariant 18, §7.2): lexicographic, maximal fold set then maximal structural-`tan` set (`ma li tan ma tan ma ma` RESOLVED);
+- D5 line edges (SPEC invariant 17): spaces, tabs and exactly one trailing LF or CR LF are ignored; any other line boundary or NBSP is INVALID;
+- parser and oracle follow D3-D5 (commit e78be09); 96 baseline conformance cases and the 7 frozen files unchanged; ledger entries in `history/supersession_ledger.md`.
+
 ## 2026-10-08 - TP-12 CI, counts, clean-wheel smoke (ENGINEERING)
 
 - `.github/workflows/ci.yml`: separate jobs `tests` (py3.11/3.12, `make check`, hard `import hypothesis` step), `conformance-counts`, `docs-lint`, `package-smoke` (wheel + sdist, fresh venv), `security` (gitleaks, pip-audit); `constraints.txt` pins the toolchain;

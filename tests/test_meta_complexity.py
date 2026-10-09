@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import sys
 import time
 from functools import lru_cache
@@ -55,6 +56,29 @@ def test_nonoverlap_n20_completes_under_2s():
     assert time.perf_counter() - t0 < 2.0
     assert res.status == "RESOLVED"
     assert res.skeletons[0].count("D1(") == 20
+
+
+def test_fold_fallback_runs_are_one_parse_not_a_product():
+    # D3 (2026-10-09): every `pi ilo ilo` run folds to an invalid group of one, so
+    # every run falls back to its unfolded reading.  All 40 fallbacks come out of
+    # ONE Earley parse; enumerating fold subsets would be 2^40 parses.
+    text = "jan li pali " + " ".join(["e jan pi ilo ilo"] * 40)
+    assert len(text.split()) == 203
+    st_ = ParseStats()
+    t0 = time.perf_counter()
+    res = parse(text, stats=st_)
+    assert time.perf_counter() - t0 < 2.0
+    assert res.status == "RESOLVED"
+    assert res.skeletons == ["({jan} li {pali}" + " e {jan pi ilo ilo}" * 40 + ")"]
+    assert st_.runs == 40 and st_.earley_parses == 1 and st_.fold_candidates == 1
+
+
+def test_one_earley_parse_per_statement():
+    for text in ("jan pali jan pali jan", make_case("nonoverlap", 12), make_case("random", 12),
+                 "ma li tan ma tan ma ma", "jan li ilo tan tan ma"):
+        st_ = ParseStats()
+        parse(text, stats=st_)
+        assert st_.earley_parses == 1, text
 
 
 def test_nonoverlap_work_grows_at_most_cubically():
@@ -208,8 +232,11 @@ def test_a_budget_never_changes_a_verdict(toks, budget):
 
 
 # ------------------------------------------- equivalence with the baseline
-# Reference oracle = the pre-TP-01 algorithm: brute-force maximal run sets, a
-# Lark tree with explicit ambiguity, full recursive expansion, global C8.
+# Reference oracle = brute force: every fold choice (EVERY set of pairwise
+# non-overlapping runs, maximal or not: D3 fold fallback, 2026-10-09), a Lark tree
+# with explicit ambiguity per folded string, full recursive expansion, then the
+# lexicographic priority of D4 (fold positions by inclusion, then structural-tan
+# positions by inclusion) computed here, not with the parser's helpers.
 def _ref_maximal_sets(runs):
     def overlap(a, b):
         return a[0] < b[1] and b[0] < a[1]
@@ -273,16 +300,70 @@ def _ref_alts(node, memo):
     return res
 
 
+def _ref_all_fold_sets(runs):
+    out = []
+
+    def rec(idx, chosen):
+        if idx == len(runs):
+            out.append(list(chosen))
+            return
+        r = runs[idx]
+        if not any(r[0] < c[1] and c[0] < r[1] for c in chosen):
+            chosen.append(r)
+            rec(idx + 1, chosen)
+            chosen.pop()
+        rec(idx + 1, chosen)
+
+    rec(0, [])
+    return out
+
+
+def _ref_render(toks, chosen):
+    by_start = {r[0]: r for r in chosen}
+    parts, i = [], 0
+    while i < len(toks):
+        if i in by_start:
+            s, e, k, p = by_start[i]
+            parts.append(f"D{k - 1}({' '.join(p)})")
+            i = e
+        else:
+            parts.append(toks[i])
+            i += 1
+    return " ".join(parts)
+
+
+def _ref_structural_tans(skel):
+    """Token positions of the `tan`s standing outside every {...} phrase."""
+    pos, depth, out = 0, 0, set()
+    for item in re.findall(r"D\d+\([^)]*\)|[{}]|[a-z]+", skel):
+        if item == "{":
+            depth += 1
+        elif item == "}":
+            depth -= 1
+        elif item.startswith("D"):
+            pos += (int(item[1:item.index("(")]) + 1) * len(item[item.index("(") + 1:-1].split())
+        else:
+            if item == "tan" and depth == 0:
+                out.add(pos)
+            pos += 1
+    return frozenset(out)
+
+
 def _ref_parse(toks):
-    skels = set()
-    for cand in _ref_fold_candidates(toks):
+    keyed = {}
+    for chosen in _ref_all_fold_sets(P._find_runs(toks)):
+        folds = frozenset(i for r in chosen for i in range(r[0], r[1]))
         try:
-            tree = _ref_lark().parse(cand)
+            tree = _ref_lark().parse(_ref_render(toks, chosen))
         except LarkError:
             continue
-        if isinstance(tree, Tree):
-            skels |= _ref_alts(tree, {})
-    out = sorted(P._prefer_structure(skels))
+        alts = _ref_alts(tree, {}) if isinstance(tree, Tree) else {str(tree)}
+        for sk in alts:
+            keyed[sk] = (folds, _ref_structural_tans(sk))
+    fs = {f for f, _s in keyed.values()}
+    keyed = {k: v for k, v in keyed.items() if not any(v[0] < f for f in fs)}
+    ss = {s_ for _f, s_ in keyed.values()}
+    out = sorted(k for k, v in keyed.items() if not any(v[1] < s_ for s_ in ss))
     if not out:
         return "INVALID", []
     return ("RESOLVED" if len(out) == 1 else "AMBIGUOUS"), out
@@ -327,7 +408,9 @@ def test_parse_equals_reference_on_every_conformance_surface():
                 continue
             surface = json.loads(line)["surface"]
             toks = surface.split()
-            if (len(surface.splitlines()) != 1 or any(c.isupper() for c in surface)
+            # the reference reads a token list: only surfaces made of tokens, spaces and
+            # tabs (line-edge cases are covered by tests/test_conformance.py)
+            if (not re.fullmatch(r"[a-z \t]+", surface)
                     or len(toks) > 40 or not set(toks) <= set(P.TOKENS)):
                 continue
             res = parse(surface)

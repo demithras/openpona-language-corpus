@@ -27,3 +27,7 @@ Single-header models were rejected. Semantic-intersection and external-coordinat
 ## 2026-09-29 — new target
 
 OpenPona is now a **candidate Ontology Language**, to be tested against a backend-neutral typed IR and a Palantir-class `Language × Engine × Toolchain` target rather than assumed as the EOO core.
+
+## 2026-10-09 — author decisions on the TP-04 oracle report
+
+The author accepted the Lift axis names as canonical (placement and names canon, generative relation still research), separated the four version names and declared `RESOURCE_EXHAUSTED` operational, not a syntax status, and decided three grammar points the independent oracle had exposed: META fold fallback, lexicographic priority, line edges. Details in `history/supersession_ledger.md`.

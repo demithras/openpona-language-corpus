@@ -38,26 +38,28 @@ The following are canonical:
 9. Persisted statements bind machine identity at write time so later context changes do not rewrite history.
 10. Intent/request is distinct from observation/fact.
 11. `li la e pi anu` are structural only, as in Toki Pona. In OpenPona `tan` is the one token that is both structural (source phrase) and semantic (vector); where a structural reading of `tan` exists it wins, and the vector reading applies only where no structural parse exists. (Toki Pona has further prepositions — `lon`, `tawa`, `sama`, `kepeken` — which OpenPona reads as content words: `canon/11`, departure 1.)
-12. **META parsing has priority** over ordinary structural parsing.
+12. **META parsing has priority** over ordinary structural parsing, but a META fold applies only where the resulting reading is valid (§7).
 13. Repetition of a token or well-formed phrase denotes a meta/essence/derivative operation over that semantic unit.
 14. Three or more semantic units forming one noun/concept must use explicit grouping with `pi` (§5.3).
 15. Natural-language renderings are secondary views; they must not silently alter operational semantics.
 16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects. Known departures are tracked in `canon/11`.
-17. One statement per line. The language has no punctuation.
-18. Parse priority: META (repetition) → structure (particles) → vector reading of `tan`.
+17. One statement per line. The language has no punctuation. Spaces (U+0020) and tabs (U+0009) before and after the statement are ignored; exactly one trailing line boundary (LF, or CR LF) is ignored. Anything else around or inside the statement — a leading newline, a second trailing newline, a lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP — makes the line INVALID (author decision 2026-10-09).
+18. Parse priority is lexicographic over the valid readings of a statement: first the readings whose the set of token positions covered by META folds is maximal by inclusion, then, among those, the readings whose set of structural `tan` positions is maximal by inclusion; the vector reading of `tan` applies only where no structural reading exists. One survivor is RESOLVED, several incomparable survivors are AMBIGUOUS (author decision 2026-10-09; §7).
 
 ## 3. Canonical matrix
 
-| Row / narrative arc | Seed | Map | Explore | Decide | Work | Resonate | Structure |
-|---|---|---|---|---|---|---|---|
-| 1 Start → Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
-| 2 Question → Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
-| 3 Commit → Practice | `nasin` | `sijelo` | `ilo` | `lawa` | `awen` | `ken` | `e` |
-| 4 Encounter → Transform | `jan` | `ante` | `kama` | `sama` | `ijo` | `selo` | `tan` |
-| 5 Understand → Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
-| 6 Generalize → Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
+| Row | Lift (R) | Narrative arc | Seed · Identity (C1) | Map · Ground (C2) | Explore · Transform (C3) | Decide · Select (C4) | Work · Realize (C5) | Resonate · Evaluate (C6) | Structure · Structure (C7) |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Process (R1) | Start → Ground | `open` | `lon` | `tawa` | `wile` | `pali` | `pilin` | `li` |
+| 2 | Inquiry (R2) | Question → Locate | `seme` | `ma` | `lukin` | `sona` | `ni` | `kute` | `la` |
+| 3 | Method (R3) | Commit → Practice | `nasin` | `sijelo` | `ilo` | `lawa` | `awen` | `ken` | `e` |
+| 4 | Agency (R4) | Encounter → Transform | `jan` | `ante` | `kama` | `sama` | `ijo` | `selo` | `tan` |
+| 5 | Representation (R5) | Understand → Structure | `sitelen` | `linja` | `pana` | `toki` | `tenpo` | `pini` | `pi` |
+| 6 | Integration (R6) | Generalize → Release | `sike` | `ale` | `weka` | `ala` | `kulupu` | `pona` | `anu` |
 
-The row/column labels are **external metadata**, not extra OpenPona primitives. The column names are functional; a planetary mnemonic for memorising them (Sun … Saturn) is given in `LEARN_OPENPONA.md`, Lesson 1, and its origin in `history/timeline.md` — it is not part of canon. Internal, unpublished experiments (`research/matrix_coordinate_experiments.md`, MX2–MX3) suggested the first row/column act as embedded projections of broader axes; the coordinate generator is research, not grammar.
+**Status:** CANON for placement and for the axis names (the Lift labels R1–R6 and C1–C7; author decision 2026-10-09). RESEARCH for the generative relation `T[i,j] ≈ Lex(F(Row[i], Column[j]))` (MX3-W weak, MX3-S strong; the prospective test TP-08/TP-15 is pending).
+
+The row/column labels are **external metadata**, not extra OpenPona primitives: never tokens, never part of the surface; the 42-token inventory `anu 1.1` and the placement of every token are unchanged. The column names are functional and carry the Lift names; a planetary mnemonic for memorising them (Sun … Saturn) is given in `LEARN_OPENPONA.md`, Lesson 1, and its origin in `history/timeline.md` — it is not part of canon. Internal, unpublished experiments (`research/matrix_coordinate_experiments.md`, MX2–MX3) suggested the first row/column act as embedded projections of broader axes; that the Lift axes generate the tokens is research, not grammar.
 
 ## 4. Token operational glosses
 
@@ -204,7 +206,7 @@ A structural token outside a valid structural position makes the statement INVAL
 
 ## 7. META and repetition
 
-META has parsing priority.
+META has parsing priority, applied only where the folded reading is valid (§7.1).
 
 If `P` is a valid unit of one or two tokens — semantic tokens or `tan`; the particles `li la e pi anu` never form META units — repetition applies a semantic derivative/meta operation:
 
@@ -229,6 +231,34 @@ D^m(D^n(P)) = D^(m+n)(P)
 In Toki Pona usage a repeated word reads as emphasis; OpenPona assigns it derivative meaning instead. The line stays a valid Toki Pona sentence, but its reading is replaced, not added to — listed as departure 5 in `canon/11`.
 
 This rule is canonical at the algebraic level; the exact natural-language gloss of derivative depth is context-dependent and must not be hard-coded as one English word.
+
+### 7.1 Fold fallback
+
+A META fold is applied only where the resulting reading is valid. If folding a repeated run makes the statement invalid, the unfolded reading (or readings) is used — the same principle as for `tan`: the lower-priority reading applies where the higher one does not parse (author decision 2026-10-09).
+
+```openpona
+jan pi ilo ilo
+jan pi jan jan
+jan pi ma ma
+? jan li ilo tan tan ma
+```
+
+`jan pi ilo ilo` is RESOLVED as the unfolded group `{jan pi ilo ilo}`: folding `ilo ilo` would leave a `pi` group of one unit, which is INVALID. `jan li ilo tan tan ma` is AMBIGUOUS: the fold `D(tan)` is invalid there, and the unfolded reading has two structural readings of `tan`, one at each position.
+
+### 7.2 Priority combination
+
+Among all valid candidate readings (the choice of META folds together with the structural or vector role of each `tan`):
+
+1. keep the readings whose fold set (the set of token positions covered by META folds) is maximal by inclusion — a reading whose fold set is a strict subset of another valid reading's fold set is dropped. The comparison is by folded token positions, not by folded runs; the two differ only for overlapping runs (author decision 2026-10-09);
+2. among the survivors keep the readings whose set of structural `tan` positions is maximal by inclusion;
+3. one survivor is RESOLVED; several, incomparable after both steps, are AMBIGUOUS.
+
+```openpona
+ma li tan ma tan ma ma
+tan li jan jan tan jan tan
+```
+
+`ma li tan ma tan ma ma` is RESOLVED as `({ma} li tan {ma} tan {D1(ma)})`, and `tan li jan jan tan jan tan` as `({tan} li {D1(jan)} tan {jan tan})`.
 
 ## 8. Addressing and binding
 
@@ -317,6 +347,8 @@ sitelen linja pana toki tenpo pini pi
 
 Later accepted grammar rules in this repository consolidate the language without changing the 42-token inventory; therefore this corpus does not invent an `anu 1.2` token version.
 
+Four things are versioned separately (`canon/10_versioning.md`): the token inventory (`anu 1.1`), the grammar (this specification as of its last change; no grammar identifier is invented and grammar changes are listed by date in `history/supersession_ledger.md`), the parser API (`openpona.PARSER_API_VERSION`, `1.0.0`) and the Python package (`0.2.0`). `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser (a budget was hit), not a syntax status: the language has three syntax outcomes, RESOLVED, AMBIGUOUS and INVALID, and `RESOURCE_EXHAUSTED` claims none of them.
+
 ## 13. Explicit exclusions
 
 The following are not canonical primitives:
@@ -334,7 +366,7 @@ Older materials that use different token inventories or structural sets are hist
 The following are active hypotheses, not language facts:
 
 - the exact 6 × 7 matrix is the unique optimal arrangement;
-- all 42 tokens can be generated uniquely from external row/column coordinates;
+- all 42 tokens can be generated uniquely from external row/column coordinates (the Lift axis names themselves are canon since 2026-10-09; the generative claim is not);
 - OpenPona is a complete Ontology Language for Palantir-class EOO;
 - OpenPona is technically necessary for EOO;
 - OpenPona improves human cognition beyond mnemonic/internalized use.

@@ -35,3 +35,5 @@
 - External only wins at edges: insufficient and suspicious for reconstruction claim.
 - Full accuracy: still does not prove `Lex(F(...))` is uniquely generative; source table/lexical prior leakage must be investigated.
 - Historic 11/11 is always labeled *reported internal, unpublished, unreproduced* until its materials are archived and a comparable independent test is run.
+
+Note (2026-10-09): the axis names tested here became canonical by author decision on 2026-10-09 (`canon/03_matrix.md`). The hypotheses above (MX3-W, MX3-S) and the design are unchanged; the generative/predictive claim remains RESEARCH, unvalidated.

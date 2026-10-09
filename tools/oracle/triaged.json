@@ -1,17 +1,8 @@
 {
-  "_comment": "Disagreements between tools/oracle/recognizer.py and the reference parser on conformance cases. Each entry: class + note. All are PENDING AUTHOR DECISION: the spec text does not say what META priority does when the folded reading is invalid.",
+  "_comment": "Disagreements between tools/oracle/recognizer.py and the reference parser on conformance cases. Each entry: class + note, PENDING AUTHOR DECISION. Empty since the author decisions of 2026-10-09 (D3 META fold fallback, D4 lexicographic priority, D5 line edges), which settled the classes meta-fold-fallback, priority-combination and surrounding-line-terminator.",
   "_observations": [
-    "Differential sweep (not part of the corpus): every sequence of length 1-5 over {jan, ma, tan, li, e, la, pi, anu} plus 30000 random sequences of length 6-9. Every disagreement involved a foldable repeated run. In no sampled sequence did the oracle say INVALID while the parser accepted.",
-    "Class meta-fold-fallback (largest): oracle keeps the unfolded reading when the folded one is invalid (jan pi jan jan, jan pi ma ma); parser answers INVALID. Covered by amb2-meta-09 and amb2-tan-01.",
-    "Class priority-combination (not turned into corpus cases because the spec does not decide it): 'ma li tan ma tan ma ma' - oracle RESOLVED ({ma} li tan {ma} tan {D1(ma)}), parser AMBIGUOUS (adds {ma} li {D1(tan ma) ma}); 'tan li jan jan tan jan tan' - oracle ({tan} li {D1(jan)} tan {jan tan}), parser ({tan} li {jan D1(jan tan)}). The oracle compares fold sets, then structural-tan sets, by strict inclusion; the parser combines META and structure differently when fold sets are incomparable.",
-    "Class surrounding-line-terminator: the parser ignores a leading or trailing newline, CR, U+2028, U+2029, U+0085, VT, FF or FS (ilo li awen followed by a newline is RESOLVED); the oracle accepts only spaces and tabs around a statement (SPEC 17 says one statement per line but does not say how a line terminator is treated). Internal separators of that kind are INVALID in both. Not turned into a case: the spec does not decide it."
-  ],
-  "amb2-meta-09": {
-    "class": "meta-fold-fallback",
-    "note": "oracle: RESOLVED {jan pi ilo ilo} (unfolded group [ilo ilo] used because the folded reading is a group of one); parser: INVALID (fold applied unconditionally). Spec silent; PENDING AUTHOR REVIEW."
-  },
-  "amb2-tan-01": {
-    "class": "meta-fold-fallback",
-    "note": "oracle: AMBIGUOUS (two structural tan readings; folding tan tan leaves three units so META does not apply); parser: INVALID (tan tan folded unconditionally). Same root cause as amb2-meta-09; PENDING AUTHOR REVIEW."
-  }
+    "Differential sweep after the author decisions of 2026-10-09 (not part of the corpus): every sequence of length 1-5 over {jan, ma, tan, li, e, la, pi, anu} (37448) plus 30000 random sequences of length 6-9 (seed 20261009), comparing status, skeleton set and span-free AST shape: 0 disagreements, 0 RESOURCE_EXHAUSTED. The same sweep against the parser of commit 0f14b00 finds 61 disagreements, every one a META fold fallback on a sequence with a foldable run (that parser INVALID; oracle RESOLVED 57, AMBIGUOUS 4), so the sweep is not vacuous.",
+    "Settled classes: meta-fold-fallback (D3: a fold applies only where the reading is valid), priority-combination (D4: fold positions by inclusion, then structural-tan positions by inclusion), surrounding-line-terminator (D5: spaces/tabs and one final LF or CR LF are ignored; any other line boundary is INVALID). Cases: conformance/canon_2026_10_09.jsonl, amb2-meta-09, amb2-tan-01.",
+    "Interpretation shared by the oracle and the parser, for the author to confirm: D4 step 1 compares the sets of folded TOKEN POSITIONS. Comparing the sets of folded runs instead differs only where one run lies strictly inside an overlapping run of another unit, e.g. 'jan li tan ma tan ma tan ma': by positions ({jan} li {D2(tan ma)}) wins (positions 2-7 include 3-6); by run identity the two folds are incomparable and step 2 would pick ({jan} li tan {D1(ma tan) ma})."
+  ]
 }

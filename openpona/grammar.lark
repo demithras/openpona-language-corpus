@@ -1,7 +1,10 @@
 // OpenPona structural grammar = canon/04_grammar.md section 3 (single mode).
 // Precedence, loosest to tightest: la > li > e/tan > anu > pi.
 // Only `tan` is both structural and a unit; li la e pi anu are never units.
-// Input is a space-joined token stream; META folds arrive as D<n>(P) units.
+// Input is a space-joined token stream; META folds arrive as D<n>(P) units, or
+// (reference parser, 2026-10-09) as RUN_<L> spans: every token of a repetition run
+// carries `<L` on its first and `>L` on its last word, so ONE parse holds the folded
+// and the unfolded readings (META fold fallback, SPEC 7 / invariant 18).
 
 start: statement
 
@@ -56,16 +59,24 @@ group: PI unit unit
 
 head: unit | unit unit
 
-unit: SEM | TAN | META
+unit: SEM | TAN | META | RUN_A | RUN_B | RUN_C | RUN_D | RUN_E | RUN_F
 
 LA: /(?<!\S)la(?!\S)/
 LI: /(?<!\S)li(?!\S)/
 E: /(?<!\S)e(?!\S)/
-TAN: /(?<!\S)tan(?!\S)/
+TAN: /(?<!\S)tan(?:[<>][A-F])*(?!\S)/
 PI: /(?<!\S)pi(?!\S)/
 ANU: /(?<!\S)anu(?!\S)/
-SEM: /(?<!\S)(?!(?:la|li|e|tan|pi|anu)(?!\S))[a-z]+(?!\S)/
+SEM: /(?<!\S)(?!(?:la|li|e|tan|pi|anu)(?![a-z]))[a-z]+(?:[<>][A-F])*(?!\S)/
 META: /D\d+\((?!(?:la|li|e|pi|anu)[ )])[a-z]+(?: (?!(?:la|li|e|pi|anu)\))[a-z]+)?\)/
+
+// One whole repetition run read as a single META unit (label L, see header).
+RUN_A: /(?<!\S)[a-z]+(?:[<>][A-F])*<A(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>A(?:[<>][A-F])*(?!\S)/
+RUN_B: /(?<!\S)[a-z]+(?:[<>][A-F])*<B(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>B(?:[<>][A-F])*(?!\S)/
+RUN_C: /(?<!\S)[a-z]+(?:[<>][A-F])*<C(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>C(?:[<>][A-F])*(?!\S)/
+RUN_D: /(?<!\S)[a-z]+(?:[<>][A-F])*<D(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>D(?:[<>][A-F])*(?!\S)/
+RUN_E: /(?<!\S)[a-z]+(?:[<>][A-F])*<E(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>E(?:[<>][A-F])*(?!\S)/
+RUN_F: /(?<!\S)[a-z]+(?:[<>][A-F])*<F(?:[<>][A-F])*(?: \S+)*? [a-z]+(?:[<>][A-F])*>F(?:[<>][A-F])*(?!\S)/
 
 WS: /\s+/
 %ignore WS

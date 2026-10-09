@@ -34,6 +34,12 @@ BASELINE_FILES = ["basic.jsonl", "grouping.jsonl", "invalid.jsonl", "meta.jsonl"
                   "tan_dual.jsonl", "toki_pona_compat.jsonl"]
 REQUIRED_NEW = ("id", "surface", "rationale", "source_rule", "expect_status", "review")
 REVIEW = "PROPOSED - PENDING AUTHOR REVIEW"
+# Records the author accepted on 2026-10-09 (D3-D5): amb2-meta-09, amb2-tan-01 and every
+# case of canon_2026_10_09.jsonl.  An ACCEPTED record must cite that decision in source_rule.
+ACCEPTED = "ACCEPTED - author decision 2026-10-09"
+REVIEWS = (REVIEW, ACCEPTED)
+ACCEPTED_IDS_V2 = {"amb2-meta-09", "amb2-tan-01"}
+DECISION_FILE = "canon_2026_10_09.jsonl"
 RECORDS = cc.load_records()
 TRIAGED = json.loads((ORACLE_DIR / "triaged.json").read_text(encoding="utf-8"))
 
@@ -109,17 +115,38 @@ def test_every_new_record_has_all_required_fields_and_expected_trees():
                 gaps.append("expect_skeletons")
             if not r.get("expect_asts") or len(r["expect_asts"]) != len(r.get("expect_skeletons", [])):
                 gaps.append("expect_asts")
-        if r.get("review") != REVIEW:
+        if r.get("review") not in REVIEWS:
             gaps.append("review")
         if gaps:
             missing[r.get("id", f"{f}:{n}")] = gaps
     assert missing == {}
 
 
-def test_new_expectations_are_stated_from_the_spec_not_labelled_as_decisions():
-    for _f, _n, r in _new_records():
-        assert r["review"] == REVIEW                      # nothing here is an author decision
+def test_new_expectations_are_proposals_unless_the_author_decided_them():
+    for f, _n, r in _new_records():
+        decided = f == DECISION_FILE or (f == "ambiguity_v2.jsonl" and r["id"] in ACCEPTED_IDS_V2)
+        assert r["review"] == (ACCEPTED if decided else REVIEW), r["id"]
+        if decided:
+            assert "author decision 2026-10-09" in r["source_rule"], r["id"]
+            assert "triage" not in r, r["id"]             # a decided case is never skipped
         assert r["expect_status"] in cc.STATUSES
+
+
+def test_decision_cases_cover_d3_d4_d5_and_keep_their_edge_characters():
+    recs = {r["id"]: r for f, _n, r in RECORDS if f == DECISION_FILE}
+    surfaces = {r["surface"]: r["expect_status"] for r in recs.values()}
+    assert {"jan pi jan jan", "jan pi ma ma", "ma li tan ma tan ma ma",
+            "tan li jan jan tan jan tan"} <= set(surfaces)
+    assert sum(1 for i in recs if i.startswith("canon-d4-")) >= 4
+    # the line-edge characters survive the jsonl round trip (JSON escapes, ASCII file)
+    assert surfaces == {**surfaces, "ilo li awen\n": "RESOLVED", "ilo li awen\r\n": "RESOLVED",
+                        "ilo li awen\n\n": "INVALID", "\nilo li awen": "INVALID",
+                        "ilo li awen\u2028": "INVALID", "ilo li awen\r": "INVALID",
+                        "\tilo li awen\t": "RESOLVED"}
+    for path in sorted(CONF.glob("*.jsonl")):
+        text = path.read_text(encoding="utf-8")
+        # one physical line per record: no raw line boundary inside a JSON string
+        assert text.splitlines() == text.rstrip("\n").split("\n"), path.name
 
 
 def test_expect_asts_are_span_free_n2_trees_whose_skeletons_match():
@@ -283,27 +310,41 @@ def _load_compare():
     return mod
 
 
-def test_compare_driver_exits_zero_on_the_triaged_corpus(tmp_path):
+def test_compare_driver_exits_zero_with_no_disagreement(tmp_path):
+    # since the author decisions of 2026-10-09 the oracle and the parser agree on every case
     report = tmp_path / "disagreements.md"
     proc = subprocess.run([sys.executable, str(ORACLE_DIR / "compare.py"), "--report", str(report)],
                           capture_output=True, text=True, timeout=300, cwd=ROOT)
     assert proc.returncode == 0, proc.stdout + proc.stderr
     text = report.read_text(encoding="utf-8")
-    for cid in ("amb2-meta-09", "amb2-tan-01"):
-        assert cid in text
-    assert "NOT triaged: 0" in text
+    assert f"- agree (status, skeleton set and span-free AST shape): {len(RECORDS)}" in text
+    assert "- disagree: 0;" in text and "NOT triaged: 0" in text
+    assert [k for k in TRIAGED if not k.startswith("_")] == []
 
 
-def test_compare_driver_fails_on_an_untriaged_disagreement_and_on_a_stale_entry(tmp_path):
+def test_compare_driver_fails_on_an_untriaged_disagreement_and_on_a_stale_entry(tmp_path, capsys):
     compare = _load_compare()
     wrong_parser = types.SimpleNamespace(parse=lambda s: types.SimpleNamespace(
         status="INVALID", skeletons=[], alternatives=()))
     ast_mod = importlib.import_module("openpona.ast")
     ok, kind, _o, _p = compare.compare_case({"surface": "jan li pali"}, wrong_parser, ast_mod)
     assert (ok, kind) == (False, "status")
-    empty = tmp_path / "t.json"
-    empty.write_text('{"amb2-meta-09": {"class": "x", "note": "y"}}', encoding="utf-8")
+    # a triage entry for a case that no longer disagrees is stale: exit 1
+    stale = tmp_path / "t.json"
+    stale.write_text('{"amb2-meta-09": {"class": "x", "note": "y"}}', encoding="utf-8")
     proc = subprocess.run([sys.executable, str(ORACLE_DIR / "compare.py"), "--report",
-                           str(tmp_path / "r.md"), "--triaged", str(empty)],
+                           str(tmp_path / "r.md"), "--triaged", str(stale)],
                           capture_output=True, text=True, timeout=300, cwd=ROOT)
-    assert proc.returncode == 1 and "UNTRIAGED amb2-tan-01" in proc.stdout
+    assert proc.returncode == 1 and "stale=['amb2-meta-09']" in proc.stdout
+    # an untriaged disagreement: exit 1 and named (the driver loads the parser by name)
+    real_import = compare.importlib.import_module
+    compare.importlib = types.SimpleNamespace(import_module=lambda name: wrong_parser
+                                              if name == "openpona" else real_import(name))
+    empty = tmp_path / "e.json"
+    empty.write_text("{}", encoding="utf-8")
+    try:
+        code = compare.main(["--report", str(tmp_path / "w.md"), "--triaged", str(empty)])
+    finally:
+        compare.importlib = importlib
+    assert code == 1
+    assert "UNTRIAGED amb2-meta-09" in capsys.readouterr().out

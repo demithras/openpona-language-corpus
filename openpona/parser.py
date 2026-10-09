@@ -1,4 +1,10 @@
-"""normalize -> tokenize -> META fold -> structural parse -> skeleton rendering.
+"""normalize -> tokenize -> META runs -> one structural parse -> skeleton rendering.
+
+Priority (SPEC invariant 18, author decision 2026-10-09): a META fold applies only
+where the resulting reading is valid (fold fallback, D3); among the valid readings
+the fold set is compared first and the structural-`tan` set second, each by
+inclusion (lexicographic, D4).  Every repetition run reaches the Earley parser as
+an optional multi-token unit, so ONE parse holds every fold choice.
 
 Every stage runs under an explicit `Budget`; running out of budget yields the
 operational status RESOURCE_EXHAUSTED (never INVALID, never RESOLVED/AMBIGUOUS
@@ -26,9 +32,9 @@ MAX_TOKENS = 256
 _CASE_MSG = ("case: tokens are lowercase; a capitalised word is a name, "
              "and names never appear in the surface (SPEC 8.2)")
 
-# Operational outcome, distinct from the three syntax outcomes
-# RESOLVED / AMBIGUOUS / INVALID.  The name is PENDING AUTHOR REVIEW
-# (spec pack AUTHOR_REVIEW_QUEUE item 5).
+# Operational outcome of the reference parser (a budget ran out), distinct from
+# the three syntax outcomes RESOLVED / AMBIGUOUS / INVALID and claiming none of
+# them.  Name accepted by the author 2026-10-09 (D2).
 RESOURCE_EXHAUSTED = "RESOURCE_EXHAUSTED"
 
 
@@ -57,7 +63,7 @@ class Budget:
     """Compute limits for one `parse` call.  Defaults are generous: every
     conformance case and the 203-token object chain stay far inside them."""
     max_tokens: int = MAX_TOKENS          # token count
-    max_fold_candidates: int = 256        # parse count: folded readings handed to the parser
+    max_fold_candidates: int = 256        # fold ambiguity: maximal META fold sets (product over components)
     max_skeletons: int = 4096             # parse count: distinct skeletons kept
     max_forest_steps: int = 2_000_000     # parse-forest expansion (rendered combinations)
     max_depth: int = 4096                 # depth of the explicit forest traversal
@@ -73,12 +79,12 @@ class ParseStats:
     fold_steps: int = 0        # run detection + fold enumeration steps
     runs: int = 0
     components: int = 0        # overlap components of the runs
-    fold_candidates: int = 0   # folded readings produced
-    earley_parses: int = 0     # distinct shape signatures sent to the Earley parser
+    fold_candidates: int = 0   # maximal META fold sets (the budget gate on fold ambiguity)
+    earley_parses: int = 0     # Earley parses (one per statement since 2026-10-09)
     earley_tokens: int = 0     # sum of token counts over those parses
     forest_steps: int = 0      # forest nodes visited + combinations rendered
     max_depth: int = 0         # deepest explicit traversal frame
-    skeletons: int = 0         # distinct skeletons before the structure preference
+    skeletons: int = 0         # distinct skeletons before the global priority filter
     seconds: float = 0.0
 
     @property
@@ -210,9 +216,12 @@ def _render_fold(toks: list[str], chosen, lo: int, hi: int) -> list[str]:
 
 
 def _fold_space(toks: list[str], ctx: _Ctx | None):
-    """Factorised fold space: a list of segments, each a list of alternative
-    token lists.  Plain stretches have one alternative; each overlap component
-    has one alternative per distinct maximal run set.  Returns (segments, count)."""
+    """Factorised space of the MAXIMAL fold sets: a list of segments, each a list
+    of alternative token lists.  Plain stretches have one alternative; each overlap
+    component has one alternative per distinct maximal run set.  Returns
+    (segments, count, runs).  `parse` uses `count` as the fold-ambiguity budget
+    gate (max_fold_candidates); the fold choices themselves, maximal or not, are
+    read by the single Earley parse (`_tagged`)."""
     st = ctx.st if ctx else None
     limit = ctx.b.max_fold_candidates if ctx else 1 << 62
     runs = _find_runs(toks, st)
@@ -245,7 +254,7 @@ def _fold_space(toks: list[str], ctx: _Ctx | None):
         i = hi
     if i < len(toks):
         segments.append([toks[i:]])
-    return segments, count
+    return segments, count, runs
 
 
 def _iter_folds(segments):
@@ -259,7 +268,7 @@ def _iter_folds(segments):
 def fold_candidates(toks: list[str]) -> list[str]:
     """Folded token sequences (space-joined text), one per maximal run set
     (unbounded helper; `parse` applies the budget)."""
-    segments, _ = _fold_space(toks, None)
+    segments, _, _ = _fold_space(toks, None)
     out: list[str] = []
     for folded in _iter_folds(segments):
         text = " ".join(folded)
@@ -269,26 +278,56 @@ def fold_candidates(toks: list[str]) -> list[str]:
 
 
 # ------------------------------------------------------- skeleton rendering
-def _signature(folded: list[str]) -> str:
-    """The grammar distinguishes only token classes (unit / tan / each particle),
-    so every reading with the same class sequence has the same parse forest:
-    parse the class string once and render each reading through it."""
-    return " ".join(t if t in PARTICLES or t == "tan" else "u" for t in folded)
+_LABELS = "ABCDEF"  # RUN_<L> terminals of grammar.lark
 
 
-def _alts(root, words: list[str], pos_index: dict[int, int], ctx: _Ctx) -> set[str]:
+def _tagged(toks: list[str], runs) -> tuple[str, dict[int, tuple]]:
+    """The class string the Earley parser reads, and {start index: run}.
+
+    The grammar distinguishes only token classes (unit `u` / `tan` / each particle).
+    A repetition run [s, e) additionally gets a label L: `<L` on its first word and
+    `>L` on its last, and the terminal RUN_L reads the whole run as ONE META unit,
+    while SEM / TAN still read its words one by one.  So the fold and no-fold
+    readings of every run are alternatives of the same parse forest (D3), and the
+    priority filter (D4) chooses among them.  Labels are reused only after a run
+    ends, so the nearest `>L` after `<L` always closes the same run; overlapping
+    runs never exceed three at one token (one 1-token run and two 2-token runs)."""
+    words = [t if t in PARTICLES or t == "tan" else "u" for t in toks]
+    run_at: dict[int, tuple] = {}
+    free = list(_LABELS)
+    active: list[tuple[int, str]] = []
+    for r in sorted(runs):
+        s, e = r[0], r[1]
+        for end, lab in [a for a in active if a[0] <= s]:
+            active.remove((end, lab))
+            free.append(lab)
+        if not free:  # unreachable for 1- and 2-token units; kept as a hard stop
+            raise _Exhausted("max_fold_candidates",
+                             f"more than {len(_LABELS)} META runs overlap at token {s + 1}")
+        free.sort()
+        lab = free.pop(0)
+        active.append((e, lab))
+        words[s] += "<" + lab
+        words[e - 1] += ">" + lab
+        run_at[s] = r
+    return " ".join(words), run_at
+
+
+def _alts(root, toks: list[str], run_at: dict, pos_index: dict[int, int],
+          ctx: _Ctx) -> set[str]:
     """Skeleton strings of an Earley SPPF (shared packed parse forest).
 
     Explicit post-order traversal with a memo per forest node - no Python
     recursion; depth, node visits and rendered combinations are all budgeted.
     Complete symbol nodes yield sets of rendered strings; intermediate nodes
     (Lark's binarised partial rules) yield sets of partial child tuples.
-    C8 is applied at every complete node with alternatives: those alternatives
-    derive the same symbol over the same span, so they are interchangeable in
-    every enclosing parse, and the vector-tan count is additive over phrases;
-    an alternative above the local minimum can never survive the global
-    `_prefer_structure`.  Same final skeleton set, without multiplying out the
-    losing readings."""
+    At every complete node with alternatives, an alternative DOMINATED by another
+    (`_prune_local`: fewer folded tokens by inclusion, or the same folds and fewer
+    structural `tan` by inclusion) is dropped: alternatives of one node derive the
+    same symbol over the same span, so they can be swapped in every enclosing
+    parse, and the swap that keeps the dominating one dominates the whole reading
+    under the global filter `_prefer`.  Same final skeleton set, without
+    multiplying out losing readings."""
     b, st = ctx.b, ctx.st
     memo: dict[int, set] = {}
     active: set[int] = set()
@@ -296,7 +335,12 @@ def _alts(root, words: list[str], pos_index: dict[int, int], ctx: _Ctx) -> set[s
     def value(node, as_tuple: bool):
         if isinstance(node, (Token, TokenNode)):
             tok = node.token if isinstance(node, TokenNode) else node
-            w = words[pos_index[tok.start_pos]]
+            i = pos_index[tok.start_pos]
+            if tok.type.startswith("RUN_"):
+                _s, _e, k, p = run_at[i]
+                w = f"D{k - 1}({' '.join(p)})"
+            else:
+                w = toks[i]
             return {(w,)} if as_tuple else {w}
         v = memo[id(node)]
         if node.is_intermediate or not as_tuple:
@@ -346,8 +390,8 @@ def _alts(root, words: list[str], pos_index: dict[int, int], ctx: _Ctx) -> set[s
                     res.add(flat)
                 else:
                     res.add(_fmt(packed.rule.origin.name, flat))
-        if not node.is_intermediate and len(node.children) > 1:
-            res = _prefer_structure(res)
+        if not node.is_intermediate and len(res) > 1:
+            res = _prune_local(res)
         memo[key] = res
     return memo[id(root)]
 
@@ -386,7 +430,7 @@ _NO_PARSE = object()
 
 
 def _forest(sig: str, ctx: _Ctx, cache: dict):
-    """Earley forest of a class signature (cached per call), or _NO_PARSE."""
+    """Earley forest of a class string (cached per call), or _NO_PARSE."""
     if sig in cache:
         return cache[sig]
     ctx.tick()
@@ -402,8 +446,8 @@ def _forest(sig: str, ctx: _Ctx, cache: dict):
     return tree
 
 
-def _skeletons(folded: list[str], ctx: _Ctx, cache: dict) -> set[str]:
-    sig = _signature(folded)
+def _skeletons(toks: list[str], runs, ctx: _Ctx, cache: dict) -> set[str]:
+    sig, run_at = _tagged(toks, runs)
     tree = _forest(sig, ctx, cache)
     if tree is _NO_PARSE:
         return set()
@@ -411,21 +455,74 @@ def _skeletons(folded: list[str], ctx: _Ctx, cache: dict) -> set[str]:
     for i, t in enumerate(sig.split(" ")):
         pos_index[pos] = i
         pos += len(t) + 1
-    return _alts(tree, folded, pos_index, ctx)
+    return _alts(tree, toks, run_at, pos_index, ctx)
+
+
+_SKEL_ITEM = re.compile(r"D(\d+)\(([^)]*)\)|([{}])|[()]|([a-z]+)")
+
+
+def _reading_key(skel: str) -> tuple[frozenset, frozenset]:
+    """(folded token positions, structural `tan` positions) of a skeleton string,
+    counted from its first token.  A `tan` is structural when it stands outside
+    every {...} phrase; D<n>(P) covers (n+1)*len(P) tokens."""
+    folded: set[int] = set()
+    structural: set[int] = set()
+    pos = depth = 0
+    for m in _SKEL_ITEM.finditer(skel):
+        if m.group(1) is not None:
+            width = (int(m.group(1)) + 1) * len(m.group(2).split())
+            folded.update(range(pos, pos + width))
+            pos += width
+        elif m.group(3):
+            depth += 1 if m.group(3) == "{" else -1
+        elif m.group(4):
+            if m.group(4) == "tan" and depth == 0:
+                structural.add(pos)
+            pos += 1
+    return frozenset(folded), frozenset(structural)
+
+
+def _maximal(values) -> set:
+    """The values not strictly included in another one."""
+    vals = set(values)
+    return {v for v in vals if not any(v < w for w in vals)}
+
+
+def _prune_local(skels: set[str]) -> set[str]:
+    """Alternatives of ONE forest node (same symbol, same span): drop those whose
+    folded positions are strictly included in another's, then, among equal
+    folds, those whose structural-tan positions are strictly included in
+    another's.  Sound for the global filter `_prefer` (see `_alts`)."""
+    keyed = [(k, _reading_key(k)) for k in skels]
+    best_folds = _maximal(f for _k, (f, _s) in keyed)
+    out = set()
+    for f in best_folds:
+        group = [(k, s_) for k, (f2, s_) in keyed if f2 == f]
+        best_s = _maximal(s_ for _k, s_ in group)
+        out.update(k for k, s_ in group if s_ in best_s)
+    return out
+
+
+def _prefer(skels: set[str]) -> set[str]:
+    """SPEC invariant 18 (author decision 2026-10-09, lexicographic):
+    1. keep the readings whose set of folded positions is maximal by inclusion
+       (META has priority; a fold applies only where the reading is valid);
+    2. among those, keep the readings whose set of structural `tan` positions is
+       maximal by inclusion (structure over vector where structure exists).
+    Several survivors = AMBIGUOUS."""
+    if len(skels) < 2:
+        return set(skels)
+    keyed = [(k, _reading_key(k)) for k in skels]
+    best_folds = _maximal(f for _k, (f, _s) in keyed)
+    keyed = [(k, (f, s_)) for k, (f, s_) in keyed if f in best_folds]
+    best_s = _maximal(s_ for _k, (_f, s_) in keyed)
+    return {k for k, (_f, s_) in keyed if s_ in best_s}
 
 
 def _vector_tans(skel: str) -> int:
     """`tan` tokens read as units: inside {...} but not inside D<n>(...)."""
     flat = re.sub(r"D\d+\([^)]*\)", "", skel)
     return sum(m.split().count("tan") for m in re.findall(r"\{([^}]*)\}", flat))
-
-
-def _prefer_structure(skels: set[str]) -> set[str]:
-    """C8: structure wins where it exists - keep the parses with the fewest vector-tan readings."""
-    if len(skels) < 2:
-        return skels
-    best = min(_vector_tans(k) for k in skels)
-    return {k for k in skels if _vector_tans(k) == best}
 
 
 # ------------------------------------------------------------- diagnostics
@@ -527,11 +624,31 @@ def parse(text: str, budget: Budget | None = None, stats: ParseStats | None = No
         st.seconds = time.monotonic() - ctx.t0
 
 
+# SPEC invariant 17 (author decision 2026-10-09): spaces and tabs around the
+# statement are ignored, and so is exactly ONE final line boundary (LF or CR LF).
+# Any other line or paragraph separator, anywhere, makes the line INVALID.
+_LINE_BREAKS = frozenset("\n\r\x0b\x0c\x1c\x1d\x1e\x85\u2028\u2029")
+
+
+def _line(text: str) -> tuple[str | None, str]:
+    """-> (the statement line without its one optional final LF / CR LF, or None
+    when another line boundary remains; the error message for None)."""
+    if text.endswith("\r\n"):
+        text = text[:-2]
+    elif text.endswith("\n"):
+        text = text[:-1]
+    if not any(ch in _LINE_BREAKS for ch in text):
+        return text, ""
+    if len([ln for ln in text.splitlines() if ln.strip(" \t")]) > 1:
+        return None, "line: one statement per line"
+    return None, ("line: only spaces/tabs around the statement and one final LF or "
+                  "CR LF are ignored; any other line boundary is not (SPEC 17)")
+
+
 def _parse(text: str, ctx: _Ctx) -> ParseResult:
-    lines = [ln for ln in text.splitlines() if ln.strip()]
-    if len(lines) > 1:
-        return ParseResult("INVALID", [], ["line: one statement per line"], [])
-    line = lines[0] if lines else ""
+    line, msg = _line(text)
+    if line is None:
+        return ParseResult("INVALID", [], [msg], [])
     toks = [t for t in re.split(r"[ \t]+", line.strip(" \t")) if t]
     if not toks:
         return ParseResult("INVALID", [], ["empty input"], [])
@@ -547,18 +664,14 @@ def _parse(text: str, ctx: _Ctx) -> ParseResult:
             f"length: reference parser accepts at most {ctx.b.max_tokens} tokens per "
             "statement (budget max_tokens; not a syntax verdict)"], toks, "max_tokens")
     try:
-        segments, count = _fold_space(toks, ctx)
+        _segments, count, runs = _fold_space(toks, ctx)
         ctx.st.fold_candidates = count
-        skels: set[str] = set()
-        cache: dict = {}
-        for folded in _iter_folds(segments):
-            ctx.tick()
-            skels |= _skeletons(folded, ctx, cache)
-            if len(skels) > ctx.b.max_skeletons:
-                raise _Exhausted("max_skeletons",
-                                 f"more than {ctx.b.max_skeletons} distinct parses")
+        skels = _skeletons(toks, runs, ctx, {})
+        if len(skels) > ctx.b.max_skeletons:
+            raise _Exhausted("max_skeletons",
+                             f"more than {ctx.b.max_skeletons} distinct parses")
         ctx.st.skeletons = len(skels)
-        out = sorted(_prefer_structure(skels))
+        out = sorted(_prefer(skels))
         alternatives = []
         for skel in out:  # typed trees are built under the same time budget
             ctx.tick()

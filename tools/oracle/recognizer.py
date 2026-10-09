@@ -11,6 +11,10 @@ Reading of the spec (each line names where it comes from):
 
 * Tokens: the 42 of data/matrix.csv; surface is tokens separated by spaces/tabs
   (SPEC 8.2, 11, 17).  Anything else is INVALID.
+* Line edges (SPEC 17, author decision 2026-10-09): spaces/tabs before and after
+  the statement are ignored, and so is exactly one final LF or CR LF.  Any other
+  character around or inside the statement (a second newline, a leading newline,
+  lone CR, U+2028 ...) is not a token character, so the line is INVALID.
 * Units (SPEC 5, 7): a vector token (36 semantic + `tan`), or a META unit: n >= 2
   consecutive copies of a primitive P (one vector token, or two DIFFERENT vector
   tokens), covering the whole run of copies (SPEC 7, canon/04 5: "n consecutive
@@ -62,7 +66,12 @@ _SPLIT = re.compile(r"[ \t]+")
 
 def tokenize(text: str):
     """Tokens of `text`, or None when the surface is not made of the 42 tokens
-    separated by spaces/tabs (empty, other whitespace, punctuation, capitals ...)."""
+    separated by spaces/tabs (empty, other whitespace, punctuation, capitals ...).
+    One final LF or CR LF is dropped first (SPEC 17, decision 2026-10-09)."""
+    if text.endswith("\r\n"):
+        text = text[:-2]
+    elif text.endswith("\n"):
+        text = text[:-1]
     stripped = text.strip(" \t")
     if not stripped:
         return None
