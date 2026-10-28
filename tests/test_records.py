@@ -604,7 +604,7 @@ def test_binding_a_role_the_ast_does_not_have():
     rec["context"] = ent(["ma", "pali"], "project:x")
     assert codes(resealed(rec)) == {"ast_context_mismatch"}
     # a source context (tan X la ...) is not a resolution context
-    rec = build_bound("tan ilo pali la jan li pona")
+    rec = build_bound("tan ilo pali la jan pali li pona")
     assert "context" not in rec
     rec["context"] = ent(["ilo", "pali"], "ci:run-1")
     assert codes(resealed(rec)) == {"ast_context_mismatch"}
@@ -820,7 +820,7 @@ def test_migrate_legacy_does_not_invent():
     assert m["subject"]["resolution_status"] == "AMBIGUOUS" and "bound_ref" not in m["subject"]
     assert m["resolution_status"] == "AMBIGUOUS"
     # no candidates and no ref: UNRESOLVED
-    unres = {"surface": "seme li tan e ni", "subject": {"tokens": ["seme"], "bound_ref": None}}
+    unres = {"surface": "seme pali li tan e ni ante", "subject": {"tokens": ["seme", "pali"], "bound_ref": None}}
     assert B.migrate_legacy(unres, source_revision="r1")["subject"]["resolution_status"] == "UNRESOLVED"
 
 

@@ -23,6 +23,7 @@ from lark.exceptions import LarkError  # noqa: E402
 from openpona import RESOURCE_EXHAUSTED, Budget, ParseStats, parse  # noqa: E402
 from openpona import parser as P  # noqa: E402
 from openpona.__main__ import main as cli_main  # noqa: E402
+from n2_check import violations as n2_violations  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -60,7 +61,7 @@ def test_nonoverlap_n20_completes_under_2s():
 
 # ------------------------------------------------ fold gate per overlap component
 def _m11_family(n: int) -> str:
-    return "jan li " + " e ".join(["ilo ilo sitelen ilo sitelen"] * n)
+    return "jan pali li " + " e ".join(["ilo ilo sitelen ilo sitelen"] * n)
 
 
 @pytest.mark.parametrize("n", range(8, 15))
@@ -87,7 +88,7 @@ def test_product_of_components_is_statistics_only():
 
 def test_every_fold_valid_family_under_budget_stays_ambiguous():
     """n = 11: 2^11 = 2048 genuine readings, below max_skeletons: all are kept."""
-    res = parse("jan li " + " e ".join(["jan pali jan pali jan"] * 11))
+    res = parse("jan pali li " + " e ".join(["jan pali jan pali jan"] * 11))
     assert res.status == "AMBIGUOUS" and len(res.skeletons) == 2048
 
 
@@ -96,7 +97,7 @@ def test_every_fold_valid_family_is_caught_early_by_max_skeletons(n):
     """2^n genuine readings above max_skeletons: an upper bound computed from the
     forest before any skeleton is rendered ends the parse at once with the DEFAULT
     budget - not after building 4096 skeletons, not through max_seconds."""
-    text = "jan li " + " e ".join(["jan pali jan pali jan"] * n)
+    text = "jan pali li " + " e ".join(["jan pali jan pali jan"] * n)
     t0 = time.perf_counter()
     res = parse(text)
     assert time.perf_counter() - t0 < 1.0
@@ -108,14 +109,14 @@ def test_fold_fallback_runs_are_one_parse_not_a_product():
     # D3 (2026-10-09): every `pi ilo ilo` run folds to an invalid group of one, so
     # every run falls back to its unfolded reading.  All 40 fallbacks come out of
     # ONE Earley parse; enumerating fold subsets would be 2^40 parses.
-    text = "jan li pali " + " ".join(["e jan pi ilo ilo"] * 40)
-    assert len(text.split()) == 203
+    text = "jan pali li pali " + " ".join(["e jan pi ilo ilo"] * 40)
+    assert len(text.split()) == 204
     st_ = ParseStats()
     t0 = time.perf_counter()
     res = parse(text, stats=st_)
     assert time.perf_counter() - t0 < 2.0
     assert res.status == "RESOLVED"
-    assert res.skeletons == ["({jan} li {pali}" + " e {jan pi ilo ilo}" * 40 + ")"]
+    assert res.skeletons == ["({jan pali} li {pali}" + " e {jan pi ilo ilo}" * 40 + ")"]
     assert st_.runs == 40 and st_.earley_parses == 1 and st_.fold_candidates == 1
 
 
@@ -152,7 +153,7 @@ def test_long_203_token_statement_within_default_budget():
     res = parse(LONG203, stats=st_)
     assert len(LONG203.split()) == 203
     assert res.status == "RESOLVED"
-    assert res.skeletons == ["({jan} li {pali}" + " e {ilo}" * 100 + ")"]
+    assert res.skeletons == ["({jan pali} li {pali pona}" + " e {ilo sitelen}" * 66 + ")"]
     b = P.DEFAULT_BUDGET
     assert st_.max_depth < b.max_depth and st_.forest_steps < b.max_forest_steps
 
@@ -172,11 +173,12 @@ def test_parse_does_not_depend_on_the_recursion_limit():
 
 
 def test_repeated_source_predicates_do_not_multiply():
-    # `jan li tan X li tan Y ...`: each predicate has a structural and a vector-tan
-    # reading (2^84 raw readings); C8 keeps one, and the forest is never unpacked.
+    # `jan pali li tan X Y li tan ...`: each predicate has a structural and a vector-tan
+    # reading (2^63 raw readings); C8 keeps one, and the forest is never unpacked.
+    # N2: every source phrase has 2 tokens.
     words = ["ilo", "sona", "ma", "kama", "pali", "jan"]
-    text = "jan " + " ".join(f"li tan {words[i % 6]}" for i in range(84))
-    assert len(text.split()) == 253
+    text = "jan pali " + " ".join(f"li tan {words[i % 6]} {words[(i + 1) % 6]}" for i in range(63))
+    assert len(text.split()) == 254
     t0 = time.perf_counter()
     res = parse(text)
     assert time.perf_counter() - t0 < 2.0
@@ -247,7 +249,7 @@ def test_unknown_token_beats_the_length_budget():
 
 def test_cli_exit_code_for_resource_exhausted(capsys):
     assert cli_main(["parse", " ".join(["jan"] * 257)]) == 3
-    assert cli_main(["parse", "jan li pali"]) == 0
+    assert cli_main(["parse", "jan pali li pali"]) == 0
     assert cli_main(["parse", "li li"]) == 1
     capsys.readouterr()
 
@@ -410,6 +412,9 @@ def _ref_parse(toks):
     keyed = {k: v for k, v in keyed.items() if not any(v[0] < f for f in fs)}
     ss = {s_ for _f, s_ in keyed.values()}
     out = sorted(k for k, v in keyed.items() if not any(v[1] < s_ for s_ in ss))
+    # rule N2 (2026-10-28) is checked AFTER the selection, on the readings it keeps, with
+    # the independent skeleton checker of tests/n2_check.py
+    out = [k for k in out if not n2_violations(k)]
     if not out:
         return "INVALID", []
     return ("RESOLVED" if len(out) == 1 else "AMBIGUOUS"), out

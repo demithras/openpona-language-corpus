@@ -4,7 +4,7 @@
 
 Who it is for: builders of agents that must log what they saw, what they intend and what they were asked without the three blurring together; people who want a small operational notation they can hold in their head; researchers testing whether such a language can serve as the surface syntax of an executable ontology.
 
-What you can do today: parse and validate statements (including an LLM's output, line by line), run the <!-- conformance-counts -->148-case (97 RESOLVED, 46 INVALID, 5 AMBIGUOUS)<!-- /conformance-counts --> conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
+What you can do today: parse and validate statements (including an LLM's output, line by line), run the <!-- conformance-counts -->182-case (115 RESOLVED, 62 INVALID, 5 AMBIGUOUS)<!-- /conformance-counts --> conformance oracle against any parser, paste a ready-made system prompt. Why a surface line and not just a JSON record: the line is what a person reads, says and remembers; the record is what a machine binds — the language keeps the two from drifting apart. **No runtime ships here** — this repository is the language, its reference parser and its tests.
 
 ```text
 $ pip install .                       # Python >= 3.11
@@ -26,7 +26,7 @@ Read in this order: [`CHEATSHEET.md`](CHEATSHEET.md) (one page) → [`LEARN_OPEN
 ## The language in three lines
 
 - **42 tokens, 6 × 7 matrix**: 36 semantic tokens read as directions of meaning ("vectors": `open` = initiate, `lukin` = inspect, `pini` = complete) and 6 structural tokens `li la e tan pi anu` that are particles, as in Toki Pona (`tan` is also an ordinary word, source/cause).
-- **One grammar**: `context la subject li predicate e object tan source`; three or more words in one concept need `pi`; a repeated unit is a META derivative (`lukin lukin` = inspection as such); one statement per line; no pronouns — an agent names itself by its own address (`jan linja`).
+- **One grammar**: `context la subject li predicate e object tan source`; three or more words in one concept need `pi`; a one-token phrase is only a predicate, every subject, object, source and context has two tokens or more (rule N2); a repeated unit is a META derivative (`lukin lukin` = inspection as such); one statement per line; no pronouns — an agent names itself by its own address (`jan linja`).
 - **Ambiguity is a value**: the parser answers RESOLVED, AMBIGUOUS (more than one parse) or INVALID and never guesses; binding an address to an entity is a separate step with its own AMBIGUOUS (more than one candidate) and UNRESOLVED (none). Two statements written on one line are not detected — they read as one statement with a different meaning, so keep one per line.
 
 ```text
@@ -60,7 +60,7 @@ The stronger ideas around OpenPona — that the 6 × 7 placement is a generative
 
 ## Status
 
-Version 0.2.0, single author, grammar consolidated through 2026-10-01 after an independent five-lens review (`CHANGELOG.md`). Every departure found so far has a recorded decision in `canon/11` ("Known departures"). Contributions follow [`CONTRIBUTING.md`](CONTRIBUTING.md) and the agent rules in [`AGENTS.md`](AGENTS.md).
+Version 0.3.0, single author, grammar consolidated through 2026-10-01 after an independent five-lens review (`CHANGELOG.md`). Every departure found so far has a recorded decision in `canon/11` ("Known departures"). Contributions follow [`CONTRIBUTING.md`](CONTRIBUTING.md) and the agent rules in [`AGENTS.md`](AGENTS.md).
 
 ## License
 

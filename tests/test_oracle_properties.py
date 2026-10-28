@@ -161,19 +161,23 @@ def statements(draw, max_phrases=5):
     pool = list(draw(st.permutations(SEMANTIC)))
     free = [max_phrases]
 
-    def phrase():
+    def phrase(nominal):
+        # rule N2: a nominal phrase (subject, object, source, context) has >= 2 tokens;
+        # only the main expression after `li` may be a single token
         n_head = draw(st.integers(1, 2))
         n_groups = draw(st.integers(0, 2))
+        if nominal and n_head == 1 and n_groups == 0:
+            n_groups = 1
         head = [pool.pop() for _ in range(n_head)]
         groups = [[pool.pop(), pool.pop()] for _ in range(n_groups)]
         return [head, groups]
 
-    def expr(alt_ok):
+    def expr(alt_ok, nominal=True):
         k = 1
         if alt_ok and free[0] > 0:
             k += draw(st.integers(0, min(2, free[0])))
             free[0] -= k - 1
-        return [phrase() for _ in range(k)]
+        return [phrase(nominal) for _ in range(k)]
 
     def clause():
         subj = expr(True)
@@ -187,7 +191,7 @@ def statements(draw, max_phrases=5):
             free[0] -= nobj
             nsrc = draw(st.integers(1 if source_pred else 0, 1 if source_pred else min(2, free[0])))
             free[0] -= nsrc if not source_pred else nsrc - 1
-            head = None if source_pred else expr(last)
+            head = None if source_pred else expr(last, nominal=False)
             objs = [expr(last) for _ in range(nobj)]
             srcs = [expr(last) for _ in range(nsrc)]
             preds.append((head, objs, srcs))
@@ -467,18 +471,21 @@ def test_oracle_and_parser_agree_on_every_sequence(toks):
 @st.composite
 def anu_chains(draw):
     pool = list(draw(st.permutations(SEMANTIC)))
-    t = [pool.pop() for _ in range(6)]
+    t = [pool.pop() for _ in range(8)]
     return t
 
 
 @settings(**PROFILE)
 @given(anu_chains(), st.sampled_from(["plain", "object", "source"]))
 def test_a_predicate_with_anu_must_be_the_last_predicate(t, shape):
-    s, p, q, r, o, _x = t
-    mid = {"plain": f"{p} anu {q}", "object": f"{p} e {o} anu {q}", "source": f"{p} tan {o} anu {q}"}[shape]
-    bad = f"{s} li {mid} li {r}"
-    ok_last = f"{s} li {r} li {mid}"
-    ok_subject = f"{s} anu {q} li {p}"
+    # rule N2 (2026-10-28): subject, object and source alternatives have 2 tokens each;
+    # the head of a predicate (`p`, `q`) may be one token
+    s, s2, p, q, r, o, o2, q2 = t
+    mid = {"plain": f"{p} anu {q}", "object": f"{p} e {o} {o2} anu {q} {q2}",
+           "source": f"{p} tan {o} {o2} anu {q} {q2}"}[shape]
+    bad = f"{s} {s2} li {mid} li {r}"
+    ok_last = f"{s} {s2} li {r} li {mid}"
+    ok_subject = f"{s} {s2} anu {q} {q2} li {p}"
     for run in (parse, oracle.recognize):
         assert run(bad).status == "INVALID", bad
         assert run(ok_last).status == "RESOLVED", ok_last

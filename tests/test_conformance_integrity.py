@@ -38,8 +38,12 @@ REVIEW = "PROPOSED - PENDING AUTHOR REVIEW"
 # every case of ambiguity_v2.jsonl (the 36 proposed ones were accepted as a batch).  Nothing in
 # any other file may be ACCEPTED.  An ACCEPTED record must cite that decision in source_rule.
 ACCEPTED = "ACCEPTED - author decision 2026-10-09"
-REVIEWS = (REVIEW, ACCEPTED)
-DECIDED_FILES = ("canon_2026_10_09.jsonl", "ambiguity_v2.jsonl")
+# 2026-10-28 (N2, phrase length by position): every case of canon_2026_10_28.jsonl is accepted and
+# cites that decision; records of older files that N2 forced to change carry a `decision` field.
+ACCEPTED_N2 = "ACCEPTED - author decision 2026-10-28"
+N2_FILE = "canon_2026_10_28.jsonl"
+REVIEWS = (REVIEW, ACCEPTED, ACCEPTED_N2)
+DECIDED_FILES = ("canon_2026_10_09.jsonl", "ambiguity_v2.jsonl", N2_FILE)
 DECISION_FILE = "canon_2026_10_09.jsonl"
 RECORDS = cc.load_records()
 TRIAGED = json.loads((ORACLE_DIR / "triaged.json").read_text(encoding="utf-8"))
@@ -126,9 +130,10 @@ def test_every_new_record_has_all_required_fields_and_expected_trees():
 def test_new_expectations_are_proposals_unless_the_author_decided_them():
     for f, _n, r in _new_records():
         decided = f in DECIDED_FILES
-        assert r["review"] == (ACCEPTED if decided else REVIEW), r["id"]
+        accepted = ACCEPTED_N2 if f == N2_FILE else ACCEPTED
+        assert r["review"] == (accepted if decided else REVIEW), r["id"]
         if decided:
-            assert "author decision 2026-10-09" in r["source_rule"], r["id"]
+            assert accepted.split("- ")[1] in r["source_rule"], r["id"]
             assert "triage" not in r, r["id"]             # a decided case is never skipped
         assert r["expect_status"] in cc.STATUSES
 
@@ -136,14 +141,14 @@ def test_new_expectations_are_proposals_unless_the_author_decided_them():
 def test_decision_cases_cover_d3_d4_d5_and_keep_their_edge_characters():
     recs = {r["id"]: r for f, _n, r in RECORDS if f == DECISION_FILE}
     surfaces = {r["surface"]: r["expect_status"] for r in recs.values()}
-    assert {"jan pi jan jan", "jan pi ma ma", "ma li tan ma tan ma ma",
-            "tan li jan jan tan jan tan"} <= set(surfaces)
+    assert {"jan pi jan jan", "jan pi ma ma", "jan pali li ma ma tan ma tan",
+            "tan ni li jan jan tan jan tan"} <= set(surfaces)
     assert sum(1 for i in recs if i.startswith("canon-d4-")) >= 4
     # the line-edge characters survive the jsonl round trip (JSON escapes, ASCII file)
-    assert surfaces == {**surfaces, "ilo li awen\n": "RESOLVED", "ilo li awen\r\n": "RESOLVED",
-                        "ilo li awen\n\n": "INVALID", "\nilo li awen": "INVALID",
-                        "ilo li awen\u2028": "INVALID", "ilo li awen\r": "INVALID",
-                        "\tilo li awen\t": "RESOLVED"}
+    assert surfaces == {**surfaces, "ilo pali li awen\n": "RESOLVED", "ilo pali li awen\r\n": "RESOLVED",
+                        "ilo pali li awen\n\n": "INVALID", "\nilo pali li awen": "INVALID",
+                        "ilo pali li awen\u2028": "INVALID", "ilo pali li awen\r": "INVALID",
+                        "\tilo pali li awen\t": "RESOLVED"}
     for path in sorted(CONF.glob("*.jsonl")):
         text = path.read_text(encoding="utf-8")
         # one physical line per record: no raw line boundary inside a JSON string
@@ -291,7 +296,7 @@ def test_oracle_rejects_the_whole_must_reject_set_and_accepts_positive_controls(
     for _f, _n, r in RECORDS:
         if _f == "toki_pona_compat.jsonl":
             assert oracle.recognize(r["surface"]).status == "INVALID", r["id"]
-    for s in ("nasin open anu nasin awen li pali", "tan ni la jan li pali", "jan jan li pali"):
+    for s in ("nasin open anu nasin awen li pali", "tan toki ni la jan pali li pali", "jan jan li pali"):
         assert oracle.recognize(s).status == "RESOLVED"
 
 
@@ -328,7 +333,7 @@ def test_compare_driver_fails_on_an_untriaged_disagreement_and_on_a_stale_entry(
     wrong_parser = types.SimpleNamespace(parse=lambda s: types.SimpleNamespace(
         status="INVALID", skeletons=[], alternatives=()))
     ast_mod = importlib.import_module("openpona.ast")
-    ok, kind, _o, _p = compare.compare_case({"surface": "jan li pali"}, wrong_parser, ast_mod)
+    ok, kind, _o, _p = compare.compare_case({"surface": "jan pali li pali"}, wrong_parser, ast_mod)
     assert (ok, kind) == (False, "status")
     # a triage entry for a case that no longer disagrees is stale: exit 1
     stale = tmp_path / "t.json"
@@ -349,3 +354,167 @@ def test_compare_driver_fails_on_an_untriaged_disagreement_and_on_a_stale_entry(
         compare.importlib = importlib
     assert code == 1
     assert "UNTRIAGED amb2-meta-09" in capsys.readouterr().out
+
+
+# --------------------------------------------------------------- N2 (phrase length by position)
+# Author decision 2026-10-28: a phrase of exactly one surface token is allowed only in PREDICATE
+# position (main expression after li; a bare statement).  Every nominal phrase (subject, object,
+# source, context, each anu alternative there) needs >= 2 surface tokens.  This checker reads the
+# expected SKELETONS of the corpus (conformance/README.md notation); it does not touch the parser
+# or the oracle, so it also guards the expectations themselves.
+_SKEL = re.compile(r"\{[^}]*\}|\(|\)|[a-z]+")
+
+
+def _phrase_tokens(body):
+    if re.search(r"\bpi\b", body):
+        return 99                                  # a pi group always gives >= 3 tokens
+    return sum((int(m.group(1)) + 1) * len(m.group(2).split()) if m.group(1) else 1
+               for m in re.finditer(r"D(\d+)\(([^)]*)\)|[a-z]+", body))
+
+
+class _Skel:
+    def __init__(self, text):
+        self.t, self.i = _SKEL.findall(text), 0
+        assert "".join(self.t).replace(" ", "") == text.replace(" ", ""), text
+
+    def peek(self):
+        return self.t[self.i] if self.i < len(self.t) else None
+
+    def take(self, want=None):
+        tok = self.t[self.i]
+        assert want is None or tok == want, (want, self.t)
+        self.i += 1
+        return tok
+
+    def node(self):
+        if self.peek().startswith("{"):
+            return ("phr", _phrase_tokens(self.take()[1:-1]))
+        self.take("(")
+        if self.peek() == "tan":
+            self.take(); ex = self.expr(); self.take("la"); body = self.node(); self.take(")")
+            return ("srcctx", ex, body)
+        first = self.node()
+        word = self.peek()
+        if word == "anu":
+            self.take(); right = self.expr(); self.take(")")
+            return ("alt", first, right)
+        if word == "li":
+            preds = []
+            while self.peek() == "li":
+                self.take(); preds.append(self.pred())
+            self.take(")")
+            return ("clause", first, preds)
+        self.take("la"); body = self.node(); self.take(")")
+        return ("ctx", first, body)
+
+    def expr(self):
+        n = self.node()
+        assert n[0] in ("phr", "alt"), n
+        return n
+
+    def pred(self):
+        head, objs, srcs = None, [], []
+        if self.peek() == "tan":
+            self.take(); srcs.append(self.expr())
+        else:
+            head = self.expr()
+        while self.peek() == "e":
+            self.take(); objs.append(self.expr())
+        while self.peek() == "tan":
+            self.take(); srcs.append(self.expr())
+        return head, objs, srcs
+
+
+def _short(n, nominal, why, out):
+    if n[0] == "phr":
+        if nominal and n[1] < 2:
+            out.append(why)
+    else:
+        _short(n[1], nominal, why, out)
+        _short(n[2], nominal, why, out)
+
+
+def _clause_n2(n, out, bare=False):
+    if n[0] in ("phr", "alt"):
+        return _short(n, not bare, "context", out)
+    _short(n[1], True, "subject", out)
+    for head, objs, srcs in n[2]:
+        if head:
+            _short(head, False, "predicate", out)
+        for o in objs:
+            _short(o, True, "object", out)
+        for x in srcs:
+            _short(x, True, "source", out)
+
+
+def n2_violations(skeleton):
+    """Positions in which a skeleton holds a one-token nominal phrase (empty = N2-valid)."""
+    p = _Skel(skeleton)
+    n = p.node()
+    assert p.i == len(p.t), skeleton
+    out = []
+    if n[0] == "ctx":
+        _clause_n2(n[1], out); _clause_n2(n[2], out)
+    elif n[0] == "srcctx":
+        _short(n[1], True, "source context", out); _clause_n2(n[2], out)
+    else:
+        _clause_n2(n, out, bare=True)
+    return out
+
+
+def test_the_n2_skeleton_checker_flags_known_negatives_and_passes_known_positives():
+    assert n2_violations("({ilo} li {awen})") == ["subject"]
+    assert n2_violations("({jan pali} li {pali} e {ilo})") == ["object"]
+    assert n2_violations("({jan pali} li tan {ma})") == ["source"]
+    assert n2_violations("(tan {ni} la ({jan pali} li {pali}))") == ["source context"]
+    assert n2_violations("({ma} la ({ilo pali} li {awen}))") == ["context"]
+    assert n2_violations("({jan pali} li {pali} e ({ilo sitelen} anu {ijo}))") == ["object"]
+    assert n2_violations("(({jan} li {pali}) la ({ilo pali} li {awen}))") == ["subject"]
+    assert n2_violations("({ilo pali} li {awen})") == []
+    assert n2_violations("{pali}") == [] and n2_violations("({pali} anu {awen})") == []
+    assert n2_violations("({jan ni} li {lukin} e {D1(ilo)})") == []
+    assert n2_violations("({jan pi ilo sona} li {pana} e {ilo pi sona lawa})") == []
+    assert n2_violations("({jan pali} li {pona} e ({ilo pali} anu {ijo ni}))") == []
+
+
+def test_no_expected_skeleton_of_the_corpus_holds_a_one_token_nominal_phrase():
+    bad = {}
+    for _f, _n, r in RECORDS:
+        for sk in r.get("expect_skeletons", []):
+            if n2_violations(sk):
+                bad.setdefault(r["id"], []).append(sk)
+    assert bad == {}
+
+
+def test_every_record_that_n2_rewrote_carries_a_decision_field_and_says_so():
+    marker = "author decision 2026-10-28"
+    for f, _n, r in RECORDS:
+        if f == N2_FILE:
+            continue
+        text = r.get("note", "") + r.get("rationale", "")
+        if "N2 rewrite" in text:
+            assert marker in r.get("decision", ""), r["id"]
+            assert marker in text, r["id"]
+        else:
+            assert "decision" not in r or marker not in r["decision"] or r["id"] in ("k20", "k21"), r["id"]
+
+
+def test_the_n2_file_holds_the_nineteen_worked_examples_and_the_extras():
+    recs = [r for f, _n, r in RECORDS if f == N2_FILE]
+    assert [r["id"] for r in recs] == ["canon-n2-%02d" % i for i in range(1, len(recs) + 1)]
+    assert len(recs) >= 19 + 6
+    spec = {1: "INVALID", 2: "RESOLVED", 3: "RESOLVED", 4: "RESOLVED", 5: "INVALID", 6: "RESOLVED",
+            7: "INVALID", 8: "RESOLVED", 9: "RESOLVED", 10: "RESOLVED", 11: "INVALID", 12: "RESOLVED",
+            13: "INVALID", 14: "RESOLVED", 15: "INVALID", 16: "RESOLVED", 17: "INVALID",
+            18: "RESOLVED", 19: "RESOLVED"}
+    assert {i: recs[i - 1]["expect_status"] for i in spec} == spec
+    # known-negative: the INVALID worked examples are exactly the ones whose RESOLVED twin passes
+    assert recs[0]["surface"] == "ilo li awen" and recs[1]["surface"] == "ilo pali li awen"
+
+
+def test_n2_strictness_over_valid_toki_pona_is_declared_in_the_compat_file():
+    compat = {r["id"]: r for f, _n, r in RECORDS if f == "toki_pona_compat.jsonl"}
+    for i, surface in (("k20", "ilo li pona"), ("k21", "jan li pali e ilo")):
+        assert compat[i]["surface"] == surface and compat[i]["expect_status"] == "INVALID"
+        assert "VALID Toki Pona; rejected as OpenPona strictness" in compat[i]["note"]
+        assert "2026-10-28" in compat[i]["note"]

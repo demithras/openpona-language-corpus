@@ -18,6 +18,8 @@ EXAMPLES = [
     ("jan li pali e ilo anu sitelen li awen", "anu-then-li"),
     ("ILO LI AWEN", "case"),
     ("ilo mi", "unknown-token"),
+    ("ilo li awen", "n2"),
+    ("jan pali li pali e ilo", "n2"),
 ]
 
 
@@ -35,7 +37,7 @@ def test_new_diagnostics_are_located():
 
 def test_anu_in_subject_or_last_predicate_is_fine():
     assert parse("nasin open anu nasin awen li pali").status == "RESOLVED"
-    assert parse("jan li pali anu pali anu pali").status == "RESOLVED"
+    assert parse("jan pali li pali anu pali anu pali").status == "RESOLVED"
 
 
 def test_errors_are_located():
@@ -50,11 +52,11 @@ def test_line_and_length_guards():
 
 
 def test_long_valid_statement_parses_resolved():
-    # 1 + 2 + 2*100 = 203 tokens, under the 256 guard; a hundred e-phrases
-    text = "jan li pali " + " ".join(["e ilo"] * 100)
+    # 4 + 3*66 = 202 tokens, under the 256 guard; sixty-six e-phrases
+    text = "jan pali li pali " + " ".join(["e ilo sitelen"] * 66)
     res = parse(text)
     assert res.status == "RESOLVED", res.errors
-    assert res.skeletons == ["({jan} li {pali}" + " e {ilo}" * 100 + ")"]
+    assert res.skeletons == ["({jan pali} li {pali}" + " e {ilo sitelen}" * 66 + ")"]
 
 
 def test_specific_diagnostic_replaces_the_generic_message():
@@ -75,8 +77,15 @@ def test_generic_message_when_nothing_specific_fires():
     assert res.errors, "INVALID must always carry at least one message"
 
 
-def test_bare_tan_before_la_is_a_vector_context_like_the_subject_case():
-    # consistent with t06 `tan li pali` -> ({tan} li {pali}): a lone tan is a one-unit vector phrase
-    res = parse("tan la jan li pali")
+def test_tan_after_a_head_before_la_is_a_vector_context():
+    # a tan that follows a unit is part of the phrase (vector reading); the context has 2 tokens
+    res = parse("jan tan la jan pali li pali")
     assert res.status == "RESOLVED"
-    assert res.skeletons == ["({tan} la ({jan} li {pali}))"]
+    assert res.skeletons == ["({jan tan} la ({jan pali} li {pali}))"]
+
+
+def test_lone_tan_before_la_is_a_one_token_context_and_breaks_n2():
+    # N2 (2026-10-28): a context clause without li is a nominal position, so a lone `tan` is out
+    res = parse("tan la jan pali li pali")
+    assert res.status == "INVALID" and res.skeletons == []
+    assert any(e.startswith("n2:") for e in res.errors), res.errors

@@ -5,7 +5,7 @@ from importlib.resources import files
 _TOKENS_CSV = files("openpona") / "tokens.csv"
 
 # Parse-API compatibility identifier (docs/parser-api.md).  Deliberately separate
-# from the token inventory ("anu 1.1") and from the package version (0.2.0):
+# from the token inventory ("anu 1.1") and from the package version (0.3.0):
 # bump it only when the shape of ParseResult / the AST JSON changes.
 PARSER_API_VERSION = "1.0.0"
 

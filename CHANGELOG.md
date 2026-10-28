@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-28 - 0.3.0: rule N2, phrase length by position (CANON, PARSER)
+
+- author decision N2: a phrase of exactly one token is allowed only in predicate position (the main expression after `li`; a bare statement with no `li` and no `la`). Every nominal phrase (subject, object after `e`, source after a structural `tan`, context before `la`, each `anu` alternative there) has at least two tokens; a META unit counts its tokens (`ilo ilo` = 2), a phrase with `pi` always passes. `ilo li awen` is INVALID, `ilo pali li awen` is valid. Reason: the role of a phrase is recoverable from its length. Falsifier: `research/hypothesis_ledger.md` (H-N2);
+- order (SPEC invariant 19, §6.1; `canon/04` §3.1): N2 is checked on the readings the META -> structure -> vector selection keeps and never revives a reading the selection removed; `jan pali li tan ma` is INVALID, not a vector reading. Declared strictness over Toki Pona: `canon/11` departure 12;
+- reference parser: `grammar.lark` is unchanged (comment only); `parser.py` drops the selected readings that break N2 (`_n2_violations`, typed tree) and reports `n2: subject 'ilo' has one token; ...` with position and token; one Earley parse per statement as before; parser API `1.0.0` unchanged;
+- version: package `0.2.0` -> `0.3.0` (grammar change); token inventory `anu 1.1` unchanged; `make smoke-wheel` parses `jan pali li pali`; `tools/bench_meta.py` `long203` is now `jan pali li pali pona` + 66 x `e ilo sitelen`;
+- documents rewritten to the new grammar: `SPEC.md`, `canon/04`, `canon/10`, `canon/11`, `CHEATSHEET.md` (rule 9), `LEARN_OPENPONA.md` (Lesson 5a), `GLOSSARY.md`, `examples/`, `docs/`; the H-TS one-token prefixes (`lukin la`, `wile la`) are no longer valid contexts; older entries of this file and `history/` keep their examples verbatim (pre-0.3.0 grammar).
+
 ## 2026-10-09 - author follow-ups (PARSER, CONFORMANCE)
 
 - fold gate per overlap component: `max_fold_candidates` limits the maximal fold sets of ONE overlap component, not their product (`jan li` + n x `ilo ilo sitelen ilo sitelen` joined by `e` is RESOLVED for n = 8..14); the dominance pruning checks `max_seconds`; the 36 remaining `ambiguity_v2.jsonl` cases are ACCEPTED (author decision 2026-10-09); frozen conformance files, matrix and canon unchanged.

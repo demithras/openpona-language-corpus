@@ -22,7 +22,7 @@ For an AI agent that reads and writes OpenPona statements (for example LINJA ove
 ilo pali li pona ala            # 1-2: the CI tool is not fit (red)
 ma pali la ilo pali li pona ala # 3: scoped to the work project
 jan linja li lukin e ilo pali   # 4: the agent inspects the tool (itself by address, bound in the record)
-jan linja li wile e ni          # 5: the agent's intention (status: intended, in the record)
+jan linja li wile e ijo ni      # 5: the agent's intention (status: intended, in the record)
 ilo pali li kama pona           # 6: the evidence to look for (status stays open until checked)
 ```
 
@@ -40,7 +40,7 @@ Order: parse, read the status, bind the addresses, never guess.
 ```openpona
 ? jan pali jan pali jan         # AMBIGUOUS: keep both readings
 ! jan ilo sona                  # INVALID: three units need pi
-seme li tan e ni                # a question statement (RESOLVED parse); its seme stays UNRESOLVED at binding
+seme pali li tan e ni ante       # a question statement (RESOLVED parse); its seme stays UNRESOLVED at binding
 ```
 
 ## 4. Self-reference, other people, values
@@ -81,10 +81,15 @@ Truth status belongs in that field. The `lukin la` / `wile la` / `seme la` prefi
 
 ```openpona
 ma pali la ilo pali li pona ala   # observed (record), scoped
-jan linja li wile e ni            # intended, actor = the agent
+jan linja li wile e ijo ni        # intended, actor = the agent
 jan linja li pali e ilo pali      # the act, logged as intended first
-lukin la ilo pali li pona         # research convention (H-TS): observed
 ilo pali anu ilo sitelen li awen  # choice between phrases, not statements
+```
+
+Research convention (H-TS), not canon and not valid syntax since rule N2 (2026-10-28), because a one-token context before `la` is a nominal phrase of one token:
+
+```text
+lukin la ilo pali li pona         # H-TS prefix for observed: INVALID since 2026-10-28 (N2)
 ```
 
 ## 7. Checklist before emitting a statement

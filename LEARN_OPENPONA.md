@@ -151,9 +151,9 @@ Examples:
 
 ```text
 ilo sitelen li awen
-jan pali li pana e sitelen
-ma pali la jan li lukin e ijo
-sona ni li kama tan kute
+jan pali li pana e sitelen ijo
+ma pali la jan pali li lukin e ijo ni
+sona ni li kama tan kute ni
 nasin open anu nasin awen
 ```
 
@@ -163,6 +163,22 @@ Write one statement per line. Do not focus on one perfect English translation. A
 2. what structural relation connects them?
 3. what context binds the addresses?
 4. what is the truth/speech-act status?
+
+## Lesson 5a — How long is the phrase? (rule N2)
+
+*A verb is not always one token, but if a phrase is one token, it is definitely a verb.* A phrase of one token is allowed only as a predicate: the main expression after `li`, or a whole statement with no `li` and no `la`. A subject, an object after `e`, a source after `tan` and a context before `la` need two tokens or more. A META unit counts its tokens, so `ilo ilo` is enough; a phrase with `pi` is always long enough.
+
+```openpona
+! ilo li awen                  # subject of one token: INVALID
+ilo pali li awen               # subject of two, one-token predicate: valid
+! jan pali li pali e ilo       # object of one token: INVALID
+jan pali li pali e ilo sitelen # object of two: valid
+pali                           # a bare statement is a predicate: valid
+! ma la ilo pali li awen       # context of one token: INVALID
+ma pali la ilo pali li awen    # context of two: valid
+```
+
+Exercise: make `jan li pali e ilo` valid with the fewest new tokens. **Answer:** `jan pali li pali e ilo sitelen` (a second token for the subject and one for the object; the predicate `pali` stays one token).
 
 ## Lesson 6 — Preserve epistemic status
 

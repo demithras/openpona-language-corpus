@@ -10,7 +10,8 @@ Families (n = number of duplicated units / META runs):
   random      seeded random invalid sequences: n runs of 2-3 copies of a
               random unit, separated by random particles, ending in `li`
               (particle-last, so INVALID by construction)
-  long203     the legal 203-token statement `jan li pali` + 100 x `e ilo`
+  long203     the legal 203-token statement `jan pali li pali pona` + 66 x `e ilo sitelen`
+              (rule N2: subject and objects need >= 2 tokens)
 
 Each case runs in a fresh subprocess with a hard wall-clock cap (default
 20 s); a case that hits the cap is recorded as TIMEOUT and killed.
@@ -65,7 +66,7 @@ def make_case(family: str, n: int, seed: int = 0) -> str:
             out.append(rng.choice(PARTICLES) if i < n - 1 else "li")
         return " ".join(out)
     if family == "long203":
-        return "jan li pali " + " ".join(["e ilo"] * 100)
+        return "jan pali li pali pona " + " ".join(["e ilo sitelen"] * 66)
     raise ValueError(family)
 
 
@@ -75,7 +76,7 @@ import openpona
 from openpona import Budget, parse
 mode, text = sys.argv[1], sys.argv[2]
 BUD = Budget(max_seconds=float(os.environ["BENCH_MAX_SECONDS"])) if "BENCH_MAX_SECONDS" in os.environ else Budget()
-parse("jan li pali")  # warm the grammar cache outside the measured region
+parse("jan pali li pali")  # warm the grammar cache outside the measured region
 res = {"module": openpona.__file__}
 if mode == "time":
     t0 = time.perf_counter()

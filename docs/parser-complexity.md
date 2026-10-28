@@ -116,8 +116,17 @@ survive `_prefer`, so it is dropped locally. The final skeleton set is the same,
 and losing readings are never multiplied out. (This replaces the TP-01 count-based
 local C8 and the global `_prefer_structure`.)
 
-Examples: `jan li tan tan ma` is `({jan} li {D1(tan) ma})` (META beats structure);
-`jan li tan tan ma tan ma` stays `AMBIGUOUS` (incomparable under both keys).
+Examples: `jan pali li tan tan ma` is `({jan pali} li {D1(tan) ma})` (META beats structure);
+`jan pali li ilo tan tan ma pi ijo ante` is `AMBIGUOUS` (incomparable under both keys).
+
+### Rule N2 (0.3.0, 2026-10-28)
+
+Rule N2 (SPEC invariant 19: a one-token phrase only in predicate position) is NOT part
+of the grammar and does not touch the parse or the pruning above. `_parse` runs the
+selection (`_prefer`) first, then drops every selected reading whose typed tree has a
+one-token phrase in a nominal position (`_n2_violations`, linear in the tree size). It
+never revives a reading the selection removed, so there is no second Earley parse and no
+change to `ParseStats` or to any budget.
 
 ### Line edges (D5)
 
@@ -141,7 +150,7 @@ full recursive expansion, global C8). Three tests compare the new parser with it
 
 Since 2026-10-09 the reference algorithm in that file brute-forces **every**
 non-overlapping run subset and computes D4 independently of `_prefer`. Added
-bounded tests: 40 fallback runs in one 203-token statement finish in under 2 s,
+bounded tests: 40 fallback runs in one 204-token statement finish in under 2 s,
 and `earley_parses == 1`. A second, independent check is the TP-04 oracle
 (`tools/oracle`): `tools/oracle/compare.py` reports 147 of 147 cases agreeing and
 0 triaged disagreements, and a property test requires strict equality with the
@@ -290,7 +299,9 @@ because the 256 readings are no longer parsed one signature at a time. The
 Families (`tools/bench_meta.py`): `nonoverlap` = `w0 w0 li w1 w1 e w2 w2 ...`;
 `overlap` = n copies of `jan pali jan pali jan` joined by `li`/`e`; `random` =
 seeded runs of 2-3 copies separated by random particles, ending in `li`
-(INVALID by construction); `long203` = `jan li pali` + 100 x `e ilo`.
+(INVALID by construction); `long203` = `jan pali li pali pona` + 66 x `e ilo sitelen` (since 0.3.0; the
+table figures above were measured with `jan li pali` + 100 x `e ilo`, a statement that
+rule N2 makes INVALID).
 
 ## Known limits
 

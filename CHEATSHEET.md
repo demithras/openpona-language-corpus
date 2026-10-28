@@ -37,7 +37,7 @@ X anu seme  question idiom: X, or unknown?
 
 Precedence, loosest to tightest: `la` > `li` > `e`/`tan` > `anu` > `pi`. `li la e pi anu` are particles only; `tan` is also a vector where no structural reading exists (`kama tan tan` = `kama D1(tan)`).
 
-## The 8 rules that matter
+## The 9 rules that matter
 
 1. Vector first: read each token as a direction of change, then let position decide its role.
 2. Phrase = head (1-2 units) + any number of `pi` groups of exactly 2 units. Three units need `pi`; `sona pi lawa` is INVALID.
@@ -47,6 +47,7 @@ Precedence, loosest to tightest: `la` > `li` > `e`/`tan` > `anu` > `pi`. `li la 
 6. No `mi` or `sina`: an agent names itself by its own address (`jan linja`); `jan ni` means "this person", as in Toki Pona.
 7. Values never in the surface: no numbers, ids, names, punctuation. They live in the record (`bound_ref`, `literals`).
 8. Ambiguity is a value: RESOLVED, AMBIGUOUS, INVALID (parse) and UNRESOLVED (binding). Never guess a binding.
+9. Phrase length by position (N2, 2026-10-28): a one-token phrase is allowed only as a predicate. The predicate positions are the main expression after `li` and a statement with no `li` and no `la` (`pali`, `ilo pali`). Every other phrase (subject, object after `e`, source after `tan`, a context before `la`, each `anu` alternative there) has at least 2 tokens: two units, a META unit (`ilo ilo` counts 2), or a `pi` group. `ilo li awen` is INVALID; `ilo pali li awen` is valid. N2 is checked on the readings the priority rules select; it never revives a reading they removed (`jan pali li tan ma` is INVALID, not the vector phrase `tan ma`).
 
 ## Truth status (a field of the record, not of the surface)
 
@@ -58,15 +59,16 @@ Research only (H-TS, not canon): carrying status as a `lukin la` / `sona la` / `
 
 ```openpona
 ilo sitelen li awen              # the logging tool persists
-jan pali li pana e sitelen       # a work agent emits a representation
-ma pali la jan li lukin e ijo    # in project scope, an agent inspects an entity
-sona ni li kama tan kute         # the bound knowledge came from a received signal
+jan pali li pana e sitelen ijo   # a work agent emits a represented entity
+ma pali la jan pali li lukin e ijo ni  # in project scope, a work agent inspects this entity
+sona ni li kama tan kute ni      # the bound knowledge came from this received signal
 nasin open anu nasin awen        # opening path or retaining path
 jan linja li lukin e ilo sitelen # the agent LINJA inspects the logging tool (self-reference by address)
 ! sona pi lawa                   # pi needs exactly two units after it; a two-unit concept takes no pi
 ! jan ilo sona                   # three units without pi
 ! li pali                        # particle with no subject
 ! la jan li pali                 # la needs a context clause before it
+! ilo li awen                    # N2: a one-token subject; write `ilo pali li awen`
 ```
 
 ## Toki Pona

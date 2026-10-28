@@ -6,6 +6,10 @@ the fold set is compared first and the structural-`tan` set second, each by
 inclusion (lexicographic, D4).  Every repetition run reaches the Earley parser as
 an optional multi-token unit, so ONE parse holds every fold choice.
 
+Rule N2 (SPEC invariant 19, 2026-10-28; a one-token phrase only in predicate position)
+is checked AFTER this selection, on the readings it keeps, and drops the ones that break
+it; it never revives a reading the selection removed.
+
 Every stage runs under an explicit `Budget`; running out of budget yields the
 operational status RESOURCE_EXHAUSTED (never INVALID, never RESOLVED/AMBIGUOUS
 from a partial enumeration).  See docs/parser-complexity.md.
@@ -548,6 +552,60 @@ def _vector_tans(skel: str) -> int:
     return sum(m.split().count("tan") for m in re.findall(r"\{([^}]*)\}", flat))
 
 
+# ------------------------------------------------------------------- N2
+# Rule N2 (SPEC invariant 19, author decision 2026-10-28): a phrase of exactly one token is
+# allowed only in predicate position.  Order (author decision, round 2): N2 is checked AFTER
+# the META -> structure -> vector selection (`_prefer`), on the readings that selection
+# keeps.  It never revives a reading the selection removed: `jan pali li tan ma` keeps its
+# structural reading, N2 drops it (source `ma` has one token), and the vector reading
+# `{tan ma}` is NOT tried.  A META fold never changes a phrase's token count, so the META
+# step and N2 do not interact.
+def _n2_violations(tree, toks: list[str]) -> list[tuple[str, int]]:
+    """(position name, token index) of every one-token phrase in a nominal position
+    of a typed tree (rule N2).  Predicate positions are not listed: the main
+    expression after `li` and a bare statement."""
+    out: list[tuple[str, int]] = []
+
+    def expr(e, pos: str) -> None:
+        if isinstance(e, _ast.Alternative):
+            expr(e.left, pos)
+            expr(e.right, pos)
+        elif e.span.end - e.span.start == 1:
+            out.append((pos, e.span.start))
+
+    def clause(c, pos: str) -> None:  # `pos` names a clause that has no `li`
+        if isinstance(c, _ast.Predication):
+            expr(c.subject, "subject")
+            for p in c.predicates:
+                for x in (p.objects.items if p.objects else ()):
+                    expr(x, "object")
+                for x in (p.sources.items if p.sources else ()):
+                    expr(x, "source")
+        else:
+            expr(c, pos)
+
+    if isinstance(tree, _ast.Context):
+        if tree.source:
+            expr(tree.context, "source context")
+        else:
+            clause(tree.context, "context")
+        clause(tree.body, "clause after la")
+    elif isinstance(tree, _ast.Predication):
+        clause(tree, "subject")
+    return sorted(set(out), key=lambda v: (v[1], v[0]))
+
+
+def _n2_messages(violations: list[tuple[str, int]], toks: list[str]) -> list[str]:
+    """Located N2 diagnostics: the position, the token, the rule."""
+    seen: list[tuple[str, int]] = []
+    for v in violations:
+        if v not in seen:
+            seen.append(v)
+    return [f"n2: {pos} '{toks[i]}' has one token; a one-token phrase is allowed only "
+            f"as a predicate (N2) (token {i + 1} '{toks[i]}')"
+            for pos, i in sorted(seen, key=lambda v: v[1])]
+
+
 # ------------------------------------------------------------- diagnostics
 def _diagnose(toks: list[str]) -> list[str]:
     """Located, rule-named hints for a token list with no structural parse."""
@@ -694,15 +752,23 @@ def _parse(text: str, ctx: _Ctx) -> ParseResult:
             raise _Exhausted("max_skeletons",
                              f"more than {ctx.b.max_skeletons} distinct parses")
         ctx.st.skeletons = len(skels)
-        out = sorted(_prefer(skels))
+        selected = sorted(_prefer(skels))
+        out: list[str] = []
         alternatives = []
-        for skel in out:  # typed trees are built under the same time budget
+        dropped: list[tuple[str, int]] = []
+        for skel in selected:  # typed trees are built under the same time budget
             ctx.tick()
-            alternatives.append(_ast.from_skeleton(skel, toks))
+            tree = _ast.from_skeleton(skel, toks)
+            bad = _n2_violations(tree, toks)  # rule N2, after the selection
+            if bad:
+                dropped += bad
+                continue
+            out.append(skel)
+            alternatives.append(tree)
     except _Exhausted as e:
         return _exhausted(e, toks)
     if not out:
-        errs = _diagnose(toks) or ["no structural parse"]
+        errs = _n2_messages(dropped, toks) or _diagnose(toks) or ["no structural parse"]
         return ParseResult("INVALID", [], errs, toks)
     return ParseResult("RESOLVED" if len(out) == 1 else "AMBIGUOUS", out, [], toks,
                        alternatives=tuple(alternatives))
