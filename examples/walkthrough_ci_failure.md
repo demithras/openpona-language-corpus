@@ -110,7 +110,9 @@ literals: {planned_commit_message: "fix flaky unit test"}
 
 Research convention (H-TS, not canon): the status can also be carried as a prefix, with no new token. The record's field stays authoritative; the prefix is only an experiment (`research/truth_status_in_language.md`) — and a Toki Pona speaker reads `lukin la` as "apparently", which is one reason it is still research.
 
-```openpona
+Since rule N2 (2026-10-28) the one-token prefixes below (`lukin la`, `wile la`) are INVALID OpenPona syntax: a context before `la` without `li` is a nominal phrase and needs two tokens. They are kept as a record of the research convention (the experiment would need a two-token prefix to parse).
+
+```text
 lukin la ilo pali li pona ala               # H-TS prefix for observed
 wile la jan ante li wile e kama pona        # H-TS prefix for requested
 wile la jan linja li pona e ilo pali           # H-TS prefix for intended: same prefix as requested

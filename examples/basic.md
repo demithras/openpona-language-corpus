@@ -15,26 +15,26 @@ Possible render in a context where `ilo sitelen` resolves to a logging tool:
 ## Directed relation
 
 ```text
-jan pali li pana e sitelen
+jan pali li pana e sitelen ijo
 ```
 
-A work-agent emits/provides a representation/document.
+A work-agent emits/provides a represented entity/document. A nominal phrase has two tokens or more (rule N2); only the predicate `pana` may be a single token.
 
 ## Context
 
 ```text
-ma pali la jan li lukin e ijo
+ma pali la jan pali li lukin e ijo ni
 ```
 
-Within the work/project scope, an agent inspects an entity.
+Within the work/project scope, a work-agent inspects this entity.
 
 ## Provenance
 
 ```text
-sona ni li kama tan kute
+sona ni li kama tan kute ni
 ```
 
-The bound knowledge/model came from a received signal.
+The bound knowledge/model came from this received signal.
 
 ## Alternative
 
@@ -47,7 +47,7 @@ An explicit branch between an opening path and a retaining/continuing path.
 ## Unknown
 
 ```text
-seme li tan e ni
+seme pali li tan e ni ante
 ```
 
 The source/cause of the bound referent is unresolved. A runtime should preserve the unresolved state rather than fill it heuristically.

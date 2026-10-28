@@ -19,6 +19,7 @@ This ledger consolidates the main hypotheses that were tested or discussed separ
 | H10 | The canonical matrix is uniquely optimal | **UNPROVEN** | Coarse optimization found alternate layouts that scored better on some formalized metrics. |
 | H-TS | Truth/speech-act status can be carried in the surface with existing tokens (`lukin la`, `wile la`, `seme la`) | **OPEN** | See `truth_status_in_language.md`; zero new tokens; falsifier defined there. |
 | H-OP | OpenPona can be the Ontology Language of a Palantir-class EOO | **OPEN — NEXT EXPERIMENT** | Must express typed ontology primitives and compile losslessly to backend-neutral IR without adding primitives per domain. |
+| H-N2 | Rule N2 (2026-10-28): the role of a phrase is recoverable from its length; a one-token phrase marks the predicate, so every nominal phrase can be required to have two tokens or more without losing expressive range | **OPEN (author decision, not a measured result)** | Reason (author): "a verb is not always one token, but if a phrase is one token, it is definitely a verb". **Falsifier:** a corpus of natural OpenPona statements in which N2 forces a third token that carries no meaning (a filler second token) in more than a stated share of nominal phrases; the share must be fixed before the corpus is read. Cost already visible: the one-token `lukin la` / `wile la` prefixes of H-TS are no longer valid contexts (they need two tokens). Stricter than Toki Pona (`canon/11`, departure 12). |
 
 ## Important interpretation
 

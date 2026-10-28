@@ -37,5 +37,5 @@ smoke-wheel:
 	"$$tmp/venv/bin/python" -c "import openpona,sys; p=openpona.__file__; assert '$$root' not in p, p; print('installed from', p)"; \
 	"$$tmp/venv/bin/python" -m openpona conformance --dir "$$root/conformance" | tee "$$tmp/conf.log" | tail -1; \
 	grep -Eq '^[1-9][0-9]* passed, 0 failed' "$$tmp/conf.log"; \
-	"$$tmp/venv/bin/python" -m openpona parse "jan li pali" ; \
+	"$$tmp/venv/bin/python" -m openpona parse "jan pali li pali" ; \
 	echo "smoke-wheel passed."

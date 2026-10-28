@@ -49,6 +49,7 @@ def test_repetition_is_a_meta_derivative(p, n):
 
 distinct4 = st.lists(sem, min_size=4, max_size=4, unique=True)
 distinct3 = st.lists(sem, min_size=3, max_size=3, unique=True)
+distinct5 = st.lists(sem, min_size=5, max_size=5, unique=True)
 
 
 def test_tan_alone_is_a_unit():
@@ -80,12 +81,12 @@ def test_structural_token_at_clause_start_is_invalid(s, t):
 
 
 @settings(deadline=None)
-@given(distinct3)
+@given(distinct4)
 def test_several_li_form_one_group(t):
-    a, b, c = t
-    res = parse(f"{a} li {b} li {c}")
+    a, b, c, d = t   # N2: the subject needs two tokens; predicates may have one
+    res = parse(f"{a} {b} li {c} li {d}")
     assert res.status == "RESOLVED"
-    assert res.skeletons == ["({" + a + "} li {" + b + "} li {" + c + "})"]
+    assert res.skeletons == ["({" + a + " " + b + "} li {" + c + "} li {" + d + "})"]
 
 
 PARTICLES = ("li", "la", "e", "pi", "anu")
@@ -128,10 +129,10 @@ def test_particle_at_position_zero_is_invalid(p, t):
     assert parse(f"{p} {a} li {b}").status == "INVALID"
 
 
-@given(distinct3)
+@given(distinct4)
 def test_uppercase_variant_is_invalid(t):
-    a, b, c = t
-    text = f"{a} li {b} e {c}"
+    a, b, c, d = t
+    text = f"{a} {b} li {c} e {d} {a}"
     assert parse(text).status == "RESOLVED"
     res = parse(text.upper())
     assert res.status == "INVALID" and res.skeletons == []
@@ -139,12 +140,12 @@ def test_uppercase_variant_is_invalid(t):
 
 
 @settings(deadline=None)
-@given(distinct3)
+@given(distinct4)
 def test_tan_after_li_is_a_source_predicate(t):
-    a, b, _ = t
-    res = parse(f"{a} li tan {b}")
+    a, b, c, d = t
+    res = parse(f"{a} {b} li tan {c} {d}")
     assert res.status == "RESOLVED", res.errors
-    assert res.skeletons == ["({" + a + "} li tan {" + b + "})"]
+    assert res.skeletons == ["({" + a + " " + b + "} li tan {" + c + " " + d + "})"]
 
 
 @settings(deadline=None)
@@ -157,23 +158,23 @@ def test_e_after_tan_is_invalid(t):
 
 
 @settings(deadline=None)
-@given(distinct3)
+@given(distinct5)
 def test_anu_predicate_must_be_last(t):
-    a, b, c = t
-    bad = parse(f"{a} li {b} anu {c} li {a}")
+    a, b, c, d, e_ = t
+    bad = parse(f"{a} {b} li {c} anu {d} li {a}")
     assert bad.status == "INVALID" and bad.skeletons == []
     assert any(e.startswith("anu-then-li:") for e in bad.errors), bad.errors
-    ok = parse(f"{a} anu {b} li {c}")
+    ok = parse(f"{a} {b} anu {c} {d} li {e_}")   # anu in the subject: each alternative has 2 tokens
     assert ok.status == "RESOLVED", ok.errors
 
 
 @settings(deadline=None)
-@given(distinct3)
+@given(distinct5)
 def test_tan_initial_is_source_context_else_vector(t):
-    a, b, c = t
-    ctx = parse(f"tan {a} la {b} li {c}")
+    a, b, c, d, e_ = t
+    ctx = parse(f"tan {a} {b} la {c} {d} li {e_}")
     assert ctx.status == "RESOLVED", ctx.errors
-    assert ctx.skeletons == [f"(tan {{{a}}} la ({{{b}}} li {{{c}}}))"]
-    vec = parse(f"{a} tan la {b} li {c}")
+    assert ctx.skeletons == [f"(tan {{{a} {b}}} la ({{{c} {d}}} li {{{e_}}}))"]
+    vec = parse(f"{a} tan la {b} {c} li {d}")
     assert vec.status == "RESOLVED", vec.errors
-    assert vec.skeletons == [f"({{{a} tan}} la ({{{b}}} li {{{c}}}))"]
+    assert vec.skeletons == [f"({{{a} tan}} la ({{{b} {c}}} li {{{d}}}))"]

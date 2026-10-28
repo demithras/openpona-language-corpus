@@ -13,6 +13,8 @@ Terms and abbreviations used across this repository. Language terms first, proje
 | **semantic token / vector** | A token read as a direction of meaning (`open`, `lukin`, `pini`). "Vector" is the corpus's word for the token-as-operator view. |
 | **structural token / particle** | `li la e tan pi anu`. Five are particles only; `tan` is also a vector (source/cause). |
 | **unit** | One semantic token, or `tan`, or a META unit. |
+| **predicate position** | The only place where a phrase may have one token (rule N2, 2026-10-28): the main expression after `li`, and a bare statement (one clause with no `li` and no `la`). `ilo pali li awen` is valid, `ilo li awen` is INVALID. |
+| **nominal position** | Every other phrase position: subject, object after `e`, source after a structural `tan`, a context before `la` without `li`, and each `anu` alternative there. A nominal phrase has at least two tokens (a two-unit head, a META unit, or a `pi` group); `canon/04` §3.1. |
 | **head** | The first one or two units of a phrase; every `pi` group modifies it. |
 | **`pi` group** | Exactly two units introduced by `pi`; several groups may follow one head. |
 | **META / derivative** | Repetition of a unit: `n` copies of `P` mean `D^(n-1)(P)`, a semantic derivative. `D^2(D^2) = D^4`, as snap is the acceleration of acceleration. |

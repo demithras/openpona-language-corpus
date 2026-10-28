@@ -4,7 +4,7 @@ Three version numbers are separate on purpose. Bumping one never implies bumping
 
 | What | Current | Lives in | Changes when |
 |---|---|---|---|
-| Package version | `0.2.0` | `pyproject.toml` (`[project].version`), `MANIFEST.json` parser line | any released change to the Python package, tools or docs |
+| Package version | `0.3.0` | `pyproject.toml` (`[project].version`), `MANIFEST.json` parser line | any released change to the Python package, tools or docs |
 | Token inventory | `anu 1.1` | `MANIFEST.json` (`token_version`), `data/matrix.csv`, `canon/` | only by an author decision with a supersession ledger entry (the matrix is frozen; release housekeeping never edits it) |
 | Parser API | `1.0.0` | `docs/parser-api.md`, `api_version` in parse results | the JSON shape of a parse result changes (semver: shape break = major) |
 

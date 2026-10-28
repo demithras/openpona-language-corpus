@@ -31,9 +31,9 @@ def test_versions_are_separate_and_consistent():
     import re
     manifest = json.loads((ROOT / "MANIFEST.json").read_text(encoding="utf-8"))
     py = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
-    assert re.search(r'^version = "0\.2\.0"$', py, re.M)
+    assert re.search(r'^version = "0\.3\.0"$', py, re.M)
     assert manifest["token_version"] == "anu 1.1"
-    assert "0.2.0" in manifest["parser"]
+    assert "0.3.0" in manifest["parser"]
     checklist = (ROOT / "docs" / "RELEASE_CHECKLIST.md").read_text(encoding="utf-8")
-    for v in ("`0.2.0`", "`anu 1.1`", "`1.0.0`"):
+    for v in ("`0.3.0`", "`anu 1.1`", "`1.0.0`"):
         assert v in checklist

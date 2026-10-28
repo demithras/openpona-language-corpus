@@ -1,8 +1,8 @@
-# TP-04 frozen baseline: sha256 of the six original conformance files (97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b).
+# TP-04 frozen baseline: sha256 of the six original conformance files (97a9b9e8ca8800fda0a22f51ea59fccb6f60f35b). Amended 2026-10-28 (N2 phrase length, author decision): the six files were rewritten for N2 and the 2 declared-strictness cases k20, k21 were added; the digests below are those of the amended files, and every changed record carries a `decision` field.
 # A change to any of them needs an explicit author decision AND a deliberate edit of this lock; tests/test_conformance_integrity.py fails otherwise.
-8e8365a25778f38b0301b069c84bcf4de1c6d0699d1e73e62a39d1c896d8e058  conformance/basic.jsonl
-9f943bc22fc81255eea67962e680e9a292c51d895afbb9880863421f1d9d5fb4  conformance/grouping.jsonl
-8b1f8dea42852d18b5975695f1b89791130524fd7689bdb235836c66eb595aff  conformance/invalid.jsonl
-8674398cea238c20d4a8db6cbbf343a9be80e2e40a380f374be0e1136624cb31  conformance/meta.jsonl
-9abc49ac51ab6714dcfdead0d348b57a17bfcad4c7de279f24855972db18866b  conformance/tan_dual.jsonl
-3d9a439ee2ae4fd92d2c732b582bbd1cc323160b6e9bf8916d58c32c7b94d31c  conformance/toki_pona_compat.jsonl
+c9d3d42b5ead857b30ced9d1c31003278946ac6661c41383448d63f4e46b7048  conformance/basic.jsonl
+83cd0a95ceca3462a4130a294a0a882949e8aa53f726469071eece6369843af3  conformance/grouping.jsonl
+f1939a2373c0a52373c77beb3bb5c62f81308660019f6edaa2b244c4df9671c9  conformance/invalid.jsonl
+d4b511dc83c87466bfc1a2f55f843215e398c12f0963aac2100bb2559f2b7b58  conformance/meta.jsonl
+42b237a078925d7924dcf7b236fbe6c0ffd887ac5bdd4e630cd5556338271c78  conformance/tan_dual.jsonl
+a734b1c8caef60e9a1e43e39fbcb701c1d8073350ed3764b6cada1239d715145  conformance/toki_pona_compat.jsonl

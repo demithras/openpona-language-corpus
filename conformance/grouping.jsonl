@@ -2,7 +2,7 @@
 {"id": "p02", "surface": "sona pi ken pali", "expect_status": "RESOLVED", "expect_skeletons": ["{sona pi ken pali}"]}
 {"id": "p03", "surface": "sona pali pi ken", "expect_status": "INVALID", "note": "pi group must be exactly two units"}
 {"id": "p04", "surface": "sona pali ken", "expect_status": "INVALID", "note": "invariant 14: 3+ units need pi"}
-{"id": "p05", "surface": "jan ilo pi sona pali li pana e sitelen", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona pali} li {pana} e {sitelen})"]}
+{"id": "p05", "surface": "jan ilo pi sona pali li pana e sitelen ni", "expect_status": "RESOLVED", "expect_skeletons": ["({jan ilo pi sona pali} li {pana} e {sitelen ni})"], "note": "N2 rewrite, author decision 2026-10-28 (phrase length): surface was 'jan ilo pi sona pali li pana e sitelen'; object sitelen had one token.", "decision": "author decision 2026-10-28 (N2 phrase length)"}
 {"id": "p06", "surface": "sona pali pi ken pali anu ala", "expect_status": "RESOLVED", "expect_skeletons": ["({sona pali pi ken pali} anu {ala})"]}
 {"id": "p07", "surface": "sona pi ken pi pali", "expect_status": "INVALID", "note": "groups of one"}
 {"id": "p08", "surface": "ilo pi sona lawa", "expect_status": "RESOLVED", "expect_skeletons": ["{ilo pi sona lawa}"]}

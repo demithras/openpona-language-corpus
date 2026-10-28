@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "OpenPona parse result (parser API 1.0.0)",
-  "description": "ENGINEERING schema of `python -m openpona parse --json`. Syntax only: no entity-binding (UNRESOLVED) and no truth/speech-act fields. api_version is the parser API identifier, separate from the token inventory (anu 1.1) and the package version (0.2.0). Conditional rules (source predicate has no head or objects; source context takes an expression; Alternative/Context structure; arities; span ordering) are enforced by openpona.ast.from_json and tests/test_ast.py, not by this schema.",
+  "description": "ENGINEERING schema of `python -m openpona parse --json`. Syntax only: no entity-binding (UNRESOLVED) and no truth/speech-act fields. api_version is the parser API identifier, separate from the token inventory (anu 1.1) and the package version (0.3.0). Conditional rules (source predicate has no head or objects; source context takes an expression; Alternative/Context structure; arities; span ordering) are enforced by openpona.ast.from_json and tests/test_ast.py, not by this schema.",
   "type": "object",
   "additionalProperties": false,
   "required": [

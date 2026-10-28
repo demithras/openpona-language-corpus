@@ -35,6 +35,7 @@ GRAMMAR
 6. "anu" joins phrases only, never clauses; a predicate containing "anu" must be the last one. A choice between statements = two "la" statements on two lines.
 7. li la e pi anu are particles only. "tan" is also a vector, only where no structural reading exists.
 8. META: n repetitions of a 1- or 2-token unit = derivative D^(n-1). META beats structure, structure beats vector ("kama tan tan" = "kama" + D1(tan)).
+9. Phrase length (rule N2): a one-token phrase is allowed only as a predicate (the phrase right after "li", or a whole statement with no "li" and no "la"). Subject, every phrase after "e" or "tan", and the context before "la" need at least two tokens (two units, a repeated unit like "ilo ilo", or a "pi" group). "ilo li awen" is invalid; "ilo pali li awen" is valid.
 
 RECORD (outside the surface; you report it, you do not put it in the line)
 surface, tokens, context_refs, subject/predicate/object, actor, bound_ref, resolution_context,

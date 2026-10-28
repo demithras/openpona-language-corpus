@@ -5,6 +5,9 @@
 // (reference parser, 2026-10-09) as RUN_<L> spans: every token of a repetition run
 // carries `<L` on its first and `>L` on its last word, so ONE parse holds the folded
 // and the unfolded readings (META fold fallback, SPEC 7 / invariant 18).
+// Rule N2 (phrase length by position, 2026-10-28, SPEC invariant 19) is NOT in this grammar:
+// the parser checks it AFTER the META / structure / vector selection, on the readings that
+// selection keeps (parser.py `_n2_violations`); it never revives a reading the selection removed.
 
 start: statement
 

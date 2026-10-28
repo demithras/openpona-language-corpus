@@ -388,6 +388,52 @@ def to_shape(tree) -> dict:
     return _j_clause(tree)
 
 
+# ------------------------------------------------------------------------ N2
+# A phrase of exactly one surface token is allowed only in PREDICATE position
+# (spec_n2.md section 1): P1 = main expression after `li`, P2 = bare statement.
+# Every other phrase (subject, object, source, context, anu alternatives there)
+# needs >= 2 surface tokens.  Applied AFTER the META/structure/vector selection.
+def _unit_tokens(u):
+    return 1 if u[0] == "U" else u[4] - u[3]
+
+
+def _phrase_tokens(p):
+    return sum(_unit_tokens(u) for u in p[1]) + sum(
+        _unit_tokens(a) + _unit_tokens(b) for a, b in p[2])
+
+
+def _expr_ok(e, nominal):
+    """Every phrase of expression `e` (anu alternatives included) passes."""
+    while e[0] == "A":
+        if nominal and _phrase_tokens(e[1]) < 2:
+            return False
+        e = e[2]
+    return not (nominal and _phrase_tokens(e) < 2)
+
+
+def _clause_ok(c, bare=False):
+    if c[0] != "C":
+        return _expr_ok(c, nominal=not bare)
+    if not _expr_ok(c[1], True):
+        return False
+    for r in c[2]:
+        if r[1] is not None and not _expr_ok(r[1], False):
+            return False
+        if not all(_expr_ok(o, True) for o in r[2]):
+            return False
+        if not all(_expr_ok(ex, True) for _i, ex in r[3]):
+            return False
+    return True
+
+
+def n2_valid(tree) -> bool:
+    if tree[0] == "X":
+        return _clause_ok(tree[1]) and _clause_ok(tree[2])
+    if tree[0] == "S":
+        return _expr_ok(tree[2], True) and _clause_ok(tree[3])
+    return _clause_ok(tree, bare=True)
+
+
 # ---------------------------------------------------------------------- result
 @dataclass
 class OracleResult:
@@ -409,8 +455,15 @@ def recognize(text: str) -> OracleResult:
     readings = list(rec.statement())
     if not readings:
         return OracleResult("INVALID", reason="no structural reading")
+    # Selection runs exactly as before N2 (META -> structure -> vector); N2 then
+    # filters the survivors and never revives a removed reading (spec_n2 round 2).
     readings = _maximal(readings, folded_positions)            # META first
-    readings = _maximal(readings, structural_tan_positions)    # then structure over vector
+    tans = [structural_tan_positions(t) for t in readings]
+    readings = [t for t in readings
+                if not any(structural_tan_positions(t) < k for k in tans)]
+    readings = [t for t in readings if n2_valid(t)]            # N2 post-selection filter
+    if not readings:
+        return OracleResult("INVALID", reason="no selected reading satisfies N2 (one-token nominal phrase)")
     pairs = sorted((render(t), t) for t in readings)
     trees = [t for _s, t in pairs]
     return OracleResult("RESOLVED" if len(trees) == 1 else "AMBIGUOUS",

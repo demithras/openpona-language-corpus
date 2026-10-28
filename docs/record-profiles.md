@@ -33,7 +33,7 @@ the runtime: these are storage profiles, not grammar.
 | Identifier | Value | What it versions |
 |---|---|---|
 | Token inventory | `anu 1.1` | the 42 tokens and their arrangement (`token_version` in every record) |
-| Package | `0.2.0` | the distributed corpus and reference parser |
+| Package | `0.3.0` | the distributed corpus and reference parser |
 | Parser API | `1.0.0` | the shape of `ParseResult` and the AST JSON (`parse_reference.api_version`) |
 | **Record profiles** | `records-1.0.0` | the shape of these three schemas (`schema_version`) |
 
@@ -110,7 +110,7 @@ a plain `la` (a source context `tan X la` is not a resolution context); `subject
 subject of a predication; `object` is any `e` item of any predicate; `predicate` is any
 predicate head. When the AST has a subject or a `la` context the record must bind it
 (typed `missing_binding` otherwise), so a record cannot silently skip an address
-(**PENDING AUTHOR REVIEW**). Objects are optional: `kama pona` in `jan li wile e kama pona`
+(**PENDING AUTHOR REVIEW**). Objects are optional: `kama pona` in `jan pali li wile e kama pona`
 is a state, not an entity.
 
 ### binding_seal and immutability

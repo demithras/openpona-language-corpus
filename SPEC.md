@@ -45,6 +45,7 @@ The following are canonical:
 16. **Toki Pona compatibility** (§1): OpenPona may be stricter than Toki Pona and may add meaning, but never accepts what Toki Pona rejects. Known departures are tracked in `canon/11`.
 17. One statement per line. The language has no punctuation. Spaces (U+0020) and tabs (U+0009) before and after the statement are ignored; exactly one trailing line boundary (LF, or CR LF) is ignored. Anything else around or inside the statement — a leading newline, a second trailing newline, a lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP — makes the line INVALID (author decision 2026-10-09).
 18. Parse priority is lexicographic over the valid readings of a statement: first the readings whose the set of token positions covered by META folds is maximal by inclusion, then, among those, the readings whose set of structural `tan` positions is maximal by inclusion; the vector reading of `tan` applies only where no structural reading exists. One survivor is RESOLVED, several incomparable survivors are AMBIGUOUS (author decision 2026-10-09; §7).
+19. **Phrase length by position (rule N2, author decision 2026-10-28; §6.1).** A phrase of exactly one token is allowed only in predicate position. Every phrase in a nominal position (subject, object, source, context) has at least two tokens. N2 is checked on the readings the priority rules (invariants 12 and 18) select; it never revives a reading they removed.
 
 ## 3. Canonical matrix
 
@@ -128,7 +129,7 @@ lukin
 pini
 ```
 
-This does not make the token a globally unique noun.
+This does not make the token a globally unique noun. A one-token phrase is a predicate-position phrase (rule N2, §6.1): it stands alone as a statement or as the main expression after `li`, never as a subject, object, source or context.
 
 ### 5.2 Composed concept/address
 
@@ -182,14 +183,14 @@ X pi Y Z               grouping (§5.3)
 A anu B                alternative between phrases
 ```
 
-Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi`. For `la li e pi` this is Toki Pona's order; the place of `anu` is OpenPona's choice (Toki Pona sets no rule for it). `anu` joins phrases only (`jan li pali anu awen`); it never joins whole clauses. A choice between whole statements is written as two context statements on two lines:
+Precedence, loosest to tightest: `la` → `li` → `e`/`tan` → `anu` → `pi`. For `la li e pi` this is Toki Pona's order; the place of `anu` is OpenPona's choice (Toki Pona sets no rule for it). `anu` joins phrases only (`jan pali li pali anu awen`); it never joins whole clauses. A choice between whole statements is written as two context statements on two lines:
 
 ```text
-nasin open la jan li pali
-nasin awen la jan li awen
+nasin open la jan pali li pali
+nasin awen la jan pali li awen
 ```
 
-A predicate that contains `anu` must be the last predicate of its clause, so `jan li pali anu jan li awen` is INVALID (diagnostic `anu-then-li`) rather than a branch between statements or a misread (author decisions 2026-09-30 and 2026-10-01). `anu` in the subject followed by `li` is fine: `nasin open anu nasin awen li pali`.
+A predicate that contains `anu` must be the last predicate of its clause, so `jan pali li pali anu jan pali li awen` is INVALID (diagnostic `anu-then-li`) rather than a branch between statements or a misread (author decisions 2026-09-30 and 2026-10-01). `anu` in the subject followed by `li` is fine: `nasin open anu nasin awen li pali` (each alternative of a subject has two tokens, rule N2).
 
 Interpretive anchors:
 
@@ -200,9 +201,50 @@ Interpretive anchors:
 - `pi`: grouping/composition scope;
 - `anu`: explicit alternative/branch/version.
 
-A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`: directly after `li` it is a **source predicate** (`jan li tan ma` = derives from the land; `sona ni li tan kute`), and where no structural reading exists it is a semantic vector (`seme li tan e ni`, `jan tan li pali`, `jan li tan ma e ijo`). At the start of a statement before `la` it is a **source context** (`tan ni la jan li pali` = because of this, …). When both readings parse, the structural one wins (decision 2026-10-01).
+A structural token outside a valid structural position makes the statement INVALID, as in Toki Pona (`li pali`, `la jan li pali`, `jan pi li pali` are all invalid). The one exception is `tan`: directly after `li` it is a **source predicate** (`jan pali li tan ma pali` = derives from the working land; `sona ni li tan kute pona`), and where no structural reading exists it is a semantic vector (`seme pali li tan e ni ante`, `jan tan li pali`, `jan pali li tan ma e ijo pona`). At the start of a statement before `la` it is a **source context** (`tan toki ni la jan pali li pali` = because of this talk, …). Rule N2 never revives the vector reading: `jan pali li tan ma` is INVALID (source `ma` has one token), it does not fall back to the vector phrase `tan ma` (§6.1). When both readings parse, the structural one wins (decision 2026-10-01).
 
-`X anu seme` — Toki Pona's yes/no question tag — is read as a choice between `X` and the unresolved variable `seme`, which is OpenPona's question idiom too (`ilo li pona anu seme`: is the tool fit, or unknown?; record status `unknown`).
+`X anu seme` — Toki Pona's yes/no question tag — is read as a choice between `X` and the unresolved variable `seme`, which is OpenPona's question idiom too (`ilo pali li pona anu seme`: is the tool fit, or unknown?; record status `unknown`).
+
+### 6.1 Phrase length by position (rule N2)
+
+Author decision 2026-10-28: *a verb is not always one token, but if a phrase is one token, it is definitely a verb.* The role of a phrase is recoverable from its length: a one-token phrase marks the predicate.
+
+**N2.** A phrase of exactly one token is allowed only in **predicate position**. Every phrase in a **nominal position** has at least two tokens. A selected reading that breaks N2 is dropped.
+
+Counting: the tokens a phrase covers on the surface (semantic tokens and `tan` read as a vector unit). The particles `li la e pi anu` and a structural `tan` are never counted. A META unit counts its surface tokens (`ilo ilo` = `D1(ilo)` = 2 tokens; `ilo ilo ilo` = 3). A phrase with a `pi` group has at least three tokens, so it always passes. The check applies per phrase: in an `anu` expression every alternative is checked on its own against the position of the whole expression.
+
+| | position | rule |
+|---|---|---|
+| P1 | the main expression directly after `li`, including every `anu` alternative in it | any length >= 1 |
+| P2 | a bare statement: one clause with no `li` and no `la` | any length >= 1 (read as a predicate) |
+| N-a | the subject, the expression before the first `li` of a clause | >= 2 tokens |
+| N-b | every expression after `e` | >= 2 tokens |
+| N-c | every expression after a structural `tan`: a source phrase after the objects, a source predicate `X li tan Y`, the `Y` of a source context `tan Y la S` | >= 2 tokens |
+| N-d | a context clause before `la` that has no `li`; the clause after `la` when it has no `li` | >= 2 tokens |
+
+A context clause that has its own `li` follows the table for its subject, predicate and objects.
+
+Interaction with the priority rules (invariants 12 and 18, §7; author decision 2026-10-28, round 2). The selection (META, then structure, then vector) runs exactly as before N2, over the readings that are valid without N2. Then every selected reading that breaks N2 is dropped: none left is INVALID, one is RESOLVED, several are AMBIGUOUS. **N2 is checked on the readings the priority rules select; it never revives a reading they removed.** So N2 can turn an AMBIGUOUS selection into RESOLVED or INVALID, but it cannot change which META fold or which `tan` reading is selected. Wherever `tan` can be structural it is structural, and a one-token source phrase then makes the line INVALID: `jan pali li tan ma` and `jan pali li kama tan ma` are INVALID, they do not fall back to the vector phrase `tan ma` (the vector reading of `kama tan ma` has three units without `pi` anyway). A META fold never changes a phrase's token count (`D_n(P)` counts `n + 1` copies of `P`), so the META step and N2 do not interact. The diagnostic of an INVALID line names the position and the token.
+
+```openpona
+ilo pali li awen
+pali
+ilo pali
+ilo pali li pona anu seme
+jan ni li lukin e ilo ilo
+jan pali li lukin lukin
+tan toki ni la jan pali li pali
+ma pali la ilo pali li awen
+! ilo li awen
+! jan pali li pali e ilo
+! jan pali li pali e ilo sitelen anu ijo
+! jan pali li tan ma
+! tan ni la jan pali li pali
+! ma la ilo pali li awen
+! jan pali li kama tan ma
+```
+
+N2 is stricter than Toki Pona (`ilo li pona` is valid Toki Pona and INVALID OpenPona): a declared strictness, `canon/11`.
 
 ## 7. META and repetition
 
@@ -240,10 +282,10 @@ A META fold is applied only where the resulting reading is valid. If folding a r
 jan pi ilo ilo
 jan pi jan jan
 jan pi ma ma
-? jan li ilo tan tan ma
+? jan pali li ilo tan tan ma pi ijo ante
 ```
 
-`jan pi ilo ilo` is RESOLVED as the unfolded group `{jan pi ilo ilo}`: folding `ilo ilo` would leave a `pi` group of one unit, which is INVALID. `jan li ilo tan tan ma` is AMBIGUOUS: the fold `D(tan)` is invalid there, and the unfolded reading has two structural readings of `tan`, one at each position.
+`jan pi ilo ilo` is RESOLVED as the unfolded group `{jan pi ilo ilo}`: folding `ilo ilo` would leave a `pi` group of one unit, which is INVALID. `jan pali li ilo tan tan ma pi ijo ante` is AMBIGUOUS: the fold `D(tan)` is invalid there, and the unfolded reading has two structural readings of `tan`, one at each position (`{ilo} tan {tan ma pi ijo ante}` and `{ilo tan} tan {ma pi ijo ante}`; both source phrases have at least two tokens, rule N2).
 
 ### 7.2 Priority combination
 
@@ -254,11 +296,11 @@ Among all valid candidate readings (the choice of META folds together with the s
 3. one survivor is RESOLVED; several, incomparable after both steps, are AMBIGUOUS.
 
 ```openpona
-ma li tan ma tan ma ma
-tan li jan jan tan jan tan
+ma pali li tan ma pali tan ma ma
+ilo tan li jan jan tan jan tan
 ```
 
-`ma li tan ma tan ma ma` is RESOLVED as `({ma} li tan {ma} tan {D1(ma)})`, and `tan li jan jan tan jan tan` as `({tan} li {D1(jan)} tan {jan tan})`.
+`ma pali li tan ma pali tan ma ma` is RESOLVED as `({ma pali} li tan {ma pali} tan {D1(ma)})`, and `ilo tan li jan jan tan jan tan` as `({ilo tan} li {D1(jan)} tan {jan tan})`.
 
 ## 8. Addressing and binding
 
@@ -347,7 +389,7 @@ sitelen linja pana toki tenpo pini pi
 
 Later accepted grammar rules in this repository consolidate the language without changing the 42-token inventory; therefore this corpus does not invent an `anu 1.2` token version.
 
-Four things are versioned separately (`canon/10_versioning.md`): the token inventory (`anu 1.1`), the grammar (this specification as of its last change; no grammar identifier is invented and grammar changes are listed by date in `history/supersession_ledger.md`), the parser API (`openpona.PARSER_API_VERSION`, `1.0.0`) and the Python package (`0.2.0`). `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser (a budget was hit), not a syntax status: the language has three syntax outcomes, RESOLVED, AMBIGUOUS and INVALID, and `RESOURCE_EXHAUSTED` claims none of them.
+Four things are versioned separately (`canon/10_versioning.md`): the token inventory (`anu 1.1`), the grammar (this specification as of its last change; no grammar identifier is invented and grammar changes are listed by date in `history/supersession_ledger.md`), the parser API (`openpona.PARSER_API_VERSION`, `1.0.0`) and the Python package (`0.3.0`). `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser (a budget was hit), not a syntax status: the language has three syntax outcomes, RESOLVED, AMBIGUOUS and INVALID, and `RESOURCE_EXHAUSTED` claims none of them.
 
 ## 13. Explicit exclusions
 

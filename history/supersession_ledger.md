@@ -50,6 +50,7 @@
 | Parse priority combination (2026-10-09, author decision) | priority META → structure → vector stated, combination of META folds and structural `tan` undefined (parser and oracle disagreed) | **lexicographic: maximal-by-inclusion set of token positions covered by META folds, then maximal-by-inclusion structural-`tan` position set; one survivor RESOLVED, several AMBIGUOUS** (2026-10-09, author decision) |
 | Line edges (2026-10-09, author decision) | "one statement per line"; treatment of a surrounding line terminator unspecified (parser ignored many, oracle only spaces and tabs) | **spaces and tabs around the statement and exactly one trailing LF or CR LF are ignored; anything else (leading newline, second trailing newline, lone CR, U+2028, U+2029, U+0085, VT, FF, FS, NBSP) is INVALID** (2026-10-09, author decision) |
 | Versions and `RESOURCE_EXHAUSTED` (2026-10-09, author decision) | versions listed together; `RESOURCE_EXHAUSTED` listed beside the syntax statuses | **token inventory `anu 1.1`, grammar = the SPEC as of its last change (no new identifier, changes listed here by date), parser API `1.0.0`, package `0.2.0`; `RESOURCE_EXHAUSTED` is an operational outcome of the reference parser, not a syntax status; name accepted** (2026-10-09, author decision) |
+| Phrase length by position (2026-10-28, author decision, rule N2) | `head = unit , [ unit ]` in every position: a one-token phrase was valid as subject, object, source and context (`ilo li awen`, `jan li pali e ilo`) | **a phrase of exactly one token is allowed only in predicate position; every nominal phrase has at least two tokens** (SPEC invariant 19, `canon/04` §3.1) |
 
 ## Conflict rule
 
@@ -108,3 +109,17 @@ Gate-3 record for the decisions D1-D5 of the OpenPona author (repo owner, 2026-1
 - **Owner decision:** the author, 2026-10-09.
 - **Migration:** `SPEC.md` invariant 17, `canon/04`; parser and oracle changed in commit e78be09.
 - **Conformance change:** cases in `conformance/canon_2026_10_09.jsonl` (line-edge characters stored as JSON escapes).
+
+## 2026-10-28 author decision
+
+Gate-3 record for the decision N2 of the OpenPona author (repo owner, 2026-10-28). Author's words: "A verb is not always one token, but if a phrase is one token, it is definitely a verb."
+
+### N2 - Phrase length by position
+
+- **Previous wording (verbatim, `canon/04_grammar.md` §3, unchanged since the first grammar):** `phrase     = head , { "pi" , unit , unit } ;` and `head       = unit , [ unit ] ;` in every position, so a one-unit phrase was valid as subject, object, source phrase and context (`ilo li awen`, `jan li pali e ilo`, `jan li tan ma`, `ma la jan li pali`). `SPEC.md` §5.1: "A single token may operate as a vector".
+- **Reason (author):** the role of a phrase becomes recoverable from its length: a one-token phrase marks the predicate.
+- **Falsifier / evidence:** the falsifier is recorded in `research/hypothesis_ledger.md` (H-N2): a corpus of natural OpenPona statements where N2 forces a third token that carries no meaning in more than a stated share of nominal phrases. No such corpus exists in this repository; the rule is an author decision, not a measured result.
+- **New rule:** N2. A phrase of exactly one token is allowed only in predicate position (P1: the main expression after `li`, every `anu` alternative included; P2: a bare statement, one clause with no `li` and no `la`). Every phrase in a nominal position (N-a subject, N-b object after `e`, N-c source after a structural `tan`, N-d context before `la` without `li`, each `anu` alternative there) has at least two tokens. Counting is in surface tokens: particles and a structural `tan` are not counted, a META unit counts its tokens (`ilo ilo` = 2), a phrase with a `pi` group has three or more. Order (author decision, round 2): N2 is checked AFTER the META -> structure -> vector selection (invariants 12 and 18), on the readings that selection keeps; it never revives a reading the selection removed (`jan pali li tan ma` and `jan pali li kama tan ma` are INVALID, the vector reading is not tried; an earlier draft that applied N2 before the selection is withdrawn).
+- **Owner decision:** the author, 2026-10-28.
+- **Migration:** `SPEC.md` invariant 19 and §6.1, `canon/04` §3.1, `canon/10`, `canon/11` departure 12 (declared strictness: `ilo li pona` is valid Toki Pona and INVALID OpenPona), `CHEATSHEET.md` rule 9, `LEARN_OPENPONA.md` Lesson 5a, `GLOSSARY.md`. Reference parser (`openpona/grammar.lark`, `parser.py`) and independent oracle changed in the same change set. Version: grammar change, package `0.2.0` -> `0.3.0` (`CHANGELOG.md`); token inventory `anu 1.1` and parser API `1.0.0` unchanged. Examples in current-state documents were rewritten to the new grammar; `CHANGELOG.md` and this ledger keep the old examples verbatim.
+- **Conformance change:** cases whose surface breaks N2 were rewritten minimally, new file `conformance/canon_2026_10_28.jsonl`, two declared-strictness cases in `conformance/toki_pona_compat.jsonl` (owner of those files: the conformance change set).

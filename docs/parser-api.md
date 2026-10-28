@@ -11,7 +11,7 @@ Ticket: TP-02 (OpenPona Improvement TZ v0.2). Depends on TP-01 (bounded parsing)
 | Identifier | Value | What it versions | Where it lives |
 |---|---|---|---|
 | Token inventory | `anu 1.1` | the 42 tokens and their arrangement | `MANIFEST.json` (`token_version`), `canon/` |
-| Package | `0.2.0` | the distributed corpus + reference parser | `pyproject.toml` |
+| Package | `0.3.0` | the distributed corpus + reference parser | `pyproject.toml` |
 | **Parser API** | `1.0.0` | the *shape* of `ParseResult` and of the AST JSON | `openpona.PARSER_API_VERSION` |
 
 They move independently. `PARSER_API_VERSION` changes only when the machine-readable

@@ -125,15 +125,15 @@ def test_operand_order_is_preserved():
     swapped = _only("nasin awen anu nasin open")
     assert ast.shape(alt) != ast.shape(swapped)
 
-    objs = _only("ilo li pana e ilo e sitelen").predicates[0].objects
+    objs = _only("ilo pali li pana e ilo sitelen e sitelen pona").predicates[0].objects
     assert [o.head[0].token for o in objs.items] == ["ilo", "sitelen"]
 
-    srcs = _only("jan li pali e ijo tan ma tan kute").predicates[0].sources
+    srcs = _only("jan pali li pali e ijo pona tan ma pali tan kute pona").predicates[0].sources
     assert [s.head[0].token for s in srcs.items] == ["ma", "kute"]
 
-    chain = _only("jan li pali anu pali anu pali").predicates[0].head
+    chain = _only("jan pali li pali anu pali anu pali").predicates[0].head
     assert isinstance(chain, ast.Alternative) and isinstance(chain.right, ast.Alternative)
-    preds = _only("jan li pali li awen").predicates
+    preds = _only("jan pali li pali li awen").predicates
     assert [p.head.head[0].token for p in preds] == ["pali", "awen"]
 
 
@@ -150,7 +150,7 @@ def test_pi_grouping_survives_json_and_round_trip():
     assert [(g.left.token, g.right.token) for g in p09.groups] == [("sona", "lawa")]
     assert ast.to_tokens(p09) == ["jan", "ilo", "pi", "sona", "lawa"]
     assert ast.shape(p09) != ast.shape(_only("jan pi sona lawa"))
-    for surface in ("sona pali pi ken pali", "jan ilo pi sona pali li pana e sitelen",
+    for surface in ("sona pali pi ken pali", "jan ilo pi sona pali li pana e sitelen pona",
                     "sona pali pi ken pali anu ala"):
         for a in parse(surface).alternatives:
             assert parse(ast.to_surface(a)).alternatives == (a,)
@@ -188,20 +188,20 @@ def test_structural_tan_is_not_flattened_to_a_lexical_vector():
     for cid in ("t07", "t08", "t09", "t11", "t12", "t13", "t15", "b04", "b16"):
         for a in parse(_case(cid)["surface"]).alternatives:
             assert _vector_tan_units(a) == 0, cid
-    t07 = _only("jan li tan ma")
+    t07 = _only("jan pali li tan ma pali")
     pred = t07.predicates[0]
     assert pred.head is None and pred.objects is None
     assert [s.head[0].token for s in pred.sources.items] == ["ma"]
-    ctx = _only("tan ni la jan li pali")
+    ctx = _only("tan toki ni la jan pali li pali")
     assert isinstance(ctx, ast.Context) and ctx.source is True
-    assert ctx.context.head[0].token == "ni"
-    b4 = _only("sona ni li kama tan kute").predicates[0]
+    assert ctx.context.head[0].token == "toki"
+    b4 = _only("sona ni li kama tan kute pona").predicates[0]
     assert [h.token for h in b4.head.head] == ["kama"] and b4.sources is not None
     # the vector reading stays exactly where the oracle says it does
     assert _vector_tan_units(_only("jan tan li pali")) == 1          # t01 {jan tan}
-    assert _vector_tan_units(_only("jan li tan ma e ijo")) == 1      # t10 {tan ma}
+    assert _vector_tan_units(_only("jan pali li tan ma e ijo pona")) == 1      # t10 {tan ma}
     # a tan-initial context and a tan after the head never differ only by label
-    assert ast.shape(_only("tan ma la ilo li awen")) != ast.shape(_only("jan tan la ilo li awen"))
+    assert ast.shape(_only("tan ma pali la ilo pali li awen")) != ast.shape(_only("jan tan la ilo pali li awen"))
 
 
 # ------------------------------------------- syntax stays separate from the rest
@@ -212,12 +212,12 @@ def test_parse_api_has_no_binding_or_truth_fields():
     for cls in ast.NODE_TYPES.values():
         for f in dataclasses.fields(cls):
             assert not forbidden.search(f.name), (cls.__name__, f.name)
-    res = parse("jan li pali")
+    res = parse("jan pali li pali")
     text = json.dumps(res.to_json())
     assert not forbidden.search(text.replace("RESOURCE_EXHAUSTED", ""))
     assert set(res.to_json()) == {"api_version", "status", "alternatives"}
     # a name with nothing to bind is still a syntax success, never a truth value
-    assert parse("seme li tan e ni").status == "RESOLVED"
+    assert parse("seme pali li tan e ni ante").status == "RESOLVED"
 
 
 def test_invalid_and_exhausted_have_no_alternatives():
@@ -236,16 +236,16 @@ def test_api_version_is_its_own_identifier():
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     pkg = re.search(r'^version = "([^"]+)"', pyproject, re.M).group(1)
     manifest = json.loads((ROOT / "MANIFEST.json").read_text(encoding="utf-8"))
-    assert pkg == "0.2.0" and manifest["token_version"] == "anu 1.1"
+    assert pkg == "0.3.0" and manifest["token_version"] == "anu 1.1"
     assert PARSER_API_VERSION not in (pkg, manifest["token_version"])
-    assert parse("jan li pali").api_version == PARSER_API_VERSION
+    assert parse("jan pali li pali").api_version == PARSER_API_VERSION
     assert parse("").api_version == PARSER_API_VERSION  # also on INVALID
 
 
 def test_api_docs_state_the_three_identifiers_separately():
     doc = (ROOT / "docs" / "parser-api.md").read_text(encoding="utf-8")
     assert "PARSER_API_VERSION" in doc and "1.0.0" in doc
-    assert "anu 1.1" in doc and "0.2.0" in doc
+    assert "anu 1.1" in doc and "0.3.0" in doc
     for word in ("skeletons", "UNRESOLVED", "PENDING AUTHOR REVIEW"):
         assert word in doc
 
@@ -275,10 +275,10 @@ def test_cli_json_exit_codes_and_empty_alternatives():
     assert "error:" in inv.stderr
     big = _cli("parse", "--json", " ".join(["ilo"] * 300))
     assert big.returncode == 3 and json.loads(big.stdout)["status"] == "RESOURCE_EXHAUSTED"
-    ok = _cli("parse", "--json", "jan li pali")
+    ok = _cli("parse", "--json", "jan pali li pali")
     assert ok.returncode == 0 and len(json.loads(ok.stdout)["alternatives"]) == 1
-    plain = _cli("parse", "jan li pali")  # human output unchanged
-    assert plain.stdout.splitlines() == ["RESOLVED", "({jan} li {pali})"]
+    plain = _cli("parse", "jan pali li pali")  # human output unchanged
+    assert plain.stdout.splitlines() == ["RESOLVED", "({jan pali} li {pali})"]
 
 
 # ------------------------------------------------- schema / strictness of JSON
@@ -297,7 +297,7 @@ def test_schema_file_matches_the_node_types():
 
 
 def _good():
-    return ast.to_json(_only("jan li pali e ijo tan ma"))
+    return ast.to_json(_only("jan pali li pali e ijo pona tan ma pali"))
 
 
 def _break(path, fn):
@@ -331,7 +331,7 @@ def test_from_json_rejects_malformed_trees(name):
 
 
 def test_nodes_are_immutable_and_hashable():
-    a = _only("jan li pali")
+    a = _only("jan pali li pali")
     with pytest.raises(dataclasses.FrozenInstanceError):
         a.span = ast.Span(0, 1)
     assert len({a, ast.from_json(ast.to_json(a))}) == 1
@@ -358,7 +358,7 @@ def test_long_statements_round_trip_without_deep_recursion():
     a = res.alternatives[0]
     assert ast.from_json(json.loads(json.dumps(ast.to_json(a)))) == a
     assert ast.to_surface(a) == chain
-    many = parse("jan li " + " li ".join(["pali"] * 120))
+    many = parse("jan pali li " + " li ".join(["pali"] * 120))
     assert ast.from_json(ast.to_json(many.alternatives[0])) == many.alternatives[0]
 
 
